@@ -46,7 +46,7 @@ instrumentation: `app/src/androidTest/java/com/hooreader/`; debug probe:
 
 **Независимая проверка / завершение фазы**: Существующие unit/static/build проверки имеют зафиксированный результат; новые fixtures воспроизводимы и не попадают в пользовательскую библиотеку.
 
-- [ ] T001 Расширить генератор scripts/generate-import-corpus.py и описание app/src/androidTest/assets/books/README.md воспроизводимыми EPUB/FB2 с длинным абзацем, Unicode, списками, изображениями, пустыми/безымянными главами и нагрузочным набором 20 MB; большие fixtures генерировать при проверке, не хранить в Git.
+- [X] T001 Расширить генератор scripts/generate-import-corpus.py и описание app/src/androidTest/assets/books/README.md воспроизводимыми EPUB/FB2 с длинным абзацем, Unicode, списками, изображениями, пустыми/безымянными главами и нагрузочным набором 20 MB; большие fixtures генерировать при проверке, не хранить в Git.
 - [ ] T002 Выполнить исходные ./gradlew :app:check :app:assembleDebug :app:assembleDebugAndroidTest и записать версии инструментария, доступные Android-стенды и результаты в specs/002-reader-appearance/implementation-baseline.md; отделить существующие ошибки от регрессий, закреплённые зависимости не обновлять. Зависит от T001.
 
 ## Фаза 2: Общий слой содержимого, позиции и ранний эксперимент
