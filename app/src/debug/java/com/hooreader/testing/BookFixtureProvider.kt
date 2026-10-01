@@ -27,6 +27,7 @@ class BookFixtureProvider : ContentProvider() {
             name in setOf(
                 "structured.fb2", "structured.epub", "empty.fb2", "unsupported.pdf",
                 "drm-marker.epub", "missing-metadata.fb2",
+                "empty.epub", "corrupt.epub", "corrupt.fb2", "windows-1251.fb2",
             ),
         )
         val context = requireNotNull(context)

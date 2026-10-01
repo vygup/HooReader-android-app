@@ -80,6 +80,30 @@ class ImportBookFlowTest {
     }
 
     @Test
+    fun rejectedFilesKeepLibraryUnchangedAndEncodedFb2StillOpens() = runBlocking {
+        val before = dependencies.repository.books.first().map { it.id }.toSet()
+        val failures = mapOf(
+            "unsupported.pdf" to "Формат не поддерживается. Выберите EPUB или FB2.",
+            "empty.epub" to "Файл пуст. Выберите другую книгу.",
+            "corrupt.epub" to "Не удалось разобрать книгу. Файл повреждён или не содержит текста.",
+            "corrupt.fb2" to "Не удалось разобрать книгу. Файл повреждён или не содержит текста.",
+            "drm-marker.epub" to "Книга защищена DRM. Поддерживаются только книги без DRM.",
+        )
+        failures.forEach { (name, message) ->
+            choose(name)
+            waitForText(message)
+            assertEquals(before, dependencies.repository.books.first().map { it.id }.toSet())
+            compose.onNodeWithText("Понятно").performClick()
+        }
+        choose("windows-1251.fb2")
+        waitForReader()
+        imported += dependencies.repository.books.first().map { it.id }.toSet() - before
+        compose.onNodeWithTag("reader_list").assertIsDisplayed()
+        compose.onNodeWithText("В библиотеку").performClick()
+        Unit
+    }
+
+    @Test
     fun libraryKeepsDuplicateProgressAndDeletionRequiresConfirmation() = runBlocking {
         val source = Uri.parse("content://com.hooreader.test.books/missing-metadata.fb2")
         val sourceBytes = dependencies.contentResolver.openInputStream(source)!!.use { it.readBytes() }

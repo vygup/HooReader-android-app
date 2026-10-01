@@ -7,6 +7,9 @@ import androidx.lifecycle.ViewModelStore
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.platform.app.InstrumentationRegistry
 import com.hooreader.data.import.BookImportResult
+import com.hooreader.data.local.ReaderPreferencesRepository
+import com.hooreader.domain.model.ReaderPreferences
+import com.hooreader.domain.model.ReaderTheme
 import com.hooreader.navigation.ReaderDependencies
 import com.hooreader.ui.reader.ReaderUiState
 import com.hooreader.ui.reader.ReaderViewModel
@@ -30,11 +33,16 @@ class ProcessDeathAcceptanceTest {
     private val preferences = context.getSharedPreferences("process-death-acceptance", Context.MODE_PRIVATE)
     private val dependencies = ReaderDependencies(context)
     private val fixtures = listOf("structured.epub", "structured.fb2")
+    private val readerPreferences = ReaderPreferencesRepository(context)
 
     @Test
     fun seed() = runBlocking {
         assumeTrue(InstrumentationRegistry.getArguments().getString("processDeathPhase") == "seed")
         val assets = InstrumentationRegistry.getInstrumentation().context.assets
+        val previous = readerPreferences.preferences.first()
+        preferences.edit().putString("theme", previous.theme.name).putFloat("fontScale", previous.fontScale).commit()
+        readerPreferences.setTheme(ReaderTheme.DARK)
+        readerPreferences.setFontScale(1.5f)
         preferences.edit().putInt("pid", Process.myPid()).commit()
         for (name in fixtures) {
             val source = File(context.cacheDir, "process-death-$name")
@@ -63,6 +71,7 @@ class ProcessDeathAcceptanceTest {
         assumeTrue(InstrumentationRegistry.getArguments().getString("processDeathPhase") == "verify")
         assertNotEquals(preferences.getInt("pid", 0), Process.myPid())
         assertEquals(1, Settings.Global.getInt(context.contentResolver, Settings.Global.AIRPLANE_MODE_ON))
+        assertEquals(ReaderPreferences(ReaderTheme.DARK, 1.5f), readerPreferences.preferences.first())
         for (name in fixtures) {
             val id = requireNotNull(preferences.getString(name, null))
             assertFalse(File(context.cacheDir, "process-death-$name").exists())
@@ -79,6 +88,8 @@ class ProcessDeathAcceptanceTest {
                 dependencies.repository.deleteBook(id)
             }
         }
+        readerPreferences.setTheme(ReaderTheme.valueOf(requireNotNull(preferences.getString("theme", null))))
+        readerPreferences.setFontScale(preferences.getFloat("fontScale", 1f))
         preferences.edit().clear().commit()
         Unit
     }
