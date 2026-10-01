@@ -33,3 +33,9 @@ Thumbs.db
 # Generated APK / AAB
 *.apk
 *.aab
+
+# Kotlin compiler output
+out/
+*.class
+*.jar
+!gradle/wrapper/gradle-wrapper.jar

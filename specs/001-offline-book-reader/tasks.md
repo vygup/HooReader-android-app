@@ -25,7 +25,7 @@
 
 **Цель**: создать общие модели, persistent storage и навигацию до реализации User Story.
 
-- [ ] T005 Создать доменные модели `Book`, `Chapter`, `ContentBlock`, `ReadingPosition` и `ReaderPreferences` в `app/src/main/java/com/hooreader/domain/model/`.
+- [X] T005 Создать доменные модели `Book`, `Chapter`, `ContentBlock`, `ReadingPosition` и `ReaderPreferences` в `app/src/main/java/com/hooreader/domain/model/`.
 - [ ] T006 Создать Room entities, DAO и database для Book, Chapter и ReadingPosition в `app/src/main/java/com/hooreader/data/local/` с ограничениями: `contentHash` уникален, `bookId` позиции уникален, координаты позиции неотрицательны, `progressPercent` в диапазоне 0–100.
 - [ ] T007 Создать app-specific file storage и `BookRepository` в `app/src/main/java/com/hooreader/data/repository/BookRepository.kt`.
 - [ ] T008 [P] Создать DataStore-backed `ReaderPreferencesRepository` в `app/src/main/java/com/hooreader/data/local/ReaderPreferencesRepository.kt`.
