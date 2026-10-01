@@ -20,6 +20,9 @@ local.properties
 .env.*
 *.jks
 *.keystore
+.signing/
+*.p12
+*.pfx
 .env*
 
 # Temporary files and editor settings

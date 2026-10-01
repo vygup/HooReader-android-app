@@ -7,6 +7,18 @@ plugins {
     id("io.gitlab.arturbosch.detekt")
 }
 
+val releaseSigningVariables = listOf(
+    "HOOREADER_KEYSTORE_PATH",
+    "HOOREADER_KEYSTORE_PASSWORD",
+    "HOOREADER_KEY_ALIAS",
+    "HOOREADER_KEY_PASSWORD",
+)
+val releaseSigningValues = releaseSigningVariables.associateWith { providers.environmentVariable(it).orNull }
+val hasReleaseSigning = releaseSigningValues.values.all { !it.isNullOrBlank() }
+if (releaseSigningValues.values.any { !it.isNullOrBlank() } && !hasReleaseSigning) {
+    throw GradleException("Incomplete release signing: set all ${releaseSigningVariables.joinToString()}")
+}
+
 android {
     namespace = "com.hooreader"
     compileSdk = 36
@@ -16,8 +28,25 @@ android {
         minSdk = 26
         targetSdk = 36
         versionCode = 1
-        versionName = "0.1.0"
+        versionName = "1.0.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    signingConfigs {
+        if (hasReleaseSigning) {
+            create("release") {
+                storeFile = rootProject.file(releaseSigningValues.getValue("HOOREADER_KEYSTORE_PATH")!!)
+                storePassword = releaseSigningValues.getValue("HOOREADER_KEYSTORE_PASSWORD")
+                keyAlias = releaseSigningValues.getValue("HOOREADER_KEY_ALIAS")
+                keyPassword = releaseSigningValues.getValue("HOOREADER_KEY_PASSWORD")
+            }
+        }
+    }
+
+    buildTypes {
+        getByName("release") {
+            if (hasReleaseSigning) signingConfig = signingConfigs.getByName("release")
+        }
     }
 
     compileOptions {
