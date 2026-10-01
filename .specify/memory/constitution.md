@@ -1,75 +1,78 @@
 <!--
-Sync Impact Report
-- Version change: 1.0.0 → 1.1.0
-- Modified principles: none
-- Added sections: none
-- Removed sections: none
-- Follow-up TODOs: Ratification date is unknown.
+Отчёт о влиянии синхронизации
+- Изменение версии: 1.0.0 → 1.1.0
+- Изменённые принципы: отсутствуют
+- Добавленные разделы: отсутствуют
+- Удалённые разделы: отсутствуют
+- Последующие TODO: дата ратификации неизвестна.
 -->
 
-# HooReader Constitution
+# Конституция HooReader
 
-## Core Principles
+## Основные принципы
 
-### I. Android-Native Delivery
+### I. Нативная Android-разработка
 
-HooReader MUST be delivered as an Android application. Product behavior, navigation, lifecycle
-handling, and storage MUST respect Android platform conventions and supported Android API levels.
-Platform-independent code is allowed only when it does not compromise this requirement. This keeps
-the reader predictable for Android users and maintainable in its target environment.
+HooReader MUST поставляться как Android-приложение. Поведение продукта, навигация, обработка
+жизненного цикла и хранение данных MUST соответствовать соглашениям платформы Android и
+поддерживаемым уровням Android API. Независимый от платформы код допускается только если он не
+нарушает это требование. Это делает читалку предсказуемой для пользователей Android и удобной в
+сопровождении в её целевой среде.
 
-### II. Kotlin and Jetpack Compose
+### II. Kotlin и Jetpack Compose
 
-Production application code MUST use Kotlin. User interfaces MUST be implemented with Jetpack
-Compose; introducing XML view layouts or another UI framework requires a documented constitution
-amendment. State exposed to Compose MUST have a clear owner and be safe across recomposition and
-Android lifecycle changes.
+Рабочий код приложения MUST использовать Kotlin. Пользовательские интерфейсы MUST быть реализованы
+с Jetpack Compose; добавление XML view layouts или другого UI framework требует документированной
+поправки к конституции. Состояние, доступное Compose, MUST иметь явного владельца и быть безопасным
+при recomposition и изменениях жизненного цикла Android.
 
-### III. Reader Experience Is the Primary Product
+### III. Чтение — основная функция продукта
 
-Every feature MUST support reading books: discovering a catalog, acquiring content, managing the
-library, or presenting readable text. Reading progress, bookmarks, and user reading preferences
-MUST be persisted locally and restored after an ordinary application restart. Non-reader features
-require an explicit product rationale.
+Каждая функция MUST поддерживать чтение книг: поиск каталога, получение контента, управление
+библиотекой или отображение читаемого текста. Прогресс чтения, закладки и пользовательские
+настройки чтения MUST локально сохраняться и восстанавливаться после обычного перезапуска
+приложения. Для функций, не связанных с чтением, требуется явное продуктовое обоснование.
 
-### IV. First-Class OPDS Integration
+### IV. Первоклассная интеграция OPDS
 
-OPDS catalogs MUST be usable from inside the application, without requiring an external browser or
-reader to complete normal catalog discovery and acquisition. The client MUST handle catalog
-navigation, authentication where supported, and clearly report network, parsing, and authorization
-failures without silently losing the user's library state.
+Каталоги OPDS MUST быть доступны внутри приложения, без необходимости использовать внешний браузер
+или читалку для обычного поиска в каталоге и получения книги. Клиент MUST обрабатывать навигацию
+по каталогу, аутентификацию при её поддержке и ясно сообщать об ошибках сети, parsing и
+авторизации, не теряя незаметно состояние библиотеки пользователя.
 
-### V. Secrets Never Enter Source Control
+### V. Секреты не попадают в source control
 
-Tokens, passwords, API keys, and equivalent credentials MUST NOT be committed to source code,
-resources, test fixtures, logs, or documentation. Build-time secrets MUST be supplied through
-environment variables or other approved secret-injection mechanisms; runtime credentials MUST use
-Android secure storage. Repositories MUST provide only redacted examples and variable names.
+Токены, пароли, API keys и аналогичные учётные данные MUST NOT попадать в source code, resources,
+test fixtures, logs или документацию. Секреты для сборки MUST передаваться через environment
+variables или другие утверждённые механизмы внедрения секретов; учётные данные времени выполнения
+MUST использовать Android secure storage. Репозиторий MUST содержать только обезличенные примеры и
+имена переменных.
 
-## Platform & Security Constraints
+## Ограничения платформы и безопасности
 
-Network access MUST use encrypted transport unless a documented, time-limited compatibility
-exception is approved. The app MUST request only Android permissions required for a user-visible
-feature. OPDS credentials and access tokens MUST be scoped to their catalog, excluded from backups
-when supported by the platform, and cleared when the user removes the associated account or catalog.
+Сетевой доступ MUST использовать зашифрованный транспорт, кроме документированного и ограниченного
+по времени исключения для совместимости. Приложение MUST запрашивать только Android permissions,
+необходимые для видимой пользователю функции. Учётные данные и access tokens OPDS MUST быть
+привязаны к своему каталогу, исключены из backup там, где это поддерживает платформа, и удалены,
+когда пользователь удаляет соответствующие учётную запись или каталог.
 
-## Development Workflow
+## Процесс разработки
 
-Changes MUST be specified before implementation when they alter user-visible behavior, catalog
-protocol behavior, storage, or security. Each commit MUST implement exactly one task; it MUST NOT
-combine unrelated tasks, refactors, or formatting-only changes. Reviews MUST verify Kotlin and
-Compose compliance, secure secret handling, and failure behavior for OPDS interactions. Automated
-tests MUST cover business logic and critical persistence paths; protocol changes MUST include
-representative OPDS success and failure cases. A release candidate MUST be validated on an Android
-device or emulator.
+Изменения MUST быть описаны в спецификации до реализации, если они меняют видимое пользователю
+поведение, протокол каталога, хранение или безопасность. Каждый commit MUST реализовывать ровно одну
+task; он MUST NOT смешивать несвязанные tasks, refactoring или изменения только форматирования.
+Review MUST проверять соблюдение Kotlin и Compose, безопасное обращение с секретами и поведение при
+ошибках OPDS-взаимодействий. Automated tests MUST покрывать бизнес-логику и критические пути
+сохранения; изменения протокола MUST включать репрезентативные успешные и ошибочные случаи OPDS.
+Release candidate MUST быть проверен на Android device или emulator.
 
-## Governance
+## Управление
 
-This constitution supersedes conflicting project practices. Any amendment MUST document its
-rationale, affected workflows, and migration consequences, then be approved with the change that
-adopts it. Versions follow semantic versioning: MAJOR for incompatible governance changes, MINOR
-for new or materially expanded rules, and PATCH for clarifications. Every specification, plan,
-task list, review, and release check MUST assess compliance; exceptions require a documented,
-time-limited approval.
+Эта конституция имеет приоритет над противоречащими ей практиками проекта. Любая поправка MUST
+документировать её обоснование, затронутые процессы и последствия миграции, затем быть утверждена
+вместе с изменением, которое её принимает. Версии используют semantic versioning: MAJOR — для
+несовместимых изменений управления, MINOR — для новых или существенно расширенных правил, PATCH —
+для уточнений. Каждая спецификация, план, список tasks, review и проверка релиза MUST оценивать
+соблюдение; исключения требуют документированного, ограниченного по времени утверждения.
 
-**Version**: 1.1.0 | **Ratified**: TODO(RATIFICATION_DATE): original adoption date was not provided | **Last Amended**: 2026-10-01
+**Версия**: 1.1.0 | **Ратифицировано**: TODO(RATIFICATION_DATE): исходная дата принятия не указана | **Последняя поправка**: 2026-10-01

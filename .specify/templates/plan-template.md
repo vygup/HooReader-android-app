@@ -1,16 +1,18 @@
-# Implementation Plan: [FEATURE]
+# План реализации: [FEATURE]
+<!-- Все создаваемые документы и заполняемые разделы пишите по-русски; технические термины,
+идентификаторы и пути оставляйте на английском, когда это уместно. -->
 
-**Branch**: `[###-feature-name]` | **Date**: [DATE] | **Spec**: [link]
+**Ветка**: `[###-feature-name]` | **Дата**: [DATE] | **Спецификация**: [link]
 
-**Input**: Feature specification from `/specs/[###-feature-name]/spec.md`
+**Ввод**: Спецификация функции из `/specs/[###-feature-name]/spec.md`
 
 **Note**: This template is filled in by the `$speckit-plan` command; its definition describes the execution workflow.
 
-## Summary
+## Краткое описание
 
 [Extract from feature spec: primary requirement + technical approach from research]
 
-## Technical Context
+## Технический контекст
 
 <!--
   ACTION REQUIRED: Replace the content in this section with the technical details
@@ -36,15 +38,15 @@
 
 **Scale/Scope**: [domain-specific, e.g., 10k users, 1M LOC, 50 screens or NEEDS CLARIFICATION]
 
-## Constitution Check
+## Проверка конституции
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
 [Gates determined based on constitution file]
 
-## Project Structure
+## Структура проекта
 
-### Documentation (this feature)
+### Документация (эта функция)
 
 ```text
 specs/[###-feature]/
@@ -56,7 +58,7 @@ specs/[###-feature]/
 └── tasks.md             # Phase 2 output ($speckit-tasks command - NOT created by $speckit-plan)
 ```
 
-### Source Code (repository root)
+### Исходный код (корень репозитория)
 <!--
   ACTION REQUIRED: Replace the placeholder tree below with the concrete layout
   for this feature. Delete unused options and expand the chosen structure with
@@ -100,10 +102,10 @@ ios/ or android/
 └── [platform-specific structure: feature modules, UI flows, platform tests]
 ```
 
-**Structure Decision**: [Document the selected structure and reference the real
+**Выбор структуры**: [Документируйте выбранную структуру и укажите реальные
 directories captured above]
 
-## Complexity Tracking
+## Учёт сложности
 
 > **Fill ONLY if Constitution Check has violations that must be justified**
 

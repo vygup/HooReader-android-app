@@ -1,25 +1,27 @@
 ---
 
-description: "Task list template for feature implementation"
+description: "Шаблон списка задач для реализации функции"
 ---
 
-# Tasks: [FEATURE NAME]
+# Задачи: [FEATURE NAME]
+<!-- Все создаваемые документы и заполняемые разделы пишите по-русски; технические термины,
+идентификаторы и пути оставляйте на английском, когда это уместно. -->
 
-**Input**: Design documents from `/specs/[###-feature-name]/`
+**Ввод**: Документы проектирования из `/specs/[###-feature-name]/`
 
-**Prerequisites**: plan.md (required), spec.md (required for user stories), research.md, data-model.md, contracts/
+**Предварительные условия**: plan.md (обязательно), spec.md (обязательно для User Story), research.md, data-model.md, contracts/
 
 **Tests**: The examples below include test tasks. Tests are OPTIONAL - only include them if explicitly requested in the feature specification.
 
 **Organization**: Tasks are grouped by user story to enable independent implementation and testing of each story.
 
-## Format: `[ID] [P?] [Story] Description`
+## Формат: `[ID] [P?] [Story] Описание`
 
 - **[P]**: Can run in parallel (different files, no dependencies)
 - **[Story]**: Which user story this task belongs to (e.g., US1, US2, US3)
 - Include exact file paths in descriptions
 
-## Path Conventions
+## Соглашения о путях
 
 - **Single project**: `src/`, `tests/` at repository root
 - **Web app**: `backend/src/`, `frontend/src/`
@@ -45,7 +47,7 @@ description: "Task list template for feature implementation"
   ============================================================================
 -->
 
-## Phase 1: Setup (Shared Infrastructure)
+## Фаза 1: Настройка (общая инфраструктура)
 
 **Purpose**: Project initialization and basic structure
 
@@ -55,7 +57,7 @@ description: "Task list template for feature implementation"
 
 ---
 
-## Phase 2: Foundational (Blocking Prerequisites)
+## Фаза 2: Основание (блокирующие предварительные условия)
 
 **Purpose**: Core infrastructure that MUST be complete before ANY user story can be implemented
 
@@ -74,7 +76,7 @@ Examples of foundational tasks (adjust based on your project):
 
 ---
 
-## Phase 3: User Story 1 - [Title] (Priority: P1) 🎯 MVP
+## Фаза 3: User Story 1 - [Название] (Приоритет: P1) 🎯 MVP
 
 **Goal**: [Brief description of what this story delivers]
 
@@ -100,7 +102,7 @@ Examples of foundational tasks (adjust based on your project):
 
 ---
 
-## Phase 4: User Story 2 - [Title] (Priority: P2)
+## Фаза 4: User Story 2 - [Название] (Приоритет: P2)
 
 **Goal**: [Brief description of what this story delivers]
 
@@ -122,7 +124,7 @@ Examples of foundational tasks (adjust based on your project):
 
 ---
 
-## Phase 5: User Story 3 - [Title] (Priority: P3)
+## Фаза 5: User Story 3 - [Название] (Приоритет: P3)
 
 **Goal**: [Brief description of what this story delivers]
 
@@ -147,7 +149,7 @@ Examples of foundational tasks (adjust based on your project):
 
 ---
 
-## Phase N: Polish & Cross-Cutting Concerns
+## Фаза N: Завершение и сквозные вопросы
 
 **Purpose**: Improvements that affect multiple user stories
 
@@ -160,7 +162,7 @@ Examples of foundational tasks (adjust based on your project):
 
 ---
 
-## Dependencies & Execution Order
+## Зависимости и порядок выполнения
 
 ### Phase Dependencies
 
@@ -210,7 +212,7 @@ Task: "Create [Entity2] model in src/models/[entity2].py"
 
 ---
 
-## Implementation Strategy
+## Стратегия реализации
 
 ### MVP First (User Story 1 Only)
 
