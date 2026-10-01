@@ -29,7 +29,7 @@
 - [X] T006 Создать Room entities, DAO и database для Book, Chapter и ReadingPosition в `app/src/main/java/com/hooreader/data/local/` с ограничениями: `contentHash` уникален, `bookId` позиции уникален, координаты позиции неотрицательны, `progressPercent` в диапазоне 0–100.
 - [X] T007 Создать app-specific file storage и `BookRepository` в `app/src/main/java/com/hooreader/data/repository/BookRepository.kt`.
 - [X] T008 [P] Создать DataStore-backed `ReaderPreferencesRepository` в `app/src/main/java/com/hooreader/data/local/ReaderPreferencesRepository.kt`.
-- [ ] T009 Создать общий контракт parser и lazy chapter/block loading в `app/src/main/java/com/hooreader/data/import/BookParser.kt`.
+- [X] T009 Создать общий контракт parser и lazy chapter/block loading в `app/src/main/java/com/hooreader/data/import/BookParser.kt`.
 - [ ] T010 Создать root navigation и маршруты Library/Reader в `app/src/main/java/com/hooreader/navigation/HooReaderNavHost.kt`.
 - [ ] T011 [P] Добавить тестовые EPUB, FB2, DRM-marker, повреждённые и пустые fixtures в `app/src/androidTest/assets/books/`.
 - [ ] T012 [P] Добавить Room repository tests для уникального `contentHash`, каскадного удаления и координат позиции в `app/src/test/java/com/hooreader/data/repository/BookRepositoryTest.kt`.
