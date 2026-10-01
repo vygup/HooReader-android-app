@@ -4,6 +4,8 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.runtime.remember
+import com.hooreader.data.local.ReaderPreferencesRepository
 import com.hooreader.navigation.HooReaderNavHost
 import com.hooreader.ui.theme.HooReaderTheme
 
@@ -12,7 +14,8 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            HooReaderTheme {
+            val preferences = remember { ReaderPreferencesRepository(applicationContext) }
+            HooReaderTheme(preferences) {
                 HooReaderNavHost()
             }
         }

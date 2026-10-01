@@ -102,7 +102,7 @@ process, открыть книгу в авиарежиме и восстанов
 - [X] T036 [P] [US4] Написать Compose instrumentation test сохранения темы и позиции в `app/src/androidTest/java/com/hooreader/settings/ReaderSettingsTest.kt`.
 - [X] T037 [US4] Реализовать `ReaderSettingsViewModel` и ограниченный font scale в `app/src/main/java/com/hooreader/ui/settings/ReaderSettingsViewModel.kt`.
 - [X] T038 [US4] Реализовать chooser темы и размера текста в `app/src/main/java/com/hooreader/ui/settings/ReaderSettingsSheet.kt`.
-- [ ] T039 [US4] Подключить DataStore theme к app theme в `app/src/main/java/com/hooreader/ui/theme/HooReaderTheme.kt`.
+- [X] T039 [US4] Подключить DataStore theme к app theme в `app/src/main/java/com/hooreader/ui/theme/HooReaderTheme.kt`.
 
 **Контрольная точка**: выбранные тема и размер текста сохраняются, а логическая позиция не сбрасывается.
 
