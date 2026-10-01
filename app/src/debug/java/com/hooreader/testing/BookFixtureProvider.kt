@@ -23,7 +23,12 @@ class BookFixtureProvider : ContentProvider() {
 
     override fun openFile(uri: Uri, mode: String): ParcelFileDescriptor {
         val name = requireNotNull(uri.lastPathSegment)
-        require(name in setOf("structured.fb2", "structured.epub", "empty.fb2", "unsupported.pdf", "drm-marker.epub"))
+        require(
+            name in setOf(
+                "structured.fb2", "structured.epub", "empty.fb2", "unsupported.pdf",
+                "drm-marker.epub", "missing-metadata.fb2",
+            ),
+        )
         val context = requireNotNull(context)
         val file = File(context.cacheDir, name)
         val assets = context.createPackageContext("${context.packageName}.test", 0).assets

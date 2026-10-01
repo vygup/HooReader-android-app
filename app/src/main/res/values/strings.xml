@@ -31,4 +31,10 @@
     <string name="delete_book">Удалить</string>
     <string name="delete_book_description">Удалить книгу «%1$s»</string>
     <string name="delete_in_progress">Удаление книги…</string>
+    <string name="confirm_delete_title">Удалить книгу?</string>
+    <string name="confirm_delete_message">«%1$s» и её прогресс будут удалены из библиотеки. Исходный файл останется на устройстве.</string>
+    <string name="confirm_delete_action">Удалить из библиотеки</string>
+    <string name="cancel">Отмена</string>
+    <string name="library_load_error">Не удалось загрузить библиотеку. Попробуйте ещё раз.</string>
+    <string name="library_delete_error">Не удалось удалить все данные книги. Попробуйте удалить её ещё раз.</string>
 </resources>

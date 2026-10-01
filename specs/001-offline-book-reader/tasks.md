@@ -68,7 +68,7 @@ process, открыть книгу в авиарежиме и восстанов
 - [X] T024 [US2] Реализовать query библиотеки, fallback metadata, «Прочитано» от 98% и удаление только app-local данных в `app/src/main/java/com/hooreader/data/repository/LibraryRepository.kt`.
 - [X] T025 [US2] Реализовать `LibraryViewModel` для состояний `empty`, `content`, `importing` и `error` в `app/src/main/java/com/hooreader/ui/library/LibraryViewModel.kt`.
 - [X] T026 [US2] Реализовать lazy library, BookCard и empty state в `app/src/main/java/com/hooreader/ui/library/LibraryScreen.kt` и `app/src/main/java/com/hooreader/ui/library/BookCard.kt`.
-- [ ] T027 [US2] Реализовать сообщение о повторном импорте и диалог подтверждения удаления в `app/src/main/java/com/hooreader/ui/library/LibraryActions.kt`.
+- [X] T027 [US2] Реализовать сообщение о повторном импорте и диалог подтверждения удаления в `app/src/main/java/com/hooreader/ui/library/LibraryActions.kt`.
 
 **Контрольная точка**: библиотека удобна при 100 книгах, показывает fallback/progress и не создаёт
 незаметных дубликатов.

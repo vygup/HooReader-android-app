@@ -4,17 +4,13 @@ import android.net.Uri
 import android.provider.OpenableColumns
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.annotation.StringRes
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.res.stringResource
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.hooreader.R
-import com.hooreader.data.import.BookImportError
 import com.hooreader.data.import.BookImportResult
 import com.hooreader.navigation.ReaderDependencies
 import kotlinx.coroutines.Dispatchers
@@ -24,6 +20,7 @@ import java.io.IOException
 @Composable
 fun ImportBookLauncher(viewModel: LibraryViewModel, openBook: (String) -> Unit) {
     val state by viewModel.state.collectAsStateWithLifecycle()
+    var pendingDeleteId by rememberSaveable { mutableStateOf<String?>(null) }
     val picker = rememberLauncherForActivityResult(ActivityResultContracts.OpenDocument()) { uri ->
         uri?.let(viewModel::import)
     }
@@ -38,8 +35,22 @@ fun ImportBookLauncher(viewModel: LibraryViewModel, openBook: (String) -> Unit) 
         state = state,
         onImport = { picker.launch(arrayOf("*/*")) },
         onOpenBook = openBook,
-        onDelete = {},
-        messages = { ImportResultMessage(state.importResult, viewModel::dismissResult, openBook) },
+        onDelete = { pendingDeleteId = it },
+        messages = {
+            LibraryActions(
+                state = state,
+                pendingDeleteId = pendingDeleteId,
+                onCancelDelete = { pendingDeleteId = null },
+                onConfirmDelete = {
+                    pendingDeleteId = null
+                    viewModel.deleteBook(it)
+                },
+                onDismissResult = viewModel::dismissResult,
+                onDismissError = viewModel::dismissError,
+                onRetryLoad = viewModel::retryLoad,
+                onOpenBook = openBook,
+            )
+        },
     )
 }
 
@@ -55,33 +66,4 @@ internal suspend fun importFromPicker(dependencies: ReaderDependencies, uri: Uri
     return dependencies.importer.import(name) {
         dependencies.contentResolver.openInputStream(uri) ?: throw IOException("Source is unavailable")
     }
-}
-
-@Composable
-private fun ImportResultMessage(result: BookImportResult?, dismiss: () -> Unit, openBook: (String) -> Unit) {
-    when (result) {
-        is BookImportResult.Failed -> {
-            Text(stringResource(importErrorMessage(result.reason)), color = MaterialTheme.colorScheme.error)
-            TextButton(onClick = dismiss) { Text(stringResource(R.string.dismiss_message)) }
-        }
-        is BookImportResult.Duplicate -> {
-            Text(stringResource(R.string.import_duplicate))
-            TextButton(
-                onClick = {
-                    dismiss()
-                    openBook(result.book.id)
-                },
-            ) { Text(stringResource(R.string.open_book)) }
-        }
-        else -> Unit
-    }
-}
-
-@StringRes
-private fun importErrorMessage(error: BookImportError): Int = when (error) {
-    BookImportError.EMPTY -> R.string.import_error_empty
-    BookImportError.UNSUPPORTED_FORMAT -> R.string.import_error_format
-    BookImportError.DRM -> R.string.import_error_drm
-    BookImportError.CORRUPT -> R.string.import_error_corrupt
-    BookImportError.IO -> R.string.import_error_io
 }
