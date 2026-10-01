@@ -10,7 +10,9 @@ import com.hooreader.data.import.Fb2BookParser
 import com.hooreader.data.local.BookFileStorage
 import com.hooreader.data.local.HooReaderDatabase
 import com.hooreader.domain.model.ReadingPosition
+import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import org.junit.After
 import org.junit.Assert.assertEquals
@@ -48,6 +50,41 @@ class LibraryRepositoryTest {
     fun tearDown() = runBlocking {
         importedIds.forEach { files.deleteBook(it) }
         database.close()
+    }
+
+    @Test
+    fun `library observes saved progress and read boundary without reopening`() = runBlocking {
+        val book = importBook("missing-metadata.fb2")
+        val library = LibraryRepository(database, files)
+        assertEquals(0.0, library.books.first().single().progressPercent, 0.0)
+        books.savePosition(ReadingPosition(book.id, progressPercent = 97.9, updatedAt = 1))
+        assertFalse(library.books.first().single().isRead)
+        val observed = CompletableDeferred<LibraryBook>()
+        val collector = launch {
+            observed.complete(library.books.first { it.single().isRead }.single())
+        }
+        try {
+            books.savePosition(ReadingPosition(book.id, progressPercent = 98.0, updatedAt = 2))
+            assertEquals(98.0, observed.await().progressPercent, 0.0)
+        } finally {
+            collector.cancel()
+        }
+    }
+
+    @Test
+    fun `library uses placeholder when local cover is missing`() = runBlocking {
+        val original = importBook("structured.fb2")
+        val copyId = java.util.UUID.randomUUID().toString().also { importedIds += it }
+        val local = files.copyBook(copyId, original.format, File(original.localPath).inputStream())
+        val copy = original.copy(
+            id = copyId,
+            contentHash = "f".repeat(64),
+            localPath = local.path,
+            coverPath = File(local.parentFile, "missing-cover").path,
+        )
+        books.addBook(copy, books.getChapters(original.id).map { it.copy(bookId = copyId) })
+        val entry = LibraryRepository(database, files).books.first().single { it.book.id == copyId }
+        assertNull(entry.book.coverPath)
     }
 
     @Test
@@ -91,7 +128,7 @@ class LibraryRepositoryTest {
             val book = result.book.also { importedIds += it.id }
             books.savePosition(ReadingPosition(book.id, progressPercent = 40.0))
             val cover = File(File(book.localPath).parentFile, "extra-cover").apply { writeText("cover") }
-            books.deleteBook(book.id)
+            LibraryRepository(database, files).deleteBook(book.id)
             assertTrue(books.books.first().isEmpty())
             assertTrue(books.getChapters(book.id).isEmpty())
             assertNull(books.getPosition(book.id))
