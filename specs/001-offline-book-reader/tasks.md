@@ -19,7 +19,7 @@
 - [ ] T001 Создать Gradle root-конфигурацию и модуль приложения в `settings.gradle.kts`, `build.gradle.kts` и `app/build.gradle.kts`.
 - [ ] T002 Настроить Android manifest, `minSdk 26` и базовую тему в `app/src/main/AndroidManifest.xml` и `app/src/main/java/com/hooreader/ui/theme/Theme.kt`.
 - [ ] T003 [P] Подключить Compose, Room, DataStore, Lifecycle, Coroutines, Readium и тестовые зависимости в `app/build.gradle.kts`.
-- [ ] T004 [P] Настроить Kotlin formatting и static analysis в `config/detekt/detekt.yml` и `app/build.gradle.kts`.
+- [ ] T004 Настроить Kotlin formatting и static analysis в `config/detekt/detekt.yml` и `app/build.gradle.kts`.
 
 ## Фаза 2: Основание
 
@@ -111,8 +111,9 @@ process, открыть книгу в авиарежиме и восстанов
 - [ ] T040 Выполнить security review импорта, app-specific storage, logs и permissions по `specs/001-offline-book-reader/checklists/security.md`.
 - [ ] T041 Выполнить UX review требований и UI состояний по `specs/001-offline-book-reader/checklists/ux.md`.
 - [ ] T042 Выполнить все сценарии `specs/001-offline-book-reader/quickstart.md` на Android emulator или устройстве.
-- [ ] T043 Измерить открытие 20 MB книги и прокрутку библиотеки из 100 книг; зафиксировать результаты в `specs/001-offline-book-reader/performance-results.md`.
-- [ ] T044 Обновить `README.md` инструкциями сборки, офлайн-ограничениями, форматами EPUB/FB2 без DRM и запретом OPDS в MVP.
+- [ ] T043 Измерить открытие 20 MB книги и долю кадров до 16,7 ms при прокрутке текста и библиотеки из 100 книг; зафиксировать результаты в `specs/001-offline-book-reader/performance-results.md`.
+- [ ] T044 Сформировать согласованный EPUB/FB2 test corpus, выполнить импорт каждого файла, рассчитать долю успешных открытий и записать результат в `specs/001-offline-book-reader/import-corpus-results.md`.
+- [ ] T045 Обновить `README.md` инструкциями сборки, офлайн-ограничениями, форматами EPUB/FB2 без DRM и запретом OPDS в MVP.
 
 ## Зависимости и порядок выполнения
 
@@ -136,6 +137,6 @@ process, открыть книгу в авиарежиме и восстанов
 1. Завершить T001–T012.
 2. Завершить T013–T021 и проверить полный офлайн-сценарий US1 — это рекомендуемый минимальный MVP.
 3. Добавить US2 для полноценной библиотеки, затем US3 и US4 по порядку приоритетов.
-4. Выполнить T040–T044 перед релизом.
+4. Выполнить T040–T045 перед релизом.
 
 Все задачи имеют формат checkbox + ID + labels + путь и предназначены для отдельных commit.
