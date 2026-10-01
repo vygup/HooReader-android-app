@@ -84,7 +84,7 @@ process, открыть книгу в авиарежиме и восстанов
 - [X] T029 [P] [US3] Написать Compose UI test перехода по содержанию и сохранения позиции при layout change в `app/src/androidTest/java/com/hooreader/reader/ReaderNavigationTest.kt`.
 - [X] T030 [US3] Реализовать преобразование EPUB XHTML в ContentBlock без выполнения активного содержимого в `app/src/main/java/com/hooreader/data/import/EpubContentMapper.kt`.
 - [X] T031 [US3] Реализовать преобразование FB2 section/paragraph/style/image в ContentBlock в `app/src/main/java/com/hooreader/data/import/Fb2ContentMapper.kt`.
-- [ ] T032 [US3] Реализовать список глав и переход к началу главы в `app/src/main/java/com/hooreader/ui/reader/TableOfContentsSheet.kt`.
+- [X] T032 [US3] Реализовать список глав и переход к началу главы в `app/src/main/java/com/hooreader/ui/reader/TableOfContentsSheet.kt`.
 - [ ] T033 [US3] Реализовать Compose blocks для paragraph, heading, bold/italic, list, image и fallback в `app/src/main/java/com/hooreader/ui/reader/ContentBlockRenderer.kt`.
 - [ ] T034 [US3] Реализовать восстановление ближайшего существующего блока после поворота или смены font scale в `app/src/main/java/com/hooreader/ui/reader/ReaderPositionResolver.kt`.
 

@@ -37,4 +37,6 @@
     <string name="cancel">Отмена</string>
     <string name="library_load_error">Не удалось загрузить библиотеку. Попробуйте ещё раз.</string>
     <string name="library_delete_error">Не удалось удалить все данные книги. Попробуйте удалить её ещё раз.</string>
+    <string name="table_of_contents">Содержание</string>
+    <string name="chapter_number">Глава %1$d</string>
 </resources>

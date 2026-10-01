@@ -22,6 +22,9 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.key
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
@@ -69,6 +72,17 @@ fun ReaderScreen(viewModel: ReaderViewModel, onBack: () -> Unit) {
 
 @Composable
 private fun ReaderContent(state: ReaderUiState.Reading, viewModel: ReaderViewModel, modifier: Modifier) {
+    var showContents by rememberSaveable { mutableStateOf(false) }
+    if (showContents) {
+        TableOfContentsSheet(
+            chapters = state.chapters,
+            onSelect = { index ->
+                showContents = false
+                viewModel.selectChapter(index)
+            },
+            onDismiss = { showContents = false },
+        )
+    }
     Column(modifier = modifier, verticalArrangement = Arrangement.spacedBy(8.dp)) {
         Text(
             state.book.title,
@@ -85,6 +99,9 @@ private fun ReaderContent(state: ReaderUiState.Reading, viewModel: ReaderViewMod
             ),
             style = MaterialTheme.typography.labelMedium,
         )
+        if (state.chapters.size > 1 || state.chapters.any { !it.title.isNullOrBlank() }) {
+            TextButton(onClick = { showContents = true }) { Text(stringResource(R.string.table_of_contents)) }
+        }
         key(state.position.chapterIndex, state.blocks.first().blockIndex) {
             ChapterText(state, viewModel, Modifier.weight(1f))
         }
