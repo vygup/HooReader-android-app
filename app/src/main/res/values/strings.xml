@@ -24,4 +24,11 @@
     <string name="import_error_drm">Книга защищена DRM. Поддерживаются только книги без DRM.</string>
     <string name="import_error_corrupt">Не удалось разобрать книгу. Файл повреждён или не содержит текста.</string>
     <string name="import_error_io">Не удалось прочитать или сохранить файл. Проверьте доступ к файлу и свободное место.</string>
+    <string name="book_read">Прочитано</string>
+    <string name="book_progress">≈ %1$d%%</string>
+    <string name="book_cover">Обложка книги</string>
+    <string name="book_cover_missing">Обложка отсутствует</string>
+    <string name="delete_book">Удалить</string>
+    <string name="delete_book_description">Удалить книгу «%1$s»</string>
+    <string name="delete_in_progress">Удаление книги…</string>
 </resources>

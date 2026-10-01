@@ -13,7 +13,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.hooreader.ui.library.ImportBookLauncher
-import com.hooreader.ui.library.ImportBookViewModel
+import com.hooreader.ui.library.LibraryViewModel
+import com.hooreader.ui.library.importFromPicker
 import com.hooreader.ui.reader.ReaderScreen
 import com.hooreader.ui.reader.ReaderViewModel
 
@@ -33,8 +34,10 @@ fun HooReaderNavHost(
             if (libraryContent != null) {
                 libraryContent(openBook)
             } else {
-                val model: ImportBookViewModel = viewModel(
-                    factory = viewModelFactory { initializer { ImportBookViewModel(dependencies) } },
+                val model: LibraryViewModel = viewModel(
+                    factory = viewModelFactory {
+                        initializer { LibraryViewModel(dependencies.library) { importFromPicker(dependencies, it) } }
+                    },
                 )
                 ImportBookLauncher(model, openBook)
             }

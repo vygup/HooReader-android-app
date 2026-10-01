@@ -67,7 +67,7 @@ process, открыть книгу в авиарежиме и восстанов
 - [X] T023 [P] [US2] Написать Compose UI test карточки с progress и placeholder в `app/src/androidTest/java/com/hooreader/library/LibraryScreenTest.kt`.
 - [X] T024 [US2] Реализовать query библиотеки, fallback metadata, «Прочитано» от 98% и удаление только app-local данных в `app/src/main/java/com/hooreader/data/repository/LibraryRepository.kt`.
 - [X] T025 [US2] Реализовать `LibraryViewModel` для состояний `empty`, `content`, `importing` и `error` в `app/src/main/java/com/hooreader/ui/library/LibraryViewModel.kt`.
-- [ ] T026 [US2] Реализовать lazy library, BookCard и empty state в `app/src/main/java/com/hooreader/ui/library/LibraryScreen.kt` и `app/src/main/java/com/hooreader/ui/library/BookCard.kt`.
+- [X] T026 [US2] Реализовать lazy library, BookCard и empty state в `app/src/main/java/com/hooreader/ui/library/LibraryScreen.kt` и `app/src/main/java/com/hooreader/ui/library/BookCard.kt`.
 - [ ] T027 [US2] Реализовать сообщение о повторном импорте и диалог подтверждения удаления в `app/src/main/java/com/hooreader/ui/library/LibraryActions.kt`.
 
 **Контрольная точка**: библиотека удобна при 100 книгах, показывает fallback/progress и не создаёт
