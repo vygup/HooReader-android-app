@@ -112,15 +112,14 @@ class ReaderViewModel(
     fun saveNow() = positionSaver.flushAsync()
 
     private suspend fun showChapter(book: Book, parsed: ParsedBook, saved: ReadingPosition) {
-        val chapter = parsed.chapters[saved.chapterIndex.coerceIn(parsed.chapters.indices)]
-        val index = saved.blockIndex.coerceIn(0, (chapter.blockCount - 1).coerceAtLeast(0))
+        val chapter = ReaderPositionResolver.chapter(saved, parsed.chapters)
+        val index = ReaderPositionResolver.blockIndex(saved, chapter)
         val blocks = ChapterBlockLoader(parsed).load(chapter.index, windowStart(index), WINDOW_SIZE).ifEmpty {
             listOf(ContentBlock(chapter.index, 0, BlockKind.FALLBACK, "[В главе нет доступного текста]"))
         }
-        val anchor = blocks.firstOrNull { it.blockIndex == index } ?: blocks.firstOrNull()
-        checkNotNull(anchor)
+        val anchor = ReaderPositionResolver.block(saved.copy(blockIndex = index), blocks)
         if (latestPosition == null) latestPosition = saved
-        val restored = position(parsed.chapters, anchor, saved.characterOffset)
+        val restored = position(parsed.chapters, anchor, ReaderPositionResolver.characterOffset(saved, anchor))
         latestPosition = restored
         positionSaver.update(restored)
         mutableState.value = ReaderUiState.Reading(book, parsed.chapters, blocks, restored)

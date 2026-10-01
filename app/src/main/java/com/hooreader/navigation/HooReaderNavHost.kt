@@ -57,7 +57,7 @@ fun HooReaderNavHost(
                         initializer { ReaderViewModel(bookId, dependencies.repository, dependencies.parsers) }
                     },
                 )
-                ReaderScreen(model, onBack)
+                ReaderScreen(model, onBack = onBack)
             }
         }
     }
