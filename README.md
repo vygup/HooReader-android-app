@@ -4,6 +4,10 @@
 в собственное локальное хранилище, показывает библиотеку и сохраняет место чтения.
 Минимальная версия Android — 8.0 (API 26).
 
+Первый выпуск — **1.0.0**. [Release notes](docs/releases/1.0.0.md) ·
+[Сборка подписанного APK/AAB и выпуск](docs/releasing.md).
+Для release-сборки: `python3 scripts/build-release.py`.
+
 ## Возможности
 
 - Импорт EPUB без DRM и FB2 через стандартный Android File Picker.

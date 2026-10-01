@@ -16,3 +16,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "HooReader"
 include(":app")
+include(":release-smoke")

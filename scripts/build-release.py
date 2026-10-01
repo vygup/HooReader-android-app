@@ -3,6 +3,7 @@
 import hashlib
 import json
 import os
+import re
 from pathlib import Path
 import shutil
 import subprocess
@@ -49,7 +50,18 @@ verified = subprocess.run([str(apksigner), 'verify', '--verbose', '--print-certs
 if 'Android Debug' in verified.stdout:
     raise SystemExit('Debug certificate запрещён для release.')
 (output / 'apk-signature.txt').write_text(verified.stdout)
-subprocess.run(['jarsigner', '-verify', str(aab)], check=True)
+bundle_verified = subprocess.run(['jarsigner', '-verify', str(aab)],
+                                 capture_output=True, text=True, check=True)
+if 'jar verified.' not in bundle_verified.stdout or 'jar is unsigned' in bundle_verified.stdout:
+    raise SystemExit('AAB signature verification failed.')
+(output / 'aab-signature.txt').write_text(bundle_verified.stdout)
+bundle_certificate = subprocess.run(['keytool', '-printcert', '-jarfile', str(aab)],
+                                    capture_output=True, text=True, check=True).stdout
+apk_digest = re.search(r'certificate SHA-256 digest: ([a-f0-9]+)', verified.stdout)
+bundle_digest = re.search(r'SHA256: ([A-Fa-f0-9:]+)', bundle_certificate)
+if not apk_digest or not bundle_digest or apk_digest[1] != bundle_digest[1].replace(':', '').lower():
+    raise SystemExit('APK и AAB подписаны разными или нераспознанными сертификатами.')
+(output / 'aab-certificate.txt').write_text(bundle_certificate)
 checksums = ''.join(f'{hashlib.sha256(p.read_bytes()).hexdigest()}  {p.name}\n' for p in (apk, aab))
 (output / 'SHA256SUMS.txt').write_text(checksums)
 print(f'Готовые подписанные APK/AAB: {output}')

@@ -3,6 +3,7 @@ package com.hooreader.ui.library
 import android.content.Context
 import android.net.Uri
 import androidx.lifecycle.ViewModelStore
+import androidx.lifecycle.viewModelScope
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import com.hooreader.data.import.BookImportError
@@ -18,7 +19,10 @@ import com.hooreader.domain.model.Chapter
 import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.job
+import kotlinx.coroutines.joinAll
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.resetMain
@@ -45,6 +49,7 @@ class LibraryViewModelTest {
     private lateinit var books: BookRepository
     private lateinit var library: LibraryRepository
     private val ids = mutableListOf<String>()
+    private val modelJobs = mutableListOf<Job>()
 
     @Before
     fun setUp() {
@@ -58,6 +63,7 @@ class LibraryViewModelTest {
     @After
     fun tearDown() = runBlocking {
         store.clear()
+        modelJobs.joinAll()
         database.close()
         ids.forEach { files.deleteBook(it) }
         Dispatchers.resetMain()
@@ -124,7 +130,10 @@ class LibraryViewModelTest {
     }
 
     private fun model(import: suspend (Uri) -> BookImportResult) =
-        LibraryViewModel(library, import).also { store.put("library", it) }
+        LibraryViewModel(library, import).also {
+            store.put("library", it)
+            modelJobs += it.viewModelScope.coroutineContext.job
+        }
 
     private suspend fun await(model: LibraryViewModel, status: LibraryStatus) = withTimeout(5_000) {
         model.state.first { it.status == status && it.deletingBookId == null }
