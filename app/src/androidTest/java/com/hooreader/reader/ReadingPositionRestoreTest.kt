@@ -50,7 +50,7 @@ class ReadingPositionRestoreTest {
         var importedId: String? = null
         try {
             var repository = BookRepository(database, files)
-            val parsers = listOf(EpubBookParser(context), Fb2BookParser())
+            val parsers = listOf(EpubBookParser(), Fb2BookParser())
             val result = BookImportService(files, repository, parsers).import(asset) { source.inputStream() }
             val book = (result as BookImportResult.Added).book
             importedId = book.id
@@ -91,11 +91,14 @@ class ReadingPositionRestoreTest {
 
     private suspend fun createReader(store: ViewModelStore, id: String, repository: BookRepository): ReaderViewModel =
         withContext(Dispatchers.Main) {
-            ViewModelProvider(store, object : ViewModelProvider.Factory {
-                @Suppress("UNCHECKED_CAST")
-                override fun <T : ViewModel> create(modelClass: Class<T>): T =
-                    ReaderViewModel(id, repository, listOf(EpubBookParser(context), Fb2BookParser())) as T
-            })[ReaderViewModel::class.java]
+            ViewModelProvider(
+                store,
+                object : ViewModelProvider.Factory {
+                    @Suppress("UNCHECKED_CAST")
+                    override fun <T : ViewModel> create(modelClass: Class<T>): T =
+                        ReaderViewModel(id, repository, listOf(EpubBookParser(), Fb2BookParser())) as T
+                }
+            )[ReaderViewModel::class.java]
         }
 
     private suspend fun awaitReading(reader: ReaderViewModel): ReaderUiState.Reading = withTimeout(TIMEOUT_MS) {

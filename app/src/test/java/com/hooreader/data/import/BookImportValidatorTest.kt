@@ -35,7 +35,7 @@ class BookImportValidatorTest {
         database = Room.inMemoryDatabaseBuilder(context, HooReaderDatabase::class.java)
             .addCallback(HooReaderDatabase.ValidationCallback).build()
         repository = BookRepository(database, files)
-        importer = BookImportService(files, repository, listOf(EpubBookParser(context), Fb2BookParser()))
+        importer = BookImportService(files, repository, listOf(EpubBookParser(), Fb2BookParser()))
     }
 
     @After
