@@ -24,7 +24,8 @@ SettingsWriteState: persistedSnapshot, requestedSnapshot, pendingFields, error.
 устаревшее pending значение того же поля. Ошибка другого поля не сбрасывается.
 Pending изменения хранятся в памяти до успешной записи; после завершения процесса восстанавливается
 persistedSnapshot. UI сообщает о несохранённом выборе. При сбое flush перед изменением геометрии
-ReaderPreferences effective layout остаётся прежним до повторной попытки.
+ReaderPreferences для выбранной пользователем смены режима/масштаба effective выбор остаётся
+прежним до повторной попытки. Системная смена геометрии этим правилом не блокируется.
 
 ## ReadingPosition и LogicalAnchor
 
@@ -48,6 +49,18 @@ restoreAnchor отдельно удерживается при восстано�
 anchor, не перезаписывает его первым символом этой страницы. После явного перелистывания позиция
 переходит к началу новой settledPage. Вертикальный список получает offset первой видимой строки
 из общего TextLayoutResult, а не из firstVisibleItemIndex без учёта обрезки абзаца.
+
+GeometryChangeOrigin: USER_PREFERENCE — режим/масштаб из меню; SYSTEM_CONFIGURATION —
+ориентация, viewport, density или системный шрифт. USER_PREFERENCE требует успешного flush
+до применения выбора. SYSTEM_CONFIGURATION захватывает актуальный logicalPosition либо
+restoreAnchor незавершённого восстановления, создаёт новую generation и перестраивает layout
+без ожидания записи; effective режим/масштаб остаются прежними, системные метрики обновляются.
+
+Несохранённая позиция остаётся в памяти с revision и отдельной ошибкой сохранения. Повтор
+записывает последнюю актуальную позицию; последующая навигация заменяет более старую pending
+позицию. Успех записи старой revision не очищает более новую pending revision и не меняет
+restoreAnchor. Этот сбой не переводит операцию выхода в FAILED, если выход не выполнялся.
+После завершения процесса доступна последняя успешно записанная ReadingPosition.
 
 Прогресс использует существующее приближение по блокам и доле абзаца с ограничением 0..100.
 Для конца доступного содержимого принудительно 100, для начала — 0, включая одноэлементную книгу.
@@ -125,6 +138,8 @@ Reading с правильным номером считается применё
 ReaderChromeState: controlsVisible=false, overlay=NONE.
 Overlay: NONE, CONTENTS, READER_SETTINGS, EXIT_CONFIRMATION; состояния взаимоисключающие.
 ExitState: NONE, CONFIRMING, SAVING, FAILED.
+ReaderViewModel — единственный владелец ReaderChromeState/overlay/ExitState; NavHost и sheets
+не дублируют их локальными mutable флагами. Очередь preferences сохраняет своего владельца.
 
 | Событие | Переход / инвариант |
 |---|---|
@@ -133,15 +148,16 @@ ExitState: NONE, CONFIRMING, SAVING, FAILED.
 | NavigationDragStarted | скрыть панели; подавить tap до конца жеста |
 | OpenContents/OpenReaderSettings | один overlay, без навигации книги |
 | DismissOverlay/ChapterSelected | overlay=NONE, панели скрыты |
-| GeometryRequested | flush anchor → новая generation; устаревший job отменяется |
+| GeometryRequested(USER_PREFERENCE) | успешный flush anchor → новая generation; сбой оставляет прежний выбор и retry |
+| GeometryChanged(SYSTEM_CONFIGURATION) | anchor в памяти → новая generation с актуальными метриками; запись не блокирует layout |
+| PositionWriteFailed | pending позиция и ошибка; retry последней revision, без отката геометрии |
 | LayoutCompleted | Reading только для актуальных generation/LayoutKey |
 | ExitRequested | CONFIRMING при включённой защите, иначе SAVING |
 | ExitCancelled | NONE, та же позиция и прежняя видимость панелей |
 | ExitConfirmed | SAVING; повторные запросы игнорируются |
-| FlushSucceeded | один NavigateToLibrary effect |
-| FlushFailed | FAILED, книга остаётся доступной с retry |
+| FlushSucceeded при выходе | один NavigateToLibrary effect |
+| FlushFailed при выходе | FAILED, книга остаётся доступной с retry |
 | ON_STOP | flush без запроса и без навигации |
 
 Подробные внешние события: [UI-контракт](contracts/reader-ui.md).
 Изменения Room schema не требуются; тест совместимости проверяет старые позиции и preferences.
-
