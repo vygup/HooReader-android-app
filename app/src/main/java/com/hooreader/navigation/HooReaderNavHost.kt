@@ -1,8 +1,15 @@
 package com.hooreader.navigation
 
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
@@ -17,6 +24,9 @@ import com.hooreader.ui.library.LibraryViewModel
 import com.hooreader.ui.library.importFromPicker
 import com.hooreader.ui.reader.ReaderScreen
 import com.hooreader.ui.reader.ReaderViewModel
+import com.hooreader.ui.settings.ReaderSettingsSheet
+import com.hooreader.ui.settings.ReaderSettingsViewModel
+import kotlinx.coroutines.launch
 
 @Composable
 fun HooReaderNavHost(
@@ -51,14 +61,45 @@ fun HooReaderNavHost(
             if (readerContent != null) {
                 readerContent(bookId, onBack)
             } else {
-                val model: ReaderViewModel = viewModel(
-                    key = bookId,
-                    factory = viewModelFactory {
-                        initializer { ReaderViewModel(bookId, dependencies.repository, dependencies.parsers) }
-                    },
-                )
-                ReaderScreen(model, onBack = onBack)
+                ReaderDestination(bookId, dependencies, onBack)
             }
+        }
+    }
+}
+
+@Composable
+private fun ReaderDestination(bookId: String, dependencies: ReaderDependencies, onBack: () -> Unit) {
+    val model: ReaderViewModel = viewModel(
+        key = bookId,
+        factory = viewModelFactory {
+            initializer { ReaderViewModel(bookId, dependencies.repository, dependencies.parsers) }
+        },
+    )
+    val settings: ReaderSettingsViewModel = viewModel(
+        factory = viewModelFactory { initializer { ReaderSettingsViewModel(dependencies.preferences) } },
+    )
+    val preferences by settings.preferences.collectAsStateWithLifecycle()
+    val saveFailed by settings.saveFailed.collectAsStateWithLifecycle()
+    var showSettings by rememberSaveable { mutableStateOf(false) }
+    val scope = rememberCoroutineScope()
+    val current = preferences
+    if (current == null) {
+        CircularProgressIndicator()
+    } else {
+        ReaderScreen(model, fontScale = current.fontScale, onSettings = { showSettings = true }, onBack = onBack)
+        if (showSettings) {
+            ReaderSettingsSheet(
+                preferences = current,
+                onThemeChange = { theme ->
+                    scope.launch { if (model.flushPosition()) settings.setTheme(theme) }
+                },
+                onFontScaleChange = { scale ->
+                    scope.launch { if (model.flushPosition()) settings.setFontScale(scale) }
+                },
+                onDismiss = { showSettings = false },
+                saveFailed = saveFailed,
+                onRetry = settings::retry,
+            )
         }
     }
 }

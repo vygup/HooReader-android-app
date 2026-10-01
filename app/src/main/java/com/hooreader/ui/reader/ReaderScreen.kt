@@ -41,7 +41,12 @@ import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.launch
 
 @Composable
-fun ReaderScreen(viewModel: ReaderViewModel, fontScale: Float = 1f, onBack: () -> Unit) {
+fun ReaderScreen(
+    viewModel: ReaderViewModel,
+    fontScale: Float = 1f,
+    onSettings: (() -> Unit)? = null,
+    onBack: () -> Unit,
+) {
     val state by viewModel.state.collectAsStateWithLifecycle()
     SaveReadingPositionOnLifecycle(viewModel)
     val saveFailed by viewModel.saveFailed.collectAsStateWithLifecycle()
@@ -52,9 +57,14 @@ fun ReaderScreen(viewModel: ReaderViewModel, fontScale: Float = 1f, onBack: () -
         }
     }
     BackHandler(onBack = leave)
-    Surface(modifier = Modifier.fillMaxSize()) {
+    Surface(modifier = Modifier.fillMaxSize().testTag("reader_screen")) {
         Column(modifier = Modifier.fillMaxSize().safeDrawingPadding().padding(horizontal = 16.dp)) {
-            TextButton(onClick = leave) { Text(stringResource(R.string.back_to_library)) }
+            Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
+                TextButton(onClick = leave) { Text(stringResource(R.string.back_to_library)) }
+                if (onSettings != null) {
+                    TextButton(onClick = onSettings) { Text(stringResource(R.string.reader_settings)) }
+                }
+            }
             if (saveFailed) {
                 Text(stringResource(R.string.position_save_error), color = MaterialTheme.colorScheme.error)
                 TextButton(onClick = viewModel::saveNow) { Text(stringResource(R.string.retry)) }

@@ -40,4 +40,12 @@
     <string name="table_of_contents">Содержание</string>
     <string name="chapter_number">Глава %1$d</string>
     <string name="reader_image_unavailable">Изображение недоступно</string>
+    <string name="reader_settings">Настройки чтения</string>
+    <string name="theme_light">Светлая</string>
+    <string name="theme_dark">Тёмная</string>
+    <string name="font_scale_percent">Размер текста: %1$d%%</string>
+    <string name="font_scale_decrease">Уменьшить текст</string>
+    <string name="font_scale_increase">Увеличить текст</string>
+    <string name="settings_done">Готово</string>
+    <string name="settings_save_error">Не удалось сохранить настройки. Попробуйте ещё раз.</string>
 </resources>
