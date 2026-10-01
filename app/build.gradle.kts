@@ -4,6 +4,7 @@ plugins {
     id("org.jetbrains.kotlin.plugin.compose")
     id("com.google.devtools.ksp")
     id("androidx.room")
+    id("io.gitlab.arturbosch.detekt")
 }
 
 android {
@@ -40,6 +41,8 @@ dependencies {
     val roomVersion = "2.7.2"
     val coroutinesVersion = "1.10.2"
     val readiumVersion = "3.1.2"
+
+    detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.23.8")
 
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.5")
 
@@ -88,6 +91,25 @@ dependencies {
 
 room {
     schemaDirectory("$projectDir/schemas")
+}
+
+detekt {
+    toolVersion = "1.23.8"
+    buildUponDefaultConfig = true
+    config.setFrom(rootProject.file("config/detekt/detekt.yml"))
+    basePath = rootDir.absolutePath
+    source.setFrom(
+        "src/main/java",
+        "src/main/kotlin",
+        "src/test/java",
+        "src/test/kotlin",
+        "src/androidTest/java",
+        "src/androidTest/kotlin",
+    )
+}
+
+tasks.withType<io.gitlab.arturbosch.detekt.Detekt>().configureEach {
+    jvmTarget = "17"
 }
 
 kotlin {

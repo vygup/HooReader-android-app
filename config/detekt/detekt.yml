@@ -1,0 +1,24 @@
+config:
+  validation: true
+  warningsAsErrors: true
+
+complexity:
+  LongParameterList:
+    ignoreAnnotated:
+      - Composable
+
+naming:
+  FunctionNaming:
+    ignoreAnnotated:
+      - Composable
+
+formatting:
+  active: true
+  android: true
+  autoCorrect: true
+  MaximumLineLength:
+    maxLineLength: 120
+
+style:
+  MaxLineLength:
+    maxLineLength: 120
