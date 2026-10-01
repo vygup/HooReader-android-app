@@ -43,7 +43,7 @@
 **Независимый тест**: импортировать допустимую книгу, остановиться в известном абзаце, завершить
 process, открыть книгу в авиарежиме и восстановить позицию.
 
-- [ ] T013 [P] [US1] Написать unit tests валидации формата, пустого файла, DRM и ошибок parsing в `app/src/test/java/com/hooreader/data/import/BookImportValidatorTest.kt`.
+- [X] T013 [P] [US1] Написать unit tests валидации формата, пустого файла, DRM и ошибок parsing в `app/src/test/java/com/hooreader/data/import/BookImportValidatorTest.kt`.
 - [ ] T014 [P] [US1] Написать instrumentation test импорта, process recreation и восстановления позиции в `app/src/androidTest/java/com/hooreader/reader/ReadingPositionRestoreTest.kt`.
 - [ ] T015 [US1] Реализовать EPUB importer на Readium с извлечением metadata, cover и глав в `app/src/main/java/com/hooreader/data/import/EpubBookParser.kt`.
 - [ ] T016 [US1] Реализовать потоковый FB2 importer с учётом XML-кодировки в `app/src/main/java/com/hooreader/data/import/Fb2BookParser.kt`.

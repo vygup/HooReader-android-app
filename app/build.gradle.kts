@@ -33,6 +33,8 @@ android {
     testOptions {
         unitTests.isIncludeAndroidResources = true
     }
+
+    sourceSets.getByName("test").assets.srcDir("src/androidTest/assets")
 }
 
 dependencies {
