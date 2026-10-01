@@ -20,6 +20,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import java.io.File
+import java.io.InputStream
 
 sealed interface ReaderUiState {
     data object Opening : ReaderUiState
@@ -103,6 +104,8 @@ class ReaderViewModel(
         mutableState.value = current.copy(position = position)
         moveWindowIfNeeded(current, blockIndex)
     }
+
+    val openMedia: suspend (String) -> InputStream? = { reference -> document?.openMedia(reference) }
 
     suspend fun flushPosition(): Boolean = positionSaver.flush()
 

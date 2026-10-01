@@ -39,4 +39,5 @@
     <string name="library_delete_error">Не удалось удалить все данные книги. Попробуйте удалить её ещё раз.</string>
     <string name="table_of_contents">Содержание</string>
     <string name="chapter_number">Глава %1$d</string>
+    <string name="reader_image_unavailable">Изображение недоступно</string>
 </resources>

@@ -33,8 +33,6 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.hooreader.R
-import com.hooreader.domain.model.BlockKind
-import com.hooreader.domain.model.ContentBlock
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.launch
@@ -132,21 +130,6 @@ private fun ChapterText(state: ReaderUiState.Reading, viewModel: ReaderViewModel
         state = list,
         verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
-        items(state.blocks, key = { it.blockIndex }) { block -> ReaderTextBlock(block) }
+        items(state.blocks, key = { it.blockIndex }) { block -> ContentBlockRenderer(block, viewModel.openMedia) }
     }
-}
-
-@Composable
-private fun ReaderTextBlock(block: ContentBlock) {
-    val fallback = block.kind == BlockKind.FALLBACK || block.kind == BlockKind.IMAGE
-    Text(
-        text = block.text.ifBlank { stringResource(R.string.reader_block_fallback) },
-        modifier = Modifier.fillMaxWidth().testTag("block_${block.chapterIndex}_${block.blockIndex}"),
-        style = if (block.kind == BlockKind.HEADING) {
-            MaterialTheme.typography.headlineSmall
-        } else {
-            MaterialTheme.typography.bodyLarge
-        },
-        color = if (fallback) MaterialTheme.colorScheme.onSurfaceVariant else MaterialTheme.colorScheme.onSurface,
-    )
 }
