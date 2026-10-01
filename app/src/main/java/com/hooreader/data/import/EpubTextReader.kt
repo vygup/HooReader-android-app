@@ -13,7 +13,7 @@ import org.xmlpull.v1.XmlPullParserException
 import java.io.File
 import java.util.zip.ZipFile
 
-// Phase 3 text reader. Rich styles and embedded media rendering belong to US3.
+// Streams a chapter and assigns stable coordinates to safe structured fragments.
 @Suppress("CyclomaticComplexMethod") // XML token dispatch keeps streaming state in one place.
 internal fun epubTextBlocks(
     file: File,
@@ -22,14 +22,15 @@ internal fun epubTextBlocks(
     start: Int = 0,
 ): Flow<ContentBlock> = flow {
     var index = 0
-    suspend fun block(text: String, kind: BlockKind) {
-        if (index >= start) emit(ContentBlock(chapter, index, kind, text))
+    suspend fun block(fragment: BlockFragment) {
+        if (index >= start) emit(fragment.at(chapter, index))
         index++
     }
     ZipFile(file).use { zip ->
         val resource = zip.getEntry(entry) ?: throw BookParseException(BookParseError.CORRUPT)
         zip.getInputStream(resource).use { input ->
             val xml = bookXml(input)
+            val mapper = EpubContentMapper(entry)
             var inBody = false
             try {
                 while (xml.nextSafe() != XmlPullParser.END_DOCUMENT) {
@@ -37,25 +38,23 @@ internal fun epubTextBlocks(
                     if (xml.eventType == XmlPullParser.START_TAG) {
                         when (xml.name.lowercase()) {
                             "body" -> inBody = true
-                            "head", "script", "style", "iframe", "object" -> xml.skipElement()
-                            "p", "li", "pre", "blockquote", "h1", "h2", "h3", "h4", "h5", "h6" -> if (inBody) {
-                                val kind = if (xml.name.startsWith("h")) BlockKind.HEADING else BlockKind.PARAGRAPH
-                                val text = xml.elementText()
-                                block(text.ifBlank { "[Содержимое недоступно]" }, kind)
-                            }
-                            "img", "svg" -> if (inBody) {
-                                block(xml.getAttributeValue(null, "alt") ?: "[Изображение]", BlockKind.FALLBACK)
+                            "head", "script", "style", "iframe", "object", "embed", "audio", "video" ->
+                                xml.skipElement()
+                            "p", "li", "pre", "blockquote", "h1", "h2", "h3", "h4", "h5", "h6", "img" ->
+                                if (inBody) mapper.read(xml).forEach { block(it) }
+                            "svg" -> if (inBody) {
+                                block(BlockFragment(BlockKind.FALLBACK, "[Изображение недоступно]"))
                                 xml.skipElement()
                             }
                         }
                     } else if (inBody && xml.eventType == XmlPullParser.TEXT && !xml.text.isNullOrBlank()) {
-                        block(xml.text.trim(), BlockKind.PARAGRAPH)
+                        block(BlockFragment(BlockKind.PARAGRAPH, xml.text.trim()))
                     }
                 }
             } catch (_: XmlPullParserException) {
-                block("[Фрагмент главы повреждён]", BlockKind.FALLBACK)
+                block(BlockFragment(BlockKind.FALLBACK, "[Фрагмент главы повреждён]"))
             }
         }
     }
-    if (index == 0) block("[В главе нет доступного текста]", BlockKind.FALLBACK)
+    if (index == 0) block(BlockFragment(BlockKind.FALLBACK, "[В главе нет доступного текста]"))
 }.flowOn(Dispatchers.IO)
