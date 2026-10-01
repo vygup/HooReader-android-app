@@ -63,7 +63,7 @@ process, открыть книгу в авиарежиме и восстанов
 **Независимый тест**: импортировать книги с неполными metadata, создать 100 записей, повторно
 импортировать книгу и удалить одну запись без удаления исходного файла.
 
-- [ ] T022 [P] [US2] Написать repository tests fallback title/author/cover и duplicate result в `app/src/test/java/com/hooreader/data/repository/LibraryRepositoryTest.kt`.
+- [X] T022 [P] [US2] Написать repository tests fallback title/author/cover и duplicate result в `app/src/test/java/com/hooreader/data/repository/LibraryRepositoryTest.kt`.
 - [ ] T023 [P] [US2] Написать Compose UI test карточки с progress и placeholder в `app/src/androidTest/java/com/hooreader/library/LibraryScreenTest.kt`.
 - [ ] T024 [US2] Реализовать query библиотеки, fallback metadata, «Прочитано» от 98% и удаление только app-local данных в `app/src/main/java/com/hooreader/data/repository/LibraryRepository.kt`.
 - [ ] T025 [US2] Реализовать `LibraryViewModel` для состояний `empty`, `content`, `importing` и `error` в `app/src/main/java/com/hooreader/ui/library/LibraryViewModel.kt`.
