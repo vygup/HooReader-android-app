@@ -108,7 +108,7 @@ process, открыть книгу в авиарежиме и восстанов
 
 ## Фаза 7: Завершение и сквозные проверки
 
-- [ ] T040 Выполнить security review импорта, app-specific storage, logs и permissions по `specs/001-offline-book-reader/checklists/security.md`.
+- [X] T040 Выполнить security review импорта, app-specific storage, logs и permissions по `specs/001-offline-book-reader/checklists/security.md`.
 - [ ] T041 Выполнить UX review требований и UI состояний по `specs/001-offline-book-reader/checklists/ux.md`.
 - [ ] T042 Выполнить все сценарии `specs/001-offline-book-reader/quickstart.md` на Android emulator или устройстве.
 - [ ] T043 Измерить открытие 20 MB книги и долю кадров до 16,7 ms при прокрутке текста и библиотеки из 100 книг; зафиксировать результаты в `specs/001-offline-book-reader/performance-results.md`.
