@@ -6,4 +6,10 @@
     <string name="library_description">Здесь будут ваши книги EPUB и FB2.</string>
     <string name="reader_unavailable">Книга недоступна</string>
     <string name="back_to_library">В библиотеку</string>
+    <string name="reader_open_error">Не удалось открыть книгу. Попробуйте ещё раз или вернитесь в библиотеку.</string>
+    <string name="retry">Повторить</string>
+    <string name="reader_chapter_progress">Глава %1$d из %2$d · ≈ %3$d%%</string>
+    <string name="previous_chapter">Предыдущая глава</string>
+    <string name="next_chapter">Следующая глава</string>
+    <string name="reader_block_fallback">Содержимое этого фрагмента недоступно</string>
 </resources>
