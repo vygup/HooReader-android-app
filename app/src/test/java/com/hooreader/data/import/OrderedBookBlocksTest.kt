@@ -29,7 +29,13 @@ class OrderedBookBlocksTest {
                 val expected = document.chapters.flatMap { document.blocks(it.index).toList() }
                 val actual = ordered(document).toList()
                 assertEquals(expected, actual)
-                assertTrue(document.chapters.any { it.blockCount == 0 })
+                val empty = if (parser is Fb2BookParser) document.chapters[1] else document.chapters[2]
+                val emptyBlocks = document.blocks(empty.index).toList()
+                if (parser is Fb2BookParser) {
+                    assertTrue(emptyBlocks.isEmpty())
+                } else {
+                    assertEquals("[В главе нет доступного текста]", emptyBlocks.single().text)
+                }
                 assertTrue(document.chapters.any { it.title == null })
                 assertTrue(actual.any { "😀" in it.text && "e\u0301" in it.text })
                 assertTrue(actual.any { it.styles.isNotEmpty() })
