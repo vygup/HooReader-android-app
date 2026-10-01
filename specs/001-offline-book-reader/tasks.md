@@ -16,7 +16,7 @@
 
 **Цель**: создать воспроизводимый Android-проект на Kotlin и Compose.
 
-- [ ] T001 Создать Gradle root-конфигурацию и модуль приложения в `settings.gradle.kts`, `build.gradle.kts` и `app/build.gradle.kts`.
+- [X] T001 Создать Gradle root-конфигурацию и модуль приложения в `settings.gradle.kts`, `build.gradle.kts` и `app/build.gradle.kts`.
 - [ ] T002 Настроить Android manifest, `minSdk 26` и базовую тему в `app/src/main/AndroidManifest.xml` и `app/src/main/java/com/hooreader/ui/theme/Theme.kt`.
 - [ ] T003 [P] Подключить Compose, Room, DataStore, Lifecycle, Coroutines, Readium и тестовые зависимости в `app/build.gradle.kts`.
 - [ ] T004 Настроить Kotlin formatting и static analysis в `config/detekt/detekt.yml` и `app/build.gradle.kts`.
