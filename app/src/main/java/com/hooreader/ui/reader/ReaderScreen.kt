@@ -32,6 +32,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.hooreader.R
 import com.hooreader.domain.model.BlockKind
 import com.hooreader.domain.model.ContentBlock
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.launch
 
@@ -42,7 +43,7 @@ fun ReaderScreen(viewModel: ReaderViewModel, onBack: () -> Unit) {
     val saveFailed by viewModel.saveFailed.collectAsStateWithLifecycle()
     val scope = rememberCoroutineScope()
     val leave: () -> Unit = {
-        scope.launch {
+        scope.launch(Dispatchers.Main.immediate) {
             if (viewModel.flushPosition()) onBack()
         }
     }

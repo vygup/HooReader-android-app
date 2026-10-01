@@ -13,4 +13,15 @@
     <string name="next_chapter">Следующая глава</string>
     <string name="reader_block_fallback">Содержимое этого фрагмента недоступно</string>
     <string name="position_save_error">Не удалось сохранить позицию чтения. Попробуйте ещё раз.</string>
+    <string name="import_book">Импортировать книгу</string>
+    <string name="import_formats">EPUB и FB2 без DRM</string>
+    <string name="import_in_progress">Импорт книги…</string>
+    <string name="dismiss_message">Понятно</string>
+    <string name="open_book">Открыть книгу</string>
+    <string name="import_duplicate">Эта книга уже есть в библиотеке. Сохранены прежняя запись и позиция чтения.</string>
+    <string name="import_error_empty">Файл пуст. Выберите другую книгу.</string>
+    <string name="import_error_format">Формат не поддерживается. Выберите EPUB или FB2.</string>
+    <string name="import_error_drm">Книга защищена DRM. Поддерживаются только книги без DRM.</string>
+    <string name="import_error_corrupt">Не удалось разобрать книгу. Файл повреждён или не содержит текста.</string>
+    <string name="import_error_io">Не удалось прочитать или сохранить файл. Проверьте доступ к файлу и свободное место.</string>
 </resources>

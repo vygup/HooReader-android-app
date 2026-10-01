@@ -6,6 +6,7 @@ import com.hooreader.data.import.BookParser
 import com.hooreader.data.import.ChapterBlockLoader
 import com.hooreader.data.import.ParsedBook
 import com.hooreader.data.repository.BookRepository
+import com.hooreader.domain.model.BlockKind
 import com.hooreader.domain.model.Book
 import com.hooreader.domain.model.BookState
 import com.hooreader.domain.model.Chapter
@@ -110,7 +111,9 @@ class ReaderViewModel(
     private suspend fun showChapter(book: Book, parsed: ParsedBook, saved: ReadingPosition) {
         val chapter = parsed.chapters[saved.chapterIndex.coerceIn(parsed.chapters.indices)]
         val index = saved.blockIndex.coerceIn(0, (chapter.blockCount - 1).coerceAtLeast(0))
-        val blocks = ChapterBlockLoader(parsed).load(chapter.index, windowStart(index), WINDOW_SIZE)
+        val blocks = ChapterBlockLoader(parsed).load(chapter.index, windowStart(index), WINDOW_SIZE).ifEmpty {
+            listOf(ContentBlock(chapter.index, 0, BlockKind.FALLBACK, "[В главе нет доступного текста]"))
+        }
         val anchor = blocks.firstOrNull { it.blockIndex == index } ?: blocks.firstOrNull()
         checkNotNull(anchor)
         if (latestPosition == null) latestPosition = saved

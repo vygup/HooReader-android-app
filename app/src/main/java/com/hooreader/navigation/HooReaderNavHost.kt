@@ -1,36 +1,42 @@
 package com.hooreader.navigation
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.safeDrawingPadding
-import androidx.compose.material3.Button
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
+import androidx.compose.runtime.remember
+import androidx.compose.ui.platform.LocalContext
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.lifecycle.viewmodel.initializer
+import androidx.lifecycle.viewmodel.viewModelFactory
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.hooreader.R
+import com.hooreader.ui.library.ImportBookLauncher
+import com.hooreader.ui.library.ImportBookViewModel
+import com.hooreader.ui.reader.ReaderScreen
+import com.hooreader.ui.reader.ReaderViewModel
 
 @Composable
 fun HooReaderNavHost(
     navController: NavHostController = rememberNavController(),
-    libraryContent: @Composable ((String) -> Unit) -> Unit = { LibraryDestination() },
-    readerContent: @Composable (String, () -> Unit) -> Unit = { _, onBack -> ReaderDestination(onBack) },
+    libraryContent: (@Composable ((String) -> Unit) -> Unit)? = null,
+    readerContent: (@Composable (String, () -> Unit) -> Unit)? = null,
 ) {
+    val context = LocalContext.current.applicationContext
+    val dependencies = remember(context) { ReaderDependencies(context) }
     NavHost(navController = navController, startDestination = HooReaderRoutes.LIBRARY) {
         composable(HooReaderRoutes.LIBRARY) {
-            libraryContent { bookId ->
+            val openBook: (String) -> Unit = { bookId ->
                 navController.navigate(HooReaderRoutes.reader(bookId)) { launchSingleTop = true }
+            }
+            if (libraryContent != null) {
+                libraryContent(openBook)
+            } else {
+                val model: ImportBookViewModel = viewModel(
+                    factory = viewModelFactory { initializer { ImportBookViewModel(dependencies) } },
+                )
+                ImportBookLauncher(model, openBook)
             }
         }
         composable(
@@ -38,34 +44,18 @@ fun HooReaderNavHost(
             arguments = listOf(navArgument(HooReaderRoutes.BOOK_ID) { type = NavType.StringType }),
         ) { entry ->
             val bookId = requireNotNull(entry.arguments?.getString(HooReaderRoutes.BOOK_ID))
-            readerContent(bookId) { navController.popBackStack() }
-        }
-    }
-}
-
-@Composable
-private fun LibraryDestination() {
-    Surface(modifier = Modifier.fillMaxSize()) {
-        Column(
-            modifier = Modifier.fillMaxSize().safeDrawingPadding().padding(24.dp),
-            verticalArrangement = Arrangement.spacedBy(16.dp),
-        ) {
-            Text(stringResource(R.string.library_title), style = MaterialTheme.typography.headlineMedium)
-            Text(stringResource(R.string.library_empty), style = MaterialTheme.typography.titleMedium)
-            Text(stringResource(R.string.library_description))
-        }
-    }
-}
-
-@Composable
-private fun ReaderDestination(onBack: () -> Unit) {
-    Surface(modifier = Modifier.fillMaxSize()) {
-        Column(
-            modifier = Modifier.fillMaxSize().safeDrawingPadding().padding(24.dp),
-            verticalArrangement = Arrangement.spacedBy(16.dp),
-        ) {
-            Text(stringResource(R.string.reader_unavailable), style = MaterialTheme.typography.titleMedium)
-            Button(onClick = onBack) { Text(stringResource(R.string.back_to_library)) }
+            val onBack: () -> Unit = { navController.popBackStack() }
+            if (readerContent != null) {
+                readerContent(bookId, onBack)
+            } else {
+                val model: ReaderViewModel = viewModel(
+                    key = bookId,
+                    factory = viewModelFactory {
+                        initializer { ReaderViewModel(bookId, dependencies.repository, dependencies.parsers) }
+                    },
+                )
+                ReaderScreen(model, onBack)
+            }
         }
     }
 }

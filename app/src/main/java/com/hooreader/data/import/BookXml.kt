@@ -2,6 +2,7 @@ package com.hooreader.data.import
 
 import android.util.Xml
 import org.xmlpull.v1.XmlPullParser
+import org.xmlpull.v1.XmlPullParserException
 import java.io.InputStream
 
 internal fun bookXml(input: InputStream): XmlPullParser = Xml.newPullParser().apply {
@@ -21,7 +22,7 @@ internal fun XmlPullParser.elementText(): String {
     val startDepth = depth
     val result = StringBuilder()
     while (true) {
-        if (nextSafe() == XmlPullParser.END_DOCUMENT) throw BookParseException(BookParseError.CORRUPT)
+        if (nextSafe() == XmlPullParser.END_DOCUMENT) throw XmlPullParserException("Unclosed element")
         if (eventType == XmlPullParser.END_TAG && depth == startDepth) break
         if (eventType == XmlPullParser.TEXT || eventType == XmlPullParser.CDSECT ||
             eventType == XmlPullParser.ENTITY_REF
@@ -36,7 +37,7 @@ internal fun XmlPullParser.elementText(): String {
 internal fun XmlPullParser.skipElement() {
     val startDepth = depth
     while (true) {
-        if (nextSafe() == XmlPullParser.END_DOCUMENT) throw BookParseException(BookParseError.CORRUPT)
+        if (nextSafe() == XmlPullParser.END_DOCUMENT) throw XmlPullParserException("Unclosed element")
         if (eventType == XmlPullParser.END_TAG && depth == startDepth) break
     }
 }

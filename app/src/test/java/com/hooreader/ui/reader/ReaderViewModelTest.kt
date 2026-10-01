@@ -48,7 +48,7 @@ class ReaderViewModelTest {
     private val id = UUID.randomUUID().toString()
     private lateinit var database: HooReaderDatabase
     private lateinit var repository: BookRepository
-    private val chapters = listOf(Chapter(id, 0, "Long chapter", "one", 1000), Chapter(id, 1, "End", "two", 10))
+    private var chapters = listOf(Chapter(id, 0, "Long chapter", "one", 1000), Chapter(id, 1, "End", "two", 10))
     private val parser = object : BookParser {
         override val format = BookFormat.FB2
         override suspend fun open(bookId: String, file: File) = object : ParsedBook {
@@ -118,6 +118,19 @@ class ReaderViewModelTest {
         assertEquals(1, repository.getPosition(id)?.chapterIndex)
         assertEquals(0, changed.position.blockIndex)
         assertTrue(changed.position.progressPercent > 90.0)
+    }
+
+    @Test
+    fun `empty chapter shows a fallback and next chapter remains reachable`() = runBlocking {
+        chapters = chapters.map { if (it.index == 0) it.copy(blockCount = 0) else it }
+        val reader = reader()
+        val state = awaitReading(reader)
+        assertEquals(BlockKind.FALLBACK, state.blocks.single().kind)
+        reader.selectChapter(1)
+        val next = withTimeout(5000) {
+            reader.state.filterIsInstance<ReaderUiState.Reading>().first { it.position.chapterIndex == 1 }
+        }
+        assertEquals("Paragraph 0", next.blocks.first().text)
     }
 
     private fun reader() = ReaderViewModel(id, repository, listOf(parser)).also { store.put("reader", it) }
