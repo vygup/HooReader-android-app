@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">HooReader</string>
+    <string name="library_title">Библиотека</string>
+    <string name="library_empty">Пока нет книг</string>
+    <string name="library_description">Здесь будут ваши книги EPUB и FB2.</string>
+    <string name="reader_unavailable">Книга недоступна</string>
+    <string name="back_to_library">В библиотеку</string>
 </resources>
