@@ -50,7 +50,7 @@ process, открыть книгу в авиарежиме и восстанов
 - [X] T017 [US1] Реализовать проверку DRM, копирование app-local файла, SHA-256 duplicate identity и rollback неполного импорта в `app/src/main/java/com/hooreader/data/import/BookImportService.kt`.
 - [X] T018 [US1] Реализовать `ReaderViewModel` с logical position `chapterIndex`, `blockIndex`, `characterOffset` и `progressPercent` в `app/src/main/java/com/hooreader/ui/reader/ReaderViewModel.kt`.
 - [X] T019 [US1] Реализовать вертикальный reader для текущей главы и безопасные fallback blocks в `app/src/main/java/com/hooreader/ui/reader/ReaderScreen.kt`.
-- [ ] T020 [US1] Добавить debounced сохранение позиции, смену главы и обработку `ProcessLifecycleOwner.ON_STOP` в `app/src/main/java/com/hooreader/ui/reader/ReadingPositionSaver.kt`.
+- [X] T020 [US1] Добавить debounced сохранение позиции, смену главы и обработку `ProcessLifecycleOwner.ON_STOP` в `app/src/main/java/com/hooreader/ui/reader/ReadingPositionSaver.kt`.
 - [ ] T021 [US1] Связать импорт, открытие ReaderScreen и recoverable import errors в `app/src/main/java/com/hooreader/ui/library/ImportBookLauncher.kt` и `app/src/main/java/com/hooreader/navigation/HooReaderNavHost.kt`.
 
 **Контрольная точка**: EPUB/FB2 без DRM импортируются, сохраняются локально, читаются офлайн и

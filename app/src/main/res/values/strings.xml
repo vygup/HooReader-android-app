@@ -12,4 +12,5 @@
     <string name="previous_chapter">Предыдущая глава</string>
     <string name="next_chapter">Следующая глава</string>
     <string name="reader_block_fallback">Содержимое этого фрагмента недоступно</string>
+    <string name="position_save_error">Не удалось сохранить позицию чтения. Попробуйте ещё раз.</string>
 </resources>

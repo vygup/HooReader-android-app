@@ -42,6 +42,8 @@ class ReaderViewModel(
     private var chapterJob: Job? = null
     private var windowJob: Job? = null
     private var latestPosition: ReadingPosition? = null
+    private val positionSaver = ReadingPositionSaver(repository::savePosition)
+    val saveFailed = positionSaver.saveFailed
 
     init {
         open()
@@ -77,7 +79,7 @@ class ReaderViewModel(
         windowJob?.cancel()
         chapterJob = viewModelScope.launch {
             try {
-                flushPosition()
+                if (!flushPosition()) return@launch
                 mutableState.value = ReaderUiState.Opening
                 showChapter(current.book, parsed, ReadingPosition(bookId, chapterIndex = index))
                 flushPosition()
@@ -96,13 +98,14 @@ class ReaderViewModel(
         val block = current.blocks.firstOrNull { it.blockIndex == blockIndex } ?: return
         val position = position(current.chapters, block, characterOffset)
         latestPosition = position
+        positionSaver.update(position)
         mutableState.value = current.copy(position = position)
         moveWindowIfNeeded(current, blockIndex)
     }
 
-    suspend fun flushPosition() {
-        latestPosition?.let { repository.savePosition(it) }
-    }
+    suspend fun flushPosition(): Boolean = positionSaver.flush()
+
+    fun saveNow() = positionSaver.flushAsync()
 
     private suspend fun showChapter(book: Book, parsed: ParsedBook, saved: ReadingPosition) {
         val chapter = parsed.chapters[saved.chapterIndex.coerceIn(parsed.chapters.indices)]
@@ -110,8 +113,10 @@ class ReaderViewModel(
         val blocks = ChapterBlockLoader(parsed).load(chapter.index, windowStart(index), WINDOW_SIZE)
         val anchor = blocks.firstOrNull { it.blockIndex == index } ?: blocks.firstOrNull()
         checkNotNull(anchor)
+        if (latestPosition == null) latestPosition = saved
         val restored = position(parsed.chapters, anchor, saved.characterOffset)
         latestPosition = restored
+        positionSaver.update(restored)
         mutableState.value = ReaderUiState.Reading(book, parsed.chapters, blocks, restored)
     }
 
@@ -161,6 +166,7 @@ class ReaderViewModel(
     }
 
     override fun onCleared() {
+        positionSaver.close()
         document?.close()
         super.onCleared()
     }

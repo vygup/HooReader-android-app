@@ -38,17 +38,22 @@ import kotlinx.coroutines.launch
 @Composable
 fun ReaderScreen(viewModel: ReaderViewModel, onBack: () -> Unit) {
     val state by viewModel.state.collectAsStateWithLifecycle()
+    SaveReadingPositionOnLifecycle(viewModel)
+    val saveFailed by viewModel.saveFailed.collectAsStateWithLifecycle()
     val scope = rememberCoroutineScope()
     val leave: () -> Unit = {
         scope.launch {
-            viewModel.flushPosition()
-            onBack()
+            if (viewModel.flushPosition()) onBack()
         }
     }
     BackHandler(onBack = leave)
     Surface(modifier = Modifier.fillMaxSize()) {
         Column(modifier = Modifier.fillMaxSize().safeDrawingPadding().padding(horizontal = 16.dp)) {
             TextButton(onClick = leave) { Text(stringResource(R.string.back_to_library)) }
+            if (saveFailed) {
+                Text(stringResource(R.string.position_save_error), color = MaterialTheme.colorScheme.error)
+                TextButton(onClick = viewModel::saveNow) { Text(stringResource(R.string.retry)) }
+            }
             when (val current = state) {
                 ReaderUiState.Opening -> CircularProgressIndicator(modifier = Modifier.padding(24.dp))
                 ReaderUiState.RecoverableError -> {
