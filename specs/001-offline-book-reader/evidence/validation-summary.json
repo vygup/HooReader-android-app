@@ -1,0 +1,43 @@
+{
+  "date": "2026-10-01",
+  "codeCommit": "b241f2a51ea0cefa731108deed96725bd7d05299",
+  "commands": [
+    "./gradlew :app:check :app:assembleDebug :app:assembleDebugAndroidTest :app:connectedDebugAndroidTest",
+    "scripts/verify-reader-process-death.sh",
+    "scripts/measure-reader-performance.sh",
+    "ImportCorpusTest Android instrumentation"
+  ],
+  "unitDebug": {
+    "tests": 56,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "unitRelease": {
+    "tests": 56,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "instrumentation": {
+    "tests": 25,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 3,
+    "skippedMethods": [
+      "com.hooreader.acceptance.ReaderPerformanceTest.measureOpeningAndScrolling",
+      "com.hooreader.reader.ProcessDeathAcceptanceTest.verify",
+      "com.hooreader.reader.ProcessDeathAcceptanceTest.seed"
+    ]
+  },
+  "lint": {
+    "Warning": 25
+  },
+  "detekt": "PASS",
+  "processDeathSeed": "PASS",
+  "processDeathVerify": "PASS",
+  "performanceMeasurement": "PASS",
+  "performanceFrameThreshold": "FAIL",
+  "validCorpus": "17/17",
+  "negativeCorpus": "7/7"
+}

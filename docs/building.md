@@ -257,3 +257,29 @@ ADB="$ANDROID_HOME/platform-tools/adb" scripts/verify-reader-process-death.sh
 Задачи T028–T034 отмечены в tasks.md и оформлены отдельными commits. Фазы 6–7 не выполнялись;
 экран сохранения настроек оформления, замеры производительности и согласованный test corpus
 остаются в своих фазах. Reviewer-owned чеклисты не изменялись.
+
+
+## Проверка фазы 7
+
+На 2026-10-01 выполнены T040–T045 отдельными commits: security/UX review, расширенные
+quickstart-сценарии, воспроизводимые performance measurements, фиксированный corpus v1 и README.
+Reviewer-owned чеклисты не изменены; продолжение разрешено пользователем без уточнений.
+
+Полный `check`/сборка/debug instrumentation прошли на Pixel_10 AVD, API 37. Итог UI XML:
+25 tests, 22 passed, 3 штатно skipped (2 process-death phases и opt-in performance),
+0 failures/errors. Все специальные режимы проверены отдельно. Локальные tests:
+по 56 debug/release, без failures/errors/skips. Отдельный process-death acceptance подтвердил
+позиции EPUB/FB2, тёмную тему/150% текста в новом PID при авиарежиме. Настоящий системный
+File Picker проверен для EPUB; остальные picker-сценарии используют Espresso Intents.
+
+Корпус: 17/17 допустимых файлов, 34/34 главы, 7/7 ожидаемых отказов. Opening 20 MB FB2:
+1183–1332 ms. FrameMetrics: 0% кадров ≤16,7 ms, порог SC-005 не пройден на эмуляторе;
+SC-004/005 на физическом устройстве среднего класса не подтверждены.
+
+Подробности и исходные данные:
+[quickstart](../specs/001-offline-book-reader/quickstart-results.md),
+[performance](../specs/001-offline-book-reader/performance-results.md),
+[corpus](../specs/001-offline-book-reader/import-corpus-results.md),
+[security](../specs/001-offline-book-reader/security-review.md),
+[UX](../specs/001-offline-book-reader/ux-review.md).
+Результаты review содержат открытые замечания и не объявляют release acceptance пройденной.
