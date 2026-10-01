@@ -19,19 +19,28 @@ internal class Fb2Scanner(private val bookId: String) {
     suspend fun read(file: File, target: Int? = null, onBlock: suspend (ContentBlock) -> Unit) {
         file.inputStream().buffered().use { input ->
             val xml = bookXml(input)
-            while (xml.nextSafe() != XmlPullParser.START_TAG) {
-                if (xml.eventType == XmlPullParser.END_DOCUMENT) throw BookParseException(BookParseError.CORRUPT)
-            }
-            if (xml.name != "FictionBook") throw BookParseException(BookParseError.UNSUPPORTED_FORMAT)
+            requireFictionBook(xml)
+            var rootClosed = false
             while (xml.nextSafe() != XmlPullParser.END_DOCUMENT) {
                 currentCoroutineContext().ensureActive()
                 when (xml.eventType) {
                     XmlPullParser.START_TAG -> startTag(xml, onBlock)
-                    XmlPullParser.END_TAG -> if (xml.name == "body") bodyDepth = 0
+                    XmlPullParser.END_TAG -> {
+                        if (xml.name == "body") bodyDepth = 0
+                        if (xml.name == "FictionBook" && xml.depth == 1) rootClosed = true
+                    }
                 }
                 if (target != null && chapterIndex > target) break
             }
+            if (target == null && !rootClosed) throw BookParseException(BookParseError.CORRUPT)
         }
+    }
+
+    private fun requireFictionBook(xml: XmlPullParser) {
+        while (xml.nextSafe() != XmlPullParser.START_TAG) {
+            if (xml.eventType == XmlPullParser.END_DOCUMENT) throw BookParseException(BookParseError.CORRUPT)
+        }
+        if (xml.name != "FictionBook") throw BookParseException(BookParseError.UNSUPPORTED_FORMAT)
     }
 
     private suspend fun startTag(xml: XmlPullParser, onBlock: suspend (ContentBlock) -> Unit) {

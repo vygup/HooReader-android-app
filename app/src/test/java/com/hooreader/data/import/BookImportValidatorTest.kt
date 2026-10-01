@@ -20,6 +20,7 @@ import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 import java.io.File
 import java.io.IOException
+import java.io.InputStream
 
 @RunWith(RobolectricTestRunner::class)
 @Config(sdk = [28])
@@ -53,7 +54,9 @@ class BookImportValidatorTest {
     @Test
     fun `unsupported content cannot be disguised with a supported extension`() = runBlocking {
         assertRejected("unsupported.pdf", BookImportError.UNSUPPORTED_FORMAT)
-        val result = importer.import("pretend.epub") { context.assets.open("books/unsupported.pdf") }
+        val result = importer.import(
+            "pretend.epub"
+        ) { requireNotNull(javaClass.getResourceAsStream("/books/unsupported.pdf")) }
         assertEquals(BookImportResult.Failed(BookImportError.UNSUPPORTED_FORMAT), result)
         assertNoPartialImport()
     }
@@ -102,12 +105,42 @@ class BookImportValidatorTest {
         assertEquals(3, File(context.filesDir, "books").listFiles().orEmpty().size)
     }
 
+    @Test
+    fun `copy failure cleans up partially written data`() = runBlocking {
+        val source = object : InputStream() {
+            private var remaining = 16_384
+            override fun read(): Int {
+                if (remaining-- <= 0) throw IOException("Interrupted provider stream")
+                return '<'.code
+            }
+        }
+        assertEquals(BookImportResult.Failed(BookImportError.IO), importer.import("book.fb2") { source })
+        assertNoPartialImport()
+    }
+
+    @Test
+    fun `unclosed root and declared entities are rejected`() = runBlocking {
+        val invalidXml = listOf(
+            "<FictionBook><body><section><p>Text</p></section></body>",
+            "<!DOCTYPE FictionBook [<!ENTITY x 'unsafe'>]><FictionBook><body><p>&x;</p></body></FictionBook>",
+        )
+        for (xml in invalidXml) {
+            assertEquals(
+                BookImportResult.Failed(BookImportError.CORRUPT),
+                importer.import("book.fb2") { xml.byteInputStream() },
+            )
+            assertNoPartialImport()
+        }
+    }
+
     private suspend fun assertRejected(name: String, reason: BookImportError) {
         assertEquals(BookImportResult.Failed(reason), importAsset(name))
         assertNoPartialImport()
     }
 
-    private suspend fun importAsset(name: String) = importer.import(name) { context.assets.open("books/$name") }
+    private suspend fun importAsset(name: String) = importer.import(
+        name
+    ) { requireNotNull(javaClass.getResourceAsStream("/books/$name")) }
 
     private suspend fun assertNoPartialImport() {
         assertTrue(repository.books.first().isEmpty())

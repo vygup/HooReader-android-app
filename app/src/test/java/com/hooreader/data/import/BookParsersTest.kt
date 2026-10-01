@@ -54,7 +54,9 @@ class BookParsersTest {
     private suspend fun withFixture(name: String, parser: BookParser, check: suspend (ParsedBook) -> Unit) {
         val file = File(context.cacheDir, "${UUID.randomUUID()}-$name")
         try {
-            context.assets.open("books/$name").use { input -> file.outputStream().use { input.copyTo(it) } }
+            requireNotNull(
+                javaClass.getResourceAsStream("/books/$name")
+            ).use { input -> file.outputStream().use { input.copyTo(it) } }
             parser.open(UUID.randomUUID().toString(), file).use { check(it) }
         } finally {
             file.delete()

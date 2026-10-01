@@ -20,7 +20,8 @@ internal fun XmlPullParser.nextSafe(): Int {
 internal fun XmlPullParser.elementText(): String {
     val startDepth = depth
     val result = StringBuilder()
-    while (nextSafe() != XmlPullParser.END_DOCUMENT) {
+    while (true) {
+        if (nextSafe() == XmlPullParser.END_DOCUMENT) throw BookParseException(BookParseError.CORRUPT)
         if (eventType == XmlPullParser.END_TAG && depth == startDepth) break
         if (eventType == XmlPullParser.TEXT || eventType == XmlPullParser.CDSECT ||
             eventType == XmlPullParser.ENTITY_REF
@@ -34,7 +35,8 @@ internal fun XmlPullParser.elementText(): String {
 
 internal fun XmlPullParser.skipElement() {
     val startDepth = depth
-    while (nextSafe() != XmlPullParser.END_DOCUMENT) {
+    while (true) {
+        if (nextSafe() == XmlPullParser.END_DOCUMENT) throw BookParseException(BookParseError.CORRUPT)
         if (eventType == XmlPullParser.END_TAG && depth == startDepth) break
     }
 }
