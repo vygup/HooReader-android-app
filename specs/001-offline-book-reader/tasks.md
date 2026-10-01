@@ -80,7 +80,7 @@ process, открыть книгу в авиарежиме и восстанов
 **Независимый тест**: открыть EPUB и FB2 с главами, стилями, списками и изображениями; перейти по
 содержанию; изменить ориентацию и размер текста; остаться у того же блока.
 
-- [ ] T028 [P] [US3] Написать parser tests для headings, bold/italic, lists, images и повреждённого block в `app/src/test/java/com/hooreader/data/import/StructuredContentParserTest.kt`.
+- [X] T028 [P] [US3] Написать parser tests для headings, bold/italic, lists, images и повреждённого block в `app/src/test/java/com/hooreader/data/import/StructuredContentParserTest.kt`.
 - [ ] T029 [P] [US3] Написать Compose UI test перехода по содержанию и сохранения позиции при layout change в `app/src/androidTest/java/com/hooreader/reader/ReaderNavigationTest.kt`.
 - [ ] T030 [US3] Реализовать преобразование EPUB XHTML в ContentBlock без выполнения активного содержимого в `app/src/main/java/com/hooreader/data/import/EpubContentMapper.kt`.
 - [ ] T031 [US3] Реализовать преобразование FB2 section/paragraph/style/image в ContentBlock в `app/src/main/java/com/hooreader/data/import/Fb2ContentMapper.kt`.
