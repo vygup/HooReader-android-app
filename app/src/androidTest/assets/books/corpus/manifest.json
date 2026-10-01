@@ -1,0 +1,170 @@
+[
+  {
+    "file": "structured.epub",
+    "expected": "READY",
+    "features": "Baseline fixture: metadata/fallback/structure/encoding",
+    "bytes": 2286,
+    "sha256": "794c237376e753afe06e3c2475b64ac3749ca573ed855d082b24a688da3baeaa"
+  },
+  {
+    "file": "no-author-cover.epub",
+    "expected": "READY",
+    "features": "Baseline fixture: metadata/fallback/structure/encoding",
+    "bytes": 1871,
+    "sha256": "3979bb15db8607c20d2dc849b4345fa617f45ea90b771ec125d9438ec5c43f8f"
+  },
+  {
+    "file": "structured.fb2",
+    "expected": "READY",
+    "features": "Baseline fixture: metadata/fallback/structure/encoding",
+    "bytes": 1303,
+    "sha256": "562dd2aa94b04c5b8d3a2695b580f21f07cf09c7871cbcc6cee008cde0ba7c35"
+  },
+  {
+    "file": "windows-1251.fb2",
+    "expected": "READY",
+    "features": "Baseline fixture: metadata/fallback/structure/encoding",
+    "bytes": 1144,
+    "sha256": "f4beb55f3e6cca5958bfea3715592b79969ae78587543c3f06f7a8f5f438195b"
+  },
+  {
+    "file": "missing-metadata.fb2",
+    "expected": "READY",
+    "features": "Baseline fixture: metadata/fallback/structure/encoding",
+    "bytes": 1154,
+    "sha256": "3c62027d70fe674082cb32ac442ed03aae1226aa60ff1787ebf479388f5bbea7"
+  },
+  {
+    "file": "corpus/utf8.fb2",
+    "expected": "READY",
+    "features": "FB2 utf-8; metadata=True; structured/media",
+    "bytes": 706,
+    "sha256": "470d51a6d9864c0e18e2b4cd1076693688375a38387460e30175aad254de85db"
+  },
+  {
+    "file": "corpus/utf16le.fb2",
+    "expected": "READY",
+    "features": "FB2 UTF-16; metadata=True; structured/media",
+    "bytes": 1344,
+    "sha256": "6b9435b481423ae4fe095a7a45b5984356ed59bd086c42e25d1d0a9bb2e408f2"
+  },
+  {
+    "file": "corpus/utf16be.fb2",
+    "expected": "READY",
+    "features": "FB2 UTF-16BE; metadata=True; structured/media",
+    "bytes": 1348,
+    "sha256": "b57dcd55273ed699c63cfc5346604767db79c909db223acbf51999cbc3862b6c"
+  },
+  {
+    "file": "corpus/cp1251.fb2",
+    "expected": "READY",
+    "features": "FB2 windows-1251; metadata=True; structured/media",
+    "bytes": 676,
+    "sha256": "b703083b151b03b55b9f08a40ac5b6658781fe29358db3a62ed7be05ac551854"
+  },
+  {
+    "file": "corpus/no-metadata.fb2",
+    "expected": "READY",
+    "features": "FB2 utf-8; metadata=False; structured/media",
+    "bytes": 574,
+    "sha256": "3c0381bff0b995322d254106255ae67dd8a26a28ba1451c83e3738a402d5dae7"
+  },
+  {
+    "file": "corpus/nested.fb2",
+    "expected": "READY",
+    "features": "FB2 utf-8; metadata=True; structured/media",
+    "bytes": 618,
+    "sha256": "c07d9610fc799613c6278628d8ba6d0f5c4384da6d3dcbaf66be22c9cf548a1d"
+  },
+  {
+    "file": "corpus/broken-image.fb2",
+    "expected": "READY",
+    "features": "FB2 utf-8; metadata=True; structured/media",
+    "bytes": 638,
+    "sha256": "c6b1208080bd1933facbb0dbb276653513a936c816fb42ead6b001457448bbbc"
+  },
+  {
+    "file": "corpus/epub2.epub",
+    "expected": "READY",
+    "features": "EPUB 2.0; structured/media; font obfuscation=False",
+    "bytes": 3004,
+    "sha256": "cb77375659bda242f6043e47851601a213aca8fdf14965f5e2a6f9d684571a46"
+  },
+  {
+    "file": "corpus/epub3.epub",
+    "expected": "READY",
+    "features": "EPUB 3.0; structured/media; font obfuscation=False",
+    "bytes": 3010,
+    "sha256": "653782090ae3430ed71f0261085b6c66209363602723c0b71fb7e5d16f4f0483"
+  },
+  {
+    "file": "corpus/broken-image.epub",
+    "expected": "READY",
+    "features": "EPUB 3.0; structured/media; font obfuscation=False",
+    "bytes": 2967,
+    "sha256": "da204950c7c67021a7005aa5be702ff0d1f2fe11d51b037cdc0344895823436d"
+  },
+  {
+    "file": "corpus/active-external.epub",
+    "expected": "READY",
+    "features": "EPUB 3.0; structured/media; font obfuscation=False",
+    "bytes": 3053,
+    "sha256": "ca92101838e00f073b3fadfbb8dc9991538eb763f25dfd602328c95199333019"
+  },
+  {
+    "file": "corpus/font-obfuscation.epub",
+    "expected": "READY",
+    "features": "EPUB 3.0; structured/media; font obfuscation=True",
+    "bytes": 3575,
+    "sha256": "3df69c39b116df698cdcf6f20c992675b20753f0e0c4cdb3a2272dd142e3fe3b"
+  },
+  {
+    "file": "empty.epub",
+    "expected": "EMPTY",
+    "features": "Negative control; excluded from valid-file denominator",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "file": "empty.fb2",
+    "expected": "EMPTY",
+    "features": "Negative control; excluded from valid-file denominator",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "file": "corrupt.epub",
+    "expected": "CORRUPT",
+    "features": "Negative control; excluded from valid-file denominator",
+    "bytes": 21,
+    "sha256": "1ce257649158be777bc3b38ca1702b72afc53a595ae05909d568ede6c1567789"
+  },
+  {
+    "file": "corrupt.fb2",
+    "expected": "CORRUPT",
+    "features": "Negative control; excluded from valid-file denominator",
+    "bytes": 76,
+    "sha256": "bf9926a4bf13a87d717eef6086e67faff2cded8cc37d2093e700613ff461aba9"
+  },
+  {
+    "file": "drm-marker.epub",
+    "expected": "DRM",
+    "features": "Negative control; excluded from valid-file denominator",
+    "bytes": 2604,
+    "sha256": "be5d756f73ecb128d43471904d45ff3051e4f4fbe092089c2c1107462933699f"
+  },
+  {
+    "file": "unsupported.pdf",
+    "expected": "UNSUPPORTED_FORMAT",
+    "features": "Negative control; excluded from valid-file denominator",
+    "bytes": 52,
+    "sha256": "7121370b123d404ea7cd41251f2374c8a9fc77df3d05737b5c14f9b1768388fd"
+  },
+  {
+    "file": "corpus/xxe.fb2",
+    "expected": "CORRUPT",
+    "features": "Negative control: external XML entity",
+    "bytes": 166,
+    "sha256": "6a0214f2fbbc71f5b4fca93c2b298694653cb3665676fd803026a89437922c25"
+  }
+]

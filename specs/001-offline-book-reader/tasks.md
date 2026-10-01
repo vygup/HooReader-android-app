@@ -112,7 +112,7 @@ process, открыть книгу в авиарежиме и восстанов
 - [X] T041 Выполнить UX review требований и UI состояний по `specs/001-offline-book-reader/checklists/ux.md`.
 - [X] T042 Выполнить все сценарии `specs/001-offline-book-reader/quickstart.md` на Android emulator или устройстве.
 - [X] T043 Измерить открытие 20 MB книги и долю кадров до 16,7 ms при прокрутке текста и библиотеки из 100 книг; зафиксировать результаты в `specs/001-offline-book-reader/performance-results.md`.
-- [ ] T044 Сформировать согласованный EPUB/FB2 test corpus, выполнить импорт каждого файла, рассчитать долю успешных открытий и записать результат в `specs/001-offline-book-reader/import-corpus-results.md`.
+- [X] T044 Сформировать согласованный EPUB/FB2 test corpus, выполнить импорт каждого файла, рассчитать долю успешных открытий и записать результат в `specs/001-offline-book-reader/import-corpus-results.md`.
 - [ ] T045 Обновить `README.md` инструкциями сборки, офлайн-ограничениями, форматами EPUB/FB2 без DRM и запретом OPDS в MVP.
 
 ## Зависимости и порядок выполнения
