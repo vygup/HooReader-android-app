@@ -58,19 +58,15 @@ internal class Fb2Scanner(private val bookId: String) {
     private suspend fun readBodyTag(xml: XmlPullParser, onBlock: suspend (ContentBlock) -> Unit) {
         when (xml.name) {
             "section" -> if (xml.depth == bodyDepth + 1) addChapter()
-            "title", "p", "v", "subtitle", "text-author" -> {
+            "title", "p", "v", "subtitle", "text-author", "li", "image" -> {
                 if (chapterIndex < 0) addChapter()
-                val heading = xml.name == "title" || xml.name == "subtitle"
-                val text = xml.elementText()
-                if (heading && chapters[chapterIndex].title == null) {
-                    chapters[chapterIndex] = chapters[chapterIndex].copy(title = text.takeIf { it.isNotBlank() })
+                val fragments = Fb2ContentMapper().read(xml)
+                fragments.forEach { fragment ->
+                    if (fragment.kind == BlockKind.HEADING && chapters[chapterIndex].title == null) {
+                        chapters[chapterIndex] = chapters[chapterIndex].copy(title = fragment.text)
+                    }
+                    emitBlock(fragment, onBlock)
                 }
-                if (text.isNotBlank()) emitBlock(text, if (heading) BlockKind.HEADING else BlockKind.PARAGRAPH, onBlock)
-            }
-            "image" -> {
-                if (chapterIndex < 0) addChapter()
-                emitBlock("[Изображение]", BlockKind.FALLBACK, onBlock)
-                xml.skipElement()
             }
         }
     }
@@ -80,10 +76,10 @@ internal class Fb2Scanner(private val bookId: String) {
         chapters += Chapter(bookId, chapterIndex, null, "section:$chapterIndex", 0)
     }
 
-    private suspend fun emitBlock(text: String, kind: BlockKind, emit: suspend (ContentBlock) -> Unit) {
+    private suspend fun emitBlock(fragment: BlockFragment, emit: suspend (ContentBlock) -> Unit) {
         val chapter = chapters[chapterIndex]
         chapters[chapterIndex] = chapter.copy(blockCount = chapter.blockCount + 1)
-        emit(ContentBlock(chapterIndex, chapter.blockCount, kind, text))
+        emit(fragment.at(chapterIndex, chapter.blockCount))
     }
 }
 
