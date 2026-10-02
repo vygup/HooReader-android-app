@@ -154,3 +154,11 @@ image ratio и fallback пустой главы; chapter pages нумеруют�
 Source metadata отличает завершённую пустую главу от EOF. Изменения content/parser/schema/
 viewport/insets/font samples/locale/direction/scale инвалидируют cache; старый prefix rebuild.
 Продолжение production frontier/resume относится к T028. Следующая T023.
+
+T023: четыре реальные destination/input Android-контракта введены, APK/detekt GREEN.
+Все четыре RED по отсутствию reading_mode_paginated, не ошибке компиляции.
+Fixtures содержат 139264 code points (~250 KB UTF-8), threshold проверяет >100000 UTF-16
+chars; unit guard длинного paragraph усилен тем же корректным порогом.
+Geometry assertions берут актуальный in-memory anchor из настоящего ViewModel, не
+предыдущую debounce запись Room. Проверки pages/cancel/chapters/reopen/scale/rotation
+повторяются в T034 после интеграции. Следующая T024.

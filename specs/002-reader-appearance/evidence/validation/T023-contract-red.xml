@@ -1,0 +1,124 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuite name="com.hooreader.reader.PagedReaderTest" tests="4" failures="4" errors="0" skipped="0" time="7.154" timestamp="2026-10-02T17:51:11" hostname="localhost">
+  <properties>
+    <property name="device" value="Pixel_10(AVD) - 17" />
+    <property name="flavor" value="" />
+    <property name="project" value=":app" />
+  </properties>
+  <testcase name="fb2OneSwipeOnePageCancelBoundariesContentsAndReopen" classname="com.hooreader.reader.PagedReaderTest" time="1.819">
+    <failure>java.lang.AssertionError: Failed to inject touch input.
+Reason: Expected exactly '1' node but could not find any node that satisfies: (TestTag = 'reading_mode_paginated')
+
+at androidx.compose.ui.test.SemanticsNodeInteraction.fetchOneOrThrow(SemanticsNodeInteraction.kt:178)
+at androidx.compose.ui.test.SemanticsNodeInteraction.fetchOneOrThrow$default(SemanticsNodeInteraction.kt:150)
+at androidx.compose.ui.test.SemanticsNodeInteraction.fetchSemanticsNode(SemanticsNodeInteraction.kt:84)
+at androidx.compose.ui.test.ActionsKt.performTouchInput(Actions.kt:402)
+at androidx.compose.ui.test.AndroidActions.performClickImpl(Actions.android.kt:23)
+at androidx.compose.ui.test.ActionsKt.performClick(Actions.kt:60)
+at com.hooreader.reader.PagedReaderTest.chooseMode(PagedReaderTest.kt:143)
+at com.hooreader.reader.PagedReaderTest.access$chooseMode(PagedReaderTest.kt:51)
+at com.hooreader.reader.PagedReaderTest$pages$1.invokeSuspend(PagedReaderTest.kt:69)
+at com.hooreader.reader.PagedReaderTest$pages$1.invoke(PagedReaderTest.kt:13)
+at com.hooreader.reader.PagedReaderTest$pages$1.invoke(PagedReaderTest.kt:6)
+at com.hooreader.reader.PagedReaderTest$withBook$1.invokeSuspend(PagedReaderTest.kt:210)
+at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:94)
+at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:70)
+at kotlinx.coroutines.BuildersKt.runBlocking(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2369:1)
+at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:48)
+at kotlinx.coroutines.BuildersKt.runBlocking$default(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2370:1)
+at com.hooreader.reader.PagedReaderTest.withBook(PagedReaderTest.kt:180)
+at com.hooreader.reader.PagedReaderTest.pages(PagedReaderTest.kt:68)
+at com.hooreader.reader.PagedReaderTest.fb2OneSwipeOnePageCancelBoundariesContentsAndReopen(PagedReaderTest.kt:57)
+</failure>
+  </testcase>
+  <testcase name="epubModeScaleAndRotationPreserveInnerParagraphAnchor" classname="com.hooreader.reader.PagedReaderTest" time="1.35">
+    <failure>java.lang.AssertionError: Failed to inject touch input.
+Reason: Expected exactly '1' node but could not find any node that satisfies: (TestTag = 'reading_mode_paginated')
+
+at androidx.compose.ui.test.SemanticsNodeInteraction.fetchOneOrThrow(SemanticsNodeInteraction.kt:178)
+at androidx.compose.ui.test.SemanticsNodeInteraction.fetchOneOrThrow$default(SemanticsNodeInteraction.kt:150)
+at androidx.compose.ui.test.SemanticsNodeInteraction.fetchSemanticsNode(SemanticsNodeInteraction.kt:84)
+at androidx.compose.ui.test.ActionsKt.performTouchInput(Actions.kt:402)
+at androidx.compose.ui.test.AndroidActions.performClickImpl(Actions.android.kt:23)
+at androidx.compose.ui.test.ActionsKt.performClick(Actions.kt:60)
+at com.hooreader.reader.PagedReaderTest.chooseMode(PagedReaderTest.kt:143)
+at com.hooreader.reader.PagedReaderTest.access$chooseMode(PagedReaderTest.kt:51)
+at com.hooreader.reader.PagedReaderTest$geometry$1.invokeSuspend(PagedReaderTest.kt:108)
+at com.hooreader.reader.PagedReaderTest$geometry$1.invoke(PagedReaderTest.kt:13)
+at com.hooreader.reader.PagedReaderTest$geometry$1.invoke(PagedReaderTest.kt:6)
+at com.hooreader.reader.PagedReaderTest$withBook$1.invokeSuspend(PagedReaderTest.kt:210)
+at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:94)
+at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:70)
+at kotlinx.coroutines.BuildersKt.runBlocking(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2369:1)
+at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:48)
+at kotlinx.coroutines.BuildersKt.runBlocking$default(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2370:1)
+at com.hooreader.reader.PagedReaderTest.withBook(PagedReaderTest.kt:180)
+at com.hooreader.reader.PagedReaderTest.geometry(PagedReaderTest.kt:105)
+at com.hooreader.reader.PagedReaderTest.epubModeScaleAndRotationPreserveInnerParagraphAnchor(PagedReaderTest.kt:66)
+</failure>
+  </testcase>
+  <testcase name="fb2ModeScaleAndRotationPreserveInnerParagraphAnchor" classname="com.hooreader.reader.PagedReaderTest" time="2.33">
+    <failure>java.lang.AssertionError: Failed to inject touch input.
+Reason: Expected exactly '1' node but could not find any node that satisfies: (TestTag = 'reading_mode_paginated')
+
+at androidx.compose.ui.test.SemanticsNodeInteraction.fetchOneOrThrow(SemanticsNodeInteraction.kt:178)
+at androidx.compose.ui.test.SemanticsNodeInteraction.fetchOneOrThrow$default(SemanticsNodeInteraction.kt:150)
+at androidx.compose.ui.test.SemanticsNodeInteraction.fetchSemanticsNode(SemanticsNodeInteraction.kt:84)
+at androidx.compose.ui.test.ActionsKt.performTouchInput(Actions.kt:402)
+at androidx.compose.ui.test.AndroidActions.performClickImpl(Actions.android.kt:23)
+at androidx.compose.ui.test.ActionsKt.performClick(Actions.kt:60)
+at com.hooreader.reader.PagedReaderTest.chooseMode(PagedReaderTest.kt:143)
+at com.hooreader.reader.PagedReaderTest.access$chooseMode(PagedReaderTest.kt:51)
+at com.hooreader.reader.PagedReaderTest$geometry$1.invokeSuspend(PagedReaderTest.kt:108)
+at com.hooreader.reader.PagedReaderTest$geometry$1.invoke(PagedReaderTest.kt:13)
+at com.hooreader.reader.PagedReaderTest$geometry$1.invoke(PagedReaderTest.kt:6)
+at com.hooreader.reader.PagedReaderTest$withBook$1.invokeSuspend(PagedReaderTest.kt:210)
+at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:94)
+at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:70)
+at kotlinx.coroutines.BuildersKt.runBlocking(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2369:1)
+at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:48)
+at kotlinx.coroutines.BuildersKt.runBlocking$default(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2370:1)
+at com.hooreader.reader.PagedReaderTest.withBook(PagedReaderTest.kt:180)
+at com.hooreader.reader.PagedReaderTest.geometry(PagedReaderTest.kt:105)
+at com.hooreader.reader.PagedReaderTest.fb2ModeScaleAndRotationPreserveInnerParagraphAnchor(PagedReaderTest.kt:63)
+</failure>
+  </testcase>
+  <testcase name="epubOneSwipeOnePageCancelBoundariesContentsAndReopen" classname="com.hooreader.reader.PagedReaderTest" time="1.281">
+    <failure>java.lang.AssertionError: Failed to inject touch input.
+Reason: Expected exactly '1' node but could not find any node that satisfies: (TestTag = 'reading_mode_paginated')
+
+at androidx.compose.ui.test.SemanticsNodeInteraction.fetchOneOrThrow(SemanticsNodeInteraction.kt:178)
+at androidx.compose.ui.test.SemanticsNodeInteraction.fetchOneOrThrow$default(SemanticsNodeInteraction.kt:150)
+at androidx.compose.ui.test.SemanticsNodeInteraction.fetchSemanticsNode(SemanticsNodeInteraction.kt:84)
+at androidx.compose.ui.test.ActionsKt.performTouchInput(Actions.kt:402)
+at androidx.compose.ui.test.AndroidActions.performClickImpl(Actions.android.kt:23)
+at androidx.compose.ui.test.ActionsKt.performClick(Actions.kt:60)
+at com.hooreader.reader.PagedReaderTest.chooseMode(PagedReaderTest.kt:143)
+at com.hooreader.reader.PagedReaderTest.access$chooseMode(PagedReaderTest.kt:51)
+at com.hooreader.reader.PagedReaderTest$pages$1.invokeSuspend(PagedReaderTest.kt:69)
+at com.hooreader.reader.PagedReaderTest$pages$1.invoke(PagedReaderTest.kt:13)
+at com.hooreader.reader.PagedReaderTest$pages$1.invoke(PagedReaderTest.kt:6)
+at com.hooreader.reader.PagedReaderTest$withBook$1.invokeSuspend(PagedReaderTest.kt:210)
+at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:94)
+at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:70)
+at kotlinx.coroutines.BuildersKt.runBlocking(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2369:1)
+at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:48)
+at kotlinx.coroutines.BuildersKt.runBlocking$default(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2370:1)
+at com.hooreader.reader.PagedReaderTest.withBook(PagedReaderTest.kt:180)
+at com.hooreader.reader.PagedReaderTest.pages(PagedReaderTest.kt:68)
+at com.hooreader.reader.PagedReaderTest.epubOneSwipeOnePageCancelBoundariesContentsAndReopen(PagedReaderTest.kt:60)
+</failure>
+  </testcase>
+</testsuite>

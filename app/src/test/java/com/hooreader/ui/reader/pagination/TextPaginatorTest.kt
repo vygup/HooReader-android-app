@@ -160,6 +160,6 @@ class TextPaginatorTest {
             part
         }
         assertEquals(block.text, reconstructed)
-        if (block.text.length > 200_000) assertTrue(fragments.size > 1)
+        if (block.text.length > 100_000) assertTrue(fragments.size > 1)
     }
 }
