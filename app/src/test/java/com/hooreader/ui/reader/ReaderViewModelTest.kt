@@ -182,6 +182,7 @@ class ReaderViewModelTest {
         reader.pagination.configure(environment(1f))
         val first = awaitReading(reader)
         assertEquals(offset, first.position.characterOffset)
+        assertTrue(first.blocks.isEmpty())
         val requested = ReaderPreferences(fontScale = 2f, readingMode = ReadingMode.VERTICAL)
         assertFalse(reader.pagination.applyPreferences(requested, GeometryChangeOrigin.USER_PREFERENCE))
         assertEquals(first.layoutGeneration, (reader.state.value as ReaderUiState.Reading).layoutGeneration)
@@ -209,6 +210,8 @@ class ReaderViewModelTest {
         }
         assertTrue(reader.flushPosition())
         assertEquals(navigated.logicalPosition, retried.logicalPosition)
+        assertTrue(retried.blocks.size in 1..128)
+        assertTrue(retried.blocks.any { it.blockIndex == retried.position.blockIndex })
         assertEquals(retried.position, repository.getPosition(id))
         assertFalse(reader.saveFailed.value)
     }

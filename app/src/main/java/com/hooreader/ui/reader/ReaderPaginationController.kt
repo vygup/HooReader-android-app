@@ -87,7 +87,7 @@ class ReaderPaginationController(
             val blocks = if (preferences.readingMode == ReadingMode.VERTICAL && source != null) {
                 sourceWindow(requireNotNull(source), reading.position)
             } else {
-                reading.blocks
+                emptyList()
             }
             restart(
                 reading.copy(
@@ -189,7 +189,8 @@ class ReaderPaginationController(
         if (index !in reading.chapters.indices || !saver.flush()) return false
         val position = sourcePosition(session, LogicalAnchor(index, 0, 0), reading.position.updatedAt)
         saver.update(position)
-        restart(reading.copy(position = position, blocks = sourceWindow(session, position)))
+        val blocks = if (reading.effectiveMode == ReadingMode.VERTICAL) sourceWindow(session, position) else emptyList()
+        restart(reading.copy(position = position, blocks = blocks))
         return true
     }
 
@@ -204,7 +205,11 @@ class ReaderPaginationController(
 
     private fun restart(reading: ReaderUiState.Reading) {
         calculation?.cancel()
-        val snapshot = reading.copy(layoutGeneration = ++generation, pages = null)
+        val snapshot = reading.copy(
+            layoutGeneration = ++generation,
+            pages = null,
+            blocks = if (reading.effectiveMode == ReadingMode.VERTICAL) reading.blocks else emptyList(),
+        )
         if (snapshot.effectiveMode == ReadingMode.VERTICAL) {
             state.value = snapshot
         } else {

@@ -153,7 +153,9 @@ def instrument(case, method):
         invocation.extend(['-e', name, value])
     invocation.append('com.hooreader.test/androidx.test.runner.AndroidJUnitRunner')
     output = adb(*invocation).decode()
-    (evidence / f'{case["id"]}-{method}-instrumentation.txt').write_text(output)
+    logs = evidence / (args.output.stem + '-instrumentation')
+    logs.mkdir(parents=True, exist_ok=True)
+    (logs / f'{case["id"]}-{method}.txt').write_text(output)
     if 'OK (1 test)' not in output:
         raise RuntimeError(f'Ошибка instrumentation: {case["id"]}/{method}; см. сохранённый журнал')
 

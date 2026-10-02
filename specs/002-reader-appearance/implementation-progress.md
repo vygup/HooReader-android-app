@@ -263,6 +263,15 @@ Room/source open, production LayoutKey/viewport и PageIndexStore. Debug observe
 отмечает точный prefix и draw текущей страницы; следующий frame callback — диагностическая
 верхняя граница, не физический first-presented. Подготовка fixtures/Room до таймера,
 source/page cache state проверяется перед каждым повтором. Cold/warm и cancellation
-harness собраны с detekt; пробная серия EPUB cold: 5 повторов, max 1753.051 ms,
-отмена прежнего LayoutKey 4.509 ms. Задача ещё не завершена, следующая полная серия T035.
+harness собраны с detekt; пробная серия EPUB cold: 5 повторов, max 1753.093 ms,
+отмена прежнего LayoutKey 4.544 ms. Задача ещё не завершена, следующая полная серия T035.
 По последнему указанию пользователя остановиться после T036; T037–T065 оставить на завтра.
+
+T035 промежуточная оптимизация проверена: block cache использует value equality LayoutKey
+без SHA-256/toString на каждом блоке; PageIndex directory/hash вычисляется один раз на owner.
+PAGINATED не удерживает отдельное окно вертикальных блоков; при возврате в VERTICAL окно
+загружается с актуального anchor. Native ViewModel regression подтверждает пустое window
+в pages и восстановление ограниченного окна после retry. 98 debug +98 release unit tests,
+check/build/lint/detekt и оба APK GREEN. [Checks](evidence/T035-check.txt).
+Исходная полная series ещё идёт; установленный baseline APK не заменялся сборкой оптимизации.
+После неё выполнить новую полную series оптимизированного APK, затем закрыть T035 и T036.

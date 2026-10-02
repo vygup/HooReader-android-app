@@ -29,7 +29,8 @@ class TextPaginator(
     val cachedSourceCharacters get() = layouts.characters
 
     fun measure(block: ContentBlock, key: LayoutKey): TextLayoutResult {
-        val cacheKey = BlockMeasurementKey(key.hash, block)
+        // Value equality already covers every geometry field; avoid SHA/string allocation per block.
+        val cacheKey = BlockMeasurementKey(key, block)
         layouts[cacheKey]?.let { return it }
         val indent = if (block.kind == BlockKind.LIST) key.typography.listIndentPx else 0f
         val result = measurer.measure(
@@ -104,7 +105,7 @@ class TextPaginator(
     }
 }
 
-private data class BlockMeasurementKey(val layoutHash: String, val block: ContentBlock)
+private data class BlockMeasurementKey(val layout: LayoutKey, val block: ContentBlock)
 
 private class MeasuredBlockCache {
     private val values = LinkedHashMap<BlockMeasurementKey, TextLayoutResult>(MAX_LAYOUTS, LOAD_FACTOR, true)

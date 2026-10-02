@@ -96,7 +96,11 @@ class ReaderViewModel(
                 val saved = repository.getPosition(bookId) ?: ReadingPosition(bookId)
                 val position = sourcePosition(opened, saved.logicalAnchor(), saved.updatedAt)
                 positionSaver.update(position)
-                val blocks = sourceWindow(opened, position)
+                val blocks = if (pagination.effectivePreferences.readingMode == ReadingMode.VERTICAL) {
+                    sourceWindow(opened, position)
+                } else {
+                    emptyList()
+                }
                 pagination.restore(ReaderUiState.Reading(book, opened.chapters, blocks, position))
             } catch (error: CancellationException) {
                 throw error

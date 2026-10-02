@@ -21,7 +21,8 @@ import java.util.UUID
 /** Exact, completed chapter counts plus random-access page records. No full page list in RAM. */
 class PageIndex(private val files: BookFileStorage, private val bookId: String, val key: LayoutKey) {
     private val lock = Mutex()
-    private val root get() = files.derivedDirectory(bookId, "pages", key.hash)
+    private val layoutHash = key.hash
+    private val root = files.derivedDirectory(bookId, "pages", layoutHash)
 
     suspend fun ensureChapter(
         chapter: Int,
@@ -124,7 +125,7 @@ class PageIndex(private val files: BookFileStorage, private val bookId: String, 
         val metadata = owned(directory, "chapter.json")
         require(metadata.length() in 1..MAX_METADATA_BYTES)
         val json = JSONObject(metadata.readText())
-        require(json.getBoolean("complete") && json.getString("layoutHash") == key.hash)
+        require(json.getBoolean("complete") && json.getString("layoutHash") == layoutHash)
         val info = ChapterPageInfo(json.getInt("chapter"), json.getInt("prefix"), json.getInt("count"))
         require(info.chapterIndex == chapter && info.prefixCount == prefixCount)
         require(owned(directory, "offsets.bin").length() == info.pageCount.toLong() * Long.SIZE_BYTES)
