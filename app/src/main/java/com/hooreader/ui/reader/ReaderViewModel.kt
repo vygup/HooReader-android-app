@@ -154,7 +154,7 @@ class ReaderViewModel(
     }
 
     private fun position(chapters: List<Chapter>, block: ContentBlock, offset: Int): ReadingPosition {
-        val character = offset.coerceIn(0, block.text.length)
+        val character = ReaderPositionResolver.safeOffset(block.text, offset)
         val total = chapters.sumOf { it.blockCount.toLong() }.coerceAtLeast(1)
         val before = chapters.take(block.chapterIndex).sumOf { it.blockCount.toLong() } + block.blockIndex
         val fraction = if (block.text.isEmpty()) 0.0 else character.toDouble() / block.text.length

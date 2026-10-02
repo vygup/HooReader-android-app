@@ -21,7 +21,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.key
+import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -32,10 +34,13 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextLayoutResult
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.hooreader.R
+import com.hooreader.domain.model.BlockKind
+import com.hooreader.domain.model.logicalAnchor
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.launch
@@ -152,11 +157,38 @@ private fun ChapterText(
 ) {
     val start = state.blocks.first().blockIndex
     val list = rememberLazyListState(initialFirstVisibleItemIndex = state.position.blockIndex - start)
+    val layouts = remember { mutableStateMapOf<Int, TextLayoutResult>() }
+    val initial = remember { state.position }
+    var restored by remember { mutableStateOf(false) }
     val position by rememberUpdatedState(state.position)
+    LaunchedEffect(layouts[initial.blockIndex]) {
+        if (!restored) {
+            val block = state.blocks.first { it.blockIndex == initial.blockIndex }
+            val layout = layouts[initial.blockIndex]
+            if (block.kind == BlockKind.IMAGE || layout != null) {
+                val pixels = ReaderPositionResolver.restoreScrollOffset(initial, block, layout)
+                list.scrollToItem(initial.blockIndex - start, pixels)
+                restored = true
+            }
+        }
+    }
     LaunchedEffect(list) {
-        snapshotFlow { list.firstVisibleItemIndex }.distinctUntilChanged().collect { visible ->
-            val index = start + visible
-            if (index != position.blockIndex) viewModel.onVisibleBlock(position.chapterIndex, index)
+        snapshotFlow {
+            if (restored) {
+                state.blocks.getOrNull(list.firstVisibleItemIndex)?.let { block ->
+                    ReaderPositionResolver.topVisibleAnchor(
+                        block,
+                        layouts[block.blockIndex],
+                        list.firstVisibleItemScrollOffset
+                    )
+                }
+            } else {
+                null
+            }
+        }.distinctUntilChanged().collect { anchor ->
+            if (anchor != null && anchor != position.logicalAnchor()) {
+                viewModel.onVisibleBlock(anchor.chapterIndex, anchor.blockIndex, anchor.characterOffset)
+            }
         }
     }
     LazyColumn(
@@ -167,6 +199,8 @@ private fun ChapterText(
         items(
             state.blocks,
             key = { it.blockIndex }
-        ) { block -> ContentBlockRenderer(block, viewModel.openMedia, fontScale) }
+        ) { block ->
+            ContentBlockRenderer(block, viewModel.openMedia, fontScale) { layouts[block.blockIndex] = it }
+        }
     }
 }
