@@ -22,7 +22,7 @@ sealed interface AddBookResult {
 
 class BookRepository(
     private val database: HooReaderDatabase,
-    private val files: BookFileStorage,
+    internal val files: BookFileStorage,
 ) {
     val books: Flow<List<Book>> = database.bookDao().observeReady().map { entities -> entities.map { it.book } }
 

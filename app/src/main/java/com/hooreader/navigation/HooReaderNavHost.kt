@@ -2,6 +2,7 @@ package com.hooreader.navigation
 
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -16,9 +17,11 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.hooreader.domain.model.ReaderPreferences
 import com.hooreader.ui.library.ImportBookLauncher
 import com.hooreader.ui.library.LibraryViewModel
 import com.hooreader.ui.library.importFromPicker
+import com.hooreader.ui.reader.GeometryChangeOrigin
 import com.hooreader.ui.reader.ReaderChromeEvent
 import com.hooreader.ui.reader.ReaderOverlay
 import com.hooreader.ui.reader.ReaderScreen
@@ -68,45 +71,76 @@ fun HooReaderNavHost(
 
 @Composable
 private fun ReaderDestination(bookId: String, dependencies: ReaderDependencies, onBack: () -> Unit) {
-    val model: ReaderViewModel = viewModel(
-        key = bookId,
-        factory = viewModelFactory {
-            initializer { ReaderViewModel(bookId, dependencies.repository, dependencies.parsers) }
-        },
-    )
     val settings: ReaderSettingsViewModel = viewModel(
         factory = viewModelFactory { initializer { ReaderSettingsViewModel(dependencies.preferences) } },
     )
     val preferences by settings.preferences.collectAsStateWithLifecycle()
-    val saveFailed by settings.saveFailed.collectAsStateWithLifecycle()
-    val chrome by model.chromeState.collectAsStateWithLifecycle()
-    val scope = rememberCoroutineScope()
     val current = preferences
     if (current == null) {
         CircularProgressIndicator()
     } else {
-        ReaderScreen(
-            model,
-            fontScale = current.fontScale,
-            onSettings = { model.onChromeEvent(ReaderChromeEvent.OPEN_READER_SETTINGS) },
-            onBack = onBack,
+        OpenReaderDestination(bookId, dependencies, current, settings, onBack)
+    }
+}
+
+@Composable
+private fun OpenReaderDestination(
+    bookId: String,
+    dependencies: ReaderDependencies,
+    preferences: ReaderPreferences,
+    settings: ReaderSettingsViewModel,
+    onBack: () -> Unit,
+) {
+    val model: ReaderViewModel = viewModel(
+        key = bookId,
+        factory = viewModelFactory {
+            initializer {
+                ReaderViewModel(
+                    bookId,
+                    dependencies.repository,
+                    dependencies.parsers,
+                    dependencies.readerPages,
+                    preferences,
+                    dependencies.readerContent,
+                )
+            }
+        },
+    )
+    val saveFailed by settings.saveFailed.collectAsStateWithLifecycle()
+    val chrome by model.chromeState.collectAsStateWithLifecycle()
+    val scope = rememberCoroutineScope()
+    LaunchedEffect(preferences) {
+        model.pagination.applyPreferences(preferences, GeometryChangeOrigin.SYSTEM_CONFIGURATION)
+    }
+    ReaderScreen(
+        model,
+        fontScale = preferences.fontScale,
+        onSettings = { model.onChromeEvent(ReaderChromeEvent.OPEN_READER_SETTINGS) },
+        onBack = onBack,
+    )
+    if (chrome.overlay == ReaderOverlay.READER_SETTINGS) {
+        ReaderSettingsSheet(
+            preferences = preferences,
+            onThemeChange = settings::setTheme,
+            onFontScaleChange = { scale ->
+                scope.launch {
+                    model.pagination.applyPreferences(
+                        preferences.copy(fontScale = scale),
+                        GeometryChangeOrigin.USER_PREFERENCE,
+                    ) { settings.setFontScale(scale) }
+                }
+            },
+            onReadingModeChange = { mode ->
+                scope.launch {
+                    model.pagination.applyPreferences(
+                        preferences.copy(readingMode = mode),
+                        GeometryChangeOrigin.USER_PREFERENCE,
+                    ) { settings.setReadingMode(mode) }
+                }
+            },
+            onDismiss = { model.onChromeEvent(ReaderChromeEvent.DISMISS_OVERLAY) },
+            saveFailed = saveFailed,
+            onRetry = settings::retry,
         )
-        if (chrome.overlay == ReaderOverlay.READER_SETTINGS) {
-            ReaderSettingsSheet(
-                preferences = current,
-                onThemeChange = { theme ->
-                    scope.launch { if (model.flushPosition()) settings.setTheme(theme) }
-                },
-                onFontScaleChange = { scale ->
-                    scope.launch { if (model.flushPosition()) settings.setFontScale(scale) }
-                },
-                onReadingModeChange = { mode ->
-                    scope.launch { if (model.flushPosition()) settings.setReadingMode(mode) }
-                },
-                onDismiss = { model.onChromeEvent(ReaderChromeEvent.DISMISS_OVERLAY) },
-                saveFailed = saveFailed,
-                onRetry = settings::retry,
-            )
-        }
     }
 }

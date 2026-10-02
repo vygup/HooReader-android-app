@@ -125,12 +125,20 @@ class ReaderViewModelTest {
         chapters = chapters.map { if (it.index == 0) it.copy(blockCount = 0) else it }
         val reader = reader()
         val state = awaitReading(reader)
-        assertEquals(BlockKind.FALLBACK, state.blocks.single().kind)
+        assertEquals(BlockKind.FALLBACK, state.blocks.single { it.chapterIndex == 0 }.kind)
+        assertEquals("Paragraph 0", state.blocks.first { it.chapterIndex == 1 }.text)
+        assertTrue(state.blocks.size <= 128)
         reader.selectChapter(1)
         val next = withTimeout(5000) {
             reader.state.filterIsInstance<ReaderUiState.Reading>().first { it.position.chapterIndex == 1 }
         }
-        assertEquals("Paragraph 0", next.blocks.first().text)
+        assertEquals("Paragraph 0", next.blocks.first { it.chapterIndex == 1 }.text)
+        assertEquals(1, next.position.chapterIndex)
+        reader.onVisibleBlock(0, 0)
+        assertEquals(0, (reader.state.value as ReaderUiState.Reading).position.chapterIndex)
+        reader.onVisibleBlock(1, 0)
+        reader.flushPosition()
+        assertEquals(1, repository.getPosition(id)?.chapterIndex)
     }
 
     private fun reader() = ReaderViewModel(id, repository, listOf(parser)).also { store.put("reader", it) }

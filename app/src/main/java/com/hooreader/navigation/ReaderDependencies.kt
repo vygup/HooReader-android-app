@@ -7,6 +7,7 @@ import com.hooreader.data.import.Fb2BookParser
 import com.hooreader.data.local.BookContentIndexStore
 import com.hooreader.data.local.BookFileStorage
 import com.hooreader.data.local.HooReaderDatabase
+import com.hooreader.data.local.PageIndexStore
 import com.hooreader.data.local.ReaderPreferencesRepository
 import com.hooreader.data.repository.BookRepository
 import com.hooreader.data.repository.LibraryRepository
@@ -21,6 +22,7 @@ class ReaderDependencies(context: Context) {
     val library = LibraryRepository(database, files)
     val parsers = listOf(EpubBookParser(), Fb2BookParser())
     val readerContent = ReaderContentRepository(files, BookContentIndexStore(files), parsers)
+    val readerPages = PageIndexStore(files)
     val importer = BookImportService(files, repository, parsers)
     val contentResolver = application.contentResolver
 }

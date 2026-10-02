@@ -4,6 +4,7 @@ import com.hooreader.data.local.PageIndexStore
 import com.hooreader.data.local.PagePrefix
 import com.hooreader.data.repository.ReaderContentSession
 import com.hooreader.domain.model.BlockKind
+import com.hooreader.domain.model.Chapter
 import com.hooreader.domain.model.ContentBlock
 import com.hooreader.domain.model.LogicalAnchor
 import com.hooreader.domain.model.ReaderPreferences
@@ -44,21 +45,26 @@ class ReaderPaginationController(
         private set
     private var source: ReaderContentSession? = null
     private var environment: PageMeasurementEnvironment? = null
-    private var pendingPreference: ReaderPreferences? = null
+    private var pendingPreference: PendingPreference? = null
     private var calculation: Job? = null
     private var generation = 0L
 
-    fun attach(session: ReaderContentSession) {
+    fun attach(session: ReaderContentSession?) {
         calculation?.cancel()
+        generation++
         source = session
         environment = null
     }
 
-    suspend fun applyPreferences(preferences: ReaderPreferences, origin: GeometryChangeOrigin): Boolean {
+    suspend fun applyPreferences(
+        preferences: ReaderPreferences,
+        origin: GeometryChangeOrigin,
+        onApplied: () -> Unit = {},
+    ): Boolean {
         val before = effectivePreferences
         val geometryChanged = preferences.fontScale != before.fontScale || preferences.readingMode != before.readingMode
         if (geometryChanged && origin == GeometryChangeOrigin.USER_PREFERENCE && !saver.flush()) {
-            pendingPreference = preferences
+            pendingPreference = PendingPreference(preferences, onApplied)
             return false
         }
         pendingPreference = null
@@ -78,6 +84,7 @@ class ReaderPaginationController(
                 )
             )
         }
+        onApplied()
         return true
     }
 
@@ -97,7 +104,7 @@ class ReaderPaginationController(
         scope.launch {
             val requested = pendingPreference
             if (requested != null) {
-                applyPreferences(requested, GeometryChangeOrigin.USER_PREFERENCE)
+                applyPreferences(requested.preferences, GeometryChangeOrigin.USER_PREFERENCE, requested.onApplied)
             } else {
                 val preparing = state.value as? ReaderUiState.PreparingPages
                 if (preparing?.preparationFailed == true) restart(preparing.reading)
@@ -229,8 +236,26 @@ internal fun currentReading(state: ReaderUiState): ReaderUiState.Reading? = when
 }
 
 internal suspend fun sourceWindow(session: ReaderContentSession, position: ReadingPosition): List<ContentBlock> =
-    session.window(position.chapterIndex, position.blockIndex).ifEmpty {
-        listOf(ContentBlock(position.chapterIndex, 0, BlockKind.FALLBACK))
+    buildList {
+        // Empty chapters occupy a logical item too, so neither direction skips their fallback.
+        val anchor = session.chapters.take(position.chapterIndex).sumOf { maxOf(1, it.blockCount).toLong() } +
+            position.blockIndex
+        val start = (anchor - CONTENT_WINDOW_SIZE / 2).coerceAtLeast(0)
+        var prefix = 0L
+        for (chapter in session.chapters) {
+            val count = maxOf(1, chapter.blockCount)
+            if (prefix + count > start && size < CONTENT_WINDOW_SIZE) {
+                val from = (start - prefix).coerceAtLeast(0).toInt()
+                val limit = minOf(count - from, CONTENT_WINDOW_SIZE - size)
+                if (chapter.blockCount == 0) {
+                    add(ContentBlock(chapter.index, 0, BlockKind.FALLBACK))
+                } else {
+                    addAll(session.readRecords(session.recordIndex(chapter.index, from), limit))
+                }
+            }
+            prefix += count
+            if (size == CONTENT_WINDOW_SIZE) break
+        }
     }
 
 internal suspend fun sourcePosition(
@@ -245,21 +270,35 @@ internal suspend fun sourcePosition(
     } else {
         session.readRecords(session.recordIndex(chapter.index, index), 1).single()
     }
-    val character = ReaderPositionResolver.safeOffset(block.text, anchor.characterOffset)
-    val total = session.chapters.sumOf { it.blockCount.toLong() }.coerceAtLeast(1)
-    val before = session.chapters.take(chapter.index).sumOf { it.blockCount.toLong() } + index
+    return blockReadingPosition(session.book.id, session.chapters, block, anchor.characterOffset, previousTime)
+}
+
+internal fun blockReadingPosition(
+    bookId: String,
+    chapters: List<Chapter>,
+    block: ContentBlock,
+    offset: Int,
+    previousTime: Long,
+): ReadingPosition {
+    val character = ReaderPositionResolver.safeOffset(block.text, offset)
+    val total = chapters.sumOf { it.blockCount.toLong() }.coerceAtLeast(1)
+    val before = chapters.take(block.chapterIndex).sumOf { it.blockCount.toLong() } + block.blockIndex
     val fraction = if (block.text.isEmpty()) 0.0 else character.toDouble() / block.text.length
     val percent = ((before + fraction) / (total - 1).coerceAtLeast(1) * ReadingPosition.MAX_PROGRESS_PERCENT)
         .coerceIn(0.0, ReadingPosition.MAX_PROGRESS_PERCENT)
     return ReadingPosition(
-        session.book.id,
-        chapter.index,
-        index,
+        bookId,
+        block.chapterIndex,
+        block.blockIndex,
         character,
         percent,
         updatedAt = maxOf(System.currentTimeMillis(), previousTime + 1),
     )
 }
+
+private const val CONTENT_WINDOW_SIZE = 128
+
+private data class PendingPreference(val preferences: ReaderPreferences, val onApplied: () -> Unit)
 
 @Suppress("TooGenericExceptionCaught") // Preserve the in-memory anchor and expose a retryable preparation error.
 private suspend fun paginationAttempt(

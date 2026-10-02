@@ -233,3 +233,17 @@ T032: две radio options с contract tags рядом с масштабом, р
 и обратный выбор GREEN API 37, detekt/build/test APK GREEN. JUnit test Unit signature
 исправлена после initial validation error, итоговый реальный сценарий прошёл.
 Подключение effective режима к renderer выполняется T033. Следующая T033.
+
+T033: единственный source pipeline активирован во всех ReaderViewModel constructors;
+ChapterBlockLoader из reader удалён. Dependencies поставляют content/page stores,
+NavHost создаёт reader после persisted preferences и передаёт USER geometry apply/write
+callback (включая deferred retry). Тема меняет только цвета. Vertical window использует
+виртуальные fallback items пустых глав и ≤128 source records соседних глав; callback
+принимает chapter+block+generation, layouts bounded 8. Restore baseline подавляет
+перезапись исходного inner anchor до фактического scroll. Paged viewport фиксирует strips,
+передаёт реальный Compose measurement environment и показывает только page number
+актуального LayoutKey. Geometry/chrome не дублируются в NavHost.
+14 targeted Android passed +1 opt-in skipped, полный Android 35 passed +6 opt-in skipped,
+0 failures API 37; 96 debug +96 release unit tests, detekt/lint/check/build GREEN.
+Unit empty-chapter assertion обновлена для соседнего окна и усилена навигацией в обе
+стороны с сохранением. [Evidence](evidence/T033-check.txt). Следующая T034.
