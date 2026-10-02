@@ -171,3 +171,10 @@ T025: reading_mode сохраняется в прежнем singleton DataStore;
 режим даёт VERTICAL. Добавлены old-file/fallback/restart/cross-field tests, typed settings
 API и typed cleanup PagedReaderTest. 86 debug unit tests, detekt/build/test APK GREEN.
 Существующая retry closure намеренно развивается в pending queue T045. Следующая T026.
+
+T026: PageSlice связывает anchors с первым/последним source fragment, запрещает gaps/
+повторы/overlap, validates whole-image descriptors и неотрицательный точный prefix.
+LayoutKey явно включает четыре системных safeDrawing insets, метрики/font/locale/versions;
+colors/chrome не добавлены. PageIndex writer/read сохраняют exact prefix equation.
+87 unit tests, detekt/build/APK и два EPUB/FB2 Android measured-page tests GREEN.
+Следующая T027 — bounded content/measurement и сложные fallback/batch cases.

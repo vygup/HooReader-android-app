@@ -10,6 +10,7 @@ import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNotEquals
+import org.junit.Assert.assertThrows
 import org.junit.Assert.assertTrue
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -110,6 +111,10 @@ class PageIndexTest {
             key.copy(viewport = key.viewport.copy(heightPx = 500)),
             key.copy(viewport = key.viewport.copy(topStripPx = 30)),
             key.copy(viewport = key.viewport.copy(bottomStripPx = 30)),
+            key.copy(viewport = key.viewport.copy(insetTopPx = 42)),
+            key.copy(viewport = key.viewport.copy(insetBottomPx = 42)),
+            key.copy(viewport = key.viewport.copy(insetLeftPx = 42)),
+            key.copy(viewport = key.viewport.copy(insetRightPx = 42)),
             key.copy(viewport = key.viewport.copy(density = 2f)),
             key.copy(viewport = key.viewport.copy(spConversionSamples = listOf(11f, 16f, 24f, 48f))),
             key.copy(typography = key.typography.copy(locale = "ja")),
@@ -119,6 +124,21 @@ class PageIndexTest {
         )
         changes.forEach { assertNotEquals(key.hash, it.hash) }
         assertEquals(changes.size, changes.map { it.hash }.distinct().size)
+    }
+
+    @Test
+    fun `source boundaries and geometry reject plausible but inconsistent cache fragments`() {
+        val valid = page(0)
+        assertThrows(IllegalArgumentException::class.java) {
+            valid.copy(startAnchor = LogicalAnchor(0, 0, 1))
+        }
+        assertThrows(IllegalArgumentException::class.java) {
+            valid.copy(endAnchorExclusive = LogicalAnchor(0, 1, 1))
+        }
+        val next = valid.fragments.single().copy(blockIndex = 1, y = 10f)
+        assertThrows(IllegalArgumentException::class.java) {
+            valid.copy(endAnchorExclusive = LogicalAnchor(0, 2, 0), fragments = valid.fragments + next)
+        }
     }
 
     private fun page(number: Int, prefix: Int = 0) = PageSlice(

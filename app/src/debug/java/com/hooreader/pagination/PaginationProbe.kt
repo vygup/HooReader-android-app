@@ -5,7 +5,9 @@ import android.os.Build
 import android.os.SystemClock
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.BoxWithConstraints
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -198,6 +200,7 @@ private fun probeLayoutKey(
     val configuration = LocalConfiguration.current
     val typography = readerTypography(fontScale)
     val weightAdjustment = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) configuration.fontWeightAdjustment else 0
+    val insets = WindowInsets.safeDrawing
     return LayoutKey(
         LayoutContentIdentity(session.book.contentHash),
         LayoutViewport(
@@ -207,6 +210,10 @@ private fun probeLayoutKey(
             density.fontScale,
             with(density) { listOf(11.sp.toPx(), 16.sp.toPx(), 24.sp.toPx(), 32.sp.toPx()) },
             bottomStripPx = bottomStrip,
+            insetTopPx = insets.getTop(density),
+            insetBottomPx = insets.getBottom(density),
+            insetLeftPx = insets.getLeft(density, direction),
+            insetRightPx = insets.getRight(density, direction),
         ),
         LayoutTypography(
             fontScale, "AndroidDefault:$weightAdjustment", Build.FINGERPRINT,

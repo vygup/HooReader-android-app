@@ -32,11 +32,16 @@ data class LayoutViewport(
     val spConversionSamples: List<Float>,
     val topStripPx: Int = 0,
     val bottomStripPx: Int = 0,
+    val insetTopPx: Int = 0,
+    val insetBottomPx: Int = 0,
+    val insetLeftPx: Int = 0,
+    val insetRightPx: Int = 0,
 ) {
     init {
         require(widthPx > 0 && heightPx > 0 && topStripPx >= 0 && bottomStripPx >= 0)
         require(density.isFinite() && density > 0 && systemFontScale.isFinite() && systemFontScale > 0)
         require(spConversionSamples.isNotEmpty() && spConversionSamples.all { it.isFinite() && it > 0 })
+        require(listOf(insetTopPx, insetBottomPx, insetLeftPx, insetRightPx).all { it >= 0 })
     }
 }
 
