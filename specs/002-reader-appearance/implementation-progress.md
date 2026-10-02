@@ -162,3 +162,7 @@ chars; unit guard длинного paragraph усилен тем же корре
 Geometry assertions берут актуальный in-memory anchor из настоящего ViewModel, не
 предыдущую debounce запись Room. Проверки pages/cancel/chapters/reopen/scale/rotation
 повторяются в T034 после интеграции. Следующая T024.
+
+T024: ReadingMode VERTICAL/PAGINATED и default VERTICAL в ReaderPreferences добавлены.
+Прежние LIGHT/finite 0.75–2.0/default 1.0 сохранены; 84 debug unit tests, detekt,
+build GREEN. Следующая T025 — долговечный preference и typed API.
