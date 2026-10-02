@@ -94,6 +94,7 @@ for book in corpus:
                 cases.append({'id': f'{book["format"]}-{location}-{change}-{cache}',
                               'format': book['format'], 'anchor': book[location], 'cache': cache,
                               'orientation': orientation, 'readingScale': scale, 'systemFont': system_font,
+                              'sourceSpoolAtStart': 'absent' if cache == 'cold_source' else 'present',
                               'sha256': book['sha256']})
 apk = ROOT / 'app/build/outputs/apk/debug/app-debug.apk'
 test_apk = ROOT / 'app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk'

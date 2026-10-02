@@ -73,8 +73,9 @@ class PaginationProbeTest {
             FONT_TOLERANCE
         )
         try {
-            if (mode == "warm") {
-                repository.open(book).use { show(it, scale) }
+            if (mode != "cold_source") {
+                // Source preparation is allowed for cold pages; target layout is measured only for warm.
+                repository.open(book).use { if (mode == "warm") show(it, scale) }
                 clearContent()
             }
             repeat(RUNS) { number ->
@@ -158,6 +159,11 @@ class PaginationProbeTest {
     }
 
     private suspend fun measure(book: Book, scale: Float, number: Int): JSONObject {
+        val sourcePresent = files.derivedDirectory(book.id, "content", "${book.contentHash}-1")
+            .resolve("index.json").isFile
+        val pagesPresent = files.derivedDirectory(book.id, "pages", "inspection").parentFile!!.exists()
+        assertEquals(args.getString("probeCache") != "cold_source", sourcePresent)
+        assertEquals(args.getString("probeCache") == "warm", pagesPresent)
         val memory = ProbeMemorySampler()
         val start = SystemClock.elapsedRealtimeNanos()
         try {
@@ -167,6 +173,7 @@ class PaginationProbeTest {
                 assertTrue(ready.exactPageNumber > 0)
                 val metrics = memory.snapshot()
                 return JSONObject().put("run", number + 1).put("openingMs", openingMs)
+                    .put("sourceSpoolPresentAtStart", sourcePresent).put("pageIndexPresentAtStart", pagesPresent)
                     .put("firstReadableFrameMs", (ready.readyFrameAtNanos - start) / NANOS_PER_MS)
                     .put("exactNumberByMs", (ready.exactNumberAtNanos - start) / NANOS_PER_MS)
                     .put("readyFrameMs", (ready.readyFrameAtNanos - start) / NANOS_PER_MS)
