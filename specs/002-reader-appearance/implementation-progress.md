@@ -226,3 +226,10 @@ explicit settled navigation сохраняет page start. PositionSaver име�
 failed flush/system geometry/navigation/retry и deferred-write races GREEN. 96 debug
 +96 release unit tests, check/build/lint/detekt/test APK GREEN. Подключение source и UI
 environment предусмотрено T033; legacy opening пока сохраняется. Следующая T032.
+
+T032: две radio options с contract tags рядом с масштабом, русские строки и
+автоматический typed settings callback добавлены. DataStore reading_mode общий для всех
+книг, прежние theme/scale не меняются. Android chooser selection→persist→новый repository
+и обратный выбор GREEN API 37, detekt/build/test APK GREEN. JUnit test Unit signature
+исправлена после initial validation error, итоговый реальный сценарий прошёл.
+Подключение effective режима к renderer выполняется T033. Следующая T033.

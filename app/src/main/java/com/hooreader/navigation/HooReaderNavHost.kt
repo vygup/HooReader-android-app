@@ -100,6 +100,9 @@ private fun ReaderDestination(bookId: String, dependencies: ReaderDependencies, 
                 onFontScaleChange = { scale ->
                     scope.launch { if (model.flushPosition()) settings.setFontScale(scale) }
                 },
+                onReadingModeChange = { mode ->
+                    scope.launch { if (model.flushPosition()) settings.setReadingMode(mode) }
+                },
                 onDismiss = { model.onChromeEvent(ReaderChromeEvent.DISMISS_OVERLAY) },
                 saveFailed = saveFailed,
                 onRetry = settings::retry,

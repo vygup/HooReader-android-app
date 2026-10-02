@@ -43,6 +43,8 @@
     <string name="chapter_number">Глава %1$d</string>
     <string name="reader_image_unavailable">Изображение недоступно</string>
     <string name="reader_settings">Настройки чтения</string>
+    <string name="reading_mode_vertical">Вертикальная прокрутка</string>
+    <string name="reading_mode_paginated">Постранично</string>
     <string name="theme_light">Светлая</string>
     <string name="theme_dark">Тёмная</string>
     <string name="font_scale_percent">Размер текста: %1$d%%</string>
