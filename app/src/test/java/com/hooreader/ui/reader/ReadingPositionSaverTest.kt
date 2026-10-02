@@ -153,4 +153,35 @@ class ReadingPositionSaverTest {
         saver.close()
         runCurrent()
     }
+
+    @Test
+    fun `late failed flush retains subsequent navigation until latest revision succeeds`() = runTest {
+        val release = CompletableDeferred<Unit>()
+        val attempts = mutableListOf<Int>()
+        val saver = ReadingPositionSaver(
+            save = {
+                attempts += it.blockIndex
+                if (it.blockIndex == 1) {
+                    release.await()
+                    throw IOException("Older flush failed")
+                }
+            },
+            scope = CoroutineScope(SupervisorJob() + StandardTestDispatcher(testScheduler)),
+        )
+        saver.update(ReadingPosition("book", blockIndex = 1))
+        saver.flushAsync()
+        runCurrent()
+        saver.update(ReadingPosition("book", blockIndex = 2))
+        release.complete(Unit)
+        runCurrent()
+        assertTrue(saver.saveFailed.value)
+        assertEquals(2L, saver.pendingRevision)
+        saver.update(ReadingPosition("book", blockIndex = 3))
+        assertTrue(saver.flush())
+        assertEquals(listOf(1, 3), attempts)
+        assertEquals(null, saver.pendingRevision)
+        assertFalse(saver.saveFailed.value)
+        saver.close()
+        runCurrent()
+    }
 }

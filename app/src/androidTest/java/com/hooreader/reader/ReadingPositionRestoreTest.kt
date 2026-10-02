@@ -14,6 +14,9 @@ import com.hooreader.data.import.Fb2BookParser
 import com.hooreader.data.local.BookFileStorage
 import com.hooreader.data.local.HooReaderDatabase
 import com.hooreader.data.repository.BookRepository
+import com.hooreader.domain.model.LogicalAnchor
+import com.hooreader.domain.model.logicalAnchor
+import com.hooreader.ui.reader.ReaderPositionResolver
 import com.hooreader.ui.reader.ReaderUiState
 import com.hooreader.ui.reader.ReaderViewModel
 import kotlinx.coroutines.Dispatchers
@@ -38,12 +41,20 @@ class ReadingPositionRestoreTest {
     @Test
     fun fb2PositionSurvivesRecreatedReaderAndDatabaseWithoutOriginal() = verifyRestore("structured.fb2")
 
+    @Test
+    fun epubInnerLongParagraphSurvivesDatabaseReopenWithoutOriginal() =
+        verifyRestore("corpus/reader-appearance.epub", 15_000)
+
+    @Test
+    fun fb2InnerLongParagraphSurvivesDatabaseReopenWithoutOriginal() =
+        verifyRestore("corpus/reader-appearance.fb2", 15_000)
+
     // No retained ViewModel, repository, parser or database is shared across the two sessions.
     // A separate device acceptance run exercises actual OS process death.
-    private fun verifyRestore(asset: String) = runBlocking {
+    private fun verifyRestore(asset: String, innerOffset: Int? = null) = runBlocking {
         val databaseName = "restore-${UUID.randomUUID()}.db"
         val files = BookFileStorage(context)
-        val source = File(context.cacheDir, "${UUID.randomUUID()}-$asset")
+        val source = File(context.cacheDir, "${UUID.randomUUID()}-${asset.substringAfterLast('/')}")
         assets.open("books/$asset").use { input -> source.outputStream().use(input::copyTo) }
         var database = openDatabase(databaseName)
         var store = ViewModelStore()
@@ -55,17 +66,10 @@ class ReadingPositionRestoreTest {
             val book = (result as BookImportResult.Added).book
             importedId = book.id
             val first = createReader(store, book.id, repository)
-            awaitReading(first)
-            withContext(Dispatchers.Main) { first.selectChapter(1) }
-            withTimeout(TIMEOUT_MS) {
-                first.state.filterIsInstance<ReaderUiState.Reading>().first { it.position.chapterIndex == 1 }
-            }
-            withContext(Dispatchers.Main) { first.onVisibleBlock(1, 1, 4) }
+            val expected = moveToAnchor(first, innerOffset)
             first.flushPosition()
             val saved = requireNotNull(repository.getPosition(book.id))
-            assertEquals(1, saved.chapterIndex)
-            assertEquals(1, saved.blockIndex)
-            assertEquals(4, saved.characterOffset)
+            assertEquals(expected, saved.logicalAnchor())
             withContext(Dispatchers.Main) { store.clear() }
             database.close()
             assertTrue(source.delete())
@@ -79,7 +83,11 @@ class ReadingPositionRestoreTest {
             assertEquals(saved.blockIndex, restored.position.blockIndex)
             assertEquals(saved.characterOffset, restored.position.characterOffset)
             assertEquals(saved.progressPercent, restored.position.progressPercent, 0.001)
-            assertTrue(restored.blocks.any { it.text.contains("восстановления позиции") })
+            if (innerOffset == null) {
+                assertTrue(restored.blocks.any { it.text.contains("восстановления позиции") })
+            } else {
+                assertTrue(restored.blocks.any { it.text.length > 100_000 })
+            }
         } finally {
             withContext(Dispatchers.Main) { store.clear() }
             database.close()
@@ -87,6 +95,29 @@ class ReadingPositionRestoreTest {
             importedId?.let { files.deleteBook(it) }
             source.delete()
         }
+    }
+
+    private suspend fun moveToAnchor(reader: ReaderViewModel, innerOffset: Int?): LogicalAnchor {
+        val initial = awaitReading(reader)
+        val anchor = if (innerOffset == null) {
+            withContext(Dispatchers.Main) { reader.selectChapter(1) }
+            withTimeout(TIMEOUT_MS) {
+                reader.state.filterIsInstance<ReaderUiState.Reading>().first { it.position.chapterIndex == 1 }
+            }
+            LogicalAnchor(1, 1, 4)
+        } else {
+            val block = initial.blocks.maxBy { it.text.length }
+            assertTrue(block.text.length > 100_000)
+            LogicalAnchor(
+                block.chapterIndex,
+                block.blockIndex,
+                ReaderPositionResolver.safeOffset(block.text, innerOffset),
+            )
+        }
+        withContext(Dispatchers.Main) {
+            reader.onVisibleBlock(anchor.chapterIndex, anchor.blockIndex, anchor.characterOffset)
+        }
+        return anchor
     }
 
     private suspend fun createReader(store: ViewModelStore, id: String, repository: BookRepository): ReaderViewModel =

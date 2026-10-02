@@ -39,10 +39,33 @@ first-presented frame. Первое выполнение через Gradle ус�
 с тестовой установкой; для сохранения всех значений повторено через ADB без удаления APK.
 Эмулятор не подтверждает аппаратный порог ≤0,3 s.
 
+## US2 — функциональные проверки T022–T034
+
+Production ReaderViewModel использует общий spool и PageIndexStore. EPUB/FB2 проверены
+на API 37 настоящими destination/input: один свайп — одна settledPage; cancel и обе
+границы сохраняют страницу/скрытые панели; содержание, режим, масштаб и rotation
+восстанавливают исходный anchor внутри длинного абзаца. Containing-page restore не
+заменяет его page start. После явного перелистывания сохраняется начало новой страницы.
+Vertical окно ограничено 128 элементами и проходит соседние, в том числе пустые главы.
+Native line packing сохраняет все Unicode chars/spans, не разрывает surrogate pairs,
+images цельные и fallback не меняет geometry после bitmap failure.
+
+USER_PREFERENCE при failed position flush удерживает effective выбор до retry;
+SYSTEM_CONFIGURATION сразу использует новую геометрию и anchor из памяти. Проверены
+rapid system font 150→200%, последующая навигация, pending revisions, late success/failure
+старой записи и retry последней позиции. Полное OS process death остаётся задачей T059.
+Два новых EPUB/FB2 Android-теста подтвердили database/reader reopen без retained owners
+и без внешнего original с UTF-16 offset 15000 в paragraph >100000 chars.
+
+[Полный интеграционный T033](evidence/T033-full-android.xml): 35 passed, 6 opt-in skipped,
+0 failures. [Targeted T034](evidence/T034-android.xml): 10 passed, 0 failures.
+[Полный check/build/lint T034](evidence/T034-check.txt): 98 debug +98 release unit tests,
+успешно. Функциональный SC-003 подтверждён в этом окружении; acceptance ниже не подменён.
+
 ## Открытые критерии
 
-SC-001/SC-002 подтверждены для текущего вертикального US1 пути; постраничный путь ещё не реализован.
-SC-003, SC-005/006, указатели US3, полная SC-008 матрица и SC-007 user study ожидают своих задач.
-SC-004 остаётся открытым: физического устройства нет; ранняя пагинация превышает ≤1 s,
-включая сохранённые выбросы [T013](pagination-probe-optimized-results.md). API 26 отсутствует.
+US2 checkpoint и production performance ожидают T035/T036; SC-001/002 полный двухрежимный
+приёмочный прогон, указатели US3, SC-005/006, SC-008 matrix и SC-007 user study — следующих задач.
+SC-004 открыт: физического устройства нет; ранняя серия превышает ≤1 s, включая сохранённые
+выбросы [T013](pagination-probe-optimized-results.md). API 26 отсутствует.
 Релизная готовность не объявляется. Reviewer-owned checklists не изменены.

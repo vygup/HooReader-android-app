@@ -247,3 +247,13 @@ callback (включая deferred retry). Тема меняет только ц�
 0 failures API 37; 96 debug +96 release unit tests, detekt/lint/check/build GREEN.
 Unit empty-chapter assertion обновлена для соседнего окна и усилена навигацией в обе
 стороны с сохранением. [Evidence](evidence/T033-check.txt). Следующая T034.
+
+T034: T022/T023 и SC-003 повторены на production services/screen. 10 Android tests
+GREEN: EPUB/FB2 real gestures/modes/scale/rotation/native page geometry и Room/database
+reopen без внешнего original, включая UTF-16 offset 15000 внутри >100000-char paragraph.
+ViewModel native regression с injected durable writer подтверждает failed USER flush
+(прежний выбор), rapid system font 150→200% (новый LayoutKey/тот же anchor без IO wait),
+explicit navigation после ошибки и retry последней revision. Дополнительный saver test
+проверяет late failed flush и последующую навигацию; старые deferred-success tests GREEN.
+98 debug +98 release unit tests, check/build/lint/detekt/test APK GREEN.
+[Android](evidence/T034-android.xml), [checks](evidence/T034-check.txt). Следующая T035.

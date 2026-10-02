@@ -43,6 +43,7 @@ sealed interface ReaderUiState {
     }
 }
 
+@Suppress("LongParameterList") // Explicit source/cache/preferences and durable-writer dependencies share one owner.
 class ReaderViewModel(
     private val bookId: String,
     private val repository: BookRepository,
@@ -54,6 +55,7 @@ class ReaderViewModel(
         BookContentIndexStore(repository.files),
         parsers,
     ),
+    private val positionSaver: ReadingPositionSaver = ReadingPositionSaver(repository::savePosition),
 ) : ViewModel() {
     private val mutableState = MutableStateFlow<ReaderUiState>(ReaderUiState.Opening)
     val state: StateFlow<ReaderUiState> = mutableState.asStateFlow()
@@ -62,7 +64,6 @@ class ReaderViewModel(
     private var session: ReaderContentSession? = null
     private var chapterJob: Job? = null
     private var windowJob: Job? = null
-    private val positionSaver = ReadingPositionSaver(repository::savePosition)
     val saveFailed = positionSaver.saveFailed
     val pagination = ReaderPaginationController(viewModelScope, mutableState, positionSaver, pages, initialPreferences)
 
