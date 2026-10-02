@@ -8,12 +8,14 @@ import androidx.compose.ui.graphics.toPixelMap
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertIsSelected
 import androidx.compose.ui.test.captureToImage
+import androidx.compose.ui.test.click
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onAllNodesWithTag
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performScrollToIndex
+import androidx.compose.ui.test.performTouchInput
 import androidx.core.view.WindowCompat
 import androidx.test.core.app.ApplicationProvider
 import com.hooreader.MainActivity
@@ -47,6 +49,7 @@ class ReaderSettingsTest {
             compose.waitUntil(15_000) { compose.onAllNodesWithTag("reader_list").fetchSemanticsNodes().isNotEmpty() }
             compose.onNodeWithTag("reader_list").performScrollToIndex(24)
             compose.onNodeWithTag("block_0_24").assertIsDisplayed()
+            compose.onNodeWithTag("reader_viewport").performTouchInput { click() }
             compose.onNodeWithText("Настройки чтения").performClick()
             compose.onNodeWithText("Тёмная").performClick()
             compose.onNodeWithText("Увеличить текст").performClick()
@@ -59,6 +62,7 @@ class ReaderSettingsTest {
             compose.onNodeWithTag("block_0_24").assertIsDisplayed()
             assertEquals(darkColorScheme().surface.toArgb(), readerBackground())
             assertSystemBars(dark = true)
+            compose.onNodeWithTag("reader_viewport").performTouchInput { click() }
             compose.onNodeWithText("В библиотеку").performClick()
             assertEquals(24, dependencies.repository.getPosition(added.book.id)?.blockIndex)
             compose.activityRule.scenario.recreate()
@@ -66,6 +70,7 @@ class ReaderSettingsTest {
             compose.onNodeWithTag("block_0_24").assertIsDisplayed()
             assertEquals(darkColorScheme().surface.toArgb(), readerBackground())
             assertSystemBars(dark = true)
+            compose.onNodeWithTag("reader_viewport").performTouchInput { click() }
             compose.onNodeWithText("Настройки чтения").performClick()
             compose.onNodeWithText("Тёмная").assertIsSelected()
             compose.onNodeWithText("Размер текста: 150%").assertIsDisplayed()
@@ -75,6 +80,7 @@ class ReaderSettingsTest {
             assertEquals(lightColorScheme().surface.toArgb(), readerBackground())
             assertSystemBars(dark = false)
             compose.onNodeWithTag("block_0_24").assertIsDisplayed()
+            compose.onNodeWithTag("reader_viewport").performTouchInput { click() }
             compose.onNodeWithText("В библиотеку").performClick()
             assertEquals(24, dependencies.repository.getPosition(added.book.id)?.blockIndex)
         } finally {

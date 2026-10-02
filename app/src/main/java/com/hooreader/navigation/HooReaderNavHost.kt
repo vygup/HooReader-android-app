@@ -3,11 +3,8 @@ package com.hooreader.navigation
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -22,6 +19,8 @@ import androidx.navigation.navArgument
 import com.hooreader.ui.library.ImportBookLauncher
 import com.hooreader.ui.library.LibraryViewModel
 import com.hooreader.ui.library.importFromPicker
+import com.hooreader.ui.reader.ReaderChromeEvent
+import com.hooreader.ui.reader.ReaderOverlay
 import com.hooreader.ui.reader.ReaderScreen
 import com.hooreader.ui.reader.ReaderViewModel
 import com.hooreader.ui.settings.ReaderSettingsSheet
@@ -80,14 +79,19 @@ private fun ReaderDestination(bookId: String, dependencies: ReaderDependencies, 
     )
     val preferences by settings.preferences.collectAsStateWithLifecycle()
     val saveFailed by settings.saveFailed.collectAsStateWithLifecycle()
-    var showSettings by rememberSaveable { mutableStateOf(false) }
+    val chrome by model.chromeState.collectAsStateWithLifecycle()
     val scope = rememberCoroutineScope()
     val current = preferences
     if (current == null) {
         CircularProgressIndicator()
     } else {
-        ReaderScreen(model, fontScale = current.fontScale, onSettings = { showSettings = true }, onBack = onBack)
-        if (showSettings) {
+        ReaderScreen(
+            model,
+            fontScale = current.fontScale,
+            onSettings = { model.onChromeEvent(ReaderChromeEvent.OPEN_READER_SETTINGS) },
+            onBack = onBack,
+        )
+        if (chrome.overlay == ReaderOverlay.READER_SETTINGS) {
             ReaderSettingsSheet(
                 preferences = current,
                 onThemeChange = { theme ->
@@ -96,7 +100,7 @@ private fun ReaderDestination(bookId: String, dependencies: ReaderDependencies, 
                 onFontScaleChange = { scale ->
                     scope.launch { if (model.flushPosition()) settings.setFontScale(scale) }
                 },
-                onDismiss = { showSettings = false },
+                onDismiss = { model.onChromeEvent(ReaderChromeEvent.DISMISS_OVERLAY) },
                 saveFailed = saveFailed,
                 onRetry = settings::retry,
             )

@@ -9,6 +9,7 @@ import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.click
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onAllNodesWithTag
+import androidx.compose.ui.test.onAllNodesWithText
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
@@ -18,6 +19,7 @@ import androidx.compose.ui.test.swipeUp
 import androidx.lifecycle.ViewModelStore
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
+import androidx.test.espresso.Espresso
 import androidx.test.platform.app.InstrumentationRegistry
 import com.hooreader.data.import.BookImportResult
 import com.hooreader.data.import.BookImportService
@@ -177,22 +179,19 @@ class ReaderScreenTest {
             compose.waitUntil(15_000) {
                 compose.onAllNodesWithTag("reader_list").fetchSemanticsNodes().isNotEmpty()
             }
+            assertRapidMenuRequestsAreExclusive()
             repeat(3) {
                 compose.onNodeWithTag("reader_viewport").performTouchInput { click() }
                 compose.onNodeWithTag("reader_open_contents").performTouchInput { click() }
                 compose.onNodeWithTag("table_of_contents").assertIsDisplayed()
                 compose.onNodeWithText("Размер текста: 100%").assertDoesNotExist()
-                compose.activityRule.scenario.onActivity { activity ->
-                    activity.onBackPressedDispatcher.onBackPressed()
-                }
+                Espresso.pressBack()
                 compose.onNodeWithTag("reader_controls").assertDoesNotExist()
                 compose.onNodeWithTag("reader_viewport").performTouchInput { click() }
                 compose.onNodeWithTag("reader_open_settings").performTouchInput { click() }
                 compose.onNodeWithText("Размер текста: 100%").assertIsDisplayed()
                 compose.onNodeWithTag("table_of_contents").assertDoesNotExist()
-                compose.activityRule.scenario.onActivity { activity ->
-                    activity.onBackPressedDispatcher.onBackPressed()
-                }
+                Espresso.pressBack()
                 compose.onNodeWithTag("reader_controls").assertDoesNotExist()
                 compose.onNodeWithTag("reader_list").assertIsDisplayed()
             }
@@ -200,6 +199,23 @@ class ReaderScreenTest {
             compose.runOnUiThread { ReaderTestActivity.content = null }
             dependencies.repository.deleteBook(added.book.id)
         }
+    }
+
+    private fun assertRapidMenuRequestsAreExclusive() {
+        compose.onNodeWithTag("reader_viewport").performTouchInput { click() }
+        val bounds = compose.onNodeWithTag("reader_controls").fetchSemanticsNode().boundsInRoot
+        val contents = compose.onNodeWithTag("reader_open_contents").fetchSemanticsNode().boundsInRoot.center
+        val settings = compose.onNodeWithTag("reader_open_settings").fetchSemanticsNode().boundsInRoot.center
+        compose.onNodeWithTag("reader_controls").performTouchInput {
+            click(contents - bounds.topLeft)
+            click(settings - bounds.topLeft)
+        }
+        val count = compose.onAllNodesWithTag("table_of_contents").fetchSemanticsNodes().size +
+            compose.onAllNodesWithText("Размер текста: 100%").fetchSemanticsNodes().size
+        assertEquals(1, count)
+        Espresso.pressBack()
+        compose.onNodeWithTag("reader_controls").assertDoesNotExist()
+        compose.onNodeWithTag("reader_list").assertIsDisplayed()
     }
 
     private fun slop() = ViewConfiguration.get(compose.activity).scaledTouchSlop.toFloat()

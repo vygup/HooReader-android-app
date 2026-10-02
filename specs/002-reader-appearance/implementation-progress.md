@@ -119,3 +119,11 @@ T019: viewport постоянный, chrome принадлежит ReaderViewMod
 79 debug unit tests, detekt/build GREEN; три Android-теста GREEN, включая все
 20 jitter toggles с неизменными bounds/anchor и 100 drag/cancel/diagonal/boundary
 жестов без открытия панелей. Следующая T020 — единый overlay NavHost.
+
+T020: local reader-menu флаг NavHost удалён. Enum overlay ViewModel владеет обоими
+sheets, dismiss/ChapterSelected скрывают panels; Opening/error сохраняют доступ к exit/settings.
+Предыдущие UI сценарии обновлены реальным первым tap. Все 79 debug/release unit tests,
+build/lint/detekt прошли. Полный Android прогон выявил ошибку самого нового теста Back:
+Activity dispatcher обходил окно BottomSheet. Исправлено на настоящий Espresso Back;
+четыре ReaderScreenTest GREEN, включая быстрые два запроса меню в одном touch batch.
+Общая Android серия повторяется в phase checkpoint T021. Следующая T021.

@@ -7,11 +7,13 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.click
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performScrollToIndex
+import androidx.compose.ui.test.performTouchInput
 import androidx.compose.ui.unit.Density
 import androidx.lifecycle.ViewModelStore
 import androidx.room.Room
@@ -69,6 +71,7 @@ class ReaderNavigationTest {
     }
 
     private fun navigation(asset: String) = withReader(asset) { reader, repository ->
+        compose.onNodeWithTag("reader_viewport").performTouchInput { click() }
         compose.onNodeWithText("Содержание").performClick()
         compose.onNodeWithTag("toc_chapter_1").performClick()
         compose.waitUntil(15_000) {

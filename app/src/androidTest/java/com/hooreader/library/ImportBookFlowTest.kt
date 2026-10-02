@@ -6,12 +6,14 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.click
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onAllNodesWithTag
 import androidx.compose.ui.test.onAllNodesWithText
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
+import androidx.compose.ui.test.performTouchInput
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.espresso.intent.Intents
 import androidx.test.espresso.intent.matcher.IntentMatchers.hasAction
@@ -52,11 +54,13 @@ class ImportBookFlowTest {
         waitForReader()
         val book = dependencies.repository.books.first().single { it.title == "Тестовая книга" }
         imported += book.id
+        compose.onNodeWithTag("reader_viewport").performTouchInput { click() }
         compose.onNodeWithText("Следующая глава").performClick()
         waitForText("Абзац для восстановления позиции.")
         compose.activityRule.scenario.recreate()
         waitForText("Абзац для восстановления позиции.")
         compose.onNodeWithTag("reader_list").assertIsDisplayed()
+        compose.onNodeWithTag("reader_viewport").performTouchInput { click() }
         compose.onNodeWithText("В библиотеку").performClick()
         waitForText("Импортировать книгу")
         assertEquals(1, dependencies.repository.getPosition(book.id)?.chapterIndex)
@@ -75,6 +79,7 @@ class ImportBookFlowTest {
         val book = dependencies.repository.books.first().single { it.title == "Тестовая книга — Café" }
         imported += book.id
         compose.onNodeWithTag("reader_list").assertIsDisplayed()
+        compose.onNodeWithTag("reader_viewport").performTouchInput { click() }
         compose.onNodeWithText("В библиотеку").performClick()
         waitForText("Импортировать книгу")
     }
@@ -99,6 +104,7 @@ class ImportBookFlowTest {
         waitForReader()
         imported += dependencies.repository.books.first().map { it.id }.toSet() - before
         compose.onNodeWithTag("reader_list").assertIsDisplayed()
+        compose.onNodeWithTag("reader_viewport").performTouchInput { click() }
         compose.onNodeWithText("В библиотеку").performClick()
         Unit
     }
@@ -111,6 +117,7 @@ class ImportBookFlowTest {
         waitForReader()
         val book = dependencies.repository.books.first().single { it.title == "missing-metadata.fb2" }
         imported += book.id
+        compose.onNodeWithTag("reader_viewport").performTouchInput { click() }
         compose.onNodeWithText("В библиотеку").performClick()
         waitForText("Импортировать книгу")
         val position = ReadingPosition(book.id, progressPercent = 98.0)
