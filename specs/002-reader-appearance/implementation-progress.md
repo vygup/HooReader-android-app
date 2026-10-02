@@ -35,4 +35,14 @@ Detekt; 2 Android tests на Pixel_10 API 37 (реальный Compose layout и
 Физическое Android-устройство отсутствует: SC-004 пока NOT_VERIFIED_DEVICE.
 API 26 AVD отсутствует; текущий API 37 годится для функциональной разработки.
 Reviewer-owned UX checklist остаётся без изменений; исполнение разрешено пользователем.
-Следующая задача — T010 (первый измеряемый срез пагинации).
+T010 завершена: общий TextMeasurer, исходные линии/clipping, атомарные chapter page records,
+точные prefix counts и binary-search anchor; два последних layout-кэша на книгу.
+73 debug и 73 release unit tests; check/build/test APK прошли. После усиления закрытия
+ресурсов при отмене повторены PageIndex unit tests/Detekt и два Android-теста EPUB/FB2.
+[Build](evidence/validation/T010-gradle.txt), [Android](evidence/validation/T010-android.txt).
+Android-тесты восстановили весь текст fixtures из page fragments без пропусков/дубликатов
+и разрыва surrogate pairs, проверили geometry, новый старт главы и повторное чтение индекса.
+В debug probe нижняя полоса номера измеряется отдельно; она входит в LayoutKey и не закрывает
+содержимое. Замер ready frame относится к первому draw и следующему frame callback,
+а не к завершению paginator callback. Сам прототип не является production reader.
+Следующая задача — T011 (нагрузочный измерительный harness и профиль стенда).
