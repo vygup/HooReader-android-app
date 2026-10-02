@@ -122,8 +122,20 @@ T019: viewport постоянный, chrome принадлежит ReaderViewMod
 
 T020: local reader-menu флаг NavHost удалён. Enum overlay ViewModel владеет обоими
 sheets, dismiss/ChapterSelected скрывают panels; Opening/error сохраняют доступ к exit/settings.
-Предыдущие UI сценарии обновлены реальным первым tap. Все 79 debug/release unit tests,
-build/lint/detekt прошли. Полный Android прогон выявил ошибку самого нового теста Back:
+Предыдущие UI сценарии обновлены реальным первым tap. 79 debug unit tests, build/lint/detekt прошли; release unit suite
+был повторён полностью в T021 до 79 успешных тестов. Полный Android прогон выявил ошибку самого нового теста Back:
 Activity dispatcher обходил окно BottomSheet. Исправлено на настоящий Espresso Back;
 четыре ReaderScreenTest GREEN, включая быстрые два запроса меню в одном touch batch.
 Общая Android серия повторяется в phase checkpoint T021. Следующая T021.
+
+T021: T014/T015 и минимальный US1 путь прошли на API 37. Полный phase check:
+79 debug + 79 release unit tests, detekt/lint/build/APK GREEN; Android 29 passed,
+6 opt-in skipped, 0 failures (35 tests). Реальный Back теперь вводится KEYCODE_BACK,
+чтобы не обходить modal window и не зависеть от Espresso root picker.
+Пять panel timings отдельно выполнены opt-in через Gradle и повторены ADB для сохранения raw:
+Gradle удаляет тестовую установку после connected-run, первый raw не сохранился; это
+не серия приёмки. Сохранённая повторная серия: 147.322, 132.398, 146.392, 131.785,
+129.935 ms, max 147.322 ms. Profile/corpus/APK hashes проверены; viewport/anchor неизменны.
+Таймер до наблюдаемого drawn capture — диагностическая верхняя оценка, не физический
+first-presented frame. NOT_VERIFIED_DEVICE; SC-004 аппаратно не принят.
+[Итоги](quickstart-results.md). Следующая T022, Phase 4 US2.

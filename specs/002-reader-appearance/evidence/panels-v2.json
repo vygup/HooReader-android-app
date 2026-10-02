@@ -1,0 +1,24 @@
+{
+  "profileId": "4f0255d7bbb5824ae19746a2598b7e50b507e0cf2059b94af89aa5a4bd832bfe",
+  "status": "NOT_VERIFIED_DEVICE",
+  "model": "sdk_gphone16k_arm64",
+  "api": 37,
+  "runsMs": [
+    147.321667,
+    132.397833,
+    146.391542,
+    131.785375,
+    129.935
+  ],
+  "corpusSha256": "56cfe1fad71b1c94284196577c0847b507f8e0cade91f382c1011adf3cfb89a6",
+  "readingMode": "VERTICAL",
+  "readingScale": 1,
+  "systemFontScale": 1,
+  "orientation": 1,
+  "minMs": 129.935,
+  "medianMs": 132.397833,
+  "maxMs": 147.321667,
+  "timing": "release dispatch begins -> controls observed drawn via captureToImage",
+  "viewportUnchanged": true,
+  "anchorUnchanged": true
+}

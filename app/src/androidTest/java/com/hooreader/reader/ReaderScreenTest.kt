@@ -1,11 +1,15 @@
 package com.hooreader.reader
 
 import android.content.Context
+import android.os.Build
+import android.os.SystemClock
+import android.view.KeyEvent
 import android.view.ViewConfiguration
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.captureToImage
 import androidx.compose.ui.test.click
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onAllNodesWithTag
@@ -19,7 +23,6 @@ import androidx.compose.ui.test.swipeUp
 import androidx.lifecycle.ViewModelStore
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
-import androidx.test.espresso.Espresso
 import androidx.test.platform.app.InstrumentationRegistry
 import com.hooreader.data.import.BookImportResult
 import com.hooreader.data.import.BookImportService
@@ -37,9 +40,13 @@ import com.hooreader.ui.reader.ReaderUiState
 import com.hooreader.ui.reader.ReaderViewModel
 import com.hooreader.ui.theme.HooReaderTheme
 import kotlinx.coroutines.runBlocking
+import org.json.JSONArray
+import org.json.JSONObject
 import org.junit.Assert.assertEquals
+import org.junit.Assume.assumeTrue
 import org.junit.Rule
 import org.junit.Test
+import java.io.File
 import java.util.UUID
 import kotlin.math.sqrt
 
@@ -185,13 +192,13 @@ class ReaderScreenTest {
                 compose.onNodeWithTag("reader_open_contents").performTouchInput { click() }
                 compose.onNodeWithTag("table_of_contents").assertIsDisplayed()
                 compose.onNodeWithText("Размер текста: 100%").assertDoesNotExist()
-                Espresso.pressBack()
+                pressSystemBack()
                 compose.onNodeWithTag("reader_controls").assertDoesNotExist()
                 compose.onNodeWithTag("reader_viewport").performTouchInput { click() }
                 compose.onNodeWithTag("reader_open_settings").performTouchInput { click() }
                 compose.onNodeWithText("Размер текста: 100%").assertIsDisplayed()
                 compose.onNodeWithTag("table_of_contents").assertDoesNotExist()
-                Espresso.pressBack()
+                pressSystemBack()
                 compose.onNodeWithTag("reader_controls").assertDoesNotExist()
                 compose.onNodeWithTag("reader_list").assertIsDisplayed()
             }
@@ -213,12 +220,54 @@ class ReaderScreenTest {
         val count = compose.onAllNodesWithTag("table_of_contents").fetchSemanticsNodes().size +
             compose.onAllNodesWithText("Размер текста: 100%").fetchSemanticsNodes().size
         assertEquals(1, count)
-        Espresso.pressBack()
+        pressSystemBack()
         compose.onNodeWithTag("reader_controls").assertDoesNotExist()
         compose.onNodeWithTag("reader_list").assertIsDisplayed()
     }
 
     private fun slop() = ViewConfiguration.get(compose.activity).scaledTouchSlop.toFloat()
+
+    private fun pressSystemBack() {
+        InstrumentationRegistry.getInstrumentation().sendKeyDownUpSync(KeyEvent.KEYCODE_BACK)
+        compose.waitForIdle()
+    }
+
+    @Test
+    fun measurePanelPresentationFiveTimes() {
+        val arguments = InstrumentationRegistry.getArguments()
+        assumeTrue(arguments.getString("phase3Panels") == "true")
+        val profile = requireNotNull(arguments.getString("probeProfileId"))
+        withLongReader { reader ->
+            val viewport = compose.onNodeWithTag("reader_viewport")
+            val bounds = viewport.fetchSemanticsNode().boundsInRoot
+            val anchor = reading(reader).position.logicalAnchor()
+            val runs = mutableListOf<Double>()
+            repeat(5) {
+                viewport.performTouchInput { down(center) }
+                val releaseStarted = SystemClock.elapsedRealtimeNanos()
+                viewport.performTouchInput { up() }
+                compose.onNodeWithTag("reader_exit").assertIsDisplayed()
+                compose.onNodeWithTag("reader_open_settings").assertIsDisplayed()
+                compose.onNodeWithTag("reader_open_contents").assertIsDisplayed()
+                compose.onNodeWithTag("reader_controls").captureToImage()
+                runs += (SystemClock.elapsedRealtimeNanos() - releaseStarted) / 1_000_000.0
+                assertEquals(bounds, viewport.fetchSemanticsNode().boundsInRoot)
+                assertEquals(anchor, reading(reader).position.logicalAnchor())
+                viewport.performTouchInput { click() }
+                compose.onNodeWithTag("reader_controls").assertDoesNotExist()
+            }
+            val sorted = runs.sorted()
+            val report = JSONObject().put("profileId", profile).put("status", "NOT_VERIFIED_DEVICE")
+                .put("model", Build.MODEL).put("api", Build.VERSION.SDK_INT).put("runsMs", JSONArray(runs))
+                .put("corpusSha256", reading(reader).book.contentHash).put("readingMode", "VERTICAL")
+                .put("readingScale", 1f).put("systemFontScale", compose.activity.resources.configuration.fontScale)
+                .put("orientation", compose.activity.resources.configuration.orientation)
+                .put("minMs", sorted.first()).put("medianMs", sorted[2]).put("maxMs", sorted.last())
+                .put("timing", "release dispatch begins -> controls observed drawn via captureToImage")
+                .put("viewportUnchanged", true).put("anchorUnchanged", true)
+            File(compose.activity.filesDir, "phase3-panels.json").writeText(report.toString(2))
+        }
+    }
 
     private fun reading(reader: ReaderViewModel) = reader.state.value as ReaderUiState.Reading
 
@@ -238,7 +287,7 @@ class ReaderScreenTest {
             compose.runOnUiThread {
                 reader = ReaderViewModel(added.book.id, repository, parsers)
                 store.put("reader", reader)
-                ReaderTestActivity.content = { HooReaderTheme { ReaderScreen(reader) {} } }
+                ReaderTestActivity.content = { HooReaderTheme { ReaderScreen(reader, onSettings = {}) {} } }
             }
             compose.waitUntil(15_000) { reader.state.value is ReaderUiState.Reading }
             compose.waitForIdle()
