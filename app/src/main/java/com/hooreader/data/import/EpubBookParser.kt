@@ -63,7 +63,9 @@ private class EpubDocument(
     override val chapters: List<Chapter>,
 ) : ParsedBook {
     private val passes = AtomicInteger(1)
+    private val mediaPasses = AtomicInteger()
     override val sourcePassCount: Int get() = passes.get()
+    override val mediaSourcePassCount: Int get() = mediaPasses.get()
     override val metadata = BookMetadata(
         publication.metadata.title,
         publication.metadata.authors.joinToString(", ") { it.name },
@@ -86,6 +88,7 @@ private class EpubDocument(
 
     override suspend fun openMedia(reference: String): InputStream? = withContext(Dispatchers.IO) {
         val entry = localEntry(reference) ?: return@withContext null
+        mediaPasses.incrementAndGet()
         val archive = ZipFile(file)
         val resource = archive.getEntry(entry)
         if (resource == null || resource.isDirectory) {

@@ -1,7 +1,7 @@
 
 com.hooreader.acceptance.PaginationProbeTest:.
 
-Time: 12.605
+Time: 12.558
 
 OK (1 test)
 

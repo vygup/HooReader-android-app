@@ -4,8 +4,11 @@ import com.hooreader.data.local.BookFileStorage
 import com.hooreader.domain.model.LogicalAnchor
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.currentCoroutineContext
 import kotlinx.coroutines.ensureActive
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
@@ -38,8 +41,19 @@ class PageIndex(private val files: BookFileStorage, private val bookId: String, 
                 try {
                     val activeWriter = ChapterPageWriter(staging, key, chapter, prefixCount)
                     writer = activeWriter
-                    withContext(measurementContext) {
-                        build { page -> withContext(Dispatchers.IO) { activeWriter.append(page) } }
+                    coroutineScope {
+                        val pending = Channel<PageSlice>(PAGE_WRITE_BUFFER)
+                        val writing = launch {
+                            for (page in pending) {
+                                currentCoroutineContext().ensureActive()
+                                activeWriter.append(page)
+                            }
+                        }
+                        withContext(measurementContext) {
+                            build { page -> pending.send(page) }
+                        }
+                        pending.close()
+                        writing.join()
                     }
                     val info = activeWriter.finish()
                     currentCoroutineContext().ensureActive()
@@ -132,6 +146,7 @@ class PageIndex(private val files: BookFileStorage, private val bookId: String, 
     private companion object {
         const val MAX_LAYOUTS = 2
         const val MAX_METADATA_BYTES = 8192L
+        const val PAGE_WRITE_BUFFER = 1 // producer, consumer and queued page: at most three page slices.
     }
 }
 

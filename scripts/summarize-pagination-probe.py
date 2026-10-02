@@ -8,6 +8,7 @@ from pathlib import Path
 parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument('input', type=Path)
 parser.add_argument('output', type=Path)
+parser.add_argument('--task', default='T012', choices=['T012', 'T013'])
 args = parser.parse_args()
 raw = json.loads(args.input.read_text())
 assert raw['completedScenarios'] == raw['expectedScenarios']
@@ -23,6 +24,9 @@ for series in raw['series']:
         assert math.isfinite(run['readyFrameMs']) and run['readyFrameMs'] > 0
         assert 0 <= run['exactNumberByMs'] <= run['firstReadableFrameMs'] == run['readyFrameMs']
         assert run['pageNumber'] > 0 and run['residentFragments'] <= 128
+        if args.task == 'T013':
+            assert run['mediaSourcePasses'] >= 0 and run['sourcePasses'] >= 0
+            assert run['totalSourceOperations'] == run['sourcePasses'] + run['mediaSourcePasses']
     times = sorted(run['readyFrameMs'] for run in series['runs'])
     assert (times[0], times[2], times[-1]) == (series['minMs'], series['medianMs'], series['maxMs'])
     values = ', '.join(f'{run["readyFrameMs"]:.3f}' for run in series['runs'])
@@ -31,11 +35,14 @@ for series in raw['series']:
 peak = max(run['memory']['sampledPeakPssKb'] for run in all_runs)
 resident = max(run['memory']['residentPssKb'] for run in all_runs)
 maximum = max(run['readyFrameMs'] for run in all_runs)
-text = f'''# Ранний срез пагинации — T012
+profile_file = f'performance-profile-{raw["profileId"]}.json'
+if not (args.input.parent / profile_file).exists():
+    profile_file = 'performance-profile.json'
+text = f'''# Ранний срез пагинации — {args.task}
 
 ## Стенд и статус
 
-Профиль: `{raw['profileId']}`. [Профиль стенда](evidence/performance-profile.json),
+Профиль: `{raw['profileId']}`. [Профиль стенда](evidence/{profile_file}),
 [полные raw значения](evidence/{args.input.name}). Pixel_10 AVD, API 37;
 физического устройства нет. Статус: **NOT_VERIFIED_DEVICE**.
 36 сценариев, по пять повторов, всего 180 измерений. Модель/SoC/RAM/API/экран,
@@ -91,5 +98,23 @@ Ready отмечается после draw и следующего frame callbac
 границ страниц. Проверить память длинного блока и Unicode после оптимизации,
 повторить измерения. Оставшийся холодный бюджет переносится как риск в T035/T061.
 '''
+if args.task == 'T013':
+    text = text.replace(
+        'IO открытий media\nне включено в этот счётчик; измерение всех IO/источника необходимо учитывать в T013/T035.',
+        '`mediaSourcePasses` отдельно считает открытия media-ресурсов источника; '
+        '`totalSourceOperations` — их сумму с текстовыми обходами. Это операции parser, '
+        'не число всех системных IO-вызовов.')
+    text = text.replace(
+        'Для T013: исключить лишнюю полную проверку spool и metadata parse при warm reopen,\n'
+        'сохранив обнаружение повреждения/пересоздание; уменьшить IO переключения при записи\n'
+        'границ страниц. Проверить память длинного блока и Unicode после оптимизации,\n'
+        'повторить измерения. Оставшийся холодный бюджет переносится как риск в T035/T061.',
+        'В T013 SHA-256 объединён с проверкой записей spool: один файловый проход вместо двух. '
+        'Проверка валидной подмены текста сохраняется. Запись страниц выполняется на IO '
+        'через очередь ёмкостью 1 (не более трёх одновременно находящихся в pipeline slices); '
+        'отмена ожидает завершение writer перед закрытием файлов. Metadata parse при reopen '
+        'пока остаётся, как и layout целого крупнейшего блока.\n\n'
+        '[Исходная серия T012](pagination-probe-results.md) сохранена для сравнения. '
+        'Оставшийся бюджет и стоимость reopen переносятся в T035/T061; критерий не изменён.')
 args.output.write_text(text)
 print(f'Отчёт: {args.output}; 180 проверенных значений; max {maximum:.3f} ms')

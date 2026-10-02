@@ -52,6 +52,7 @@ class ReaderContentSession internal constructor(
     val chapters get() = document.chapters
     val recordCount get() = index.recordCount
     val sourcePassCount get() = document.sourcePassCount
+    val mediaSourcePassCount get() = document.mediaSourcePassCount
     private val lock = Mutex()
     private val images = object : LinkedHashMap<String, LocalImageMetrics>(IMAGE_CACHE_SIZE, LRU_LOAD_FACTOR, true) {
         override fun removeEldestEntry(eldest: MutableMap.MutableEntry<String, LocalImageMetrics>?): Boolean =

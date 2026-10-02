@@ -14,6 +14,7 @@ import java.io.DataOutputStream
 import java.io.File
 import java.io.FileOutputStream
 import java.io.RandomAccessFile
+import java.nio.ByteBuffer
 import java.security.MessageDigest
 import java.util.UUID
 
@@ -132,7 +133,7 @@ class BookContentIndexStore(
         require(index.parserVersion == BookContentIndex.PARSER_VERSION)
         require(index.spoolVersion == BookContentIndex.SPOOL_VERSION)
         val spool = files.requireOwnedPath(bookId, File(directory, "blocks.bin").path)
-        require(spool.length() == index.spoolBytes && digest(spool) == index.spoolHash)
+        require(spool.length() == index.spoolBytes)
         verifyRecords(index, spool)
         index
     } catch (error: CancellationException) {
@@ -142,6 +143,7 @@ class BookContentIndexStore(
     }
 
     private suspend fun verifyRecords(index: BookContentIndex, spool: File) {
+        val digest = MessageDigest.getInstance("SHA-256")
         RandomAccessFile(spool, "r").use { input ->
             repeat(index.recordCount) { ordinal ->
                 currentCoroutineContext().ensureActive()
@@ -151,10 +153,11 @@ class BookContentIndexStore(
                             ContentCheckpoint(ordinal, input.filePointer)
                     )
                 }
-                validateCoordinate(index, ordinal, readRecord(input))
+                validateCoordinate(index, ordinal, readRecord(input, digest))
             }
             require(input.filePointer == input.length())
         }
+        require(digest.digest().joinToString("") { "%02x".format(it) } == index.spoolHash)
     }
 
     private fun validateCoordinate(index: BookContentIndex, ordinal: Int, block: ContentBlock) {
@@ -168,10 +171,12 @@ class BookContentIndexStore(
     }
 }
 
-private fun readRecord(input: RandomAccessFile): ContentBlock {
+private fun readRecord(input: RandomAccessFile, digest: MessageDigest? = null): ContentBlock {
     val size = recordSize(input)
     val bytes = ByteArray(size)
     input.readFully(bytes)
+    digest?.update(ByteBuffer.allocate(Int.SIZE_BYTES).putInt(size).array())
+    digest?.update(bytes)
     return ContentBlockCodec.decode(bytes)
 }
 

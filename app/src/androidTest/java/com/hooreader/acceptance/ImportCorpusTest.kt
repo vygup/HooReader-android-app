@@ -138,7 +138,7 @@ class ImportCorpusTest {
     }
 
     private companion object {
-        const val CORPUS_FILES = 24
+        const val CORPUS_FILES = 26
         const val OPEN_TIMEOUT_MS = 15_000L
     }
 }

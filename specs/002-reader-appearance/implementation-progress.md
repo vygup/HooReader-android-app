@@ -65,3 +65,25 @@ T012 завершена: после исправления смешанного 
 содержат profileId, каждое значение и min/median/max; отдельно точный номер, draw frame,
 память и отмена. Все Android assertions прошли; аппаратный SC-004 остаётся NOT_VERIFIED_DEVICE.
 Следующая задача — T013: оптимизация выявленного warm reopen/IO риска и повторный срез.
+
+## T013 — завершена
+
+SHA-256 spool вычисляется при проверке length-prefixed записей одним файловым проходом.
+Декодирование, координаты/checkpoints/EOF и digest по-прежнему обязательны; отдельный
+тест валидной подмены текста требует пересоздания исходного spool. PageIndex пишет
+на IO через bounded channel ёмкостью 1, сохраняя отмену/atomic publish; максимальное
+число slices в writer pipeline — три. Текстовые source passes и media opens учитываются
+раздельно, их сумма не является числом всех OS IO-вызовов.
+
+Полный `check`, debug APK/test APK и `connectedDebugAndroidTest` прошли: 74 debug +
+74 release unit tests; Android API 37: 25 passed, 5 opt-in skipped, 0 failures.
+Устаревшее ожидаемое количество import corpus исправлено 24→26 после двух fixtures T001;
+все 26 файлов по-прежнему проверяются по SHA, импорту и открытию каждой главы.
+[Полный лог](evidence/validation/T013-gradle-android.txt). Завершены все 36×5 измерений
+в `evidence/pagination-probe-optimized.json`; raw/cache flags/counts проверены.
+[Повторный отчёт](pagination-probe-optimized-results.md) сохраняет все значения, включая
+max 21715.550 ms. Две диагностические серии повторены отдельно, меньшие значения не
+заменяют исходных выбросов. Отмена старого layout 15.802 ms, obsolete/staging отсутствуют.
+Бюджет SC-004 открыт, NOT_VERIFIED_DEVICE; metadata reopen и крупнейший целый layout
+сохраняются как риски T035/T061. Unicode и полный корпус Android прошли без регрессий.
+Следующая задача — T014, начало Phase 3 US1.

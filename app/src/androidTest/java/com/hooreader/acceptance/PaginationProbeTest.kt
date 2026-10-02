@@ -179,6 +179,8 @@ class PaginationProbeTest {
                     .put("readyFrameMs", (ready.readyFrameAtNanos - start) / NANOS_PER_MS)
                     .put("pageNumber", ready.exactPageNumber).put("layoutHash", ready.layoutHash)
                     .put("sourcePasses", ready.sourcePasses).put("residentFragments", ready.residentFragments)
+                    .put("mediaSourcePasses", session.mediaSourcePassCount)
+                    .put("totalSourceOperations", ready.sourcePasses + session.mediaSourcePassCount)
                     .put("layoutCacheCapacity", ready.layoutCacheCapacity).put("contentWindowCapacity", 128)
                     .put("memory", metrics).put("eofKnown", anchor(session).chapterIndex == session.chapters.lastIndex)
             }

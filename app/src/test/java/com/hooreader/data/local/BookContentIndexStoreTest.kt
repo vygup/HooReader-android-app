@@ -34,6 +34,25 @@ class BookContentIndexStoreTest {
     private val hash = "a".repeat(64)
 
     @Test
+    fun `well formed altered text still fails whole spool integrity check`() = runBlocking {
+        val document = Document(bookId)
+        val index = store.ensure(bookId, hash, document)
+        val directory = files.derivedDirectory(bookId, "content", "$hash-1")
+        val spool = File(directory, "blocks.bin")
+        val bytes = spool.readBytes()
+        val start = (0 until bytes.size - 2).first {
+            bytes[it] == '0'.code.toByte() && bytes[it + 1] == ':'.code.toByte() && bytes[it + 2] == '0'.code.toByte()
+        }
+        bytes[start] = '9'.code.toByte()
+        spool.writeBytes(bytes)
+        val rebuilt = store.ensure(bookId, hash, document)
+        assertEquals(index, rebuilt)
+        assertEquals(2, document.passes)
+        assertEquals("😀e\u0301 0:0", store.readWindow(rebuilt, 0, 1).single().text)
+        files.deleteBook(bookId)
+    }
+
+    @Test
     fun `random windows cross empty chapter without reparsing and retain coordinates`() = runBlocking {
         val document = Document(bookId)
         val index = store.ensure(bookId, hash, document)

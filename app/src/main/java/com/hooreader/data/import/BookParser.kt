@@ -41,6 +41,7 @@ interface ParsedBook : Closeable {
 
     // Source traversal diagnostics; -1 means the parser does not instrument this metric.
     val sourcePassCount: Int get() = -1
+    val mediaSourcePassCount: Int get() = -1
 
     // Local embedded resources only; the caller closes the returned stream.
     suspend fun openMedia(reference: String): InputStream?
