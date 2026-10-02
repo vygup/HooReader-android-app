@@ -45,6 +45,7 @@ fun PagedReaderContent(
     onNavigationDragStarted: () -> Unit,
     onGestureFinished: () -> Unit,
     modifier: Modifier = Modifier,
+    onDrawn: (PageSlice) -> Unit = {},
 ) {
     require(prefix.key == layoutKey && initialPage.slice.globalPageNumber <= prefix.totalPages)
     val initialIndex = remember { initialPage.slice.globalPageNumber - 1 }
@@ -88,7 +89,9 @@ fun PagedReaderContent(
             LaunchedEffect(index, prefix.completedPrefix) { onLoadFrontier() }
             PreparingPage()
         } else {
-            PagedDrawCell(index + 1, initialPage, layoutKey, measurer, typography, loadPage)
+            PagedDrawCell(index + 1, initialPage, layoutKey, measurer, typography, loadPage) { page ->
+                if (pager.currentPage == index && !pager.isScrollInProgress) onDrawn(page)
+            }
         }
     }
 }
@@ -101,6 +104,7 @@ private fun PagedDrawCell(
     measurer: TextMeasurer,
     typography: ReaderTypography,
     load: suspend (Int) -> PreparedPageDraw?,
+    onDrawn: (PageSlice) -> Unit,
 ) {
     var retry by remember(number) { mutableIntStateOf(0) }
     val page by produceState(
@@ -121,7 +125,7 @@ private fun PagedDrawCell(
             }
         }
     } else {
-        PagedContentRenderer(drawn, key, measurer, typography)
+        PagedContentRenderer(drawn, key, measurer, typography, onDrawn = { onDrawn(drawn.slice) })
     }
 }
 

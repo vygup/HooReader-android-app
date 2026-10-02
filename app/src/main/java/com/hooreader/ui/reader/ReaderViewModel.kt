@@ -1,5 +1,6 @@
 package com.hooreader.ui.reader
 
+import android.os.SystemClock
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.hooreader.data.import.BookParser
@@ -66,6 +67,10 @@ class ReaderViewModel(
     private var windowJob: Job? = null
     val saveFailed = positionSaver.saveFailed
     val pagination = ReaderPaginationController(viewModelScope, mutableState, positionSaver, pages, initialPreferences)
+    val sourcePassCount get() = session?.sourcePassCount ?: 0
+    val mediaSourcePassCount get() = session?.mediaSourcePassCount ?: 0
+    var sourceOpenedAtNanos = 0L
+        private set
 
     init {
         open()
@@ -84,6 +89,7 @@ class ReaderViewModel(
                 check(book.state == BookState.READY)
                 session?.close()
                 val opened = content.open(book)
+                sourceOpenedAtNanos = SystemClock.elapsedRealtimeNanos()
                 session = opened
                 pagination.attach(opened)
                 ensureActive()

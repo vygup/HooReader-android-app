@@ -257,3 +257,12 @@ explicit navigation после ошибки и retry последней revision
 проверяет late failed flush и последующую навигацию; старые deferred-success tests GREEN.
 98 debug +98 release unit tests, check/build/lint/detekt/test APK GREEN.
 [Android](evidence/T034-android.xml), [checks](evidence/T034-check.txt). Следующая T035.
+
+T035 в работе: debug instrumentation переведён на настоящий ReaderViewModel/ReaderScreen,
+Room/source open, production LayoutKey/viewport и PageIndexStore. Debug observer только
+отмечает точный prefix и draw текущей страницы; следующий frame callback — диагностическая
+верхняя граница, не физический first-presented. Подготовка fixtures/Room до таймера,
+source/page cache state проверяется перед каждым повтором. Cold/warm и cancellation
+harness собраны с detekt; пробная серия EPUB cold: 5 повторов, max 1753.051 ms,
+отмена прежнего LayoutKey 4.509 ms. Задача ещё не завершена, следующая полная серия T035.
+По последнему указанию пользователя остановиться после T036; T037–T065 оставить на завтра.

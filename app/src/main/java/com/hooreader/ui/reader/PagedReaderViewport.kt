@@ -100,6 +100,7 @@ private fun ReadyPagedReader(
                 viewModel.onChromeEvent(ReaderChromeEvent.NAVIGATION_DRAG_STARTED)
             },
             onGestureFinished = { viewModel.onChromeEvent(ReaderChromeEvent.GESTURE_FINISHED) },
+            onDrawn = { viewModel.pagination.onPageDrawn(it, layoutKey) },
         )
     }
 }

@@ -33,6 +33,14 @@ data class ReaderPageState(
     val displayedPage: PageSlice = initialPage.slice,
 )
 
+/** Optional instrumentation; it observes production work and never owns geometry or anchors. */
+interface ReaderPaginationObserver {
+    fun started(key: LayoutKey) = Unit
+    fun exactPage(page: PageSlice, prefix: PagePrefix) = Unit
+    fun cancelled(key: LayoutKey) = Unit
+    fun drawn(page: PageSlice, key: LayoutKey) = Unit
+}
+
 /** Owned by ReaderViewModel on Main. Disk records never become the owner of the restore anchor. */
 class ReaderPaginationController(
     private val scope: CoroutineScope,
@@ -48,6 +56,11 @@ class ReaderPaginationController(
     private var pendingPreference: PendingPreference? = null
     private var calculation: Job? = null
     private var generation = 0L
+    var observer: ReaderPaginationObserver? = null
+    val calculationInProgress get() = calculation?.isCompleted == false
+    val onPageDrawn: (PageSlice, LayoutKey) -> Unit = { page, key ->
+        if (currentReading(state.value)?.pages?.key == key) observer?.drawn(page, key)
+    }
 
     fun attach(session: ReaderContentSession?) {
         calculation?.cancel()
@@ -199,7 +212,8 @@ class ReaderPaginationController(
             val owner = environment
             if (owner != null && owner.key.typography.readingScale == snapshot.fontScale) {
                 calculation = scope.launch {
-                    paginationAttempt(state, snapshot) {
+                    observer?.started(owner.key)
+                    paginationAttempt(state, snapshot, onCancelled = { observer?.cancelled(owner.key) }) {
                         val prefix = preparePrefix(
                             requireNotNull(source),
                             requireNotNull(pages),
@@ -207,6 +221,7 @@ class ReaderPaginationController(
                             owner,
                         )
                         val page = requireNotNull(pages).pageContaining(prefix, snapshot.logicalPosition)
+                        observer?.exactPage(page, prefix)
                         val drawn = preparePageDrawing(requireNotNull(source), page, owner.paginator, owner.key)
                         ensureActive()
                         if (generation == snapshot.layoutGeneration && environment?.key == owner.key) {
@@ -304,11 +319,13 @@ private data class PendingPreference(val preferences: ReaderPreferences, val onA
 private suspend fun paginationAttempt(
     state: MutableStateFlow<ReaderUiState>,
     reading: ReaderUiState.Reading,
+    onCancelled: () -> Unit = {},
     action: suspend () -> Unit,
 ) {
     try {
         action()
     } catch (error: CancellationException) {
+        onCancelled()
         throw error
     } catch (_: Exception) {
         if (currentReading(state.value)?.layoutGeneration == reading.layoutGeneration) {

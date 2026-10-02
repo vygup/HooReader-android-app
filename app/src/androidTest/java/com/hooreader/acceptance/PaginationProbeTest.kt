@@ -7,21 +7,28 @@ import android.os.Debug
 import android.os.SystemClock
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
+import androidx.lifecycle.ViewModelStore
+import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.platform.app.InstrumentationRegistry
 import com.hooreader.data.import.EpubBookParser
 import com.hooreader.data.import.Fb2BookParser
 import com.hooreader.data.local.BookContentIndexStore
 import com.hooreader.data.local.BookFileStorage
+import com.hooreader.data.local.HooReaderDatabase
+import com.hooreader.data.repository.BookRepository
 import com.hooreader.data.repository.ReaderContentRepository
-import com.hooreader.data.repository.ReaderContentSession
 import com.hooreader.domain.model.Book
 import com.hooreader.domain.model.BookFormat
 import com.hooreader.domain.model.BookState
 import com.hooreader.domain.model.LogicalAnchor
-import com.hooreader.pagination.PaginationProbe
+import com.hooreader.domain.model.ReaderPreferences
+import com.hooreader.domain.model.ReadingMode
+import com.hooreader.domain.model.ReadingPosition
 import com.hooreader.pagination.ProbePageResult
+import com.hooreader.pagination.ProductionPaginationProbe
 import com.hooreader.testing.ReaderTestActivity
+import com.hooreader.ui.reader.ReaderViewModel
 import com.hooreader.ui.theme.HooReaderTheme
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -34,6 +41,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import org.json.JSONArray
 import org.json.JSONObject
+import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Assume.assumeTrue
@@ -52,6 +60,11 @@ class PaginationProbeTest {
     private val context = ApplicationProvider.getApplicationContext<Context>()
     private val args = InstrumentationRegistry.getArguments()
     private val files = BookFileStorage(context)
+    private val database = Room.inMemoryDatabaseBuilder(context, HooReaderDatabase::class.java)
+        .addCallback(HooReaderDatabase.ValidationCallback).build()
+    private val books = BookRepository(database, files)
+    private var store = ViewModelStore()
+    private var reader: ReaderViewModel? = null
     private val repository = ReaderContentRepository(
         files,
         BookContentIndexStore(files),
@@ -75,7 +88,7 @@ class PaginationProbeTest {
         try {
             if (mode != "cold_source") {
                 // Source preparation is allowed for cold pages; target layout is measured only for warm.
-                repository.open(book).use { if (mode == "warm") show(it, scale) }
+                if (mode == "warm") show(book, scale) else repository.open(book).close()
                 clearContent()
             }
             repeat(RUNS) { number ->
@@ -99,7 +112,7 @@ class PaginationProbeTest {
             File(context.filesDir, "pagination-probe-series.json").writeText(report.toString(2))
         } finally {
             clearContent()
-            files.deleteBook(book.id)
+            books.deleteBook(book.id)
         }
     }
 
@@ -108,7 +121,8 @@ class PaginationProbeTest {
         assumeTrue(args.getString("phase2Pagination") == "true")
         val book = fixture()
         try {
-            repository.open(book).use { session ->
+            run {
+                val model = newReader(book, 1f)
                 val currentScale = mutableStateOf(1f)
                 val result = AtomicReference<ProbePageResult>()
                 val seen = mutableListOf<Float>()
@@ -116,12 +130,11 @@ class PaginationProbeTest {
                 val cancelled = AtomicReference<Float>()
                 val cancelRequestedAt = AtomicLong()
                 val cancelledAt = AtomicLong()
-                val anchor = anchor(session)
                 compose.runOnUiThread {
                     ReaderTestActivity.content = {
                         HooReaderTheme {
-                            PaginationProbe(
-                                session, files, anchor, currentScale.value,
+                            ProductionPaginationProbe(
+                                model, currentScale.value,
                                 onStarted = { started.set(it.typography.readingScale) },
                                 onCancelled = {
                                     cancelledAt.set(SystemClock.elapsedRealtimeNanos())
@@ -154,7 +167,7 @@ class PaginationProbeTest {
             }
         } finally {
             clearContent()
-            files.deleteBook(book.id)
+            books.deleteBook(book.id)
         }
     }
 
@@ -167,34 +180,35 @@ class PaginationProbeTest {
         val memory = ProbeMemorySampler()
         val start = SystemClock.elapsedRealtimeNanos()
         try {
-            repository.open(book).use { session ->
-                val openingMs = (SystemClock.elapsedRealtimeNanos() - start) / NANOS_PER_MS
-                val ready = show(session, scale)
-                assertTrue(ready.exactPageNumber > 0)
-                val metrics = memory.snapshot()
-                return JSONObject().put("run", number + 1).put("openingMs", openingMs)
-                    .put("sourceSpoolPresentAtStart", sourcePresent).put("pageIndexPresentAtStart", pagesPresent)
-                    .put("firstReadableFrameMs", (ready.readyFrameAtNanos - start) / NANOS_PER_MS)
-                    .put("exactNumberByMs", (ready.exactNumberAtNanos - start) / NANOS_PER_MS)
-                    .put("readyFrameMs", (ready.readyFrameAtNanos - start) / NANOS_PER_MS)
-                    .put("pageNumber", ready.exactPageNumber).put("layoutHash", ready.layoutHash)
-                    .put("sourcePasses", ready.sourcePasses).put("residentFragments", ready.residentFragments)
-                    .put("mediaSourcePasses", session.mediaSourcePassCount)
-                    .put("totalSourceOperations", ready.sourcePasses + session.mediaSourcePassCount)
-                    .put("layoutCacheCapacity", ready.layoutCacheCapacity).put("contentWindowCapacity", 128)
-                    .put("memory", metrics).put("eofKnown", anchor(session).chapterIndex == session.chapters.lastIndex)
-            }
+            val ready = show(book, scale)
+            assertTrue(ready.exactPageNumber > 0)
+            val model = requireNotNull(reader)
+            val metrics = memory.snapshot()
+            return JSONObject().put("run", number + 1)
+                .put("openingMs", (model.sourceOpenedAtNanos - start) / NANOS_PER_MS)
+                .put("sourceSpoolPresentAtStart", sourcePresent).put("pageIndexPresentAtStart", pagesPresent)
+                .put("firstReadableFrameMs", (ready.readyFrameAtNanos - start) / NANOS_PER_MS)
+                .put("exactNumberByMs", (ready.exactNumberAtNanos - start) / NANOS_PER_MS)
+                .put("readyFrameMs", (ready.readyFrameAtNanos - start) / NANOS_PER_MS)
+                .put("pageNumber", ready.exactPageNumber).put("layoutHash", ready.layoutHash)
+                .put("sourcePasses", ready.sourcePasses).put("residentFragments", ready.residentFragments)
+                .put("mediaSourcePasses", model.mediaSourcePassCount)
+                .put("totalSourceOperations", ready.sourcePasses + model.mediaSourcePassCount)
+                .put("layoutCacheCapacity", ready.layoutCacheCapacity).put("contentWindowCapacity", 128)
+                .put("memory", metrics).put("eofKnown", ready.eofKnown)
+                .put("pipeline", "ReaderViewModel/ReaderScreen/PageIndexStore")
         } finally {
             memory.stop()
         }
     }
 
-    private fun show(session: ReaderContentSession, scale: Float): ProbePageResult {
+    private fun show(book: Book, scale: Float): ProbePageResult {
         val result = AtomicReference<ProbePageResult>()
-        val anchor = anchor(session)
+        val model = newReader(book, scale)
+        val anchor = LogicalAnchor(requireNotNull(args.getString("probeChapter")).toInt(), 0, 0)
         compose.runOnUiThread {
             ReaderTestActivity.content = {
-                HooReaderTheme { PaginationProbe(session, files, anchor, scale, onReady = result::set) }
+                HooReaderTheme { ProductionPaginationProbe(model, scale, onReady = result::set) }
             }
         }
         compose.waitUntil(TIMEOUT_MS) { result.get() != null }
@@ -203,15 +217,32 @@ class PaginationProbeTest {
         }
     }
 
-    private fun clearContent() {
-        compose.runOnUiThread { ReaderTestActivity.content = null }
-        compose.waitForIdle()
+    private fun newReader(book: Book, scale: Float): ReaderViewModel {
+        lateinit var model: ReaderViewModel
+        compose.runOnUiThread {
+            store = ViewModelStore()
+            model = ReaderViewModel(
+                book.id,
+                books,
+                listOf(EpubBookParser(), Fb2BookParser()),
+                initialPreferences = ReaderPreferences(fontScale = scale, readingMode = ReadingMode.PAGINATED),
+                content = repository,
+            )
+            store.put("probe-reader", model)
+            reader = model
+        }
+        return model
     }
 
-    private fun anchor(session: ReaderContentSession): LogicalAnchor {
-        val index = requireNotNull(args.getString("probeChapter")).toInt()
-        require(index in session.chapters.indices)
-        return LogicalAnchor(index, 0, 0)
+    private fun clearContent() {
+        val disposed = reader
+        compose.runOnUiThread {
+            ReaderTestActivity.content = null
+            store.clear()
+            reader = null
+        }
+        compose.waitUntil(TIMEOUT_MS) { disposed?.pagination?.calculationInProgress != true }
+        compose.waitForIdle()
     }
 
     private fun configureOrientation() {
@@ -244,13 +275,22 @@ class PaginationProbeTest {
         require(hash == args.getString("probeExpectedHash"))
         val id = UUID.randomUUID().toString()
         val local = files.copyBook(id, format, source.inputStream())
-        return Book(id, hash, format, local.path, "Probe", "HooReader", state = BookState.READY)
+        val book = Book(id, hash, format, local.path, "Probe", "HooReader", state = BookState.READY)
+        repository.open(book).use { books.addBook(book, it.chapters) }
+        books.savePosition(ReadingPosition(id, chapterIndex = requireNotNull(args.getString("probeChapter")).toInt()))
+        return book
     }
 
     private fun clearDerived(book: Book, category: String) {
         val root = files.derivedDirectory(book.id, category, "inspection").parentFile!!
         files.requireOwnedPath(book.id, root.path)
         check(!root.exists() || root.deleteRecursively())
+    }
+
+    @After
+    fun closeDatabase() {
+        clearContent()
+        database.close()
     }
 
     private companion object {

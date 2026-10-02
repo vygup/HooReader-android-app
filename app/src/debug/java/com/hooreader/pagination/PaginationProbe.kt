@@ -207,6 +207,7 @@ data class ProbePageResult(
     val sourcePasses: Int,
     val exactNumberAtNanos: Long,
     val readyFrameAtNanos: Long,
+    val eofKnown: Boolean = false,
 ) {
     val layoutHash get() = key.hash
 }

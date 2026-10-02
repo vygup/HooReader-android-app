@@ -115,7 +115,8 @@ profile = {
     'generatorSha256': sha(ROOT / 'scripts/generate-import-corpus.py'),
     'corpus': corpus, 'scenarios': cases, 'runsPerScenario': 5,
     'theme': 'LIGHT', 'memorySamplingMs': 16,
-    'timing': 'open -> source spool -> exact prefix -> source page draw -> next frame callback',
+    'timing': 'ReaderViewModel creation -> Room/source spool -> exact prefix -> ReaderScreen draw -> next frame callback',
+    'pipeline': 'ReaderViewModel/ReaderScreen/ReaderPaginationController/PageIndexStore',
 }
 # Стабильная идентичность измерений не зависит от текущего заряда/динамического dumpsys.
 identity = {k: v for k, v in profile.items() if k != 'device'}
