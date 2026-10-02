@@ -206,3 +206,11 @@ layout LRU остаётся bounded. Отказ bitmap после packing зам
 source line geometry каждого подготовленного fragment EPUB/FB2. 92 debug unit tests,
 detekt/build/test APK GREEN; два Android measured-and-drawn tests GREEN API 37.
 Следующая T030 — HorizontalPager и абсолютный frontier mapping.
+
+T030: HorizontalPager с PagerSnapDistance.atMost(1), settled-only callbacks и initial
+restore suppression готов. Absolute zero-based indices не меняются при расширении
+точного PagePrefix; один frontier slot существует только пока source EOF неизвестен.
+В composition bounded current/adjacent cells, async IO failures retryable; observer
+не открывает chrome после drag/cancel/boundary. Android реальный fast fling в обоих
+направлениях, cancel, frontier→EOF и обе границы GREEN API 37; detekt/build/APK GREEN.
+Следующая T031 — geometry generations и pending position revisions.

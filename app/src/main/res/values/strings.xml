@@ -7,6 +7,7 @@
     <string name="reader_unavailable">Книга недоступна</string>
     <string name="back_to_library">В библиотеку</string>
     <string name="reader_open_error">Не удалось открыть книгу. Попробуйте ещё раз или вернитесь в библиотеку.</string>
+    <string name="reader_preparing_pages">Подготовка страниц…</string>
     <string name="retry">Повторить</string>
     <string name="reader_chapter_progress">Глава %1$d из %2$d · ≈ %3$d%%</string>
     <string name="reader_book_percent">%1$d%%</string>
