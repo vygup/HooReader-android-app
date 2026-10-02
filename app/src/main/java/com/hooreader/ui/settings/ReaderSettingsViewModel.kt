@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.hooreader.data.local.ReaderPreferencesRepository
 import com.hooreader.domain.model.ReaderPreferences
 import com.hooreader.domain.model.ReaderTheme
+import com.hooreader.domain.model.ReadingMode
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.asStateFlow
@@ -19,6 +20,8 @@ class ReaderSettingsViewModel(private val repository: ReaderPreferencesRepositor
     private var retryWrite: (suspend () -> Unit)? = null
 
     fun setTheme(theme: ReaderTheme) = write { repository.setTheme(theme) }
+
+    fun setReadingMode(mode: ReadingMode) = write { repository.setReadingMode(mode) }
 
     fun setFontScale(scale: Float) {
         if (!scale.isFinite()) return

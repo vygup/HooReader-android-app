@@ -166,3 +166,8 @@ Geometry assertions берут актуальный in-memory anchor из нас
 T024: ReadingMode VERTICAL/PAGINATED и default VERTICAL в ReaderPreferences добавлены.
 Прежние LIGHT/finite 0.75–2.0/default 1.0 сохранены; 84 debug unit tests, detekt,
 build GREEN. Следующая T025 — долговечный preference и typed API.
+
+T025: reading_mode сохраняется в прежнем singleton DataStore; отсутствующий/неизвестный
+режим даёт VERTICAL. Добавлены old-file/fallback/restart/cross-field tests, typed settings
+API и typed cleanup PagedReaderTest. 86 debug unit tests, detekt/build/test APK GREEN.
+Существующая retry closure намеренно развивается в pending queue T045. Следующая T026.

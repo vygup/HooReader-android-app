@@ -24,9 +24,9 @@ import androidx.navigation.compose.rememberNavController
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.platform.app.InstrumentationRegistry
 import com.hooreader.data.import.BookImportResult
-import com.hooreader.data.local.ReaderPreferencesRepository
 import com.hooreader.domain.model.Book
 import com.hooreader.domain.model.BookFormat
+import com.hooreader.domain.model.ReadingMode
 import com.hooreader.domain.model.ReadingPosition
 import com.hooreader.domain.model.logicalAnchor
 import com.hooreader.navigation.HooReaderNavHost
@@ -43,9 +43,6 @@ import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Rule
 import org.junit.Test
-import kotlin.coroutines.Continuation
-import kotlin.coroutines.intrinsics.COROUTINE_SUSPENDED
-import kotlin.coroutines.intrinsics.suspendCoroutineUninterceptedOrReturn
 
 /** Actual destination and input. PreparingPages never satisfies waitForPages. */
 class PagedReaderTest {
@@ -181,8 +178,7 @@ class PagedReaderTest {
         val context = ApplicationProvider.getApplicationContext<Context>()
         val dependencies = ReaderDependencies(context)
         val previous = dependencies.preferences.preferences.first()
-        val previousMode = previous.javaClass.methods.firstOrNull { it.name == "getReadingMode" }
-            ?.invoke(previous)?.toString() ?: "VERTICAL"
+        val previousMode = previous.readingMode
         val assets = InstrumentationRegistry.getInstrumentation().context.assets
         val added = dependencies.importer.import("paged.${format.name.lowercase()}") {
             assets.open("books/corpus/reader-appearance.${format.name.lowercase()}")
@@ -211,14 +207,14 @@ class PagedReaderTest {
         } finally {
             compose.runOnUiThread { ReaderTestActivity.content = null }
             dependencies.repository.deleteBook(added.book.id)
-            restoreMode(dependencies.preferences, previousMode)
+            dependencies.preferences.setReadingMode(previousMode)
             dependencies.preferences.setTheme(previous.theme)
             dependencies.preferences.setFontScale(previous.fontScale)
         }
     }
 
     private suspend fun prepareAnchor(dependencies: ReaderDependencies, book: Book) {
-        restoreMode(dependencies.preferences, "VERTICAL")
+        dependencies.preferences.setReadingMode(ReadingMode.VERTICAL)
         dependencies.preferences.setFontScale(1f)
         dependencies.readerContent.open(book).use { session ->
             val block = session.readRecords(0).maxBy { it.text.length }
@@ -232,17 +228,6 @@ class PagedReaderTest {
                     updatedAt = System.currentTimeMillis()
                 )
             )
-        }
-    }
-
-    /** Replaced with typed API in T025; missing mode before T024 cannot make tests fail compilation. */
-    private suspend fun restoreMode(repository: ReaderPreferencesRepository, name: String) {
-        val type = runCatching { Class.forName("com.hooreader.domain.model.ReadingMode") }.getOrNull() ?: return
-        val setter = repository.javaClass.methods.firstOrNull { it.name == "setReadingMode" } ?: return
-        val mode = type.enumConstants.first { (it as Enum<*>).name == name }
-        suspendCoroutineUninterceptedOrReturn<Unit> { continuation: Continuation<Unit> ->
-            val result = setter.invoke(repository, mode, continuation)
-            if (result === COROUTINE_SUSPENDED) result else Unit
         }
     }
 

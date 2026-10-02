@@ -11,6 +11,7 @@ import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import com.hooreader.domain.model.ReaderPreferences
 import com.hooreader.domain.model.ReaderTheme
+import com.hooreader.domain.model.ReadingMode
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
@@ -29,7 +30,12 @@ class ReaderPreferencesRepository(private val store: DataStore<Preferences>) {
     }.map { values ->
         val theme = ReaderTheme.entries.firstOrNull { it.name == values[THEME] } ?: ReaderTheme.LIGHT
         val scale = values[FONT_SCALE]?.takeIf { it.isFinite() } ?: 1f
-        ReaderPreferences(theme, scale.coerceIn(ReaderPreferences.MIN_FONT_SCALE, ReaderPreferences.MAX_FONT_SCALE))
+        val mode = ReadingMode.entries.firstOrNull { it.name == values[READING_MODE] } ?: ReadingMode.VERTICAL
+        ReaderPreferences(
+            theme,
+            scale.coerceIn(ReaderPreferences.MIN_FONT_SCALE, ReaderPreferences.MAX_FONT_SCALE),
+            mode
+        )
     }
 
     suspend fun setTheme(theme: ReaderTheme) {
@@ -41,8 +47,13 @@ class ReaderPreferencesRepository(private val store: DataStore<Preferences>) {
         store.edit { it[FONT_SCALE] = scale }
     }
 
+    suspend fun setReadingMode(mode: ReadingMode) {
+        store.edit { it[READING_MODE] = mode.name }
+    }
+
     companion object {
         private val THEME = stringPreferencesKey("theme")
         private val FONT_SCALE = floatPreferencesKey("font_scale")
+        private val READING_MODE = stringPreferencesKey("reading_mode")
     }
 }
