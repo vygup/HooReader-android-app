@@ -1,12 +1,14 @@
 package com.hooreader.pagination
 
-import android.graphics.BitmapFactory
 import android.os.Build
 import android.os.SystemClock
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -19,27 +21,19 @@ import androidx.compose.runtime.setValue
 import androidx.compose.runtime.withFrameNanos
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.graphics.ImageBitmap
-import androidx.compose.ui.graphics.asImageBitmap
-import androidx.compose.ui.graphics.drawscope.clipRect
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.TextLayoutResult
 import androidx.compose.ui.text.TextMeasurer
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.drawText
 import androidx.compose.ui.text.rememberTextMeasurer
-import androidx.compose.ui.unit.IntOffset
-import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.sp
 import com.hooreader.R
 import com.hooreader.data.local.BookFileStorage
 import com.hooreader.data.repository.ReaderContentSession
-import com.hooreader.domain.model.BlockKind
-import com.hooreader.domain.model.ContentBlock
 import com.hooreader.domain.model.LogicalAnchor
 import com.hooreader.ui.reader.ReaderTypography
 import com.hooreader.ui.reader.pagination.ChapterPageInfo
@@ -47,14 +41,14 @@ import com.hooreader.ui.reader.pagination.LayoutContentIdentity
 import com.hooreader.ui.reader.pagination.LayoutKey
 import com.hooreader.ui.reader.pagination.LayoutTypography
 import com.hooreader.ui.reader.pagination.LayoutViewport
-import com.hooreader.ui.reader.pagination.PageFragment
 import com.hooreader.ui.reader.pagination.PageIndex
 import com.hooreader.ui.reader.pagination.PageSlice
+import com.hooreader.ui.reader.pagination.PagedContentRenderer
+import com.hooreader.ui.reader.pagination.PreparedPageDraw
 import com.hooreader.ui.reader.pagination.TextPaginator
+import com.hooreader.ui.reader.pagination.preparePageDrawing
 import com.hooreader.ui.reader.readerTypography
 import kotlinx.coroutines.CancellationException
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 
 /** Debug-only vertical slice: measured source -> disk boundaries -> clipped whole-source draw. */
 @Composable
@@ -109,7 +103,7 @@ fun PaginationProbe(
                             page.slice.globalPageNumber,
                             page.slice,
                             (SystemClock.elapsedRealtimeNanos() - started) / NANOS_PER_MILLISECOND,
-                            page.fragments.size,
+                            page.drawn.fragments.size,
                             LAYOUT_CACHE_SIZE,
                             session.sourcePassCount,
                             page.exactNumberAtNanos,
@@ -141,7 +135,7 @@ private suspend fun calculateProbePage(
     }
     val page = index.pageContaining(requireNotNull(target), anchor)
     val exactNumberAt = SystemClock.elapsedRealtimeNanos()
-    return prepareDrawPage(session, page, paginator, key).copy(exactNumberAtNanos = exactNumberAt)
+    return ProbeDrawPage(preparePageDrawing(session, page, paginator, key), exactNumberAt)
 }
 
 @Composable
@@ -154,36 +148,15 @@ private fun ProbeCanvas(
     onDrawn: () -> Unit,
 ) {
     val color = MaterialTheme.colorScheme.onSurface
-    Canvas(Modifier.fillMaxSize().testTag("probe_page")) {
-        page.fragments.forEach { item ->
-            val fragment = item.fragment
-            clipRect(fragment.x, fragment.y, fragment.x + fragment.width, fragment.y + fragment.height) {
-                item.layout?.let { drawText(it, color, Offset(fragment.x, fragment.y - fragment.sourceTop)) }
-                item.image?.let {
-                    drawImage(
-                        it,
-                        dstOffset = IntOffset(fragment.x.toInt(), fragment.y.toInt()),
-                        dstSize = IntSize(
-                            fragment.width.toInt().coerceAtLeast(1),
-                            fragment.height.toInt().coerceAtLeast(1)
-                        )
-                    )
-                }
-            }
-            if (fragment.kind == BlockKind.LIST && fragment.firstLine == 0) {
-                drawText(measurer.measure("•", typography.style(BlockKind.LIST)), color, Offset(0f, fragment.y))
-            }
+    val density = LocalDensity.current
+    Column(Modifier.fillMaxSize().testTag("probe_page")) {
+        Box(Modifier.weight(1f)) {
+            PagedContentRenderer(page.drawn, key, measurer, typography, onDrawn = onDrawn)
         }
-        val indicator = measurer.measure(page.slice.globalPageNumber.toString(), indicatorStyle)
-        drawText(
-            indicator,
-            color,
-            Offset(
-                (key.viewport.widthPx - indicator.size.width) / 2f,
-                key.viewport.heightPx.toFloat()
-            )
-        )
-        onDrawn()
+        Canvas(Modifier.height(with(density) { key.viewport.bottomStripPx.toDp() }).fillMaxSize()) {
+            val indicator = measurer.measure(page.slice.globalPageNumber.toString(), indicatorStyle)
+            drawText(indicator, color, Offset((key.viewport.widthPx - indicator.size.width) / 2f, 0f))
+        }
     }
 }
 
@@ -224,38 +197,6 @@ private fun probeLayoutKey(
     )
 }
 
-private suspend fun prepareDrawPage(
-    session: ReaderContentSession,
-    page: PageSlice,
-    paginator: TextPaginator,
-    key: LayoutKey,
-): ProbeDrawPage {
-    val first = page.fragments.minOf { it.blockIndex }
-    val last = page.fragments.maxOf { it.blockIndex }
-    val blocks = if (session.chapters[page.chapterIndex].blockCount == 0) {
-        listOf(ContentBlock(page.chapterIndex, 0, BlockKind.FALLBACK))
-    } else {
-        session.readRecords(session.recordIndex(page.chapterIndex, first), last - first + 1)
-    }
-    val drawn = page.fragments.map { fragment ->
-        val block = blocks.first { it.chapterIndex == fragment.chapterIndex && it.blockIndex == fragment.blockIndex }
-        if (fragment.kind == BlockKind.IMAGE) {
-            val metrics = session.imageMetrics(requireNotNull(block.mediaRef))
-            val image = withContext(Dispatchers.IO) {
-                val options = BitmapFactory.Options()
-                while (metrics.width / options.inSampleSize.coerceAtLeast(1) > MAX_IMAGE_SIZE ||
-                    metrics.height / options.inSampleSize.coerceAtLeast(1) > MAX_IMAGE_SIZE
-                    ) options.inSampleSize = options.inSampleSize.coerceAtLeast(1) * 2
-                BitmapFactory.decodeFile(metrics.localPath, options)?.asImageBitmap()
-            }
-            ProbeDrawFragment(fragment, image = image)
-        } else {
-            ProbeDrawFragment(fragment, layout = paginator.measure(block.copy(kind = fragment.kind), key))
-        }
-    }
-    return ProbeDrawPage(page, drawn)
-}
-
 data class ProbePageResult(
     val key: LayoutKey,
     val exactPageNumber: Int,
@@ -270,16 +211,8 @@ data class ProbePageResult(
     val layoutHash get() = key.hash
 }
 
-private data class ProbeDrawPage(
-    val slice: PageSlice,
-    val fragments: List<ProbeDrawFragment>,
-    val exactNumberAtNanos: Long = 0,
-)
-private data class ProbeDrawFragment(
-    val fragment: PageFragment,
-    val layout: TextLayoutResult? = null,
-    val image: ImageBitmap? = null
-)
+private data class ProbeDrawPage(val drawn: PreparedPageDraw, val exactNumberAtNanos: Long) {
+    val slice get() = drawn.slice
+}
 private const val LAYOUT_CACHE_SIZE = 8
-private const val MAX_IMAGE_SIZE = 1024
 private const val NANOS_PER_MILLISECOND = 1_000_000.0

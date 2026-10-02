@@ -30,6 +30,7 @@ import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 import org.robolectric.annotation.GraphicsMode
+import java.io.File
 import java.util.UUID
 
 @RunWith(RobolectricTestRunner::class)
@@ -73,6 +74,29 @@ class TextPaginatorTest {
             assertEquals(17, pages.single().globalPageNumber)
             assertEquals(BlockKind.FALLBACK, pages.single().fragments.single().kind)
             assertTrue(pages.single().endAnchorExclusive.chapterIndex < session.chapters.last().index)
+        }
+
+    @Test
+    fun `bitmap failure after packing preserves original page and image bounds`() =
+        withSession(BookFormat.FB2) { session ->
+            val pages = mutableListOf<PageSlice>()
+            paginator.paginateChapter(session, 0, key, 1, pages::add)
+            val page = pages.first { slice -> slice.fragments.any { it.kind == BlockKind.IMAGE } }
+            val image = page.fragments.first { it.kind == BlockKind.IMAGE }
+            val source = session.readRecords(session.recordIndex(0, image.blockIndex), 1).single()
+            val before = preparePageDrawing(session, page, paginator, key)
+            assertTrue(before.fragments.first { it.fragment == image }.image != null)
+            val metrics = session.imageMetrics(requireNotNull(source.mediaRef))
+            File(requireNotNull(metrics.localPath)).writeBytes(byteArrayOf(0))
+            val after = preparePageDrawing(session, page, paginator, key)
+            assertEquals(page, after.slice)
+            assertEquals(before.fragments.map { it.fragment }, after.fragments.map { it.fragment })
+            val fallback = after.fragments.first { it.fragment == image }
+            assertTrue(fallback.failedImage)
+            assertEquals(
+                BlockTextFactory.create(source.copy(kind = BlockKind.FALLBACK), "Нет содержимого"),
+                requireNotNull(fallback.layout).layoutInput.text,
+            )
         }
 
     private fun verify(format: BookFormat) = withSession(format, check = ::verifyChapters)
@@ -151,6 +175,15 @@ class TextPaginatorTest {
                 page.validateGeometry(key)
                 assertEquals(prefix + index + 1, page.globalPageNumber)
                 if (index > 0) assertEquals(pages[index - 1].endAnchorExclusive, page.startAnchor)
+                val prepared = preparePageDrawing(session, page, paginator, key)
+                assertEquals(page.fragments, prepared.fragments.map { it.fragment })
+                prepared.fragments.filter { it.layout != null }.forEach { drawn ->
+                    assertEquals(
+                        drawn.fragment.sourceTop,
+                        requireNotNull(drawn.layout).getLineTop(drawn.fragment.firstLine),
+                        0.001f,
+                    )
+                }
             }
             val blocks = session.readRecords(session.recordIndex(chapter.index, 0))
                 .filter { it.chapterIndex == chapter.index }

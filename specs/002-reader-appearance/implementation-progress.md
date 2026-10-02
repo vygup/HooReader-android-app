@@ -197,3 +197,12 @@ part; corruption rebuild, invalidation/eviction не затрагивают orig
 MRU timestamp обновляется при reuse; два последних использованных layouts остаются.
 3 store + 6 page-index targeted tests GREEN; полный check/build/test APK: 91 debug
 и 91 release unit tests, lint/detekt GREEN. Следующая T029 — production renderer.
+
+T029: production PagedContentRenderer переиспользуется debug probe; рисует whole-source
+TextLayoutResult с исходными spans и clipping sourceTop, list marker/indent и sampled
+локальные bitmap. Подготовка держит только fragments текущей страницы (≤128), source
+layout LRU остаётся bounded. Отказ bitmap после packing заменяет содержимое фиксированной
+области, не меняет PageSlice/anchors/номер. Native regression проверяет этот отказ и
+source line geometry каждого подготовленного fragment EPUB/FB2. 92 debug unit tests,
+detekt/build/test APK GREEN; два Android measured-and-drawn tests GREEN API 37.
+Следующая T030 — HorizontalPager и абсолютный frontier mapping.
