@@ -106,3 +106,7 @@ APK компилируется. RED: отсутствует reader_viewport/ск
 
 T016: чистый reducer chrome реализован; все пять T014 GREEN, detekt прошёл.
 Состояние не содержит anchor/layout; EXIT_CONFIRMATION пока неактивен. Следующая T017.
+
+T017: gesture observer реализован без consume и без controlsVisible в pointerInput key;
+системный slop/longPressTimeout, достигнутый drag и multi-pointer/consumed suppression.
+Android child-click/cancel/обычный tap GREEN, detekt/APK GREEN. Следующая T018.
