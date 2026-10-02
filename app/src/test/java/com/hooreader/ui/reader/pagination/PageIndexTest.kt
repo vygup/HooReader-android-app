@@ -86,6 +86,41 @@ class PageIndexTest {
         files.deleteBook(bookId)
     }
 
+    @Test
+    fun `prefix change cannot reuse chapter with stale global numbers`() = runBlocking {
+        val index = PageIndex(files, bookId, key)
+        index.ensureChapter(0, 5) { it(page(0, 5)) }
+        var rebuilds = 0
+        val rebuilt = index.ensureChapter(0, 12) {
+            rebuilds++
+            it(page(0, 12))
+        }
+        assertEquals(1, rebuilds)
+        assertEquals(13, index.readPage(rebuilt, 0).globalPageNumber)
+        files.deleteBook(bookId)
+    }
+
+    @Test
+    fun `geometry content parser locale and nonlinear font samples each invalidate cache`() {
+        val changes = listOf(
+            key.copy(content = key.content.copy(contentHash = "d".repeat(64))),
+            key.copy(content = key.content.copy(parserVersion = 2)),
+            key.copy(content = key.content.copy(paginatorVersion = 2)),
+            key.copy(content = key.content.copy(schemaVersion = 2)),
+            key.copy(viewport = key.viewport.copy(heightPx = 500)),
+            key.copy(viewport = key.viewport.copy(topStripPx = 30)),
+            key.copy(viewport = key.viewport.copy(bottomStripPx = 30)),
+            key.copy(viewport = key.viewport.copy(density = 2f)),
+            key.copy(viewport = key.viewport.copy(spConversionSamples = listOf(11f, 16f, 24f, 48f))),
+            key.copy(typography = key.typography.copy(locale = "ja")),
+            key.copy(typography = key.typography.copy(layoutDirection = "Rtl")),
+            key.copy(typography = key.typography.copy(readingScale = 2f)),
+            key.copy(typography = key.typography.copy(systemFontVersion = "Next OS")),
+        )
+        changes.forEach { assertNotEquals(key.hash, it.hash) }
+        assertEquals(changes.size, changes.map { it.hash }.distinct().size)
+    }
+
     private fun page(number: Int, prefix: Int = 0) = PageSlice(
         0,
         number,

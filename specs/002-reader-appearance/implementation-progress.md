@@ -146,3 +146,11 @@ T014–T021 завершены (`b4124ae`); итоговый полный check/
 измерения выполнены. US1 функционально подтверждён в вертикальном режиме: скрытие,
 жесты, стабильный viewport, единый overlay, реальный Back. Аппаратный SC-004 имеет
 NOT_VERIFIED_DEVICE; постраничный SC-001 ещё относится к Phase 4. Следующая задача T022.
+
+T022: восемь targeted unit tests GREEN (3 native TextPaginator + 5 PageIndex), detekt GREEN.
+Реальные line metrics сохраняют текст/стили/surrogates, длинный абзац, list indent, цельный
+image ratio и fallback пустой главы; chapter pages нумеруются точным prefix.
+Пустая глава корпуса расположена в середине, не первой; тест исправлен по фактическому fixture.
+Source metadata отличает завершённую пустую главу от EOF. Изменения content/parser/schema/
+viewport/insets/font samples/locale/direction/scale инвалидируют cache; старый prefix rebuild.
+Продолжение production frontier/resume относится к T028. Следующая T023.

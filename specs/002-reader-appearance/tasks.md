@@ -100,7 +100,7 @@ instrumentation: `app/src/androidTest/java/com/hooreader/`; debug probe:
 
 ### Проверки требований истории
 
-- [ ] T022 [P] [US2] Добавить app/src/test/java/com/hooreader/ui/reader/pagination/TextPaginatorTest.kt и app/src/test/java/com/hooreader/ui/reader/pagination/PageIndexTest.kt по прототипу T010: непрерывные ranges/styles, surrogate pairs, длинный абзац, списки/images/fallback, новая страница главы, точный prefix/globalPageNumber, frontier≠EOF и invalidation по LayoutKey. Зависит от T021.
+- [X] T022 [P] [US2] Добавить app/src/test/java/com/hooreader/ui/reader/pagination/TextPaginatorTest.kt и app/src/test/java/com/hooreader/ui/reader/pagination/PageIndexTest.kt по прототипу T010: непрерывные ranges/styles, surrogate pairs, длинный абзац, списки/images/fallback, новая страница главы, точный prefix/globalPageNumber, frontier≠EOF и invalidation по LayoutKey. Зависит от T021.
 - [ ] T023 [P] [US2] Добавить app/src/androidTest/java/com/hooreader/reader/PagedReaderTest.kt: один swipe=одна страница, cancel/boundaries, двунаправленные главы, содержание, настоящие text layout и сохранение anchor при смене режима/масштаба/ориентации; временное PreparingPages не считать Reading. Зависит от T021.
 
 ### Реализация и подтверждение истории
