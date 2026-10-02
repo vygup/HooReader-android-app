@@ -2,6 +2,7 @@ package com.hooreader.ui.reader
 
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -26,9 +27,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.rememberUpdatedState
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshotFlow
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalDensity
@@ -53,6 +54,7 @@ fun ReaderScreen(
     onBack: () -> Unit,
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
+    val chrome by viewModel.chromeState.collectAsStateWithLifecycle()
     SaveReadingPositionOnLifecycle(viewModel)
     val saveFailed by viewModel.saveFailed.collectAsStateWithLifecycle()
     val scope = rememberCoroutineScope()
@@ -61,90 +63,101 @@ fun ReaderScreen(
             if (viewModel.flushPosition()) onBack()
         }
     }
-    BackHandler(onBack = leave)
+    BackHandler(enabled = chrome.overlay == ReaderOverlay.NONE, onBack = leave)
+    val reading = state as? ReaderUiState.Reading
     Surface(modifier = Modifier.fillMaxSize().testTag("reader_screen")) {
-        Column(modifier = Modifier.fillMaxSize().safeDrawingPadding().padding(horizontal = 16.dp)) {
-            Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
-                TextButton(onClick = leave) { Text(stringResource(R.string.back_to_library)) }
-                if (onSettings != null) {
-                    TextButton(onClick = onSettings) { Text(stringResource(R.string.reader_settings)) }
+        Box(Modifier.fillMaxSize().safeDrawingPadding().padding(horizontal = 16.dp)) {
+            Column(Modifier.fillMaxSize()) {
+                if (reading != null) BasicVerticalIndicators(reading)
+                Box(
+                    Modifier.weight(1f).fillMaxWidth().testTag("reader_viewport").bookGestureHandler(
+                        enabled = reading != null,
+                        onBookTap = { viewModel.onChromeEvent(ReaderChromeEvent.BOOK_TAP) },
+                        onNavigationDragStarted = {
+                            viewModel.onChromeEvent(ReaderChromeEvent.NAVIGATION_DRAG_STARTED)
+                        },
+                        onGestureFinished = { viewModel.onChromeEvent(ReaderChromeEvent.GESTURE_FINISHED) },
+                    )
+                ) {
+                    when (val current = state) {
+                        ReaderUiState.Opening -> CircularProgressIndicator(Modifier.align(Alignment.Center))
+                        ReaderUiState.RecoverableError -> Column(Modifier.align(Alignment.Center)) {
+                            Text(stringResource(R.string.reader_open_error))
+                            Button(onClick = viewModel::open) { Text(stringResource(R.string.retry)) }
+                        }
+                        is ReaderUiState.Reading -> ReaderContent(current, viewModel, fontScale)
+                    }
                 }
+            }
+            if (chrome.controlsVisible || reading == null) {
+                ReaderControls(
+                    reading = reading,
+                    onExit = leave,
+                    onSettings = onSettings,
+                    onContents = { viewModel.onChromeEvent(ReaderChromeEvent.OPEN_CONTENTS) },
+                    onChapter = viewModel::selectChapter,
+                )
             }
             if (saveFailed) {
-                Text(stringResource(R.string.position_save_error), color = MaterialTheme.colorScheme.error)
-                TextButton(onClick = viewModel::saveNow) { Text(stringResource(R.string.retry)) }
+                PositionSaveError(viewModel::saveNow, Modifier.align(Alignment.Center))
             }
-            when (val current = state) {
-                ReaderUiState.Opening -> CircularProgressIndicator(modifier = Modifier.padding(24.dp))
-                ReaderUiState.RecoverableError -> {
-                    Text(stringResource(R.string.reader_open_error))
-                    Button(onClick = viewModel::open) { Text(stringResource(R.string.retry)) }
-                }
-                is ReaderUiState.Reading -> ReaderContent(current, viewModel, fontScale, Modifier.weight(1f))
-            }
+        }
+    }
+    if (chrome.overlay == ReaderOverlay.CONTENTS && reading != null) {
+        TableOfContentsSheet(
+            chapters = reading.chapters,
+            onSelect = viewModel::selectChapter,
+            onDismiss = { viewModel.onChromeEvent(ReaderChromeEvent.DISMISS_OVERLAY) },
+        )
+    }
+}
+
+@Composable
+private fun PositionSaveError(onRetry: () -> Unit, modifier: Modifier) {
+    Surface(modifier) {
+        Column(Modifier.padding(16.dp)) {
+            Text(stringResource(R.string.position_save_error), color = MaterialTheme.colorScheme.error)
+            TextButton(onClick = onRetry) { Text(stringResource(R.string.retry)) }
         }
     }
 }
 
 @Composable
-private fun ReaderContent(
-    state: ReaderUiState.Reading,
-    viewModel: ReaderViewModel,
-    fontScale: Float,
-    modifier: Modifier,
-) {
-    val configuration = LocalConfiguration.current
-    val density = LocalDensity.current
-    var showContents by rememberSaveable { mutableStateOf(false) }
-    if (showContents) {
-        TableOfContentsSheet(
-            chapters = state.chapters,
-            onSelect = { index ->
-                showContents = false
-                viewModel.selectChapter(index)
-            },
-            onDismiss = { showContents = false },
-        )
-    }
-    Column(modifier = modifier, verticalArrangement = Arrangement.spacedBy(8.dp)) {
+private fun BasicVerticalIndicators(state: ReaderUiState.Reading) {
+    Row(
+        Modifier.fillMaxWidth().padding(vertical = 4.dp),
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
+    ) {
+        val title = state.chapters[state.position.chapterIndex].title?.takeIf { it.isNotBlank() }
+            ?: stringResource(R.string.chapter_number, state.position.chapterIndex + 1)
         Text(
-            state.book.title,
-            style = MaterialTheme.typography.titleMedium,
-            maxLines = 2,
+            title,
+            Modifier.weight(1f).testTag("reader_chapter_indicator"),
+            style = MaterialTheme.typography.labelMedium,
+            maxLines = 1,
             overflow = TextOverflow.Ellipsis,
         )
         Text(
-            stringResource(
-                R.string.reader_chapter_progress,
-                state.position.chapterIndex + 1,
-                state.chapters.size,
-                state.position.progressPercent.toInt(),
-            ),
+            stringResource(R.string.reader_book_percent, state.position.progressPercent.toInt()),
+            Modifier.testTag("reader_progress_indicator"),
             style = MaterialTheme.typography.labelMedium,
         )
-        if (state.chapters.size > 1 || state.chapters.any { !it.title.isNullOrBlank() }) {
-            TextButton(onClick = { showContents = true }) { Text(stringResource(R.string.table_of_contents)) }
-        }
-        key(
-            state.position.chapterIndex,
-            state.blocks.first().blockIndex,
-            fontScale,
-            density.fontScale,
-            configuration.screenWidthDp,
-            configuration.screenHeightDp,
-        ) {
-            ChapterText(state, viewModel, fontScale, Modifier.weight(1f))
-        }
-        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
-            TextButton(
-                onClick = { viewModel.selectChapter(state.position.chapterIndex - 1) },
-                enabled = state.position.chapterIndex > 0,
-            ) { Text(stringResource(R.string.previous_chapter)) }
-            TextButton(
-                onClick = { viewModel.selectChapter(state.position.chapterIndex + 1) },
-                enabled = state.position.chapterIndex < state.chapters.lastIndex,
-            ) { Text(stringResource(R.string.next_chapter)) }
-        }
+    }
+}
+
+@Composable
+private fun ReaderContent(state: ReaderUiState.Reading, viewModel: ReaderViewModel, fontScale: Float) {
+    val configuration = LocalConfiguration.current
+    val density = LocalDensity.current
+    key(
+        state.position.chapterIndex,
+        state.blocks.first().blockIndex,
+        fontScale,
+        density.fontScale,
+        configuration.screenWidthDp,
+        configuration.screenHeightDp,
+    ) {
+        ChapterText(state, viewModel, fontScale, Modifier.fillMaxSize())
     }
 }
 

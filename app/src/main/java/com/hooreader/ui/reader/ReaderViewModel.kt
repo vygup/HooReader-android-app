@@ -40,6 +40,8 @@ class ReaderViewModel(
 ) : ViewModel() {
     private val mutableState = MutableStateFlow<ReaderUiState>(ReaderUiState.Opening)
     val state: StateFlow<ReaderUiState> = mutableState.asStateFlow()
+    private val mutableChrome = MutableStateFlow(ReaderChromeState())
+    val chromeState: StateFlow<ReaderChromeState> = mutableChrome.asStateFlow()
     private var document: ParsedBook? = null
     private var chapterJob: Job? = null
     private var windowJob: Job? = null
@@ -54,6 +56,7 @@ class ReaderViewModel(
     @Suppress("TooGenericExceptionCaught") // Parser failures become a recoverable UI state.
     fun open() {
         if (chapterJob?.isActive == true) return
+        onChromeEvent(ReaderChromeEvent.BOOK_OPENED)
         chapterJob = viewModelScope.launch {
             mutableState.value = ReaderUiState.Opening
             try {
@@ -78,6 +81,7 @@ class ReaderViewModel(
         val current = mutableState.value as? ReaderUiState.Reading ?: return
         val parsed = document ?: return
         if (index !in parsed.chapters.indices || chapterJob?.isActive == true) return
+        onChromeEvent(ReaderChromeEvent.CHAPTER_SELECTED)
         windowJob?.cancel()
         chapterJob = viewModelScope.launch {
             try {
@@ -106,6 +110,12 @@ class ReaderViewModel(
     }
 
     val openMedia: suspend (String) -> InputStream? = { reference -> document?.openMedia(reference) }
+
+    fun onChromeEvent(event: ReaderChromeEvent) {
+        mutableChrome.value = ReaderChromeReducer.reduce(
+            mutableChrome.value, event, mutableState.value is ReaderUiState.Reading
+        )
+    }
 
     suspend fun flushPosition(): Boolean = positionSaver.flush()
 
@@ -175,11 +185,9 @@ class ReaderViewModel(
         document?.close()
         super.onCleared()
     }
-
-    private fun windowStart(index: Int) = (index - WINDOW_SIZE / 2).coerceAtLeast(0)
-
-    private companion object {
-        const val WINDOW_SIZE = 128
-        const val WINDOW_MARGIN = 16
-    }
 }
+
+private fun windowStart(index: Int) = (index - WINDOW_SIZE / 2).coerceAtLeast(0)
+
+private const val WINDOW_SIZE = 128
+private const val WINDOW_MARGIN = 16

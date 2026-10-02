@@ -113,3 +113,9 @@ Android child-click/cancel/обычный tap GREEN, detekt/APK GREEN. След�
 
 T018: sibling overlay controls с FlowRow и собственными touch targets готов;
 скрытый overlay будет отсутствовать в композиции. Detekt/debug build GREEN. Следующая T019.
+
+T019: viewport постоянный, chrome принадлежит ReaderViewModel, controls — sibling.
+В скрытом VERTICAL видны глава и процент; title/count/navigation скрыты.
+79 debug unit tests, detekt/build GREEN; три Android-теста GREEN, включая все
+20 jitter toggles с неизменными bounds/anchor и 100 drag/cancel/diagonal/boundary
+жестов без открытия панелей. Следующая T020 — единый overlay NavHost.
