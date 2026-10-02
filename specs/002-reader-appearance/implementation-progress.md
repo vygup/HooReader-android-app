@@ -188,3 +188,12 @@ metrics/fallback до packing, пустая глава имеет fallback ст�
 битый bitmap тест проходит без повторных text scans, offsets сохраняют исходную parser
 fallback подпись (она не пустая). 88 unit tests, detekt/build/test APK и два
 настоящих EPUB/FB2 Android page-layout tests GREEN. Следующая T028.
+
+T028: PageIndexStore publishes prefix.json атомарным synced ATOMIC_MOVE после завершённых
+chapter page/offset records; валидирует source count, layout, counts/sequence/EOF и hashes
+завершённых глав при resume. PagePrefix отличает frontier от EOF, даёт точный binary mapping
+global number→chapter и anchor→page. Cancellation сохраняет предыдущий prefix, удаляет
+part; corruption rebuild, invalidation/eviction не затрагивают original/Room position.
+MRU timestamp обновляется при reuse; два последних использованных layouts остаются.
+3 store + 6 page-index targeted tests GREEN; полный check/build/test APK: 91 debug
+и 91 release unit tests, lint/detekt GREEN. Следующая T029 — production renderer.

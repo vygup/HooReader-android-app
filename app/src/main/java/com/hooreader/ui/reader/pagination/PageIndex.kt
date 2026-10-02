@@ -32,7 +32,10 @@ class PageIndex(private val files: BookFileStorage, private val bookId: String, 
         return lock.withLock {
             withContext(Dispatchers.IO) {
                 val existing = loadChapter(chapter, prefixCount)
-                if (existing != null) return@withContext existing
+                if (existing != null) {
+                    root.setLastModified(System.currentTimeMillis())
+                    return@withContext existing
+                }
                 check(root.mkdirs() || root.isDirectory)
                 pruneLayouts()
                 val staging = owned(root, "$chapter.${UUID.randomUUID()}.part")
