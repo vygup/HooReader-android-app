@@ -98,8 +98,11 @@ class ReaderScreenTest {
                 moveTo(center + Offset(slop() / 4, slop() / 4))
                 up()
             }
-            if (index % 2 == 0) compose.onNodeWithTag("reader_controls").assertIsDisplayed()
-            else compose.onNodeWithTag("reader_controls").assertDoesNotExist()
+            if (index % 2 == 0) {
+                compose.onNodeWithTag("reader_controls").assertIsDisplayed()
+            } else {
+                compose.onNodeWithTag("reader_controls").assertDoesNotExist()
+            }
             assertEquals(bounds, viewport.fetchSemanticsNode().boundsInRoot)
             assertEquals(anchor, reading(reader).position.logicalAnchor())
         }

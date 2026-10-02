@@ -103,3 +103,6 @@ T014: пять unit-контрактов chrome введены; компиляц
 T015: четыре Android-сценария с настоящим touch input и ReaderDestination введены;
 APK компилируется. RED: отсутствует reader_viewport/скрытый chrome. Проверки 20 toggles,
 100 жестов и menu Back будут повторены после T019–T020. Следующая T016.
+
+T016: чистый reducer chrome реализован; все пять T014 GREEN, detekt прошёл.
+Состояние не содержит anchor/layout; EXIT_CONFIRMATION пока неактивен. Следующая T017.
