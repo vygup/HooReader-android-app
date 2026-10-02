@@ -81,6 +81,7 @@ fun ReaderScreen(
                 ) {
                     when (val current = state) {
                         ReaderUiState.Opening -> CircularProgressIndicator(Modifier.align(Alignment.Center))
+                        is ReaderUiState.PreparingPages -> PreparingPagesMessage(Modifier.align(Alignment.Center))
                         ReaderUiState.RecoverableError -> Column(Modifier.align(Alignment.Center)) {
                             Text(stringResource(R.string.reader_open_error))
                             Button(onClick = viewModel::open) { Text(stringResource(R.string.retry)) }
@@ -98,9 +99,7 @@ fun ReaderScreen(
                     onChapter = viewModel::selectChapter,
                 )
             }
-            if (saveFailed) {
-                PositionSaveError(viewModel::saveNow, Modifier.align(Alignment.Center))
-            }
+            if (saveFailed) PositionSaveError(viewModel::saveNow, Modifier.align(Alignment.Center))
         }
     }
     if (chrome.overlay == ReaderOverlay.CONTENTS && reading != null) {
@@ -110,6 +109,11 @@ fun ReaderScreen(
             onDismiss = { viewModel.onChromeEvent(ReaderChromeEvent.DISMISS_OVERLAY) },
         )
     }
+}
+
+@Composable
+private fun PreparingPagesMessage(modifier: Modifier) {
+    Text(stringResource(R.string.reader_preparing_pages), modifier.testTag("reader_preparing_pages"))
 }
 
 @Composable

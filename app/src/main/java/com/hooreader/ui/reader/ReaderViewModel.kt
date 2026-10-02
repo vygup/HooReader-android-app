@@ -5,13 +5,17 @@ import androidx.lifecycle.viewModelScope
 import com.hooreader.data.import.BookParser
 import com.hooreader.data.import.ChapterBlockLoader
 import com.hooreader.data.import.ParsedBook
+import com.hooreader.data.local.PageIndexStore
 import com.hooreader.data.repository.BookRepository
 import com.hooreader.domain.model.BlockKind
 import com.hooreader.domain.model.Book
 import com.hooreader.domain.model.BookState
 import com.hooreader.domain.model.Chapter
 import com.hooreader.domain.model.ContentBlock
+import com.hooreader.domain.model.ReaderPreferences
+import com.hooreader.domain.model.ReadingMode
 import com.hooreader.domain.model.ReadingPosition
+import com.hooreader.domain.model.logicalAnchor
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.ensureActive
@@ -25,18 +29,27 @@ import java.io.InputStream
 sealed interface ReaderUiState {
     data object Opening : ReaderUiState
     data object RecoverableError : ReaderUiState
+    data class PreparingPages(val reading: Reading, val preparationFailed: Boolean = false) : ReaderUiState
     data class Reading(
         val book: Book,
         val chapters: List<Chapter>,
         val blocks: List<ContentBlock>,
         val position: ReadingPosition,
-    ) : ReaderUiState
+        val effectiveMode: ReadingMode = ReadingMode.VERTICAL,
+        val fontScale: Float = 1f,
+        val layoutGeneration: Long = 0,
+        val pages: ReaderPageState? = null,
+    ) : ReaderUiState {
+        val logicalPosition get() = position.logicalAnchor()
+    }
 }
 
 class ReaderViewModel(
     private val bookId: String,
     private val repository: BookRepository,
     private val parsers: List<BookParser>,
+    pages: PageIndexStore? = null,
+    initialPreferences: ReaderPreferences = ReaderPreferences(),
 ) : ViewModel() {
     private val mutableState = MutableStateFlow<ReaderUiState>(ReaderUiState.Opening)
     val state: StateFlow<ReaderUiState> = mutableState.asStateFlow()
@@ -48,6 +61,7 @@ class ReaderViewModel(
     private var latestPosition: ReadingPosition? = null
     private val positionSaver = ReadingPositionSaver(repository::savePosition)
     val saveFailed = positionSaver.saveFailed
+    val pagination = ReaderPaginationController(viewModelScope, mutableState, positionSaver, pages, initialPreferences)
 
     init {
         open()
@@ -100,6 +114,7 @@ class ReaderViewModel(
     @Suppress("ReturnCount") // Ignore stale callbacks from the previous window or chapter.
     fun onVisibleBlock(chapterIndex: Int, blockIndex: Int, characterOffset: Int = 0) {
         val current = mutableState.value as? ReaderUiState.Reading ?: return
+        if (current.effectiveMode != ReadingMode.VERTICAL) return
         if (current.position.chapterIndex != chapterIndex) return
         val block = current.blocks.firstOrNull { it.blockIndex == blockIndex } ?: return
         val position = position(current.chapters, block, characterOffset)
@@ -119,7 +134,10 @@ class ReaderViewModel(
 
     suspend fun flushPosition(): Boolean = positionSaver.flush()
 
-    fun saveNow() = positionSaver.flushAsync()
+    fun saveNow() {
+        positionSaver.flushAsync()
+        pagination.retry()
+    }
 
     private suspend fun showChapter(book: Book, parsed: ParsedBook, saved: ReadingPosition) {
         val chapter = ReaderPositionResolver.chapter(saved, parsed.chapters)

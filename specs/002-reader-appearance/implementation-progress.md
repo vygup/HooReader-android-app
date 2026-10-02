@@ -214,3 +214,15 @@ restore suppression готов. Absolute zero-based indices не меняютс�
 не открывает chrome после drag/cancel/boundary. Android реальный fast fling в обоих
 направлениях, cancel, frontier→EOF и обе границы GREEN API 37; detekt/build/APK GREEN.
 Следующая T031 — geometry generations и pending position revisions.
+
+T031: ReaderViewModel владеет ReaderPaginationController и Reading/PreparingPages
+pipeline с effective mode/scale, logicalPosition и generation. USER_PREFERENCE требует
+flush, failed request держит прежний выбор и retry; SYSTEM_CONFIGURATION отменяет
+старое вычисление и сразу использует anchor из памяти, не ждёт IO. Только актуальные
+generation/LayoutKey публикуются; containing-page restore не переписывает anchor,
+explicit settled navigation сохраняет page start. PositionSaver имеет pending revisions,
+не отменяет активную запись новым debounce, flush догоняет latest revision; старый успех
+не скрывает новую pending/error. Native tests rapid geometry/inner anchor/stale callbacks/
+failed flush/system geometry/navigation/retry и deferred-write races GREEN. 96 debug
++96 release unit tests, check/build/lint/detekt/test APK GREEN. Подключение source и UI
+environment предусмотрено T033; legacy opening пока сохраняется. Следующая T032.
