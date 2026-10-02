@@ -45,4 +45,17 @@ Android-тесты восстановили весь текст fixtures из pa
 В debug probe нижняя полоса номера измеряется отдельно; она входит в LayoutKey и не закрывает
 содержимое. Замер ready frame относится к первому draw и следующему frame callback,
 а не к завершению paginator callback. Сам прототип не является production reader.
-Следующая задача — T011 (нагрузочный измерительный harness и профиль стенда).
+T011 завершена: opt-in `PaginationProbeTest`, wrapper и Python driver задают 36 сценариев
+(EPUB/FB2, начало/поздняя глава, cold/warm, сброс source spool, новый масштаб/ориентация,
+реальный системный шрифт 200%). По пять повторов; исходные значения, min/median/max,
+source passes, sampled PSS/heap/native, EOF/frontier и отмена начатого старого LayoutKey.
+Настройка системного шрифта восстанавливается в finally; очищаются только производные
+данные собственных UUID теста. Нагрузочные файлы не добавляются в assets/Git.
+
+Smoke harness на Pixel_10 API 37: пять FB2 cold_source запусков (20 643 379 bytes),
+max 2883,8 ms; отмена старого layout 3,3 ms, obsolete results и `.part` не опубликованы.
+[Все значения](evidence/harness-smoke.json); [профиль](evidence/performance-profile.json).
+`check`/APK build прошли; smoke не заменяет полную серию T012. Профиль создан до запуска,
+содержит реальные APK SHA-256 и базовый commit, код T011 в тот момент был в рабочем дереве.
+Физического устройства нет: NOT_VERIFIED_DEVICE, SC-004 не подтверждён.
+Следующая задача — T012 (полная диагностическая серия и отчёт раннего среза).

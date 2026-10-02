@@ -42,3 +42,7 @@ out/
 *.class
 *.jar
 !gradle/wrapper/gradle-wrapper.jar
+
+# Python tooling caches
+__pycache__/
+*.pyc

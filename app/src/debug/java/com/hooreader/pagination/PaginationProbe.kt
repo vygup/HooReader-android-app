@@ -2,6 +2,7 @@ package com.hooreader.pagination
 
 import android.graphics.BitmapFactory
 import android.os.Build
+import android.os.SystemClock
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.fillMaxSize
@@ -49,6 +50,7 @@ import com.hooreader.ui.reader.pagination.PageIndex
 import com.hooreader.ui.reader.pagination.PageSlice
 import com.hooreader.ui.reader.pagination.TextPaginator
 import com.hooreader.ui.reader.readerTypography
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -59,6 +61,8 @@ fun PaginationProbe(
     files: BookFileStorage,
     anchor: LogicalAnchor,
     fontScale: Float = 1f,
+    onStarted: (LayoutKey) -> Unit = {},
+    onCancelled: (LayoutKey) -> Unit = {},
     onReady: (ProbePageResult) -> Unit,
 ) {
     val density = LocalDensity.current
@@ -78,21 +82,16 @@ fun PaginationProbe(
         )
         var prepared by remember(session, key, anchor) { mutableStateOf<ProbeDrawPage?>(null) }
         var drawn by remember(session, key, anchor) { mutableStateOf(false) }
-        val started = remember(session, key, anchor) { System.nanoTime() }
+        val started = remember(session, key, anchor) { SystemClock.elapsedRealtimeNanos() }
         val paginator = remember(key, measurer) { TextPaginator(measurer, typography, density, direction, fallback) }
         LaunchedEffect(session, key, anchor) {
-            val index = PageIndex(files, session.book.id, key)
-            var prefix = 0
-            var target: ChapterPageInfo? = null
-            for (chapter in 0..anchor.chapterIndex) {
-                val info = index.ensureChapter(chapter, prefix) { publish ->
-                    paginator.paginateChapter(session, chapter, key, prefix + 1, publish)
-                }
-                prefix += info.pageCount
-                target = info
+            onStarted(key)
+            try {
+                prepared = calculateProbePage(session, files, anchor, paginator, key)
+            } catch (error: CancellationException) {
+                onCancelled(key)
+                throw error
             }
-            val page = index.pageContaining(requireNotNull(target), anchor)
-            prepared = prepareDrawPage(session, page, paginator, key)
         }
         val page = prepared
         if (page == null) {
@@ -107,16 +106,40 @@ fun PaginationProbe(
                             key,
                             page.slice.globalPageNumber,
                             page.slice,
-                            (System.nanoTime() - started) / NANOS_PER_MILLISECOND,
+                            (SystemClock.elapsedRealtimeNanos() - started) / NANOS_PER_MILLISECOND,
                             page.fragments.size,
                             LAYOUT_CACHE_SIZE,
-                            session.sourcePassCount
+                            session.sourcePassCount,
+                            page.exactNumberAtNanos,
+                            SystemClock.elapsedRealtimeNanos(),
                         )
                     )
                 }
             }
         }
     }
+}
+
+private suspend fun calculateProbePage(
+    session: ReaderContentSession,
+    files: BookFileStorage,
+    anchor: LogicalAnchor,
+    paginator: TextPaginator,
+    key: LayoutKey,
+): ProbeDrawPage {
+    val index = PageIndex(files, session.book.id, key)
+    var prefix = 0
+    var target: ChapterPageInfo? = null
+    for (chapter in 0..anchor.chapterIndex) {
+        val info = index.ensureChapter(chapter, prefix) { publish ->
+            paginator.paginateChapter(session, chapter, key, prefix + 1, publish)
+        }
+        prefix += info.pageCount
+        target = info
+    }
+    val page = index.pageContaining(requireNotNull(target), anchor)
+    val exactNumberAt = SystemClock.elapsedRealtimeNanos()
+    return prepareDrawPage(session, page, paginator, key).copy(exactNumberAtNanos = exactNumberAt)
 }
 
 @Composable
@@ -234,11 +257,17 @@ data class ProbePageResult(
     val residentFragments: Int,
     val layoutCacheCapacity: Int,
     val sourcePasses: Int,
+    val exactNumberAtNanos: Long,
+    val readyFrameAtNanos: Long,
 ) {
     val layoutHash get() = key.hash
 }
 
-private data class ProbeDrawPage(val slice: PageSlice, val fragments: List<ProbeDrawFragment>)
+private data class ProbeDrawPage(
+    val slice: PageSlice,
+    val fragments: List<ProbeDrawFragment>,
+    val exactNumberAtNanos: Long = 0,
+)
 private data class ProbeDrawFragment(
     val fragment: PageFragment,
     val layout: TextLayoutResult? = null,
