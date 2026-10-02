@@ -110,3 +110,6 @@ T016: чистый reducer chrome реализован; все пять T014 GRE
 T017: gesture observer реализован без consume и без controlsVisible в pointerInput key;
 системный slop/longPressTimeout, достигнутый drag и multi-pointer/consumed suppression.
 Android child-click/cancel/обычный tap GREEN, detekt/APK GREEN. Следующая T018.
+
+T018: sibling overlay controls с FlowRow и собственными touch targets готов;
+скрытый overlay будет отсутствовать в композиции. Detekt/debug build GREEN. Следующая T019.
