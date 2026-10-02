@@ -80,7 +80,7 @@ instrumentation: `app/src/androidTest/java/com/hooreader/`; debug probe:
 
 ### Проверки требований истории
 
-- [ ] T014 [P] [US1] Добавить app/src/test/java/com/hooreader/ui/reader/ReaderChromeStateTest.kt по BookTap/NavigationDragStarted/OpenContents/OpenReaderSettings/DismissOverlay из contracts/reader-ui.md: исходное скрытие, однократный toggle, подавление tap до завершения/cancel жеста и взаимоисключение меню. Зависит от T013.
+- [X] T014 [P] [US1] Добавить app/src/test/java/com/hooreader/ui/reader/ReaderChromeStateTest.kt по BookTap/NavigationDragStarted/OpenContents/OpenReaderSettings/DismissOverlay из contracts/reader-ui.md: исходное скрытие, однократный toggle, подавление tap до завершения/cancel жеста и взаимоисключение меню. Зависит от T013.
 - [ ] T015 [P] [US1] Расширить app/src/androidTest/java/com/hooreader/reader/ReaderScreenTest.kt реальными касаниями/scroll/cancel/diagonal/boundary жестами и проверкой viewport/anchor по SC-001: jitter строго ниже touch slop даёт один toggle, достижение порога и возврат к down не дают toggle; cancel/второй палец/consumed событие не создают BookTap. Проверить единственный overlay при быстрых запросах содержания/настроек и Back; обновить ожидание доступа к кнопкам после первого tap, не заменять input прямым вызовом callbacks. Зависит от T013.
 
 ### Реализация и подтверждение истории
