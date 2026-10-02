@@ -75,11 +75,44 @@ class TextPaginatorTest {
             assertTrue(pages.single().endAnchorExclusive.chapterIndex < session.chapters.last().index)
         }
 
-    private fun verify(format: BookFormat) = withSession(format, ::verifyChapters)
+    private fun verify(format: BookFormat) = withSession(format, check = ::verifyChapters)
 
-    private fun withSession(format: BookFormat, check: suspend (ReaderContentSession) -> Unit) = runBlocking {
+    @Test
+    fun `unreadable media is fixed fallback and hundreds of blocks use bounded windows`() {
+        val xml = buildString {
+            append("<FictionBook xmlns:l=\"http://www.w3.org/1999/xlink\"><body><section>")
+            append("<image l:href=\"#missing\"/>")
+            repeat(300) { append("<p>Кириллица 😀 𝄞 <strong>Жирный</strong> é</p>") }
+            append("</section></body><binary id=\"missing\" content-type=\"image/png\">eA==</binary></FictionBook>")
+        }
+        withSession(BookFormat.FB2, sourceXml = xml) { session ->
+            val passes = session.sourcePassCount
+            val sourceImage = session.readRecords(0, 1).single()
+            assertEquals(BlockKind.IMAGE, sourceImage.kind)
+            val pages = mutableListOf<PageSlice>()
+            paginator.paginateChapter(session, 0, key, 1) {
+                pages += it
+                assertTrue(paginator.cachedLayoutCount <= 8)
+                assertTrue(paginator.cachedSourceCharacters <= 512_000)
+            }
+            val image = pages.flatMap { it.fragments }.first { it.blockIndex == 0 }
+            assertEquals(BlockKind.FALLBACK, image.kind)
+            assertEquals(0, image.startCharacter)
+            assertEquals(sourceImage.text.length, image.endCharacterExclusive)
+            assertEquals(passes, session.sourcePassCount)
+            val text = pages.flatMap { it.fragments }.filter { it.blockIndex > 0 }
+            assertEquals((1..300).toSet(), text.map { it.blockIndex }.toSet())
+            assertTrue(text.all { it.endCharacterExclusive > it.startCharacter })
+        }
+    }
+
+    private fun withSession(
+        format: BookFormat,
+        sourceXml: String? = null,
+        check: suspend (ReaderContentSession) -> Unit,
+    ) = runBlocking {
         val id = UUID.randomUUID().toString()
-        val input = requireNotNull(
+        val input = sourceXml?.byteInputStream() ?: requireNotNull(
             javaClass.getResourceAsStream("/books/corpus/reader-appearance.${format.name.lowercase()}")
         )
         val source = files.copyBook(id, format, input)

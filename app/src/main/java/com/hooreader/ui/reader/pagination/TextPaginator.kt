@@ -24,15 +24,24 @@ class TextPaginator(
     private val direction: LayoutDirection,
     private val fallback: String,
 ) {
+    private val layouts = MeasuredBlockCache()
+    val cachedLayoutCount get() = layouts.size
+    val cachedSourceCharacters get() = layouts.characters
+
     fun measure(block: ContentBlock, key: LayoutKey): TextLayoutResult {
+        val cacheKey = BlockMeasurementKey(key.hash, block)
+        layouts[cacheKey]?.let { return it }
         val indent = if (block.kind == BlockKind.LIST) key.typography.listIndentPx else 0f
-        return measurer.measure(
+        val result = measurer.measure(
             text = BlockTextFactory.create(block, fallback),
             style = typography.style(block.kind),
             constraints = Constraints(maxWidth = (key.viewport.widthPx - indent).toInt().coerceAtLeast(1)),
             density = density,
             layoutDirection = direction,
+            skipCache = true, // A single explicit LRU bounds both count and source text size.
         )
+        layouts.put(cacheKey, result)
+        return result
     }
 
     suspend fun paginateChapter(
@@ -76,6 +85,7 @@ class TextPaginator(
         block: ContentBlock,
         key: LayoutKey,
     ) {
+        currentCoroutineContext().ensureActive()
         if (block.kind != BlockKind.IMAGE) {
             builder.text(block, measure(block, key))
             return
@@ -91,6 +101,36 @@ class TextPaginator(
 
     private companion object {
         const val CONTENT_WINDOW_SIZE = 128
+    }
+}
+
+private data class BlockMeasurementKey(val layoutHash: String, val block: ContentBlock)
+
+private class MeasuredBlockCache {
+    private val values = LinkedHashMap<BlockMeasurementKey, TextLayoutResult>(MAX_LAYOUTS, LOAD_FACTOR, true)
+    var characters = 0
+        private set
+    val size get() = values.size
+
+    operator fun get(key: BlockMeasurementKey) = values[key]
+
+    fun put(key: BlockMeasurementKey, layout: TextLayoutResult) {
+        val length = layout.layoutInput.text.length
+        if (length > MAX_CHARACTERS) return
+        values.remove(key)?.let { characters -= it.layoutInput.text.length }
+        values[key] = layout
+        characters += length
+        while (values.size > MAX_LAYOUTS || characters > MAX_CHARACTERS) {
+            val oldest = values.entries.iterator()
+            characters -= oldest.next().value.layoutInput.text.length
+            oldest.remove()
+        }
+    }
+
+    private companion object {
+        const val MAX_LAYOUTS = 8
+        const val MAX_CHARACTERS = 512_000
+        const val LOAD_FACTOR = 0.75f
     }
 }
 

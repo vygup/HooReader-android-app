@@ -178,3 +178,13 @@ LayoutKey явно включает четыре системных safeDrawing 
 colors/chrome не добавлены. PageIndex writer/read сохраняют exact prefix equation.
 87 unit tests, detekt/build/APK и два EPUB/FB2 Android measured-page tests GREEN.
 Следующая T027 — bounded content/measurement и сложные fallback/batch cases.
+
+T027: exact source-line packing сохраняется, добавлен единственный source layout LRU:
+8 layouts и 512000 измеренных UTF-16 chars; внутренний TextMeasurer cache для source
+отключён. Большой одиночный layout сверх cache budget не кешируется; synchronous whole
+block measurement остаётся явно отмеченным риском T035. Source batches ≤128, отмена
+проверяется до каждого блока и между страницами. Изображения цельные/пропорциональные,
+metrics/fallback до packing, пустая глава имеет fallback страницу. Новый 300-block +
+битый bitmap тест проходит без повторных text scans, offsets сохраняют исходную parser
+fallback подпись (она не пустая). 88 unit tests, detekt/build/test APK и два
+настоящих EPUB/FB2 Android page-layout tests GREEN. Следующая T028.
