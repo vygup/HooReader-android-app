@@ -1,0 +1,8 @@
+
+com.hooreader.acceptance.PaginationProbeTest:.
+
+Time: 41.364
+
+OK (1 test)
+
+

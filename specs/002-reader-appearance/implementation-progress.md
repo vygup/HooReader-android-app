@@ -275,3 +275,13 @@ PAGINATED не удерживает отдельное окно вертикал
 check/build/lint/detekt и оба APK GREEN. [Checks](evidence/T035-check.txt).
 Исходная полная series ещё идёт; установленный baseline APK не заменялся сборкой оптимизации.
 После неё выполнить новую полную series оптимизированного APK, затем закрыть T035 и T036.
+
+T035 завершена: production baseline и повтор после оптимизации — каждый 36×5=180
+измерений; все raw значения, min/median/max, cache flags, SHA/profileId, passes/memory
+сохранены раздельно. [Production отчёт](performance-results.md). Baseline max 7818.371 ms;
+повтор max 55169.996 ms с сохранёнными FB2 выбросами. Причина последних задержек
+не установлена, улучшение общей latency не заявляется. Prefix/native draw/anchors
+корректны; cancellation 4.994 ms без obsolete/.part. 98 debug +98 release unit tests,
+check/build/lint/detekt GREEN. SC-004 ≤1000 ms НЕ ПРОЙДЕН, физический стенд отсутствует
+(NOT_VERIFIED_DEVICE); это release blocker, разрешённый отрицательный итог T035,
+а не успешная аппаратная приёмка. Следующая T036, затем остановка по указанию пользователя.
