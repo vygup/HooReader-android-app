@@ -1,5 +1,15 @@
 # Ход реализации второго релиза
 
+## Текущая точка продолжения — после T036
+
+2026-10-03: фазы 1–4 завершены, T001–T036 выполнены. Остановка по указанию пользователя;
+T037–T065 оставить следующему запуску. Начать с T037, добавить ReadingIndicatorResolverTest.kt
+по требованиям US3, затем продолжить T038–T042. Ветка release/v2.0.0, зависимости/Room v1 прежние.
+Последний полный check/build/lint/detekt: GREEN, 98 debug +98 release unit tests;
+Android API 37: 37 passed, 6 opt-in skipped, 0 failures. [Отчёт](quickstart-results.md).
+SC-004 ≤1000 ms остаётся release blocker; физический device и API 26 отсутствуют.
+Ни аппаратная приёмка, ни user study, ни RC не объявлены завершёнными.
+
 ## Выполнено до T009
 
 Фаза 1 завершена: воспроизводимые fixtures и исходные 56 debug/56 release unit tests,
@@ -285,3 +295,13 @@ T035 завершена: production baseline и повтор после опти
 check/build/lint/detekt GREEN. SC-004 ≤1000 ms НЕ ПРОЙДЕН, физический стенд отсутствует
 (NOT_VERIFIED_DEVICE); это release blocker, разрешённый отрицательный итог T035,
 а не успешная аппаратная приёмка. Следующая T036, затем остановка по указанию пользователя.
+
+T036 завершена: полный phase-4 Android suite GREEN (43 unique tests, 37 passed,
+6 opt-in skipped), 98 debug +98 release unit tests и check/build/lint/detekt.
+EPUB/FB2 PagedReaderTest дополнительно проверяет 20 taps без изменений viewport,
+anchor, generation или страниц; закрытие кнопкой выхода и новое открытие создают
+другой ReaderViewModel и восстанавливают persisted mode/anchor/exact number.
+Native corpus tests подтверждают отсутствие пропусков/дублирования в обоих форматах.
+[Checks](evidence/T036-validation.txt), [Android XML](evidence/T036-full-android.xml).
+Функциональный checkpoint US2 подтверждён, SC-004 остаётся открытым по T035.
+Незавершённых изменений/задач T001–T036 нет; остановка, следующая T037.

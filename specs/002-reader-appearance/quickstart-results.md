@@ -62,10 +62,46 @@ rapid system font 150→200%, последующая навигация, pending
 [Полный check/build/lint T034](evidence/T034-check.txt): 98 debug +98 release unit tests,
 успешно. Функциональный SC-003 подтверждён в этом окружении; acceptance ниже не подменён.
 
-## Открытые критерии
+## US2 — checkpoint фазы 4, T035–T036
 
-US2 checkpoint и production performance ожидают T035/T036; SC-001/002 полный двухрежимный
-приёмочный прогон, указатели US3, SC-005/006, SC-008 matrix и SC-007 user study — следующих задач.
-SC-004 открыт: физического устройства нет; ранняя серия превышает ≤1 s, включая сохранённые
-выбросы [T013](pagination-probe-optimized-results.md). API 26 отсутствует.
-Релизная готовность не объявляется. Reviewer-owned checklists не изменены.
+Функциональная фаза 4 завершена на Pixel_10 AVD/API 37. Оба формата и оба режима
+проверены production source/reader destination. [Полный финальный прогон](evidence/T036-full-android.xml):
+43 теста, 37 passed, 6 opt-in skipped, 0 failures/errors. В Gradle console строка
+«Finished 49 tests» включает повторную регистрацию skips; число уникальных testcase
+в сохранённом XML — 43. [Check/build/lint/detekt и APK](evidence/T036-validation.txt)
+прошли; unit XML подтверждает 98 debug +98 release, без failures/errors/skips.
+Opt-in pagination измерена отдельно в T035, skipped общего прогона это не заменяет.
+
+| Сценарий | Результат и проверка |
+|---|---|
+| EPUB/FB2 × VERTICAL/PAGINATED | Реальные настройки/свайпы/содержание, default mode и сохранённый выбор; chooser и PagedReaderTest |
+| Границы главы/книги | TOC, первая/последняя страница, движение через границу последней главы в обе стороны; synthetic frontier/EOF test и vertical соседнее окно с empty fallback |
+| Отсутствие пропусков/дублирования | Native TextPaginationLayoutTest собирает обратно весь исходный текст каждого блока из fragments, проверяет непрерывные anchors/global counts и UTF-16 surrogate boundaries для EPUB/FB2 |
+| Geometry и restore | Scale/rotation/mode сохраняют inner-paragraph anchor; реальные Room/reader reopen без original, native failed flush/system changes/latest retry |
+| Режим после закрытия книги | Выход экранной кнопкой и новое открытие создают другой ReaderViewModel (assertNotSame), восстанавливают PAGINATED, исходный anchor и точный номер; оба формата |
+| Панели в PAGINATED | 20 настоящих taps на каждом формате: visibility toggle, bounds viewport, LogicalAnchor, generation и ReaderPageState неизменны после каждого |
+
+Containing-page restore удерживает исходный inner anchor; только явное settled-page
+navigation сохраняет page start. PAGINATED не удерживает дополнительное vertical окно;
+возврат в VERTICAL загружает ≤128 блоков вокруг актуального anchor. Старый layout
+не публикуется после cancellation, `.part` очищены.
+
+[T035 production performance](performance-results.md): baseline 180 и optimized 180
+raw измерений с отдельными profileId. Новый reader/Room/source/prefix/native draw
+включены в таймер; точный номер не заменён оценкой. Максимум повторной серии
+55169.996 ms, причина больших FB2 задержек не установлена; все значения сохранены.
+**SC-004 ≤1000 ms НЕ ПРОЙДЕН и остаётся release blocker**. Физического устройства нет,
+аппаратная приёмка NOT_VERIFIED_DEVICE; functional checkpoint не объявляет релиз готовым.
+
+## Открытые критерии и продолжение
+
+По указанию пользователя работа остановлена после T036. T001–T036 отмечены выполненными;
+T037–T065 не начаты. Следующая — T037: ReadingIndicatorResolverTest.kt, затем T038 и US3.
+Блокированных задач в выполненном диапазоне нет; физический performance стенд и API 26
+недоступны и остаются незавершёнными доказательствами следующих этапов.
+
+SC-001/002 полный приёмочный двухрежимный gesture прогон, стилизация/визуальная матрица
+указателей US3, SC-005/006, SC-008, SC-007 с реальными участниками, OS process-death T059,
+обновление v1→v2 и RC остаются следующих задач. Существующие «Готово» и прямой выход
+соответствуют текущей промежуточной фазе: их предусмотренные изменения — US4/US5.
+Reviewer-owned checklists не изменены.

@@ -40,6 +40,7 @@ import com.hooreader.ui.theme.HooReaderTheme
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNotSame
 import org.junit.Assert.assertTrue
 import org.junit.Rule
 import org.junit.Test
@@ -49,6 +50,7 @@ class PagedReaderTest {
     @get:Rule
     val compose = createAndroidComposeRule<ReaderTestActivity>()
     private lateinit var reader: ReaderViewModel
+    private lateinit var controller: NavHostController
 
     @Test
     fun fb2OneSwipeOnePageCancelBoundariesContentsAndReopen() = pages(BookFormat.FB2)
@@ -65,6 +67,7 @@ class PagedReaderTest {
     private fun pages(format: BookFormat) = withBook(format) { dependencies, book ->
         chooseMode("reading_mode_paginated")
         waitForPages()
+        assertStablePagesAcrossTaps()
         val number = pageNumber()
         compose.onNodeWithTag("reader_pager").performTouchInput { swipeLeft(durationMillis = 150) }
         waitForPage(number + 1)
@@ -97,6 +100,46 @@ class PagedReaderTest {
         waitForPage(finalPage)
         compose.activityRule.scenario.recreate()
         waitForPage(finalPage)
+        reopenReader(dependencies, book, finalPage)
+    }
+
+    private fun assertStablePagesAcrossTaps() {
+        val before = reader.state.value as ReaderUiState.Reading
+        val viewport = compose.onNodeWithTag("reader_viewport")
+        val bounds = viewport.fetchSemanticsNode().boundsInRoot
+        repeat(20) { index ->
+            viewport.performTouchInput { click() }
+            if (index % 2 == 0) {
+                compose.onNodeWithTag("reader_controls").assertIsDisplayed()
+            } else {
+                compose.onNodeWithTag("reader_controls").assertDoesNotExist()
+            }
+            val after = reader.state.value as ReaderUiState.Reading
+            assertEquals(before.logicalPosition, after.logicalPosition)
+            assertEquals(before.layoutGeneration, after.layoutGeneration)
+            assertEquals(before.pages, after.pages)
+            assertEquals(bounds, viewport.fetchSemanticsNode().boundsInRoot)
+        }
+    }
+
+    private suspend fun reopenReader(dependencies: ReaderDependencies, book: Book, number: Int) {
+        val previous = reader
+        val anchor = (previous.state.value as ReaderUiState.Reading).logicalPosition
+        assertEquals(ReadingMode.PAGINATED, dependencies.preferences.preferences.first().readingMode)
+        compose.onNodeWithTag("reader_viewport").performTouchInput { click() }
+        compose.onNodeWithTag("reader_exit").performClick()
+        compose.waitUntil(TIMEOUT) { !exists("reader_screen") }
+        compose.onNodeWithText("Открыть fixture").performClick()
+        waitForPage(number)
+        compose.runOnIdle {
+            reader = ViewModelProvider(controller.getBackStackEntry(HooReaderRoutes.READER))
+                .get(book.id, ReaderViewModel::class.java)
+        }
+        assertNotSame(previous, reader)
+        val restored = reader.state.value as ReaderUiState.Reading
+        assertEquals(ReadingMode.PAGINATED, restored.effectiveMode)
+        assertEquals(anchor, restored.logicalPosition)
+        compose.onNodeWithTag("reader_controls").assertDoesNotExist()
     }
 
     private fun geometry(format: BookFormat) = withBook(format) { dependencies, book ->
@@ -183,7 +226,6 @@ class PagedReaderTest {
         val added = dependencies.importer.import("paged.${format.name.lowercase()}") {
             assets.open("books/corpus/reader-appearance.${format.name.lowercase()}")
         } as BookImportResult.Added
-        lateinit var controller: NavHostController
         try {
             prepareAnchor(dependencies, added.book)
             compose.runOnUiThread {
