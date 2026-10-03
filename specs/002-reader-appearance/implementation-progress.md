@@ -305,3 +305,8 @@ Native corpus tests подтверждают отсутствие пропуск
 [Checks](evidence/T036-validation.txt), [Android XML](evidence/T036-full-android.xml).
 Функциональный checkpoint US2 подтверждён, SC-004 остаётся открытым по T035.
 Незавершённых изменений/задач T001–T036 нет; остановка, следующая T037.
+
+Финальное закрытие фазы 4: после коммита T036 повторный check/build/APK успешно
+(актуальные результаты Gradle, без изменений кода). [Phase checkpoint](evidence/phase4-checkpoint.json),
+[final check](evidence/phase4-final-check.txt). После выполнения skill проверен
+`.specify/extensions.yml`: отсутствует, after_implement hooks нет. T037 не начата.
