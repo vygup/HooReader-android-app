@@ -16,6 +16,7 @@ import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Slider
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
+import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
@@ -43,7 +44,11 @@ fun ReaderSettingsSheet(
     saveFailed: Boolean = false,
     onRetry: () -> Unit = {},
 ) {
-    ModalBottomSheet(onDismissRequest = onDismiss, modifier = Modifier.testTag("reader_settings_sheet")) {
+    ModalBottomSheet(
+        onDismissRequest = onDismiss,
+        sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true),
+        modifier = Modifier.testTag("reader_settings_sheet"),
+    ) {
         Column(
             modifier = Modifier.fillMaxWidth().testTag("reader_settings_content")
                 .verticalScroll(rememberScrollState()).padding(24.dp),
