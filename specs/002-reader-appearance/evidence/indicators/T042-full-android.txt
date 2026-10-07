@@ -1,0 +1,819 @@
+INSTRUMENTATION_STATUS: class=com.hooreader.acceptance.ImportCorpusTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=
+com.hooreader.acceptance.ImportCorpusTest:
+INSTRUMENTATION_STATUS: test=everyManifestFileIsImportedAndEveryValidChapterOpens
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.hooreader.acceptance.ImportCorpusTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=everyManifestFileIsImportedAndEveryValidChapterOpens
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.hooreader.acceptance.PaginationProbeTest
+INSTRUMENTATION_STATUS: current=2
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=
+com.hooreader.acceptance.PaginationProbeTest:
+INSTRUMENTATION_STATUS: test=cancelObsoleteLayout
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.hooreader.acceptance.PaginationProbeTest
+INSTRUMENTATION_STATUS: current=2
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stack=org.junit.AssumptionViolatedException: got: <false>, expected: is <true>
+	at org.junit.Assume.assumeThat(Assume.java:106)
+	at org.junit.Assume.assumeTrue(Assume.java:50)
+	at com.hooreader.acceptance.PaginationProbeTest$cancelObsoleteLayout$1.invokeSuspend(PaginationProbeTest.kt:121)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:94)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:70)
+	at kotlinx.coroutines.BuildersKt.runBlocking(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2369:1)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:48)
+	at kotlinx.coroutines.BuildersKt.runBlocking$default(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2370:1)
+	at com.hooreader.acceptance.PaginationProbeTest.cancelObsoleteLayout(PaginationProbeTest.kt:120)
+
+INSTRUMENTATION_STATUS: stream=
+com.hooreader.acceptance.PaginationProbeTest:
+INSTRUMENTATION_STATUS: test=cancelObsoleteLayout
+INSTRUMENTATION_STATUS_CODE: -4
+INSTRUMENTATION_STATUS: class=com.hooreader.acceptance.PaginationProbeTest
+INSTRUMENTATION_STATUS: current=3
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=measureFiveRuns
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.hooreader.acceptance.PaginationProbeTest
+INSTRUMENTATION_STATUS: current=3
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stack=org.junit.AssumptionViolatedException: got: <false>, expected: is <true>
+	at org.junit.Assume.assumeThat(Assume.java:106)
+	at org.junit.Assume.assumeTrue(Assume.java:50)
+	at com.hooreader.acceptance.PaginationProbeTest$measureFiveRuns$1.invokeSuspend(PaginationProbeTest.kt:76)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:94)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:70)
+	at kotlinx.coroutines.BuildersKt.runBlocking(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2369:1)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:48)
+	at kotlinx.coroutines.BuildersKt.runBlocking$default(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2370:1)
+	at com.hooreader.acceptance.PaginationProbeTest.measureFiveRuns(PaginationProbeTest.kt:75)
+
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=measureFiveRuns
+INSTRUMENTATION_STATUS_CODE: -4
+INSTRUMENTATION_STATUS: class=com.hooreader.acceptance.ReaderPerformanceTest
+INSTRUMENTATION_STATUS: current=4
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=
+com.hooreader.acceptance.ReaderPerformanceTest:
+INSTRUMENTATION_STATUS: test=measureOpeningAndScrolling
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.hooreader.acceptance.ReaderPerformanceTest
+INSTRUMENTATION_STATUS: current=4
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stack=org.junit.AssumptionViolatedException: got: <false>, expected: is <true>
+	at org.junit.Assume.assumeThat(Assume.java:106)
+	at org.junit.Assume.assumeTrue(Assume.java:50)
+	at com.hooreader.acceptance.ReaderPerformanceTest$measureOpeningAndScrolling$1.invokeSuspend(ReaderPerformanceTest.kt:52)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:94)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:70)
+	at kotlinx.coroutines.BuildersKt.runBlocking(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2369:1)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:48)
+	at kotlinx.coroutines.BuildersKt.runBlocking$default(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2370:1)
+	at com.hooreader.acceptance.ReaderPerformanceTest.measureOpeningAndScrolling(ReaderPerformanceTest.kt:51)
+
+INSTRUMENTATION_STATUS: stream=
+com.hooreader.acceptance.ReaderPerformanceTest:
+INSTRUMENTATION_STATUS: test=measureOpeningAndScrolling
+INSTRUMENTATION_STATUS_CODE: -4
+INSTRUMENTATION_STATUS: class=com.hooreader.library.ImportBookFlowTest
+INSTRUMENTATION_STATUS: current=5
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=
+com.hooreader.library.ImportBookFlowTest:
+INSTRUMENTATION_STATUS: test=libraryKeepsDuplicateProgressAndDeletionRequiresConfirmation
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.hooreader.library.ImportBookFlowTest
+INSTRUMENTATION_STATUS: current=5
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=libraryKeepsDuplicateProgressAndDeletionRequiresConfirmation
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.hooreader.library.ImportBookFlowTest
+INSTRUMENTATION_STATUS: current=6
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=rejectedFilesKeepLibraryUnchangedAndEncodedFb2StillOpens
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.hooreader.library.ImportBookFlowTest
+INSTRUMENTATION_STATUS: current=6
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=rejectedFilesKeepLibraryUnchangedAndEncodedFb2StillOpens
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.hooreader.library.ImportBookFlowTest
+INSTRUMENTATION_STATUS: current=7
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=filePickerImportsBookAndRecreationRestoresChapter
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.hooreader.library.ImportBookFlowTest
+INSTRUMENTATION_STATUS: current=7
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=filePickerImportsBookAndRecreationRestoresChapter
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.hooreader.library.ImportBookFlowTest
+INSTRUMENTATION_STATUS: current=8
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=emptyFileErrorCanBeDismissedAndAnotherBookImported
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.hooreader.library.ImportBookFlowTest
+INSTRUMENTATION_STATUS: current=8
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=emptyFileErrorCanBeDismissedAndAnotherBookImported
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.hooreader.library.LibraryScreenTest
+INSTRUMENTATION_STATUS: current=9
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=
+com.hooreader.library.LibraryScreenTest:
+INSTRUMENTATION_STATUS: test=readLabelStartsAt98Percent
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.hooreader.library.LibraryScreenTest
+INSTRUMENTATION_STATUS: current=9
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=readLabelStartsAt98Percent
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.hooreader.library.LibraryScreenTest
+INSTRUMENTATION_STATUS: current=10
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=unreadableCoverUsesPlaceholder
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.hooreader.library.LibraryScreenTest
+INSTRUMENTATION_STATUS: current=10
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=unreadableCoverUsesPlaceholder
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.hooreader.library.LibraryScreenTest
+INSTRUMENTATION_STATUS: current=11
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=cardShowsMetadataProgressPlaceholderAndOpensBook
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.hooreader.library.LibraryScreenTest
+INSTRUMENTATION_STATUS: current=11
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=cardShowsMetadataProgressPlaceholderAndOpensBook
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.hooreader.library.LibraryScreenTest
+INSTRUMENTATION_STATUS: current=12
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=lazyLibraryCanReachAndOpenHundredthBook
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.hooreader.library.LibraryScreenTest
+INSTRUMENTATION_STATUS: current=12
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=lazyLibraryCanReachAndOpenHundredthBook
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.hooreader.library.LibraryScreenTest
+INSTRUMENTATION_STATUS: current=13
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=emptyLibraryOffersImport
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.hooreader.library.LibraryScreenTest
+INSTRUMENTATION_STATUS: current=13
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=emptyLibraryOffersImport
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.hooreader.navigation.HooReaderNavHostTest
+INSTRUMENTATION_STATUS: current=14
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=
+com.hooreader.navigation.HooReaderNavHostTest:
+INSTRUMENTATION_STATUS: test=startupShowsLibrary
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.hooreader.navigation.HooReaderNavHostTest
+INSTRUMENTATION_STATUS: current=14
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=startupShowsLibrary
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.hooreader.navigation.HooReaderNavHostTest
+INSTRUMENTATION_STATUS: current=15
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=bookSelectionPassesIdAndReturnsToLibrary
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.hooreader.navigation.HooReaderNavHostTest
+INSTRUMENTATION_STATUS: current=15
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=bookSelectionPassesIdAndReturnsToLibrary
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.BookGestureHandlerTest
+INSTRUMENTATION_STATUS: current=16
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=
+com.hooreader.reader.BookGestureHandlerTest:
+INSTRUMENTATION_STATUS: test=consumedChildClickAndCancelNeverBecomeBookTap
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.BookGestureHandlerTest
+INSTRUMENTATION_STATUS: current=16
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=consumedChildClickAndCancelNeverBecomeBookTap
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.ContentBlockRendererTest
+INSTRUMENTATION_STATUS: current=17
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=
+com.hooreader.reader.ContentBlockRendererTest:
+INSTRUMENTATION_STATUS: test=rendererAppliesOverlappingBoldItalicSpansAndListMarker
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.ContentBlockRendererTest
+INSTRUMENTATION_STATUS: current=17
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=rendererAppliesOverlappingBoldItalicSpansAndListMarker
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.ContentBlockRendererTest
+INSTRUMENTATION_STATUS: current=18
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=corruptAndUnreadableImagesDoNotBlockFollowingParagraph
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.ContentBlockRendererTest
+INSTRUMENTATION_STATUS: current=18
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=corruptAndUnreadableImagesDoNotBlockFollowingParagraph
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.ContentBlockRendererTest
+INSTRUMENTATION_STATUS: current=19
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=embeddedRasterImageDecodesAndHasAccessibleDescription
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.ContentBlockRendererTest
+INSTRUMENTATION_STATUS: current=19
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=embeddedRasterImageDecodesAndHasAccessibleDescription
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.PagedReaderContentTest
+INSTRUMENTATION_STATUS: current=20
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=
+com.hooreader.reader.PagedReaderContentTest:
+INSTRUMENTATION_STATUS: test=fastFlingCancelFrontierAndEofUseStableAbsoluteIndices
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.PagedReaderContentTest
+INSTRUMENTATION_STATUS: current=20
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=fastFlingCancelFrontierAndEofUseStableAbsoluteIndices
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.PagedReaderTest
+INSTRUMENTATION_STATUS: current=21
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=
+com.hooreader.reader.PagedReaderTest:
+INSTRUMENTATION_STATUS: test=fb2OneSwipeOnePageCancelBoundariesContentsAndReopen
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.PagedReaderTest
+INSTRUMENTATION_STATUS: current=21
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=fb2OneSwipeOnePageCancelBoundariesContentsAndReopen
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.PagedReaderTest
+INSTRUMENTATION_STATUS: current=22
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=epubModeScaleAndRotationPreserveInnerParagraphAnchor
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.PagedReaderTest
+INSTRUMENTATION_STATUS: current=22
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=epubModeScaleAndRotationPreserveInnerParagraphAnchor
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.PagedReaderTest
+INSTRUMENTATION_STATUS: current=23
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=fb2ModeScaleAndRotationPreserveInnerParagraphAnchor
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.PagedReaderTest
+INSTRUMENTATION_STATUS: current=23
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=fb2ModeScaleAndRotationPreserveInnerParagraphAnchor
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.PagedReaderTest
+INSTRUMENTATION_STATUS: current=24
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=epubOneSwipeOnePageCancelBoundariesContentsAndReopen
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.PagedReaderTest
+INSTRUMENTATION_STATUS: current=24
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=epubOneSwipeOnePageCancelBoundariesContentsAndReopen
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.ProcessDeathAcceptanceTest
+INSTRUMENTATION_STATUS: current=25
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=
+com.hooreader.reader.ProcessDeathAcceptanceTest:
+INSTRUMENTATION_STATUS: test=verify
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.ProcessDeathAcceptanceTest
+INSTRUMENTATION_STATUS: current=25
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stack=org.junit.AssumptionViolatedException: got: <false>, expected: is <true>
+	at org.junit.Assume.assumeThat(Assume.java:106)
+	at org.junit.Assume.assumeTrue(Assume.java:50)
+	at com.hooreader.reader.ProcessDeathAcceptanceTest$verify$1.invokeSuspend(ProcessDeathAcceptanceTest.kt:71)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:94)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:70)
+	at kotlinx.coroutines.BuildersKt.runBlocking(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2369:1)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:48)
+	at kotlinx.coroutines.BuildersKt.runBlocking$default(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2370:1)
+	at com.hooreader.reader.ProcessDeathAcceptanceTest.verify(ProcessDeathAcceptanceTest.kt:70)
+
+INSTRUMENTATION_STATUS: stream=
+com.hooreader.reader.ProcessDeathAcceptanceTest:
+INSTRUMENTATION_STATUS: test=verify
+INSTRUMENTATION_STATUS_CODE: -4
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.ProcessDeathAcceptanceTest
+INSTRUMENTATION_STATUS: current=26
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=seed
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.ProcessDeathAcceptanceTest
+INSTRUMENTATION_STATUS: current=26
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stack=org.junit.AssumptionViolatedException: got: <false>, expected: is <true>
+	at org.junit.Assume.assumeThat(Assume.java:106)
+	at org.junit.Assume.assumeTrue(Assume.java:50)
+	at com.hooreader.reader.ProcessDeathAcceptanceTest$seed$1.invokeSuspend(ProcessDeathAcceptanceTest.kt:40)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:94)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:70)
+	at kotlinx.coroutines.BuildersKt.runBlocking(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2369:1)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:48)
+	at kotlinx.coroutines.BuildersKt.runBlocking$default(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2370:1)
+	at com.hooreader.reader.ProcessDeathAcceptanceTest.seed(ProcessDeathAcceptanceTest.kt:39)
+
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=seed
+INSTRUMENTATION_STATUS_CODE: -4
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.ReaderNavigationTest
+INSTRUMENTATION_STATUS: current=27
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=
+com.hooreader.reader.ReaderNavigationTest:
+INSTRUMENTATION_STATUS: test=fontScaleRotationAndRecreationKeepLogicalBlock
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.ReaderNavigationTest
+INSTRUMENTATION_STATUS: current=27
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=fontScaleRotationAndRecreationKeepLogicalBlock
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.ReaderNavigationTest
+INSTRUMENTATION_STATUS: current=28
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=epubTableOfContentsOpensSelectedChapterAtStart
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.ReaderNavigationTest
+INSTRUMENTATION_STATUS: current=28
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=epubTableOfContentsOpensSelectedChapterAtStart
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.ReaderNavigationTest
+INSTRUMENTATION_STATUS: current=29
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=fb2TableOfContentsOpensSelectedChapterAtStart
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.ReaderNavigationTest
+INSTRUMENTATION_STATUS: current=29
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=fb2TableOfContentsOpensSelectedChapterAtStart
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.ReaderPositionLayoutTest
+INSTRUMENTATION_STATUS: current=30
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=
+com.hooreader.reader.ReaderPositionLayoutTest:
+INSTRUMENTATION_STATUS: test=visibleLineAndRestorationUseOriginalUtf16Coordinates
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.ReaderPositionLayoutTest
+INSTRUMENTATION_STATUS: current=30
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=visibleLineAndRestorationUseOriginalUtf16Coordinates
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.ReaderScreenTest
+INSTRUMENTATION_STATUS: current=31
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=
+com.hooreader.reader.ReaderScreenTest:
+INSTRUMENTATION_STATUS: test=hundredScrollCancelDiagonalReturnAndBoundaryGesturesNeverOpenControls
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.ReaderScreenTest
+INSTRUMENTATION_STATUS: current=31
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=hundredScrollCancelDiagonalReturnAndBoundaryGesturesNeverOpenControls
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.ReaderScreenTest
+INSTRUMENTATION_STATUS: current=32
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=realDestinationMenusConsumeTouchesAndBackReturnsHiddenChrome
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.ReaderScreenTest
+INSTRUMENTATION_STATUS: current=32
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=realDestinationMenusConsumeTouchesAndBackReturnsHiddenChrome
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.ReaderScreenTest
+INSTRUMENTATION_STATUS: current=33
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=measurePanelPresentationFiveTimes
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.ReaderScreenTest
+INSTRUMENTATION_STATUS: current=33
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stack=org.junit.AssumptionViolatedException: got: <false>, expected: is <true>
+	at org.junit.Assume.assumeThat(Assume.java:106)
+	at org.junit.Assume.assumeTrue(Assume.java:50)
+	at com.hooreader.reader.ReaderScreenTest.measurePanelPresentationFiveTimes(ReaderScreenTest.kt:238)
+
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=measurePanelPresentationFiveTimes
+INSTRUMENTATION_STATUS_CODE: -4
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.ReaderScreenTest
+INSTRUMENTATION_STATUS: current=34
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=twentyTapsAndSubSlopJitterToggleOnceWithoutChangingViewportOrAnchor
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.ReaderScreenTest
+INSTRUMENTATION_STATUS: current=34
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=twentyTapsAndSubSlopJitterToggleOnceWithoutChangingViewportOrAnchor
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.ReaderScreenTest
+INSTRUMENTATION_STATUS: current=35
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=importedBookRendersAndChapterNavigationKeepsPosition
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.ReaderScreenTest
+INSTRUMENTATION_STATUS: current=35
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=importedBookRendersAndChapterNavigationKeepsPosition
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.ReadingIndicatorsTest
+INSTRUMENTATION_STATUS: current=36
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=
+com.hooreader.reader.ReadingIndicatorsTest:
+INSTRUMENTATION_STATUS: test=fb2PaginatedDark
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.ReadingIndicatorsTest
+INSTRUMENTATION_STATUS: current=36
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=fb2PaginatedDark
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.ReadingIndicatorsTest
+INSTRUMENTATION_STATUS: current=37
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=epubVerticalDark
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.ReadingIndicatorsTest
+INSTRUMENTATION_STATUS: current=37
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=epubVerticalDark
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.ReadingIndicatorsTest
+INSTRUMENTATION_STATUS: current=38
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=fb2VerticalDark
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.ReadingIndicatorsTest
+INSTRUMENTATION_STATUS: current=38
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=fb2VerticalDark
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.ReadingIndicatorsTest
+INSTRUMENTATION_STATUS: current=39
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=fb2PaginatedLight
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.ReadingIndicatorsTest
+INSTRUMENTATION_STATUS: current=39
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=fb2PaginatedLight
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.ReadingIndicatorsTest
+INSTRUMENTATION_STATUS: current=40
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=epubVerticalLight
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.ReadingIndicatorsTest
+INSTRUMENTATION_STATUS: current=40
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=epubVerticalLight
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.ReadingIndicatorsTest
+INSTRUMENTATION_STATUS: current=41
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=epubPaginatedLight
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.ReadingIndicatorsTest
+INSTRUMENTATION_STATUS: current=41
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=epubPaginatedLight
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.ReadingIndicatorsTest
+INSTRUMENTATION_STATUS: current=42
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=fb2VerticalLight
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.ReadingIndicatorsTest
+INSTRUMENTATION_STATUS: current=42
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=fb2VerticalLight
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.ReadingIndicatorsTest
+INSTRUMENTATION_STATUS: current=43
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=epubPaginatedDark
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.ReadingIndicatorsTest
+INSTRUMENTATION_STATUS: current=43
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=epubPaginatedDark
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.ReadingPositionRestoreTest
+INSTRUMENTATION_STATUS: current=44
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=
+com.hooreader.reader.ReadingPositionRestoreTest:
+INSTRUMENTATION_STATUS: test=epubPositionSurvivesRecreatedReaderAndDatabaseWithoutOriginal
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.ReadingPositionRestoreTest
+INSTRUMENTATION_STATUS: current=44
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=epubPositionSurvivesRecreatedReaderAndDatabaseWithoutOriginal
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.ReadingPositionRestoreTest
+INSTRUMENTATION_STATUS: current=45
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=fb2InnerLongParagraphSurvivesDatabaseReopenWithoutOriginal
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.ReadingPositionRestoreTest
+INSTRUMENTATION_STATUS: current=45
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=fb2InnerLongParagraphSurvivesDatabaseReopenWithoutOriginal
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.ReadingPositionRestoreTest
+INSTRUMENTATION_STATUS: current=46
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=epubInnerLongParagraphSurvivesDatabaseReopenWithoutOriginal
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.ReadingPositionRestoreTest
+INSTRUMENTATION_STATUS: current=46
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=epubInnerLongParagraphSurvivesDatabaseReopenWithoutOriginal
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.ReadingPositionRestoreTest
+INSTRUMENTATION_STATUS: current=47
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=fb2PositionSurvivesRecreatedReaderAndDatabaseWithoutOriginal
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.ReadingPositionRestoreTest
+INSTRUMENTATION_STATUS: current=47
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=fb2PositionSurvivesRecreatedReaderAndDatabaseWithoutOriginal
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.TextPaginationLayoutTest
+INSTRUMENTATION_STATUS: current=48
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=
+com.hooreader.reader.TextPaginationLayoutTest:
+INSTRUMENTATION_STATUS: test=epubMeasuredPagesDrawAndRetainEveryUnicodeCharacter
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.TextPaginationLayoutTest
+INSTRUMENTATION_STATUS: current=48
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=epubMeasuredPagesDrawAndRetainEveryUnicodeCharacter
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.TextPaginationLayoutTest
+INSTRUMENTATION_STATUS: current=49
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=fb2MeasuredPagesDrawAndRetainEveryUnicodeCharacter
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.TextPaginationLayoutTest
+INSTRUMENTATION_STATUS: current=49
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=fb2MeasuredPagesDrawAndRetainEveryUnicodeCharacter
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.hooreader.settings.ReaderSettingsTest
+INSTRUMENTATION_STATUS: current=50
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=
+com.hooreader.settings.ReaderSettingsTest:
+INSTRUMENTATION_STATUS: test=settingsSurviveRecreationAndBookReopeningWithoutMovingLogicalBlock
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.hooreader.settings.ReaderSettingsTest
+INSTRUMENTATION_STATUS: current=50
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=settingsSurviveRecreationAndBookReopeningWithoutMovingLogicalBlock
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.hooreader.settings.ReadingModeChooserTest
+INSTRUMENTATION_STATUS: current=51
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=
+com.hooreader.settings.ReadingModeChooserTest:
+INSTRUMENTATION_STATUS: test=selectedModeAutomaticallyPersistsInSharedPreferences
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.hooreader.settings.ReadingModeChooserTest
+INSTRUMENTATION_STATUS: current=51
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=51
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=selectedModeAutomaticallyPersistsInSharedPreferences
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_RESULT: stream=
+
+Time: 128.598
+
+OK (51 tests)
+
+
+INSTRUMENTATION_CODE: -1

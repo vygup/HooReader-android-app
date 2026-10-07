@@ -1,12 +1,9 @@
 package com.hooreader.ui.reader
 
 import androidx.activity.compose.BackHandler
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.material3.Button
@@ -18,36 +15,33 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.repeatOnLifecycle
 import com.hooreader.R
 import com.hooreader.domain.model.ReadingMode
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 @Composable
 fun ReaderScreen(
     viewModel: ReaderViewModel,
     fontScale: Float = 1f,
     onSettings: (() -> Unit)? = null,
+    confirmReaderExit: Boolean = true,
     onBack: () -> Unit,
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
     val chrome by viewModel.chromeState.collectAsStateWithLifecycle()
     SaveReadingPositionOnLifecycle(viewModel)
     val saveFailed by viewModel.saveFailed.collectAsStateWithLifecycle()
-    val scope = rememberCoroutineScope()
-    val leave: () -> Unit = {
-        scope.launch(Dispatchers.Main.immediate) {
-            if (viewModel.flushPosition()) onBack()
-        }
-    }
+    ObserveReaderExit(viewModel, onBack)
+    val leave: () -> Unit = { viewModel.onExitEvent(ReaderExitEvent.REQUESTED, confirmReaderExit) }
     LaunchedEffect(fontScale) {
         val preferences = viewModel.pagination.effectivePreferences
         if (preferences.fontScale != fontScale) {
@@ -61,10 +55,9 @@ fun ReaderScreen(
     val reading = currentReading(state)
     Surface(modifier = Modifier.fillMaxSize().testTag("reader_screen")) {
         Box(Modifier.fillMaxSize().safeDrawingPadding().padding(horizontal = 16.dp)) {
-            Column(Modifier.fillMaxSize()) {
-                if (reading != null) BasicReadingIndicators(reading)
+            ReadingIndicators(reading, Modifier.fillMaxSize()) { topStrip, bottomStrip ->
                 Box(
-                    Modifier.weight(1f).fillMaxWidth().testTag("reader_viewport").bookGestureHandler(
+                    Modifier.fillMaxSize().testTag("reader_viewport").bookGestureHandler(
                         enabled = state is ReaderUiState.Reading && reading?.effectiveMode == ReadingMode.VERTICAL,
                         onBookTap = { viewModel.onChromeEvent(ReaderChromeEvent.BOOK_TAP) },
                         onNavigationDragStarted = {
@@ -73,7 +66,7 @@ fun ReaderScreen(
                         onGestureFinished = { viewModel.onChromeEvent(ReaderChromeEvent.GESTURE_FINISHED) },
                     )
                 ) {
-                    ReaderViewport(state, viewModel)
+                    ReaderViewport(state, viewModel, topStrip, bottomStrip)
                 }
             }
             if (chrome.controlsVisible || state !is ReaderUiState.Reading) {
@@ -85,14 +78,39 @@ fun ReaderScreen(
                     onChapter = viewModel::selectChapter,
                 )
             }
-            if (saveFailed) PositionSaveError(viewModel::saveNow, Modifier.align(Alignment.Center))
+            ReaderSaveStatus(viewModel, chrome, saveFailed, Modifier.align(Alignment.Center))
         }
     }
+    ReaderModals(viewModel, chrome, reading)
+}
+
+@Composable
+private fun ReaderSaveStatus(
+    viewModel: ReaderViewModel,
+    chrome: ReaderChromeState,
+    saveFailed: Boolean,
+    modifier: Modifier,
+) {
+    if (chrome.exitState == ExitState.FAILED) {
+        PositionSaveError({ viewModel.onExitEvent(ReaderExitEvent.CONFIRMED) }, modifier, exiting = true)
+    } else if (saveFailed) {
+        PositionSaveError(viewModel::saveNow, modifier)
+    }
+}
+
+@Composable
+private fun ReaderModals(viewModel: ReaderViewModel, chrome: ReaderChromeState, reading: ReaderUiState.Reading?) {
     if (chrome.overlay == ReaderOverlay.CONTENTS && reading != null) {
         TableOfContentsSheet(
             chapters = reading.chapters,
             onSelect = viewModel::selectChapter,
             onDismiss = { viewModel.onChromeEvent(ReaderChromeEvent.DISMISS_OVERLAY) },
+        )
+    }
+    if (chrome.overlay == ReaderOverlay.EXIT_CONFIRMATION) {
+        ReaderExitDialog(
+            onContinue = { viewModel.onExitEvent(ReaderExitEvent.CANCELLED) },
+            onExit = { viewModel.onExitEvent(ReaderExitEvent.CONFIRMED) },
         )
     }
 }
@@ -103,42 +121,25 @@ internal fun PreparingPagesMessage(modifier: Modifier = Modifier) {
 }
 
 @Composable
-private fun PositionSaveError(onRetry: () -> Unit, modifier: Modifier) {
+private fun PositionSaveError(onRetry: () -> Unit, modifier: Modifier, exiting: Boolean = false) {
     Surface(modifier) {
         Column(Modifier.padding(16.dp)) {
-            Text(stringResource(R.string.position_save_error), color = MaterialTheme.colorScheme.error)
-            TextButton(onClick = onRetry) { Text(stringResource(R.string.retry)) }
-        }
-    }
-}
-
-@Composable
-private fun BasicReadingIndicators(state: ReaderUiState.Reading) {
-    Row(
-        Modifier.fillMaxWidth().padding(vertical = 4.dp),
-        horizontalArrangement = Arrangement.spacedBy(8.dp),
-    ) {
-        val title = state.chapters[state.position.chapterIndex].title?.takeIf { it.isNotBlank() }
-            ?: stringResource(R.string.chapter_number, state.position.chapterIndex + 1)
-        Text(
-            title,
-            Modifier.weight(1f).testTag("reader_chapter_indicator"),
-            style = MaterialTheme.typography.labelMedium,
-            maxLines = 1,
-            overflow = TextOverflow.Ellipsis,
-        )
-        if (state.effectiveMode == ReadingMode.VERTICAL) {
             Text(
-                stringResource(R.string.reader_book_percent, state.position.progressPercent.toInt()),
-                Modifier.testTag("reader_progress_indicator"),
-                style = MaterialTheme.typography.labelMedium,
+                stringResource(if (exiting) R.string.reader_exit_save_error else R.string.position_save_error),
+                color = MaterialTheme.colorScheme.error,
             )
+            TextButton(
+                onClick = onRetry,
+                modifier = Modifier.testTag(if (exiting) "reader_exit_retry" else "position_retry")
+            ) {
+                Text(stringResource(if (exiting) R.string.reader_exit_retry else R.string.retry))
+            }
         }
     }
 }
 
 @Composable
-private fun ReaderViewport(state: ReaderUiState, viewModel: ReaderViewModel) {
+private fun ReaderViewport(state: ReaderUiState, viewModel: ReaderViewModel, topStrip: Int, bottomStrip: Int) {
     Box(Modifier.fillMaxSize()) {
         when (state) {
             ReaderUiState.Opening -> CircularProgressIndicator(Modifier.align(Alignment.Center))
@@ -146,12 +147,29 @@ private fun ReaderViewport(state: ReaderUiState, viewModel: ReaderViewModel) {
                 Text(stringResource(R.string.reader_open_error))
                 Button(onClick = viewModel::open) { Text(stringResource(R.string.retry)) }
             }
-            is ReaderUiState.PreparingPages -> PagedReaderViewport(state.reading, viewModel, state.preparationFailed)
+            is ReaderUiState.PreparingPages -> PagedReaderViewport(
+                state.reading,
+                viewModel,
+                topStrip,
+                bottomStrip,
+                state.preparationFailed
+            )
             is ReaderUiState.Reading -> if (state.effectiveMode == ReadingMode.PAGINATED) {
-                PagedReaderViewport(state, viewModel)
+                PagedReaderViewport(state, viewModel, topStrip, bottomStrip)
             } else {
                 VerticalReaderContent(state, viewModel)
             }
+        }
+    }
+}
+
+@Composable
+private fun ObserveReaderExit(viewModel: ReaderViewModel, onBack: () -> Unit) {
+    val currentOnBack by rememberUpdatedState(onBack)
+    val lifecycle = LocalLifecycleOwner.current.lifecycle
+    LaunchedEffect(viewModel, lifecycle) {
+        lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+            viewModel.navigateToLibrary.collect { currentOnBack() }
         }
     }
 }

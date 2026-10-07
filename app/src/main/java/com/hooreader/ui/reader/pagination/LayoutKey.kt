@@ -30,6 +30,7 @@ data class LayoutViewport(
     val density: Float,
     val systemFontScale: Float,
     val spConversionSamples: List<Float>,
+    // Actual composed strip heights; the viewport excludes both. Chrome is an independent overlay.
     val topStripPx: Int = 0,
     val bottomStripPx: Int = 0,
     val insetTopPx: Int = 0,

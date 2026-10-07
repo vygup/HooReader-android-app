@@ -1,14 +1,17 @@
 # Ход реализации второго релиза
 
-## Текущая точка продолжения — после T036
+## Текущая точка продолжения — после T048
 
-2026-10-03: фазы 1–4 завершены, T001–T036 выполнены. Остановка по указанию пользователя;
-T037–T065 оставить следующему запуску. Начать с T037, добавить ReadingIndicatorResolverTest.kt
-по требованиям US3, затем продолжить T038–T042. Ветка release/v2.0.0, зависимости/Room v1 прежние.
-Последний полный check/build/lint/detekt: GREEN, 98 debug +98 release unit tests;
-Android API 37: 37 passed, 6 opt-in skipped, 0 failures. [Отчёт](quickstart-results.md).
+2026-10-03: фазы 1–6 завершены, T001–T048 выполнены. Запрос пользователя ограничен фазой 6;
+следующая — T049 (US5 — защита выхода), затем T050–T065. Физический performance стенд и API 26
+по-прежнему недоступны; SC-004 ≤1000 ms остаётся release blocker.
+Ветка release/v2.0.0, зависимости/Room v1 прежние. Check/build/lint/detekt: GREEN,
+105 debug +105 release unit tests. Android API 37: 45 passed, 6 opt-in skipped, 0 failures.
+US3: 24 успешных запуска UI-сценариев, 48 PNG; настоящий системный шрифт 100/200%,
+крайние масштабы чтения, обе темы/ориентации и оба режима. [Отчёт](evidence/indicators/README.md).
 SC-004 ≤1000 ms остаётся release blocker; физический device и API 26 отсутствуют.
-Ни аппаратная приёмка, ни user study, ни RC не объявлены завершёнными.
+SC-007 с участниками и приёмка RC не выполнены. По запросу пользователя UX checklist проверен
+по спецификации: 32/32 пункта отмечены; CHK004 и CHK020 закрыты после уточнения spec.md.
 
 ## Выполнено до T009
 
@@ -44,7 +47,7 @@ Detekt; 2 Android tests на Pixel_10 API 37 (реальный Compose layout и
 
 Физическое Android-устройство отсутствует: SC-004 пока NOT_VERIFIED_DEVICE.
 API 26 AVD отсутствует; текущий API 37 годится для функциональной разработки.
-Reviewer-owned UX checklist остаётся без изменений; исполнение разрешено пользователем.
+Reviewer-owned UX checklist проверен и отмечен по запросу пользователя; все 32 пункта пройдены.
 T010 завершена: общий TextMeasurer, исходные линии/clipping, атомарные chapter page records,
 точные prefix counts и binary-search anchor; два последних layout-кэша на книгу.
 73 debug и 73 release unit tests; check/build/test APK прошли. После усиления закрытия
@@ -275,7 +278,7 @@ Room/source open, production LayoutKey/viewport и PageIndexStore. Debug observe
 source/page cache state проверяется перед каждым повтором. Cold/warm и cancellation
 harness собраны с detekt; пробная серия EPUB cold: 5 повторов, max 1753.093 ms,
 отмена прежнего LayoutKey 4.544 ms. Задача ещё не завершена, следующая полная серия T035.
-По последнему указанию пользователя остановиться после T036; T037–T065 оставить на завтра.
+На том контрольном этапе пользователь запросил остановку после T036; сейчас задачи T037–T048 завершены.
 
 T035 промежуточная оптимизация проверена: block cache использует value equality LayoutKey
 без SHA-256/toString на каждом блоке; PageIndex directory/hash вычисляется один раз на owner.
@@ -310,3 +313,37 @@ Native corpus tests подтверждают отсутствие пропуск
 (актуальные результаты Gradle, без изменений кода). [Phase checkpoint](evidence/phase4-checkpoint.json),
 [final check](evidence/phase4-final-check.txt). После выполнения skill проверен
 `.specify/extensions.yml`: отсутствует, after_implement hooks нет. T037 не начата.
+
+T043–T048 завершены (фаза 6). SettingsWriteState содержит persisted/requested snapshots,
+pendingFields и ошибку; последовательная per-field запись сохраняет успех остальных полей
+при ошибке, повторяет актуальное значение и не стирает pending ошибку после соседней записи.
+ReaderSettingsSheet больше не содержит «Готово», применяет изменения автоматически и показывает
+retry. NavHost отделяет requested выбор в меню от persisted настроек и применяет геометрию
+только после успешного сохранения; HooReaderTheme продолжает наблюдать persisted DataStore
+snapshot, поэтому не показывает несохранённую тему при сбое. Целевая проверка settings VM —
+3/3, старого ReaderPreferencesRepository — 6/6; Android UI API37 — 2/2 на system font 100%,
+ReaderSettingsTest также 1/1 на system font 200%. Тесты покрывают outside/Back/swipe, отсутствие
+кнопки, theme/scale/mode, activity recreation, повторное открытие, error/retry. [XML/evidence](evidence/settings/).
+SC-004 временные пороги на физическом стенде не проверялись; blocker не снят. Следующая — T049.
+
+
+## Контрольная точка фазы 7 — US5
+
+T049–T057 завершены на 2026-10-07. AppPreferences.confirmReaderExit (default true)
+сохраняется в прежнем DataStore; экран приложения доступен из библиотеки и использует
+shared pending queue/error/retry. Единственный exit reducer/ReaderViewModel владеет
+CONFIRMING/SAVING/FAILED и эффектом возврата: menu dismiss имеет приоритет, cancel сохраняет
+chrome/anchor, failed flush удерживает книгу, повторные запросы не дублируют navigation.
+ON_STOP/disposal выполняют только flush; критические latest-revision/failure сценарии проверены.
+Завершение жеста во время запроса освобождает tap suppression перед продолжением чтения.
+
+Финальная проверка: 115 debug + 115 release unit tests GREEN, Lint/Detekt/build/APK GREEN.
+Полный API 37 Android XML: 54 unique tests, 48 passed, 6 opt-in skipped, 0 failures/errors.
+US5 повторён отдельным script при настоящем системном шрифте 100% и 200% — 2+2 passed,
+скриншоты проверены, исходный масштаб восстановлен. Прежние import/settings/paged tests
+приведены к подтверждённому выходу. [Итоги](quickstart-results.md),
+[evidence](evidence/exit/phase7-validation.json).
+
+SC-004 / NOT_VERIFIED_DEVICE остаётся релизным ограничением; полная приёмка — фаза 8.
+После исполнения проверен .specify/extensions.yml: отсутствует, post hooks не зарегистрированы.
+Следующая задача — T058. Команда выполняла только фазу 7; reviewer-owned checklists не менялись.

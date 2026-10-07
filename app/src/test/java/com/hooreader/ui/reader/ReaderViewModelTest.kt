@@ -30,11 +30,13 @@ import com.hooreader.ui.reader.pagination.LayoutKey
 import com.hooreader.ui.reader.pagination.LayoutTypography
 import com.hooreader.ui.reader.pagination.LayoutViewport
 import com.hooreader.ui.reader.pagination.TextPaginator
+import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.filterIsInstance
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.resetMain
@@ -111,6 +113,73 @@ class ReaderViewModelTest {
     }
 
     @Test
+    fun `cancel and lifecycle stop preserve inner anchor without exit navigation`() = runBlocking {
+        val saved = ReadingPosition(id, 0, 500, 4, 50.0)
+        repository.savePosition(saved)
+        val reader = reader()
+        val reading = awaitReading(reader)
+        val navigations = mutableListOf<Unit>()
+        val collector = launch(UnconfinedTestDispatcher()) { reader.navigateToLibrary.collect { navigations += it } }
+        try {
+            reader.onChromeEvent(ReaderChromeEvent.BOOK_TAP)
+            val chrome = reader.chromeState.value
+            reader.onExitEvent(ReaderExitEvent.REQUESTED)
+            reader.onExitEvent(ReaderExitEvent.CANCELLED)
+            assertEquals(chrome, reader.chromeState.value)
+            assertEquals(reading.logicalPosition, (reader.state.value as ReaderUiState.Reading).logicalPosition)
+            reader.onStopped()
+            assertTrue(reader.flushPosition())
+            assertEquals(chrome, reader.chromeState.value)
+            assertEquals(reading.position, repository.getPosition(id))
+            assertTrue(navigations.isEmpty())
+        } finally {
+            collector.cancel()
+        }
+    }
+
+    @Test
+    fun `exit waits for latest write ignores rapid requests and emits navigation only once`() = runBlocking {
+        val entered = CompletableDeferred<Unit>()
+        val release = CompletableDeferred<Unit>()
+        val saver = ReadingPositionSaver({ position ->
+            entered.complete(Unit)
+            release.await()
+            repository.savePosition(position)
+        })
+        val reader = reader(saver)
+        awaitReading(reader)
+        val navigated = CompletableDeferred<Unit>()
+        var navigationCount = 0
+        val collector = launch(UnconfinedTestDispatcher()) {
+            reader.navigateToLibrary.collect {
+                navigationCount++
+                navigated.complete(Unit)
+            }
+        }
+        try {
+            reader.onExitEvent(ReaderExitEvent.REQUESTED, false)
+            withTimeout(5_000) { entered.await() }
+            repeat(10) {
+                reader.onExitEvent(ReaderExitEvent.REQUESTED)
+                reader.onExitEvent(ReaderExitEvent.CONFIRMED)
+            }
+            assertEquals(ExitState.SAVING, reader.chromeState.value.exitState)
+            assertEquals(0, navigationCount)
+            reader.onVisibleBlock(0, 5, 3)
+            release.complete(Unit)
+            withTimeout(5_000) { navigated.await() }
+            assertEquals(5, repository.getPosition(id)?.blockIndex)
+            assertEquals(3, repository.getPosition(id)?.characterOffset)
+            repeat(10) { reader.onExitEvent(ReaderExitEvent.REQUESTED, false) }
+            assertTrue(reader.chromeState.value.exitCompleted)
+            assertEquals(1, navigationCount)
+        } finally {
+            release.complete(Unit)
+            collector.cancel()
+        }
+    }
+
+    @Test
     fun `restores the logical block in a bounded window and clamps character offset`() = runBlocking {
         repository.savePosition(ReadingPosition(id, 0, 500, 9999, 50.0))
         val reader = reader()
@@ -163,6 +232,23 @@ class ReaderViewModelTest {
         reader.onVisibleBlock(1, 0)
         reader.flushPosition()
         assertEquals(1, repository.getPosition(id)?.chapterIndex)
+    }
+
+    @Test
+    fun `visible indicators preserve restore anchor and reject disposed viewport callbacks`() = runBlocking {
+        repository.savePosition(ReadingPosition(id, 1, 0, 4))
+        val reader = reader()
+        val restored = awaitReading(reader)
+        // A short final chapter can be clamped downwards, leaving an earlier fragment at the top.
+        reader.onVisibleIndicator(0, 99.9, restored.layoutGeneration)
+        val visible = reader.state.value as ReaderUiState.Reading
+        assertEquals("Long chapter", visible.indicator.chapter?.title)
+        assertEquals(99, visible.indicator.percent)
+        assertEquals(restored.logicalPosition, visible.logicalPosition)
+        reader.onVisibleIndicator(1, 12.0, restored.layoutGeneration - 1)
+        assertEquals(visible, reader.state.value)
+        assertTrue(reader.flushPosition())
+        assertEquals(restored.position, repository.getPosition(id))
     }
 
     @Test

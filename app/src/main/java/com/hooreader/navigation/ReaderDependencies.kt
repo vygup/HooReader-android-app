@@ -12,8 +12,12 @@ import com.hooreader.data.local.ReaderPreferencesRepository
 import com.hooreader.data.repository.BookRepository
 import com.hooreader.data.repository.LibraryRepository
 import com.hooreader.data.repository.ReaderContentRepository
+import com.hooreader.ui.reader.ReadingPositionSaver
 
-class ReaderDependencies(context: Context) {
+class ReaderDependencies(
+    context: Context,
+    val positionSaverFactory: (BookRepository) -> ReadingPositionSaver = { ReadingPositionSaver(it::savePosition) },
+) {
     private val application = context.applicationContext
     private val files = BookFileStorage(application)
     private val database = HooReaderDatabase.getInstance(application)

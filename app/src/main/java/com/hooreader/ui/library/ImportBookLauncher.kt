@@ -18,7 +18,7 @@ import kotlinx.coroutines.withContext
 import java.io.IOException
 
 @Composable
-fun ImportBookLauncher(viewModel: LibraryViewModel, openBook: (String) -> Unit) {
+fun ImportBookLauncher(viewModel: LibraryViewModel, openBook: (String) -> Unit, onAppSettings: () -> Unit = {}) {
     val state by viewModel.state.collectAsStateWithLifecycle()
     var pendingDeleteId by rememberSaveable { mutableStateOf<String?>(null) }
     val picker = rememberLauncherForActivityResult(ActivityResultContracts.OpenDocument()) { uri ->
@@ -35,6 +35,7 @@ fun ImportBookLauncher(viewModel: LibraryViewModel, openBook: (String) -> Unit) 
         state = state,
         onImport = { picker.launch(arrayOf("*/*")) },
         onOpenBook = openBook,
+        onAppSettings = onAppSettings,
         onDelete = { pendingDeleteId = it },
         messages = {
             LibraryActions(

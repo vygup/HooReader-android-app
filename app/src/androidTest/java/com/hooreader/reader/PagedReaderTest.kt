@@ -128,6 +128,7 @@ class PagedReaderTest {
         assertEquals(ReadingMode.PAGINATED, dependencies.preferences.preferences.first().readingMode)
         compose.onNodeWithTag("reader_viewport").performTouchInput { click() }
         compose.onNodeWithTag("reader_exit").performClick()
+        compose.onNodeWithTag("reader_confirm_exit").performClick()
         compose.waitUntil(TIMEOUT) { !exists("reader_screen") }
         compose.onNodeWithText("Открыть fixture").performClick()
         waitForPage(number)
@@ -222,11 +223,13 @@ class PagedReaderTest {
         val dependencies = ReaderDependencies(context)
         val previous = dependencies.preferences.preferences.first()
         val previousMode = previous.readingMode
+        val previousApp = dependencies.preferences.appPreferences.first()
         val assets = InstrumentationRegistry.getInstrumentation().context.assets
         val added = dependencies.importer.import("paged.${format.name.lowercase()}") {
             assets.open("books/corpus/reader-appearance.${format.name.lowercase()}")
         } as BookImportResult.Added
         try {
+            dependencies.preferences.setConfirmReaderExit(true)
             prepareAnchor(dependencies, added.book)
             compose.runOnUiThread {
                 ReaderTestActivity.content = {
@@ -249,6 +252,7 @@ class PagedReaderTest {
         } finally {
             compose.runOnUiThread { ReaderTestActivity.content = null }
             dependencies.repository.deleteBook(added.book.id)
+            dependencies.preferences.setConfirmReaderExit(previousApp.confirmReaderExit)
             dependencies.preferences.setReadingMode(previousMode)
             dependencies.preferences.setTheme(previous.theme)
             dependencies.preferences.setFontScale(previous.fontScale)

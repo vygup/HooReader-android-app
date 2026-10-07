@@ -19,10 +19,12 @@ import com.hooreader.domain.model.ReadingPosition
 import com.hooreader.domain.model.logicalAnchor
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.ensureActive
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import java.io.InputStream
 
@@ -39,12 +41,24 @@ sealed interface ReaderUiState {
         val fontScale: Float = 1f,
         val layoutGeneration: Long = 0,
         val pages: ReaderPageState? = null,
+        val firstVisibleChapterIndex: Int? = null,
+        val visibleProgressPercent: Double? = null,
     ) : ReaderUiState {
         val logicalPosition get() = position.logicalAnchor()
+        val indicator get() = ReadingIndicatorResolver.resolve(
+            chapters,
+            position.copy(
+                chapterIndex = firstVisibleChapterIndex ?: position.chapterIndex,
+                progressPercent = visibleProgressPercent ?: position.progressPercent,
+            ),
+            effectiveMode,
+            pages?.displayedPage,
+        )
     }
 }
 
-@Suppress("LongParameterList") // Explicit source/cache/preferences and durable-writer dependencies share one owner.
+// Content, chrome, exit and lifecycle events share the destination's single state owner.
+@Suppress("LongParameterList", "TooManyFunctions")
 class ReaderViewModel(
     private val bookId: String,
     private val repository: BookRepository,
@@ -62,6 +76,8 @@ class ReaderViewModel(
     val state: StateFlow<ReaderUiState> = mutableState.asStateFlow()
     private val mutableChrome = MutableStateFlow(ReaderChromeState())
     val chromeState: StateFlow<ReaderChromeState> = mutableChrome.asStateFlow()
+    private val exitNavigation = Channel<Unit>(Channel.BUFFERED)
+    val navigateToLibrary = exitNavigation.receiveAsFlow()
     private var session: ReaderContentSession? = null
     private var chapterJob: Job? = null
     private var windowJob: Job? = null
@@ -128,7 +144,13 @@ class ReaderViewModel(
     }
 
     @Suppress("ReturnCount") // Ignore callbacks from disposed layout/window owners.
-    fun onVisibleBlock(chapterIndex: Int, blockIndex: Int, characterOffset: Int = 0, generation: Long? = null) {
+    fun onVisibleBlock(
+        chapterIndex: Int,
+        blockIndex: Int,
+        characterOffset: Int = 0,
+        generation: Long? = null,
+        atEnd: Boolean = false,
+    ) {
         val current = mutableState.value as? ReaderUiState.Reading ?: return
         if (current.effectiveMode != ReadingMode.VERTICAL ||
             generation != null && generation != current.layoutGeneration
@@ -144,10 +166,22 @@ class ReaderViewModel(
             block,
             characterOffset,
             current.position.updatedAt,
+            atEnd,
         )
         positionSaver.update(position)
-        mutableState.value = current.copy(position = position)
+        mutableState.value = current.copy(
+            position = position,
+            firstVisibleChapterIndex = chapterIndex,
+            visibleProgressPercent = position.progressPercent,
+        )
         moveWindowIfNeeded(current, block)
+    }
+
+    fun onVisibleIndicator(chapterIndex: Int, percent: Double, generation: Long) {
+        val current = mutableState.value as? ReaderUiState.Reading ?: return
+        if (current.effectiveMode == ReadingMode.VERTICAL && current.layoutGeneration == generation) {
+            mutableState.value = current.copy(firstVisibleChapterIndex = chapterIndex, visibleProgressPercent = percent)
+        }
     }
 
     val openMedia: suspend (String) -> InputStream? = { reference -> session?.openMedia(reference) }
@@ -159,6 +193,22 @@ class ReaderViewModel(
     }
 
     suspend fun flushPosition(): Boolean = positionSaver.flush()
+
+    fun onExitEvent(event: ReaderExitEvent, confirm: Boolean = true) {
+        val transition = ReaderChromeReducer.exit(mutableChrome.value, event, confirm)
+        mutableChrome.value = transition.state
+        when (transition.effect) {
+            ReaderExitEffect.SAVE_POSITION -> viewModelScope.launch {
+                onExitEvent(
+                    if (positionSaver.flush()) ReaderExitEvent.FLUSH_SUCCEEDED else ReaderExitEvent.FLUSH_FAILED,
+                )
+            }
+            ReaderExitEffect.NAVIGATE_TO_LIBRARY -> exitNavigation.trySend(Unit)
+            null -> Unit
+        }
+    }
+
+    fun onStopped() = positionSaver.flushAsync()
 
     fun saveNow() {
         positionSaver.flushAsync()

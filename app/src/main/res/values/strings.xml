@@ -50,6 +50,14 @@
     <string name="font_scale_percent">Размер текста: %1$d%%</string>
     <string name="font_scale_decrease">Уменьшить текст</string>
     <string name="font_scale_increase">Увеличить текст</string>
-    <string name="settings_done">Готово</string>
     <string name="settings_save_error">Не удалось сохранить настройки. Попробуйте ещё раз.</string>
+    <string name="reader_page_number">%1$d</string>
+    <string name="app_settings_title">Настройки приложения</string>
+    <string name="confirm_reader_exit">Подтверждать выход из книги</string>
+    <string name="reader_back">В библиотеку</string>
+    <string name="reader_exit_title">Выйти из книги?</string>
+    <string name="reader_continue_reading">Продолжить чтение</string>
+    <string name="reader_confirm_exit">Выйти</string>
+    <string name="reader_exit_save_error">Не удалось сохранить позицию. Повторите выход из книги.</string>
+    <string name="reader_exit_retry">Повторить выход</string>
 </resources>

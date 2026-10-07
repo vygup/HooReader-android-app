@@ -43,9 +43,10 @@ fun ReaderSettingsSheet(
     saveFailed: Boolean = false,
     onRetry: () -> Unit = {},
 ) {
-    ModalBottomSheet(onDismissRequest = onDismiss) {
+    ModalBottomSheet(onDismissRequest = onDismiss, modifier = Modifier.testTag("reader_settings_sheet")) {
         Column(
-            modifier = Modifier.fillMaxWidth().verticalScroll(rememberScrollState()).padding(24.dp),
+            modifier = Modifier.fillMaxWidth().testTag("reader_settings_content")
+                .verticalScroll(rememberScrollState()).padding(24.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp),
         ) {
             Text(stringResource(R.string.reader_settings), style = MaterialTheme.typography.titleLarge)
@@ -55,9 +56,6 @@ fun ReaderSettingsSheet(
             if (saveFailed) {
                 Text(stringResource(R.string.settings_save_error), color = MaterialTheme.colorScheme.error)
                 TextButton(onClick = onRetry) { Text(stringResource(R.string.retry)) }
-            }
-            TextButton(onClick = onDismiss, modifier = Modifier.fillMaxWidth()) {
-                Text(stringResource(R.string.settings_done))
             }
         }
     }

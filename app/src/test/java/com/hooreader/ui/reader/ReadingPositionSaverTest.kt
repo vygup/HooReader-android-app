@@ -18,6 +18,40 @@ import java.io.IOException
 @OptIn(ExperimentalCoroutinesApi::class)
 class ReadingPositionSaverTest {
     @Test
+    fun `repeated lifecycle stops keep latest revision after an interrupted write fails`() = runTest {
+        val entered = CompletableDeferred<Unit>()
+        val release = CompletableDeferred<Unit>()
+        val positions = mutableListOf<ReadingPosition>()
+        val saver = ReadingPositionSaver(
+            save = {
+                if (it.blockIndex == 1) {
+                    entered.complete(Unit)
+                    release.await()
+                    throw IOException("Stop write failed")
+                }
+                positions += it
+            },
+            scope = CoroutineScope(SupervisorJob() + StandardTestDispatcher(testScheduler)),
+        )
+        saver.update(ReadingPosition("book", blockIndex = 1))
+        saver.flushAsync()
+        runCurrent()
+        assertTrue(entered.isCompleted)
+        val latest = ReadingPosition("book", blockIndex = 2, characterOffset = 7)
+        saver.update(latest)
+        saver.flushAsync()
+        saver.flushAsync()
+        release.complete(Unit)
+        runCurrent()
+        assertEquals(listOf(latest), positions)
+        assertFalse(saver.saveFailed.value)
+        assertEquals(null, saver.pendingRevision)
+        saver.close()
+        runCurrent()
+        assertEquals(listOf(latest), positions)
+    }
+
+    @Test
     fun `scroll changes are debounced and only the latest paragraph is stored`() = runTest {
         val positions = mutableListOf<ReadingPosition>()
         val saver =

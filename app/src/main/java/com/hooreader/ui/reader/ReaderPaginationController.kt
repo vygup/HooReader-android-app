@@ -207,6 +207,8 @@ class ReaderPaginationController(
         calculation?.cancel()
         val snapshot = reading.copy(
             layoutGeneration = ++generation,
+            firstVisibleChapterIndex = null,
+            visibleProgressPercent = null,
             pages = null,
             blocks = if (reading.effectiveMode == ReadingMode.VERTICAL) reading.blocks else emptyList(),
         )
@@ -293,19 +295,17 @@ internal suspend fun sourcePosition(
     return blockReadingPosition(session.book.id, session.chapters, block, anchor.characterOffset, previousTime)
 }
 
+@Suppress("LongParameterList") // Source coordinates and viewport end share the same durable progress calculation.
 internal fun blockReadingPosition(
     bookId: String,
     chapters: List<Chapter>,
     block: ContentBlock,
     offset: Int,
     previousTime: Long,
+    atEnd: Boolean = false,
 ): ReadingPosition {
     val character = ReaderPositionResolver.safeOffset(block.text, offset)
-    val total = chapters.sumOf { it.blockCount.toLong() }.coerceAtLeast(1)
-    val before = chapters.take(block.chapterIndex).sumOf { it.blockCount.toLong() } + block.blockIndex
-    val fraction = if (block.text.isEmpty()) 0.0 else character.toDouble() / block.text.length
-    val percent = ((before + fraction) / (total - 1).coerceAtLeast(1) * ReadingPosition.MAX_PROGRESS_PERCENT)
-        .coerceIn(0.0, ReadingPosition.MAX_PROGRESS_PERCENT)
+    val percent = ReadingIndicatorResolver.progress(chapters, block, character, atEnd)
     return ReadingPosition(
         bookId,
         block.chapterIndex,

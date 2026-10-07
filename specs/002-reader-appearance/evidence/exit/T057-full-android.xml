@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuite name="com.hooreader.acceptance.ImportCorpusTest" tests="54" failures="0" errors="0" skipped="6" time="135.411" timestamp="2026-10-07T11:48:21" hostname="localhost">
+  <properties>
+    <property name="device" value="Pixel_10(AVD) - 17" />
+    <property name="flavor" value="" />
+    <property name="project" value=":app" />
+  </properties>
+  <testcase name="everyManifestFileIsImportedAndEveryValidChapterOpens" classname="com.hooreader.acceptance.ImportCorpusTest" time="8.371" />
+  <testcase name="cancelObsoleteLayout" classname="com.hooreader.acceptance.PaginationProbeTest" time="0.864">
+    <skipped />
+  </testcase>
+  <testcase name="measureFiveRuns" classname="com.hooreader.acceptance.PaginationProbeTest" time="0.791">
+    <skipped />
+  </testcase>
+  <testcase name="measureOpeningAndScrolling" classname="com.hooreader.acceptance.ReaderPerformanceTest" time="0.794">
+    <skipped />
+  </testcase>
+  <testcase name="libraryKeepsDuplicateProgressAndDeletionRequiresConfirmation" classname="com.hooreader.library.ImportBookFlowTest" time="2.862" />
+  <testcase name="rejectedFilesKeepLibraryUnchangedAndEncodedFb2StillOpens" classname="com.hooreader.library.ImportBookFlowTest" time="1.965" />
+  <testcase name="filePickerImportsBookAndRecreationRestoresChapter" classname="com.hooreader.library.ImportBookFlowTest" time="1.459" />
+  <testcase name="emptyFileErrorCanBeDismissedAndAnotherBookImported" classname="com.hooreader.library.ImportBookFlowTest" time="1.324" />
+  <testcase name="readLabelStartsAt98Percent" classname="com.hooreader.library.LibraryScreenTest" time="0.749" />
+  <testcase name="unreadableCoverUsesPlaceholder" classname="com.hooreader.library.LibraryScreenTest" time="1.754" />
+  <testcase name="cardShowsMetadataProgressPlaceholderAndOpensBook" classname="com.hooreader.library.LibraryScreenTest" time="0.797" />
+  <testcase name="lazyLibraryCanReachAndOpenHundredthBook" classname="com.hooreader.library.LibraryScreenTest" time="2.213" />
+  <testcase name="emptyLibraryOffersImport" classname="com.hooreader.library.LibraryScreenTest" time="1.794" />
+  <testcase name="startupShowsLibrary" classname="com.hooreader.navigation.HooReaderNavHostTest" time="1.756" />
+  <testcase name="realReaderPrioritizesMenusCancelsDialogAndRetriesFailedExit" classname="com.hooreader.navigation.HooReaderNavHostTest" time="3.421" />
+  <testcase name="bookSelectionPassesIdAndReturnsToLibrary" classname="com.hooreader.navigation.HooReaderNavHostTest" time="1.906" />
+  <testcase name="consumedChildClickAndCancelNeverBecomeBookTap" classname="com.hooreader.reader.BookGestureHandlerTest" time="1.834" />
+  <testcase name="rendererAppliesOverlappingBoldItalicSpansAndListMarker" classname="com.hooreader.reader.ContentBlockRendererTest" time="0.779" />
+  <testcase name="corruptAndUnreadableImagesDoNotBlockFollowingParagraph" classname="com.hooreader.reader.ContentBlockRendererTest" time="1.796" />
+  <testcase name="embeddedRasterImageDecodesAndHasAccessibleDescription" classname="com.hooreader.reader.ContentBlockRendererTest" time="1.821" />
+  <testcase name="fastFlingCancelFrontierAndEofUseStableAbsoluteIndices" classname="com.hooreader.reader.PagedReaderContentTest" time="1.669" />
+  <testcase name="fb2OneSwipeOnePageCancelBoundariesContentsAndReopen" classname="com.hooreader.reader.PagedReaderTest" time="6.932" />
+  <testcase name="epubModeScaleAndRotationPreserveInnerParagraphAnchor" classname="com.hooreader.reader.PagedReaderTest" time="3.866" />
+  <testcase name="fb2ModeScaleAndRotationPreserveInnerParagraphAnchor" classname="com.hooreader.reader.PagedReaderTest" time="4.302" />
+  <testcase name="epubOneSwipeOnePageCancelBoundariesContentsAndReopen" classname="com.hooreader.reader.PagedReaderTest" time="6.919" />
+  <testcase name="verify" classname="com.hooreader.reader.ProcessDeathAcceptanceTest" time="0.001">
+    <skipped />
+  </testcase>
+  <testcase name="seed" classname="com.hooreader.reader.ProcessDeathAcceptanceTest" time="0.001">
+    <skipped />
+  </testcase>
+  <testcase name="fontScaleRotationAndRecreationKeepLogicalBlock" classname="com.hooreader.reader.ReaderNavigationTest" time="2.071" />
+  <testcase name="epubTableOfContentsOpensSelectedChapterAtStart" classname="com.hooreader.reader.ReaderNavigationTest" time="0.966" />
+  <testcase name="fb2TableOfContentsOpensSelectedChapterAtStart" classname="com.hooreader.reader.ReaderNavigationTest" time="0.966" />
+  <testcase name="visibleLineAndRestorationUseOriginalUtf16Coordinates" classname="com.hooreader.reader.ReaderPositionLayoutTest" time="1.786" />
+  <testcase name="hundredScrollCancelDiagonalReturnAndBoundaryGesturesNeverOpenControls" classname="com.hooreader.reader.ReaderScreenTest" time="12.257" />
+  <testcase name="realDestinationMenusConsumeTouchesAndBackReturnsHiddenChrome" classname="com.hooreader.reader.ReaderScreenTest" time="2.81" />
+  <testcase name="measurePanelPresentationFiveTimes" classname="com.hooreader.reader.ReaderScreenTest" time="0.698">
+    <skipped />
+  </testcase>
+  <testcase name="twentyTapsAndSubSlopJitterToggleOnceWithoutChangingViewportOrAnchor" classname="com.hooreader.reader.ReaderScreenTest" time="2.117" />
+  <testcase name="importedBookRendersAndChapterNavigationKeepsPosition" classname="com.hooreader.reader.ReaderScreenTest" time="0.915" />
+  <testcase name="fb2PaginatedDark" classname="com.hooreader.reader.ReadingIndicatorsTest" time="3.74" />
+  <testcase name="epubVerticalDark" classname="com.hooreader.reader.ReadingIndicatorsTest" time="5.231" />
+  <testcase name="fb2VerticalDark" classname="com.hooreader.reader.ReadingIndicatorsTest" time="3.917" />
+  <testcase name="fb2PaginatedLight" classname="com.hooreader.reader.ReadingIndicatorsTest" time="4.936" />
+  <testcase name="epubVerticalLight" classname="com.hooreader.reader.ReadingIndicatorsTest" time="3.937" />
+  <testcase name="epubPaginatedLight" classname="com.hooreader.reader.ReadingIndicatorsTest" time="3.877" />
+  <testcase name="fb2VerticalLight" classname="com.hooreader.reader.ReadingIndicatorsTest" time="4.187" />
+  <testcase name="epubPaginatedDark" classname="com.hooreader.reader.ReadingIndicatorsTest" time="3.862" />
+  <testcase name="epubPositionSurvivesRecreatedReaderAndDatabaseWithoutOriginal" classname="com.hooreader.reader.ReadingPositionRestoreTest" time="0.03" />
+  <testcase name="fb2InnerLongParagraphSurvivesDatabaseReopenWithoutOriginal" classname="com.hooreader.reader.ReadingPositionRestoreTest" time="0.137" />
+  <testcase name="epubInnerLongParagraphSurvivesDatabaseReopenWithoutOriginal" classname="com.hooreader.reader.ReadingPositionRestoreTest" time="0.137" />
+  <testcase name="fb2PositionSurvivesRecreatedReaderAndDatabaseWithoutOriginal" classname="com.hooreader.reader.ReadingPositionRestoreTest" time="0.028" />
+  <testcase name="epubMeasuredPagesDrawAndRetainEveryUnicodeCharacter" classname="com.hooreader.reader.TextPaginationLayoutTest" time="1.137" />
+  <testcase name="fb2MeasuredPagesDrawAndRetainEveryUnicodeCharacter" classname="com.hooreader.reader.TextPaginationLayoutTest" time="1.881" />
+  <testcase name="protectionSwitchSurvivesRecreationAndControlsRealReaderBack" classname="com.hooreader.settings.AppSettingsTest" time="3.302" />
+  <testcase name="saveFailureShowsRetryAction" classname="com.hooreader.settings.ReaderSettingsSheetTest" time="2.018" />
+  <testcase name="settingsSurviveRecreationAndBookReopeningWithoutMovingLogicalBlock" classname="com.hooreader.settings.ReaderSettingsTest" time="3.349" />
+  <testcase name="selectedModeAutomaticallyPersistsInSharedPreferences" classname="com.hooreader.settings.ReadingModeChooserTest" time="1.947" />
+</testsuite>

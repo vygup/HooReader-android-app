@@ -61,8 +61,7 @@ class ImportBookFlowTest {
         waitForText("Абзац для восстановления позиции.")
         compose.onNodeWithTag("reader_list").assertIsDisplayed()
         compose.onNodeWithTag("reader_viewport").performTouchInput { click() }
-        compose.onNodeWithText("В библиотеку").performClick()
-        waitForText("Импортировать книгу")
+        exitReader()
         assertEquals(1, dependencies.repository.getPosition(book.id)?.chapterIndex)
         choose("structured.fb2")
         waitForText("Эта книга уже есть в библиотеке. Сохранены прежняя запись и позиция чтения.")
@@ -80,8 +79,7 @@ class ImportBookFlowTest {
         imported += book.id
         compose.onNodeWithTag("reader_list").assertIsDisplayed()
         compose.onNodeWithTag("reader_viewport").performTouchInput { click() }
-        compose.onNodeWithText("В библиотеку").performClick()
-        waitForText("Импортировать книгу")
+        exitReader()
     }
 
     @Test
@@ -105,7 +103,7 @@ class ImportBookFlowTest {
         imported += dependencies.repository.books.first().map { it.id }.toSet() - before
         compose.onNodeWithTag("reader_list").assertIsDisplayed()
         compose.onNodeWithTag("reader_viewport").performTouchInput { click() }
-        compose.onNodeWithText("В библиотеку").performClick()
+        exitReader()
         Unit
     }
 
@@ -118,8 +116,7 @@ class ImportBookFlowTest {
         val book = dependencies.repository.books.first().single { it.title == "missing-metadata.fb2" }
         imported += book.id
         compose.onNodeWithTag("reader_viewport").performTouchInput { click() }
-        compose.onNodeWithText("В библиотеку").performClick()
-        waitForText("Импортировать книгу")
+        exitReader()
         val position = ReadingPosition(book.id, progressPercent = 98.0)
         dependencies.repository.savePosition(position)
         waitForText("Прочитано")
@@ -149,6 +146,14 @@ class ImportBookFlowTest {
         val original = File(ApplicationProvider.getApplicationContext<Context>().cacheDir, "missing-metadata.fb2")
         assertTrue(original.isFile)
         assertArrayEquals(sourceBytes, original.readBytes())
+    }
+
+    private fun exitReader() {
+        compose.onNodeWithTag("reader_exit").performClick()
+        if (runBlocking { dependencies.preferences.appPreferences.first().confirmReaderExit }) {
+            compose.onNodeWithTag("reader_confirm_exit").performClick()
+        }
+        waitForText("Импортировать книгу")
     }
 
     private fun choose(name: String) {

@@ -1,0 +1,420 @@
+{
+  "phase": 5,
+  "tasks": [
+    "T037",
+    "T038",
+    "T039",
+    "T040",
+    "T041",
+    "T042"
+  ],
+  "date": "2026-10-03",
+  "device": {
+    "kind": "emulator",
+    "avd": "Pixel_10",
+    "api": 37,
+    "sizePx": [
+      1080,
+      2424
+    ],
+    "densityDpi": 420,
+    "profile": "device.txt"
+  },
+  "unit": {
+    "debug": {
+      "tests": 105,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "release": {
+      "tests": 105,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "matrix": [
+    {
+      "systemFontScale": 1.0,
+      "readingScale": 1.0,
+      "formats": [
+        "EPUB",
+        "FB2"
+      ],
+      "modes": [
+        "VERTICAL",
+        "PAGINATED"
+      ],
+      "themes": [
+        "LIGHT",
+        "DARK"
+      ],
+      "orientations": [
+        "PORTRAIT",
+        "LANDSCAPE"
+      ],
+      "testsPassed": 8,
+      "failures": 0,
+      "log": "system1.0-reading1.0.txt"
+    },
+    {
+      "systemFontScale": 2.0,
+      "readingScale": 0.75,
+      "formats": [
+        "EPUB",
+        "FB2"
+      ],
+      "modes": [
+        "VERTICAL",
+        "PAGINATED"
+      ],
+      "themes": [
+        "LIGHT",
+        "DARK"
+      ],
+      "orientations": [
+        "PORTRAIT",
+        "LANDSCAPE"
+      ],
+      "testsPassed": 8,
+      "failures": 0,
+      "log": "system2.0-reading0.75.txt"
+    },
+    {
+      "systemFontScale": 2.0,
+      "readingScale": 2.0,
+      "formats": [
+        "EPUB",
+        "FB2"
+      ],
+      "modes": [
+        "VERTICAL",
+        "PAGINATED"
+      ],
+      "themes": [
+        "LIGHT",
+        "DARK"
+      ],
+      "orientations": [
+        "PORTRAIT",
+        "LANDSCAPE"
+      ],
+      "testsPassed": 8,
+      "failures": 0,
+      "log": "system2.0-reading2.0.txt"
+    }
+  ],
+  "screenshots": [
+    {
+      "file": "epub-PAGINATED-dark-system1.0-reading1.0-orientation1.png",
+      "sha256": "2b08788aa66e443f2af999aa9b1ab0d856d4497f20a2c00009e179f1d2aeae0f",
+      "width": 1080,
+      "height": 2424
+    },
+    {
+      "file": "epub-PAGINATED-dark-system1.0-reading1.0-orientation2.png",
+      "sha256": "92b952389350e26f05e224ebf4db8086d18e748a035fbe93f7cd41fdcea55dca",
+      "width": 2424,
+      "height": 1080
+    },
+    {
+      "file": "epub-PAGINATED-dark-system2.0-reading0.75-orientation1.png",
+      "sha256": "036fa7d9a61cec423362a54a80f601646918280178c97e7bf354f9497d137717",
+      "width": 1080,
+      "height": 2424
+    },
+    {
+      "file": "epub-PAGINATED-dark-system2.0-reading0.75-orientation2.png",
+      "sha256": "9e7586ca5d9434f2b7b082daf0adede4604c8d9cd613976c8f84817e86d37de6",
+      "width": 2424,
+      "height": 1080
+    },
+    {
+      "file": "epub-PAGINATED-dark-system2.0-reading2.0-orientation1.png",
+      "sha256": "fae5dd2234632964eaeb74fe3b9844cf521e145d760c4c9b4d35d46f77620804",
+      "width": 1080,
+      "height": 2424
+    },
+    {
+      "file": "epub-PAGINATED-dark-system2.0-reading2.0-orientation2.png",
+      "sha256": "9ce5fd0597b7aa530de10a8ac75c21924a8a8398313c37b9ff2fbe86f36b1a55",
+      "width": 2424,
+      "height": 1080
+    },
+    {
+      "file": "epub-PAGINATED-light-system1.0-reading1.0-orientation1.png",
+      "sha256": "8e357819691419ed97bcf82d27f272b94a6ecf77c0bd22acaeda293f5c32584e",
+      "width": 1080,
+      "height": 2424
+    },
+    {
+      "file": "epub-PAGINATED-light-system1.0-reading1.0-orientation2.png",
+      "sha256": "a4f4ed5e85b2ad31d5a174cebd36d4c6e7b30d8a2372c2f835a1b55a5f7e39c5",
+      "width": 2424,
+      "height": 1080
+    },
+    {
+      "file": "epub-PAGINATED-light-system2.0-reading0.75-orientation1.png",
+      "sha256": "cc725b95184fc21abf714afe78c6bb8d8546c727be069ee5ce63e417023d2c28",
+      "width": 1080,
+      "height": 2424
+    },
+    {
+      "file": "epub-PAGINATED-light-system2.0-reading0.75-orientation2.png",
+      "sha256": "ab43f4abeb864e07bef5f6d70ed4e1ddb6a136a55dd8ad622f19a7ca194d05cd",
+      "width": 2424,
+      "height": 1080
+    },
+    {
+      "file": "epub-PAGINATED-light-system2.0-reading2.0-orientation1.png",
+      "sha256": "3cbcd6a887c6325939a703d3516426cf48b3b7d7c08427d4e08a80d2e008abea",
+      "width": 1080,
+      "height": 2424
+    },
+    {
+      "file": "epub-PAGINATED-light-system2.0-reading2.0-orientation2.png",
+      "sha256": "aec1fd4f5ce82b45bbde403336043fd55c3f4b672c8ae2e0677423c205843dac",
+      "width": 2424,
+      "height": 1080
+    },
+    {
+      "file": "epub-VERTICAL-dark-system1.0-reading1.0-orientation1.png",
+      "sha256": "22ac51b85f585e8aa685f98c7857459723e3ade80adb258bc1d6c4054249d008",
+      "width": 1080,
+      "height": 2424
+    },
+    {
+      "file": "epub-VERTICAL-dark-system1.0-reading1.0-orientation2.png",
+      "sha256": "b0b932f96c985c7e11118342d2f1d6b95efdaf7217f4732e86ee2ab8c8de3dae",
+      "width": 2424,
+      "height": 1080
+    },
+    {
+      "file": "epub-VERTICAL-dark-system2.0-reading0.75-orientation1.png",
+      "sha256": "7c5bae047424955549d2d1e8097574d2c0d561bcf9ed9b28c63b95d1871c2d92",
+      "width": 1080,
+      "height": 2424
+    },
+    {
+      "file": "epub-VERTICAL-dark-system2.0-reading0.75-orientation2.png",
+      "sha256": "2f3542802ce26ac5264153f9540e70b87fd05d4af06ed58229eb08f665c8a112",
+      "width": 2424,
+      "height": 1080
+    },
+    {
+      "file": "epub-VERTICAL-dark-system2.0-reading2.0-orientation1.png",
+      "sha256": "9558274a740283e11c9b38c17c3c6101e57b7476f90c0d3709f2968cb2fb40ba",
+      "width": 1080,
+      "height": 2424
+    },
+    {
+      "file": "epub-VERTICAL-dark-system2.0-reading2.0-orientation2.png",
+      "sha256": "678c5827c0051c40d582ff689942d0eab571f45dd88c5c4b5faff600fee96ca8",
+      "width": 2424,
+      "height": 1080
+    },
+    {
+      "file": "epub-VERTICAL-light-system1.0-reading1.0-orientation1.png",
+      "sha256": "c398e2384e750cbf1bc6df17806ee093f5af31bdf51e70223957ee8a6a5d4482",
+      "width": 1080,
+      "height": 2424
+    },
+    {
+      "file": "epub-VERTICAL-light-system1.0-reading1.0-orientation2.png",
+      "sha256": "98faf505cb20b8b0352f20948279283914fedf7d4bdf7127adcf3a6218554cc2",
+      "width": 2424,
+      "height": 1080
+    },
+    {
+      "file": "epub-VERTICAL-light-system2.0-reading0.75-orientation1.png",
+      "sha256": "d832e926e37d4b21835a19708f5a85efe8b6919551bfdcfefa6f3153492042b8",
+      "width": 1080,
+      "height": 2424
+    },
+    {
+      "file": "epub-VERTICAL-light-system2.0-reading0.75-orientation2.png",
+      "sha256": "ec325d08531e9986d40928d5f31fe31630f9feed19fcea56fd5ff1ceb87c5286",
+      "width": 2424,
+      "height": 1080
+    },
+    {
+      "file": "epub-VERTICAL-light-system2.0-reading2.0-orientation1.png",
+      "sha256": "6570157c1693c1a7becacc7e07a6a1351e12fb1fa5f09f54b0d93ae14dd84e19",
+      "width": 1080,
+      "height": 2424
+    },
+    {
+      "file": "epub-VERTICAL-light-system2.0-reading2.0-orientation2.png",
+      "sha256": "347a6056a4934e82d4f64bf91f2631e2c00049b86186344b7b2820ab95f34f95",
+      "width": 2424,
+      "height": 1080
+    },
+    {
+      "file": "fb2-PAGINATED-dark-system1.0-reading1.0-orientation1.png",
+      "sha256": "841077d99db51103550667710174bddc4cee256a8efbe87756d217e004ed514b",
+      "width": 1080,
+      "height": 2424
+    },
+    {
+      "file": "fb2-PAGINATED-dark-system1.0-reading1.0-orientation2.png",
+      "sha256": "f5e45825cba6709aa926c5810f8cab573e57d163437f0edbd3b1a4b011803789",
+      "width": 2424,
+      "height": 1080
+    },
+    {
+      "file": "fb2-PAGINATED-dark-system2.0-reading0.75-orientation1.png",
+      "sha256": "00641f7a544e217e1d04e704508ee8df97285b3b43ffdccfb8189b67c884596b",
+      "width": 1080,
+      "height": 2424
+    },
+    {
+      "file": "fb2-PAGINATED-dark-system2.0-reading0.75-orientation2.png",
+      "sha256": "fe2d96c9b25a7b2f3fbd7f6c8084d3cfa158592bf7f7366497aff7a1c14108b5",
+      "width": 2424,
+      "height": 1080
+    },
+    {
+      "file": "fb2-PAGINATED-dark-system2.0-reading2.0-orientation1.png",
+      "sha256": "3716b99a0be4e85db3e15e7b24dd4bb0fa79724bb7ee45189a4c83b964c15c39",
+      "width": 1080,
+      "height": 2424
+    },
+    {
+      "file": "fb2-PAGINATED-dark-system2.0-reading2.0-orientation2.png",
+      "sha256": "9ce5fd0597b7aa530de10a8ac75c21924a8a8398313c37b9ff2fbe86f36b1a55",
+      "width": 2424,
+      "height": 1080
+    },
+    {
+      "file": "fb2-PAGINATED-light-system1.0-reading1.0-orientation1.png",
+      "sha256": "bc6071c8a281f32169c2f5c00891710670b1b88c33700967233760624b1f5252",
+      "width": 1080,
+      "height": 2424
+    },
+    {
+      "file": "fb2-PAGINATED-light-system1.0-reading1.0-orientation2.png",
+      "sha256": "67c7f4bcaff6e85c2aee840b02e7e731b7ede59eea62309d5c8bbbfb2b1859c1",
+      "width": 2424,
+      "height": 1080
+    },
+    {
+      "file": "fb2-PAGINATED-light-system2.0-reading0.75-orientation1.png",
+      "sha256": "ee99e2371a1d7454035678cef898efd89dcdf36608a26b37971150c4f59d8613",
+      "width": 1080,
+      "height": 2424
+    },
+    {
+      "file": "fb2-PAGINATED-light-system2.0-reading0.75-orientation2.png",
+      "sha256": "547b9d2b4029b1aedd7b7e751b80fb9bc7e30ac4e2ce063a74ef3e0fb8e93f5e",
+      "width": 2424,
+      "height": 1080
+    },
+    {
+      "file": "fb2-PAGINATED-light-system2.0-reading2.0-orientation1.png",
+      "sha256": "db730a11693f169d260b51901af81852704e5cff96b0b616d6da77ae6c6613d9",
+      "width": 1080,
+      "height": 2424
+    },
+    {
+      "file": "fb2-PAGINATED-light-system2.0-reading2.0-orientation2.png",
+      "sha256": "aec1fd4f5ce82b45bbde403336043fd55c3f4b672c8ae2e0677423c205843dac",
+      "width": 2424,
+      "height": 1080
+    },
+    {
+      "file": "fb2-VERTICAL-dark-system1.0-reading1.0-orientation1.png",
+      "sha256": "262ea1fc08b8055117a1cd22e34c3d93924b2ec488274239bfb89de899377c49",
+      "width": 1080,
+      "height": 2424
+    },
+    {
+      "file": "fb2-VERTICAL-dark-system1.0-reading1.0-orientation2.png",
+      "sha256": "4e5a032085002d28454124044848a4c0d44574cda13c6550d1e1b4be4be64e33",
+      "width": 2424,
+      "height": 1080
+    },
+    {
+      "file": "fb2-VERTICAL-dark-system2.0-reading0.75-orientation1.png",
+      "sha256": "d19150d240e1f521d446fe9d27e48577fbf79a639d7954aa5522e65bc11c266a",
+      "width": 1080,
+      "height": 2424
+    },
+    {
+      "file": "fb2-VERTICAL-dark-system2.0-reading0.75-orientation2.png",
+      "sha256": "4e6a4dd42d6a263df2e085041f5cf13ce86d96c6134a472ea898faa649e353fd",
+      "width": 2424,
+      "height": 1080
+    },
+    {
+      "file": "fb2-VERTICAL-dark-system2.0-reading2.0-orientation1.png",
+      "sha256": "04808b6f270d40e3404660ac09aaad5ca0fe1da1eb54d1f90099160eac170e5f",
+      "width": 1080,
+      "height": 2424
+    },
+    {
+      "file": "fb2-VERTICAL-dark-system2.0-reading2.0-orientation2.png",
+      "sha256": "1c75fec19a94f4eff47ce8f61c746f18189225c94d5d021b6fba681eefb7cbbc",
+      "width": 2424,
+      "height": 1080
+    },
+    {
+      "file": "fb2-VERTICAL-light-system1.0-reading1.0-orientation1.png",
+      "sha256": "884037447bb6e2acde3ee998eb83476b70261d694edda165eea6dc52e7efbaa9",
+      "width": 1080,
+      "height": 2424
+    },
+    {
+      "file": "fb2-VERTICAL-light-system1.0-reading1.0-orientation2.png",
+      "sha256": "1bdbb37a6942f38982fd74b15df4edbeacc3ec05a8cb4f72ecac0b187bbb5023",
+      "width": 2424,
+      "height": 1080
+    },
+    {
+      "file": "fb2-VERTICAL-light-system2.0-reading0.75-orientation1.png",
+      "sha256": "1602c8069afca881e30133120456db908ed78a500ecd06a99cc2dcd931812f76",
+      "width": 1080,
+      "height": 2424
+    },
+    {
+      "file": "fb2-VERTICAL-light-system2.0-reading0.75-orientation2.png",
+      "sha256": "bdd88ad23843ed8806685d0cb6088902d822eaa1c85ab02470513d3a5af94521",
+      "width": 2424,
+      "height": 1080
+    },
+    {
+      "file": "fb2-VERTICAL-light-system2.0-reading2.0-orientation1.png",
+      "sha256": "f4ee6ccf8792bb77b74ff03bfb72d9cc91cbe8c9f1f7128fd7bbcc4abd061be0",
+      "width": 1080,
+      "height": 2424
+    },
+    {
+      "file": "fb2-VERTICAL-light-system2.0-reading2.0-orientation2.png",
+      "sha256": "a3114563d16841f748b336ebbf56902bb6d8aa516b0d39634af5f40dba05f2e4",
+      "width": 2424,
+      "height": 1080
+    }
+  ],
+  "sc007": "NOT_RUN_REQUIRES_PARTICIPANTS",
+  "sc004": "PREVIOUS_RELEASE_BLOCKER_UNCHANGED",
+  "inputs": {
+    "app/build/outputs/apk/debug/app-debug.apk": "8bfa2dbe9763ff1d006e4569ca5ac7cf41c80fbd172e39a7097a43205fe1d42b",
+    "app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk": "274f4cd2b6afb21b9329f8079690ec9f2ff2deb8ec5a329056346015e3bb5b54",
+    "app/src/androidTest/assets/books/structured.epub": "794c237376e753afe06e3c2475b64ac3749ca573ed855d082b24a688da3baeaa",
+    "app/src/androidTest/assets/books/structured.fb2": "562dd2aa94b04c5b8d3a2695b580f21f07cf09c7871cbcc6cee008cde0ba7c35",
+    "app/src/androidTest/java/com/hooreader/reader/ReadingIndicatorsTest.kt": "471998c3af1b596c0332e76d424bb027e474e45e598a06eed3d3b17a202fed01"
+  },
+  "androidRegression": {
+    "tests": 51,
+    "passed": 45,
+    "skipped": 6,
+    "failures": 0,
+    "log": "T042-full-android.txt"
+  },
+  "status": "PASS_PHASE_5",
+  "lint": {
+    "Error": 0,
+    "Warning": 24
+  },
+  "systemFontScaleAfterVerification": 1.0
+}

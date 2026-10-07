@@ -26,6 +26,8 @@ import com.hooreader.ui.reader.ReaderChromeEvent
 import com.hooreader.ui.reader.ReaderOverlay
 import com.hooreader.ui.reader.ReaderScreen
 import com.hooreader.ui.reader.ReaderViewModel
+import com.hooreader.ui.settings.AppSettingsScreen
+import com.hooreader.ui.settings.AppSettingsViewModel
 import com.hooreader.ui.settings.ReaderSettingsSheet
 import com.hooreader.ui.settings.ReaderSettingsViewModel
 import kotlinx.coroutines.launch
@@ -35,9 +37,13 @@ fun HooReaderNavHost(
     navController: NavHostController = rememberNavController(),
     libraryContent: (@Composable ((String) -> Unit) -> Unit)? = null,
     readerContent: (@Composable (String, () -> Unit) -> Unit)? = null,
+    readerDependencies: ReaderDependencies? = null,
 ) {
     val context = LocalContext.current.applicationContext
-    val dependencies = remember(context) { ReaderDependencies(context) }
+    val dependencies = readerDependencies ?: remember(context) { ReaderDependencies(context) }
+    val settings: ReaderSettingsViewModel = viewModel(
+        factory = viewModelFactory { initializer { ReaderSettingsViewModel(dependencies.preferences) } },
+    )
     NavHost(navController = navController, startDestination = HooReaderRoutes.LIBRARY) {
         composable(HooReaderRoutes.LIBRARY) {
             val openBook: (String) -> Unit = { bookId ->
@@ -51,7 +57,9 @@ fun HooReaderNavHost(
                         initializer { LibraryViewModel(dependencies.library) { importFromPicker(dependencies, it) } }
                     },
                 )
-                ImportBookLauncher(model, openBook)
+                ImportBookLauncher(model, openBook) {
+                    navController.navigate(HooReaderRoutes.APP_SETTINGS) { launchSingleTop = true }
+                }
             }
         }
         composable(
@@ -63,20 +71,35 @@ fun HooReaderNavHost(
             if (readerContent != null) {
                 readerContent(bookId, onBack)
             } else {
-                ReaderDestination(bookId, dependencies, onBack)
+                ReaderDestination(bookId, dependencies, settings, onBack)
+            }
+        }
+        composable(HooReaderRoutes.APP_SETTINGS) {
+            val model: AppSettingsViewModel = viewModel(
+                factory = viewModelFactory { initializer { AppSettingsViewModel(settings) } },
+            )
+            val state by model.state.collectAsStateWithLifecycle()
+            val loaded by settings.appPreferences.collectAsStateWithLifecycle()
+            if (loaded == null) {
+                CircularProgressIndicator()
+            } else {
+                AppSettingsScreen(state, model::setConfirmReaderExit, model::retry) { navController.popBackStack() }
             }
         }
     }
 }
 
 @Composable
-private fun ReaderDestination(bookId: String, dependencies: ReaderDependencies, onBack: () -> Unit) {
-    val settings: ReaderSettingsViewModel = viewModel(
-        factory = viewModelFactory { initializer { ReaderSettingsViewModel(dependencies.preferences) } },
-    )
+private fun ReaderDestination(
+    bookId: String,
+    dependencies: ReaderDependencies,
+    settings: ReaderSettingsViewModel,
+    onBack: () -> Unit,
+) {
     val preferences by settings.preferences.collectAsStateWithLifecycle()
+    val appPreferences by settings.appPreferences.collectAsStateWithLifecycle()
     val current = preferences
-    if (current == null) {
+    if (current == null || appPreferences == null) {
         CircularProgressIndicator()
     } else {
         OpenReaderDestination(bookId, dependencies, current, settings, onBack)
@@ -102,11 +125,12 @@ private fun OpenReaderDestination(
                     dependencies.readerPages,
                     preferences,
                     dependencies.readerContent,
+                    dependencies.positionSaverFactory(dependencies.repository),
                 )
             }
         },
     )
-    val saveFailed by settings.saveFailed.collectAsStateWithLifecycle()
+    val writeState by settings.writeState.collectAsStateWithLifecycle()
     val chrome by model.chromeState.collectAsStateWithLifecycle()
     val scope = rememberCoroutineScope()
     LaunchedEffect(preferences) {
@@ -117,10 +141,11 @@ private fun OpenReaderDestination(
         fontScale = preferences.fontScale,
         onSettings = { model.onChromeEvent(ReaderChromeEvent.OPEN_READER_SETTINGS) },
         onBack = onBack,
+        confirmReaderExit = writeState.requestedApp.confirmReaderExit,
     )
     if (chrome.overlay == ReaderOverlay.READER_SETTINGS) {
         ReaderSettingsSheet(
-            preferences = preferences,
+            preferences = writeState.requestedSnapshot,
             onThemeChange = settings::setTheme,
             onFontScaleChange = { scale ->
                 scope.launch {
@@ -139,7 +164,7 @@ private fun OpenReaderDestination(
                 }
             },
             onDismiss = { model.onChromeEvent(ReaderChromeEvent.DISMISS_OVERLAY) },
-            saveFailed = saveFailed,
+            saveFailed = writeState.error != null,
             onRetry = settings::retry,
         )
     }

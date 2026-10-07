@@ -3,6 +3,7 @@ package com.hooreader.ui.reader
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.runtime.Composable
@@ -49,7 +50,6 @@ private fun VerticalWindow(state: ReaderUiState.Reading, viewModel: ReaderViewMo
     val list = rememberLazyListState(initialFirstVisibleItemIndex = anchorIndex.coerceAtLeast(0))
     val layouts = remember { mutableStateMapOf<String, TextLayoutResult>() }
     var baseline by remember { mutableStateOf<Pair<Int, Int>?>(null) }
-    val position by rememberUpdatedState(state.position)
     LaunchedEffect(layouts[anchorKey]) {
         if (baseline == null) {
             val block = state.blocks[anchorIndex.coerceAtLeast(0)]
@@ -63,31 +63,7 @@ private fun VerticalWindow(state: ReaderUiState.Reading, viewModel: ReaderViewMo
             }
         }
     }
-    LaunchedEffect(list) {
-        var navigated = false
-        snapshotFlow {
-            val visible = list.firstVisibleItemIndex to list.firstVisibleItemScrollOffset
-            if (baseline != null && (navigated || visible != baseline)) {
-                state.blocks.getOrNull(visible.first)?.let {
-                    ReaderPositionResolver.topVisibleAnchor(it, layouts[it.blockKey()], visible.second)
-                }
-            } else {
-                null
-            }
-        }.distinctUntilChanged().collect { anchor ->
-            if (anchor != null) {
-                navigated = true
-                if (anchor != position.logicalAnchor()) {
-                    viewModel.onVisibleBlock(
-                        anchor.chapterIndex,
-                        anchor.blockIndex,
-                        anchor.characterOffset,
-                        state.layoutGeneration,
-                    )
-                }
-            }
-        }
-    }
+    TrackVisiblePosition(list, layouts, baseline, state, viewModel)
     LazyColumn(
         Modifier.fillMaxSize().testTag("reader_list"),
         state = list,
@@ -100,6 +76,54 @@ private fun VerticalWindow(state: ReaderUiState.Reading, viewModel: ReaderViewMo
             }
         }
     }
+}
+
+@Composable
+private fun TrackVisiblePosition(
+    list: LazyListState,
+    layouts: Map<String, TextLayoutResult>,
+    baseline: Pair<Int, Int>?,
+    state: ReaderUiState.Reading,
+    viewModel: ReaderViewModel,
+) {
+    val restored by rememberUpdatedState(baseline)
+    val position by rememberUpdatedState(state.position)
+    LaunchedEffect(list) {
+        var navigated = false
+        snapshotFlow {
+            val visible = list.firstVisibleItemIndex to list.firstVisibleItemScrollOffset
+            state.blocks.getOrNull(visible.first)?.takeIf { restored != null }?.let { block ->
+                val anchor = ReaderPositionResolver.topVisibleAnchor(block, layouts[block.blockKey()], visible.second)
+                Triple(anchor, !list.canScrollForward && state.windowReachesEnd(), visible != restored)
+            }
+        }.distinctUntilChanged().collect { visible ->
+            if (visible != null) {
+                val (anchor, atEnd, moved) = visible
+                navigated = navigated || moved
+                val block = state.blocks.first {
+                    it.chapterIndex == anchor.chapterIndex &&
+                        it.blockIndex == anchor.blockIndex
+                }
+                val percent = ReadingIndicatorResolver.progress(state.chapters, block, anchor.characterOffset, atEnd)
+                viewModel.onVisibleIndicator(anchor.chapterIndex, percent, state.layoutGeneration)
+                if (navigated && (anchor != position.logicalAnchor() || percent != position.progressPercent)) {
+                    viewModel.onVisibleBlock(
+                        anchor.chapterIndex,
+                        anchor.blockIndex,
+                        anchor.characterOffset,
+                        state.layoutGeneration,
+                        atEnd,
+                    )
+                }
+            }
+        }
+    }
+}
+
+private fun ReaderUiState.Reading.windowReachesEnd(): Boolean {
+    val last = blocks.last()
+    val chapter = chapters.last()
+    return last.chapterIndex == chapter.index && last.blockIndex == maxOf(0, chapter.blockCount - 1)
 }
 
 private fun ContentBlock.blockKey() = "$chapterIndex:$blockIndex"
