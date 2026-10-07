@@ -1,0 +1,90 @@
+Performing Streamed Install
+Success
+Performing Streamed Install
+Success
+CASE: VERTICAL confirm_reader_exit=true
+
+com.hooreader.reader.ProcessDeathAcceptanceTest:.
+
+Time: 2.38
+
+OK (1 test)
+
+com.hooreader.reader.ProcessDeathAcceptanceTest:.
+
+Time: 1.399
+
+OK (1 test)
+
+com.hooreader.reader.ProcessDeathAcceptanceTest:.
+
+Time: 2.095
+
+OK (1 test)
+PASS: VERTICAL confirm_reader_exit=true EPUB + FB2, cache absent, new PID
+CASE: VERTICAL confirm_reader_exit=false
+
+com.hooreader.reader.ProcessDeathAcceptanceTest:.
+
+Time: 2.176
+
+OK (1 test)
+
+com.hooreader.reader.ProcessDeathAcceptanceTest:.
+
+Time: 1.337
+
+OK (1 test)
+
+com.hooreader.reader.ProcessDeathAcceptanceTest:.
+
+Time: 2.21
+
+OK (1 test)
+PASS: VERTICAL confirm_reader_exit=false EPUB + FB2, cache absent, new PID
+CASE: PAGINATED confirm_reader_exit=true
+
+com.hooreader.reader.ProcessDeathAcceptanceTest:.
+
+Time: 3.127
+
+OK (1 test)
+
+com.hooreader.reader.ProcessDeathAcceptanceTest:.
+
+Time: 1.36
+
+OK (1 test)
+
+com.hooreader.reader.ProcessDeathAcceptanceTest:.
+
+Time: 2.791
+
+OK (1 test)
+PASS: PAGINATED confirm_reader_exit=true EPUB + FB2, cache absent, new PID
+CASE: PAGINATED confirm_reader_exit=false
+
+com.hooreader.reader.ProcessDeathAcceptanceTest:.
+
+Time: 2.741
+
+OK (1 test)
+
+com.hooreader.reader.ProcessDeathAcceptanceTest:.
+
+Time: 1.315
+
+OK (1 test)
+
+com.hooreader.reader.ProcessDeathAcceptanceTest:.
+
+Time: 2.911
+
+OK (1 test)
+PASS: PAGINATED confirm_reader_exit=false EPUB + FB2, cache absent, new PID
+
+com.hooreader.reader.ProcessDeathAcceptanceTest:.
+
+Time: 1.403
+
+OK (1 test)

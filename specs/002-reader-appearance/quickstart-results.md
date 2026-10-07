@@ -252,3 +252,19 @@ TalkBack исключён решением B; этот прогон не под�
 [матрица и screenshots](evidence/font-scale/README.md),
 [машинный итог](evidence/font-scale/summary.json).
 Воспроизведение: `ADB=<путь к adb> scripts/verify-reader-font-scale.sh`.
+
+## Фаза 8 — OS process-death, T059
+
+Специальный opt-in прогон на том же API 37 прошёл для VERTICAL/PAGINATED ×
+confirm_reader_exit=true/false. В каждом сценарии импортированы собственные EPUB и FB2
+с абзацем >100 000 UTF-16 code units; сохранён безопасный внутренний offset около 15 000.
+После seed скрипт завершал процесс, отдельная фаза удаляла только derived каталоги этих
+двух книг, затем процесс снова завершался. Verify подтвердил новый PID, авиарежим,
+DARK/1,5, прежний режим/переключатель, точные исходные chapter/block/offset и пересозданный
+spool/index. В PAGINATED готовая страница содержит anchor и имеет точный номер.
+Исходные внешние cache files удалены до завершения процесса; app-local книги и Room позиции
+сохранены. После проверки удалены только собственные записи, preferences и авиарежим восстановлены.
+
+Все 12 основных отдельных фаз passed; дополнительный cleanup passed. Подготовительный timeout
+Compose harness не входит в результат. Обычные skipped tests не считаются этим доказательством.
+Доказательство: [process-death-v2.txt](evidence/process-death-v2.txt).
