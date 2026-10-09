@@ -10,6 +10,7 @@
 
 Текущий локальный RC — **2.0.0**, versionCode 2; команды сборки создают именно его.
 [Изменения RC](docs/releases/2.0.0.md) ·
+[Комплект APK/AAB и его проверка](docs/releases/2.0.0-validation.md) ·
 [Итоги проверок](specs/002-reader-appearance/validation-results.md) ·
 [Матрица требований](specs/002-reader-appearance/evidence/validation-summary.json).
 RC пока не принят: открыта аппаратная производительность SC-004. T062/SC-007 пройдена

@@ -5,6 +5,9 @@
 Локальный RC 2.0.0 (versionCode 2) собирается `python3 scripts/build-release.py`.
 APK/AAB и SHA256SUMS находятся в `app/build/release/2.0.0/`; используется существующая
 release-подпись. [Выпуск и временный стенд](releasing.md), [notes](releases/2.0.0.md).
+Проверенный комплект для передачи создаётся `python3 scripts/package-release.py`:
+`app/build/release/2.0.0/HooReader-2.0.0-release.zip` и файл `.zip.sha256`.
+[Происхождение сборки и проверка комплекта](releases/2.0.0-validation.md).
 Подписанное обновление проверяется отдельно `python3 scripts/verify-reader-upgrade.py`:
 требуются локальные APK 1.0.0/2.0.0, собранный внешний release-smoke runner и один
 `-read-only` emulator. Между установкой v1 и обновлением v2 библиотека не очищается.

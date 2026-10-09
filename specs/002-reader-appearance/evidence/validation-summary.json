@@ -90,6 +90,17 @@
       "skipped": 0,
       "failures": 0,
       "evidence": "validation/exit-regression-api37.xml"
+    },
+    "releasePackage": {
+      "status": "RC_PENDING_ACCEPTANCE",
+      "sourceCommit": "4797ae975cadc27147630029a4c2bd9b4ee8b73b",
+      "manifest": "release/RELEASE_MANIFEST.json",
+      "buildProvenance": "release/build-provenance.json",
+      "archiveChecksum": "release/HooReader-2.0.0-release.zip.sha256",
+      "archiveSha256": "8d15da7222b4831b34252fa1f66047b8bed886cc6353503e4dc73dadf6e84c08",
+      "payloadFiles": 6,
+      "archiveIntegrity": "PASS",
+      "releaseAccepted": false
     }
   },
   "SC": {
