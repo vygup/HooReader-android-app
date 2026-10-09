@@ -68,6 +68,7 @@ class PagedReaderTest {
         chooseMode("reading_mode_paginated")
         waitForPages()
         assertStablePagesAcrossTaps()
+        assertHundredNavigationGesturesKeepControlsHidden()
         val number = pageNumber()
         compose.onNodeWithTag("reader_pager").performTouchInput { swipeLeft(durationMillis = 150) }
         waitForPage(number + 1)
@@ -108,7 +109,11 @@ class PagedReaderTest {
         val viewport = compose.onNodeWithTag("reader_viewport")
         val bounds = viewport.fetchSemanticsNode().boundsInRoot
         repeat(20) { index ->
-            viewport.performTouchInput { click() }
+            viewport.performTouchInput {
+                down(center)
+                moveTo(center + Offset(1f, 1f))
+                up()
+            }
             if (index % 2 == 0) {
                 compose.onNodeWithTag("reader_controls").assertIsDisplayed()
             } else {
@@ -119,6 +124,34 @@ class PagedReaderTest {
             assertEquals(before.layoutGeneration, after.layoutGeneration)
             assertEquals(before.pages, after.pages)
             assertEquals(bounds, viewport.fetchSemanticsNode().boundsInRoot)
+        }
+    }
+
+    private fun assertHundredNavigationGesturesKeepControlsHidden() {
+        selectChapter(0)
+        waitForPage(1)
+        val pager = compose.onNodeWithTag("reader_pager")
+        repeat(100) { index ->
+            when (index % 5) {
+                0 -> pager.performTouchInput { swipeLeft(durationMillis = 150) }
+                1 -> pager.performTouchInput { swipeRight(durationMillis = 150) }
+                2 -> pager.performTouchInput {
+                    down(center)
+                    moveTo(center + Offset(-30f, 0f))
+                    cancel()
+                }
+                3 -> pager.performTouchInput {
+                    down(center)
+                    moveTo(center + Offset(-60f, 0f), delayMillis = 200)
+                    moveTo(center, delayMillis = 200)
+                    advanceEventTime(200)
+                    up()
+                }
+                else -> pager.performTouchInput { swipeRight(durationMillis = 150) }
+            }
+            compose.waitForIdle()
+            waitForPage(if (index % 5 == 0) 2 else 1)
+            compose.onNodeWithTag("reader_controls").assertDoesNotExist()
         }
     }
 
