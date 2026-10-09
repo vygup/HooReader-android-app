@@ -44,12 +44,16 @@
 > Task :app:javaPreCompileReleaseUnitTest UP-TO-DATE
 > Task :app:preDebugAndroidTestBuild SKIPPED
 > Task :app:generateDebugAndroidTestResValues UP-TO-DATE
-> Task :app:generateDebugAndroidTestLintModel
+> Task :app:generateDebugAndroidTestLintModel UP-TO-DATE
 > Task :app:extractProguardFiles UP-TO-DATE
 > Task :app:generateDebugLintReportModel UP-TO-DATE
 > Task :app:generateDebugUnitTestLintModel UP-TO-DATE
 > Task :app:lintAnalyzeDebug UP-TO-DATE
+> Task :app:lintAnalyzeDebugAndroidTest UP-TO-DATE
 > Task :app:lintAnalyzeDebugUnitTest UP-TO-DATE
+> Task :app:lintReportDebug UP-TO-DATE
+> Task :app:lintDebug
+> Task :app:lint
 > Task :app:bundleDebugClassesToRuntimeJar UP-TO-DATE
 > Task :app:mergeDebugShaders UP-TO-DATE
 > Task :app:compileDebugShaders NO-SOURCE
@@ -82,7 +86,7 @@
 > Task :app:validateSigningRelease UP-TO-DATE
 > Task :app:writeReleaseAppMetadata UP-TO-DATE
 > Task :app:writeReleaseSigningConfigVersions UP-TO-DATE
-> Task :app:processApplicationManifestReleaseForBundle
+> Task :app:processApplicationManifestReleaseForBundle UP-TO-DATE
 > Task :app:configureReleaseDependencies UP-TO-DATE
 > Task :app:parseReleaseIntegrityConfig UP-TO-DATE
 > Task :app:processReleaseResources
@@ -101,43 +105,31 @@
 > Task :app:processReleaseUnitTestJavaRes UP-TO-DATE
 > Task :app:testReleaseUnitTest UP-TO-DATE
 > Task :app:test UP-TO-DATE
-> Task :app:dexBuilderRelease
+> Task :app:check
+> Task :app:dexBuilderRelease UP-TO-DATE
+> Task :app:mergeDexRelease UP-TO-DATE
+> Task :app:l8DexDesugarLibRelease UP-TO-DATE
 > Task :app:mergeReleaseGlobalSynthetics UP-TO-DATE
-> Task :app:generateReleaseLintVitalReportModel
-> Task :app:optimizeReleaseResources
-> Task :app:bundleReleaseResources
-> Task :app:mergeReleaseJavaResource
-> Task :app:mergeDexRelease
-> Task :app:l8DexDesugarLibRelease
-> Task :app:buildReleasePreBundle
-> Task :app:compileReleaseArtProfile
-> Task :app:lintVitalAnalyzeRelease
+> Task :app:compileReleaseArtProfile UP-TO-DATE
+> Task :app:generateReleaseLintVitalReportModel UP-TO-DATE
+> Task :app:lintVitalAnalyzeRelease UP-TO-DATE
 > Task :app:lintVitalReportRelease SKIPPED
 > Task :app:lintVitalRelease SKIPPED
+> Task :app:mergeReleaseJavaResource UP-TO-DATE
+> Task :app:optimizeReleaseResources UP-TO-DATE
+> Task :app:bundleReleaseResources UP-TO-DATE
+> Task :app:buildReleasePreBundle
 > Task :app:packageReleaseBundle
 > Task :app:packageRelease
-> Task :app:createReleaseApkListingFileRedirect
+> Task :app:createReleaseApkListingFileRedirect UP-TO-DATE
 > Task :app:assembleRelease
-> Task :app:lintAnalyzeDebugAndroidTest
-> Task :app:lintReportDebug UP-TO-DATE
-> Task :app:lintDebug
-> Task :app:lint
-> Task :app:check
 > Task :app:signReleaseBundle
 > Task :app:produceReleaseBundleIdeListingFile
 > Task :app:createReleaseBundleListingFileRedirect UP-TO-DATE
 > Task :app:bundleRelease
 
-[Incubating] Problems report is available at: file:///Users/vygup/project/HooReader/build/reports/problems/problems-report.html
-
-Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
-
-You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
-
-For more on this, please refer to https://docs.gradle.org/8.14.3/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
-
-BUILD SUCCESSFUL in 13s
-105 actionable tasks: 23 executed, 82 up-to-date
+BUILD SUCCESSFUL in 2s
+105 actionable tasks: 10 executed, 95 up-to-date
 Готовые подписанные APK/AAB: /Users/vygup/project/HooReader/app/build/release/2.0.0
-3a2f7d7458da78ba479ba2c863167eb4313982cdace7d5b3ca212bb06d664899  HooReader-2.0.0.apk
-5649d3831081762c15adce36179f4b028ac5d56790eef8390892031b6a4e6216  HooReader-2.0.0.aab
+67f99b662e702bba0ef2e1920f30664aec990af14cc9c0231425e5b674ea09b2  HooReader-2.0.0.apk
+b371916ff7cadd29e0c8ee25514218efa38b2070e2551656d4fa5ee4f9ad948d  HooReader-2.0.0.aab
