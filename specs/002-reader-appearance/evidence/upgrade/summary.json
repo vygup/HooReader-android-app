@@ -27,7 +27,9 @@
   },
   "apkSha256": {
     "HooReader-1.0.0.apk": "b57907f817f9577c5533fa353641716829c4943bde9a6608e765f052c4aa6846",
-    "HooReader-2.0.0.apk": "3a2f7d7458da78ba479ba2c863167eb4313982cdace7d5b3ca212bb06d664899"
+    "HooReader-2.0.0.apk": "67f99b662e702bba0ef2e1920f30664aec990af14cc9c0231425e5b674ea09b2"
   },
-  "releaseAccepted": false
+  "releaseAccepted": false,
+  "verifiedAt": "2026-10-09T14:40:20.202603+00:00",
+  "buildSourceCommit": "4797ae975cadc27147630029a4c2bd9b4ee8b73b"
 }
