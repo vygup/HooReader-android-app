@@ -12,8 +12,8 @@
 [Изменения RC](docs/releases/2.0.0.md) ·
 [Итоги проверок](specs/002-reader-appearance/validation-results.md) ·
 [Матрица требований](specs/002-reader-appearance/evidence/validation-summary.json).
-RC не принят: открыты аппаратная производительность SC-004 и проверка с пятью
-участниками SC-007. Instrumentation на API 26 и API 37 пройден. RC не опубликован.
+RC пока не принят: открыта аппаратная производительность SC-004. T062/SC-007 пройдена
+по подтверждению пользователя. Instrumentation на API 26 и API 37 пройден.
 
 ## Возможности
 

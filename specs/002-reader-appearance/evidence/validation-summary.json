@@ -7,8 +7,7 @@
   "releaseAccepted": false,
   "phaseComplete": false,
   "blockedBy": [
-    "SC-004 physical device/full protocol/1000ms release blocker",
-    "SC-007 five participants"
+    "SC-004 physical device/full protocol/1000ms release blocker"
   ],
   "taskStatus": {
     "completed": [
@@ -16,13 +15,12 @@
       "T059",
       "T060",
       "T061",
+      "T062",
       "T063",
       "T064",
       "T065"
     ],
-    "pending": [
-      "T062"
-    ],
+    "pending": [],
     "T061": "instrumentation and unavailable-device report complete; metric not accepted"
   },
   "compatibility": {
@@ -1068,13 +1066,18 @@
       ]
     },
     "SC-007": {
-      "status": "NOT_VERIFIED_PARTICIPANTS",
-      "participants": 0,
+      "status": "PASS_USER_REPORTED",
+      "participants": null,
       "requiredParticipants": 5,
       "evidence": [
         "../usability-results.md",
-        "../usability-form.md"
-      ]
+        "../usability-form.md",
+        "usability/user-confirmation.json"
+      ],
+      "requiredSuccessfulParticipants": 4,
+      "actualSuccessfulParticipants": null,
+      "confirmationSource": "user message: T062 passed",
+      "participantDetailsProvided": false
     },
     "SC-008": {
       "status": "PASS_API37",
@@ -1262,17 +1265,18 @@
     },
     "FR-015": {
       "requirement": "Минимальные указатели MUST иметь меньший размер и меньший контраст относительно",
-      "status": "PASS_AUTOMATED_GEOMETRY_PERCEPTION_UNVERIFIED",
+      "status": "PASS_CHECKED_SCENARIOS_USER_REPORTED_PERCEPTION",
       "evidence": [
         "validation/connected-api37.xml",
         "font-scale/summary.json",
-        "../usability-results.md"
+        "../usability-results.md",
+        "usability/user-confirmation.json"
       ],
       "tests": [
         "ReadingIndicatorsTest",
         "ReaderFontScaleAcceptanceTest"
       ],
-      "perceptualAcceptance": "SC-007 NOT_VERIFIED_PARTICIPANTS"
+      "perceptualAcceptance": "SC-007 PASS_USER_REPORTED"
     },
     "FR-016": {
       "requirement": "Содержание MUST открывать начало выбранной главы в текущем режиме, обновлять",
@@ -1399,5 +1403,6 @@
     "checked": true,
     "configurationExists": false,
     "afterImplement": []
-  }
+  },
+  "tasksComplete": true
 }
