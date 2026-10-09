@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.hooreader.data.import.BookParsersTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-10-07T15:00:05.415Z" hostname="MBVY.local" time="0.055">
+  <properties/>
+  <testcase name="FB2 honors its declared Windows-1251 encoding" classname="com.hooreader.data.import.BookParsersTest" time="0.025"/>
+  <testcase name="both parsers preserve chapter and block coordinates across reads" classname="com.hooreader.data.import.BookParsersTest" time="0.03"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

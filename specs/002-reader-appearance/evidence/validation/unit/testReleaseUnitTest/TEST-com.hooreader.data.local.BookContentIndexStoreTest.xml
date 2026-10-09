@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.hooreader.data.local.BookContentIndexStoreTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-10-07T15:00:05.831Z" hostname="MBVY.local" time="0.134">
+  <properties/>
+  <testcase name="derived paths reject traversal and invalid ownership" classname="com.hooreader.data.local.BookContentIndexStoreTest" time="0.013"/>
+  <testcase name="cancelled build is not published and leaves source available for retry" classname="com.hooreader.data.local.BookContentIndexStoreTest" time="0.034"/>
+  <testcase name="random windows cross empty chapter without reparsing and retain coordinates" classname="com.hooreader.data.local.BookContentIndexStoreTest" time="0.028"/>
+  <testcase name="well formed altered text still fails whole spool integrity check" classname="com.hooreader.data.local.BookContentIndexStoreTest" time="0.023"/>
+  <testcase name="partial corrupt and deleted spool are rebuilt without touching original" classname="com.hooreader.data.local.BookContentIndexStoreTest" time="0.036"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

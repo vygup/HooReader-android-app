@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.hooreader.data.repository.LibraryRepositoryTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2026-10-07T15:00:06.604Z" hostname="MBVY.local" time="0.182">
+  <properties/>
+  <testcase name="EPUB without author and cover remains available" classname="com.hooreader.data.repository.LibraryRepositoryTest" time="0.031"/>
+  <testcase name="library uses placeholder when local cover is missing" classname="com.hooreader.data.repository.LibraryRepositoryTest" time="0.033"/>
+  <testcase name="missing metadata uses source filename unknown author and no cover" classname="com.hooreader.data.repository.LibraryRepositoryTest" time="0.019"/>
+  <testcase name="removal deletes local cover chapters and progress but preserves source" classname="com.hooreader.data.repository.LibraryRepositoryTest" time="0.029"/>
+  <testcase name="library observes saved progress and read boundary without reopening" classname="com.hooreader.data.repository.LibraryRepositoryTest" time="0.04"/>
+  <testcase name="duplicate under another filename keeps original metadata and progress" classname="com.hooreader.data.repository.LibraryRepositoryTest" time="0.028"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

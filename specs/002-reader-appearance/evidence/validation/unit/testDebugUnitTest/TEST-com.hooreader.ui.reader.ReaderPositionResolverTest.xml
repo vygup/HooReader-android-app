@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.hooreader.ui.reader.ReaderPositionResolverTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-10-07T14:59:52.429Z" hostname="MBVY.local" time="0.001">
+  <properties/>
+  <testcase name="existing anchor and character survive and empty chapter has safe index" classname="com.hooreader.ui.reader.ReaderPositionResolverTest" time="0.001"/>
+  <testcase name="missing coordinates choose nearest existing chapter and block" classname="com.hooreader.ui.reader.ReaderPositionResolverTest" time="0.0"/>
+  <testcase name="source offsets clamp without splitting surrogate pairs and retain combining marks" classname="com.hooreader.ui.reader.ReaderPositionResolverTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

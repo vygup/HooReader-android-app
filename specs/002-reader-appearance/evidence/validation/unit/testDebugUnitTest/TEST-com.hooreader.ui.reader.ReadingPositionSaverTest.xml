@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.hooreader.ui.reader.ReadingPositionSaverTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2026-10-07T14:59:53.681Z" hostname="MBVY.local" time="0.011">
+  <properties/>
+  <testcase name="old success cannot hide newer failure and retry writes the latest navigation" classname="com.hooreader.ui.reader.ReadingPositionSaverTest" time="0.003"/>
+  <testcase name="repeated lifecycle stops keep latest revision after an interrupted write fails" classname="com.hooreader.ui.reader.ReadingPositionSaverTest" time="0.003"/>
+  <testcase name="failed save retains the latest position for retry" classname="com.hooreader.ui.reader.ReadingPositionSaverTest" time="0.001"/>
+  <testcase name="stop and disposal flush without waiting for debounce" classname="com.hooreader.ui.reader.ReadingPositionSaverTest" time="0.001"/>
+  <testcase name="new update never cancels an active write and flush follows its latest revision" classname="com.hooreader.ui.reader.ReadingPositionSaverTest" time="0.001"/>
+  <testcase name="late failed flush retains subsequent navigation until latest revision succeeds" classname="com.hooreader.ui.reader.ReadingPositionSaverTest" time="0.001"/>
+  <testcase name="scroll changes are debounced and only the latest paragraph is stored" classname="com.hooreader.ui.reader.ReadingPositionSaverTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.hooreader.ui.reader.ReaderPaginationControllerTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-10-07T14:59:50.023Z" hostname="MBVY.local" time="2.405">
+  <properties/>
+  <testcase name="rapid system geometry preserves anchor and rejects stale generation" classname="com.hooreader.ui.reader.ReaderPaginationControllerTest" time="2.314"/>
+  <testcase name="failed user flush holds choice while system geometry and latest retry proceed" classname="com.hooreader.ui.reader.ReaderPaginationControllerTest" time="0.091"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.hooreader.ui.reader.pagination.PageIndexTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2026-10-07T14:59:53.698Z" hostname="MBVY.local" time="0.154">
+  <properties/>
+  <testcase name="corrupt cache rebuilds and cancellation never exposes incomplete chapter" classname="com.hooreader.ui.reader.pagination.PageIndexTest" time="0.042"/>
+  <testcase name="all geometry changes invalidate hash and at most two layouts remain" classname="com.hooreader.ui.reader.pagination.PageIndexTest" time="0.031"/>
+  <testcase name="geometry content parser locale and nonlinear font samples each invalidate cache" classname="com.hooreader.ui.reader.pagination.PageIndexTest" time="0.012"/>
+  <testcase name="prefix change cannot reuse chapter with stale global numbers" classname="com.hooreader.ui.reader.pagination.PageIndexTest" time="0.021"/>
+  <testcase name="streamed disk index supplies exact late page and reuses complete boundaries" classname="com.hooreader.ui.reader.pagination.PageIndexTest" time="0.037"/>
+  <testcase name="source boundaries and geometry reject plausible but inconsistent cache fragments" classname="com.hooreader.ui.reader.pagination.PageIndexTest" time="0.011"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
