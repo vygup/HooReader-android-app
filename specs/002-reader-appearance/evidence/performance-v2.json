@@ -1,0 +1,11 @@
+{
+  "status": "NOT_VERIFIED_DEVICE",
+  "profileId": "18757762298d7e3ca967ce968c8d559aa07d8553cea73549b32bb284962373e2",
+  "physical": false,
+  "runsPerScenario": 5,
+  "ui": [],
+  "pagination": null,
+  "releaseAccepted": false,
+  "reason": "Физический стенд SC-004 недоступен.",
+  "priorDiagnostics": "pagination-production-optimized.json"
+}

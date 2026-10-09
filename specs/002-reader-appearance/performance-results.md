@@ -105,3 +105,34 @@ source opening, prefix measurement и следующий frame callback; warm/sc
 не доказывает улучшение задержки после оптимизации, даже если отдельные cold cases
 быстрее baseline. Без устранения/объяснения задержек и полной аппаратной серии
 SC-004 остаётся release blocker. Измерительная instrumentation корректность GREEN.
+
+## T061 — второй RC, 2026-10-09
+
+**NOT_VERIFIED_DEVICE; SC-004 остаётся release blocker.** Подключённого физического
+стенда нет. [Аппаратный отчёт](evidence/performance-v2.json) сохраняет исходный
+profileId `18757762298d7e3ca967ce968c8d559aa07d8553cea73549b32bb284962373e2`,
+пустую серию и `releaseAccepted=false`. Полная новая серия 20 MB cold/new LayoutKey,
+поздней главы и warm cache на RC не выполнена; прежние результаты T035 выше
+остаются отдельной диагностикой и не считаются измерением текущего RC.
+
+Для проверки нового измерительного пути выполнена отдельная эмуляторная UI-серия:
+[все исходные значения](evidence/performance-v2-diagnostic.json),
+[профиль, APK, XML и raw](evidence/performance-v2-diagnostic-series/).
+Её profileId `5e9c9e1ea182ff8ee7fbcd5d37611d3d2d1c8c9132ca5247971699deb5d66691`. EPUB/FB2 × VERTICAL/PAGINATED × шесть действий,
+по пять запусков: 24 серии, 120 значений. Замеры включают captureToImage и являются
+верхней границей, а не точным временем первого кадра. Меню доступны за два tap.
+Корректность harness пройдена; аппаратный порог этим не подтверждён.
+
+| Действие | Максимум из всех серий, ms |
+|---|---:|
+| panels | 116.505 |
+| contents | 437.569 |
+| settings | 421.250 |
+| theme | 807.362 |
+| fontScale | 1135.719 |
+| mode | 1433.423 |
+
+Воспроизведение: `scripts/measure-reader-performance.sh /tmp/performance-v2.json`
+на физическом стенде выполняет полную серию; диагностический путь —
+`--allow-emulator --ui-only /tmp/performance-v2-diagnostic.json`. При смене профиля
+вся аппаратная серия повторяется; результаты разных профилей не объединяются.

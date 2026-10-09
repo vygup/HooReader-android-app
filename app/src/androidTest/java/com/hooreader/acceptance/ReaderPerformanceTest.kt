@@ -6,16 +6,33 @@ import android.os.HandlerThread
 import android.os.SystemClock
 import android.view.FrameMetrics
 import android.view.Window
+import androidx.compose.material3.Button
+import androidx.compose.material3.Text
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.test.SemanticsNodeInteraction
+import androidx.compose.ui.test.captureToImage
+import androidx.compose.ui.test.click
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onAllNodesWithTag
 import androidx.compose.ui.test.onNodeWithTag
+import androidx.compose.ui.test.onNodeWithText
+import androidx.compose.ui.test.performClick
+import androidx.compose.ui.test.performScrollTo
+import androidx.compose.ui.test.performTouchInput
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStore
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import androidx.test.core.app.ApplicationProvider
+import androidx.test.espresso.Espresso
 import androidx.test.platform.app.InstrumentationRegistry
 import com.hooreader.data.import.BookImportResult
 import com.hooreader.domain.model.ReaderPreferences
+import com.hooreader.domain.model.ReaderTheme
+import com.hooreader.domain.model.ReadingMode
+import com.hooreader.navigation.HooReaderNavHost
+import com.hooreader.navigation.HooReaderRoutes
 import com.hooreader.navigation.ReaderDependencies
 import com.hooreader.testing.ReaderTestActivity
 import com.hooreader.ui.library.LibraryScreen
@@ -46,6 +63,174 @@ class ReaderPerformanceTest {
     private val context = ApplicationProvider.getApplicationContext<Context>()
     private val dependencies = ReaderDependencies(context)
     private val imported = mutableListOf<String>()
+    private lateinit var controller: NavHostController
+    private lateinit var uiReader: ReaderViewModel
+
+    @Test
+    @Suppress("LongMethod") // One opt-in series owns its imported books and restores all shared preferences.
+    fun measureV2PanelsMenusAndSettings() = runBlocking {
+        val args = InstrumentationRegistry.getArguments()
+        assumeTrue(args.getString("phase8Performance") == "true")
+        val profile = requireNotNull(args.getString("probeProfileId"))
+        val previous = dependencies.preferences.preferences.first()
+        val previousApp = dependencies.preferences.appPreferences.first()
+        val cases = JSONArray()
+        val assets = InstrumentationRegistry.getInstrumentation().context.assets
+        try {
+            dependencies.preferences.setConfirmReaderExit(false)
+            for (format in listOf("epub", "fb2")) {
+                val result = dependencies.importer.import("performance-ui.$format") {
+                    assets.open("books/corpus/reader-appearance.$format")
+                }
+                assertTrue("Use a dedicated test installation", result is BookImportResult.Added)
+                val book = (result as BookImportResult.Added).book
+                imported += book.id
+                for (mode in ReadingMode.entries) {
+                    dependencies.preferences.setReadingMode(mode)
+                    dependencies.preferences.setFontScale(1f)
+                    dependencies.preferences.setTheme(ReaderTheme.LIGHT)
+                    compose.runOnUiThread {
+                        ReaderTestActivity.content = {
+                            HooReaderTheme(dependencies.preferences) {
+                                controller = rememberNavController()
+                                HooReaderNavHost(controller, libraryContent = { open ->
+                                    Button(onClick = { open(book.id) }) { Text("Открыть замер") }
+                                })
+                            }
+                        }
+                    }
+                    compose.onNodeWithText("Открыть замер").performClick()
+                    compose.waitUntil(OPEN_TIMEOUT_MS) {
+                        compose.onAllNodesWithTag("reader_screen").fetchSemanticsNodes().isNotEmpty()
+                    }
+                    compose.runOnIdle {
+                        uiReader = ViewModelProvider(controller.getBackStackEntry(HooReaderRoutes.READER))
+                            .get(book.id, ReaderViewModel::class.java)
+                    }
+                    awaitUiReader(mode)
+                    val samples = JSONObject()
+                    repeat(V2_RUNS) {
+                        measureUiRun(mode, samples)
+                    }
+                    cases.put(
+                        JSONObject().put("format", format).put("mode", mode.name)
+                            .put("corpusSha256", book.contentHash).put("samples", samples)
+                    )
+                    Espresso.pressBack()
+                    compose.onNodeWithText("Открыть замер").assertExists()
+                    compose.runOnUiThread { ReaderTestActivity.content = null }
+                    compose.waitForIdle()
+                }
+            }
+            File(context.filesDir, "performance-v2-ui.json").writeText(
+                JSONObject().put("profileId", profile).put("cases", cases).put("runsPerScenario", V2_RUNS)
+                    .put("timing", "touch release dispatch -> new state observed drawn by captureToImage")
+                    .put("timingIsUpperBound", true).toString(2)
+            )
+        } finally {
+            compose.runOnUiThread { ReaderTestActivity.content = null }
+            imported.forEach { dependencies.repository.deleteBook(it) }
+            imported.clear()
+            dependencies.preferences.setTheme(previous.theme)
+            dependencies.preferences.setFontScale(previous.fontScale)
+            dependencies.preferences.setReadingMode(previous.readingMode)
+            dependencies.preferences.setConfirmReaderExit(previousApp.confirmReaderExit)
+        }
+    }
+
+    private fun measureUiRun(mode: ReadingMode, samples: JSONObject) {
+        val viewport = compose.onNodeWithTag("reader_viewport")
+        val anchor = (uiReader.state.value as ReaderUiState.Reading).logicalPosition
+        record(
+            samples,
+            "panels",
+            timedClick(viewport) {
+                compose.onNodeWithTag("reader_controls").captureToImage()
+            }
+        )
+        record(
+            samples,
+            "contents",
+            timedClick(compose.onNodeWithTag("reader_open_contents")) {
+                compose.onNodeWithTag("table_of_contents").captureToImage()
+            }
+        )
+        Espresso.pressBack()
+        viewport.performTouchInput { click() }
+        record(
+            samples,
+            "settings",
+            timedClick(compose.onNodeWithTag("reader_open_settings")) {
+                compose.onNodeWithTag("reader_settings_sheet").captureToImage()
+            }
+        )
+        compose.onNodeWithText("Тёмная").performScrollTo()
+        record(
+            samples,
+            "theme",
+            timedClick(compose.onNodeWithText("Тёмная")) {
+                compose.waitUntil(OPEN_TIMEOUT_MS) {
+                    runBlocking { dependencies.preferences.preferences.first().theme == ReaderTheme.DARK }
+                }
+                compose.onNodeWithTag("reader_settings_sheet").captureToImage()
+            }
+        )
+        compose.onNodeWithText("Увеличить текст").performScrollTo()
+        record(
+            samples,
+            "fontScale",
+            timedClick(compose.onNodeWithText("Увеличить текст")) {
+                compose.waitUntil(OPEN_TIMEOUT_MS) {
+                    (uiReader.state.value as? ReaderUiState.Reading)?.fontScale == 1.25f
+                }
+                captureReadyReader(mode)
+            }
+        )
+        val target = if (mode == ReadingMode.VERTICAL) ReadingMode.PAGINATED else ReadingMode.VERTICAL
+        val choice = compose.onNodeWithTag("reading_mode_${target.name.lowercase()}").performScrollTo()
+        record(samples, "mode", timedClick(choice) { captureReadyReader(target) })
+        Espresso.pressBack()
+        assertEquals(anchor, (uiReader.state.value as ReaderUiState.Reading).logicalPosition)
+        resetUiPreferences(mode)
+        awaitUiReader(mode)
+    }
+
+    private fun resetUiPreferences(mode: ReadingMode) = runBlocking {
+        dependencies.preferences.setTheme(ReaderTheme.LIGHT)
+        dependencies.preferences.setFontScale(1f)
+        dependencies.preferences.setReadingMode(mode)
+    }
+
+    private fun captureReadyReader(mode: ReadingMode) {
+        awaitUiReader(mode)
+        compose.onNodeWithTag("reader_screen").captureToImage()
+        val state = uiReader.state.value as ReaderUiState.Reading
+        if (mode == ReadingMode.PAGINATED) {
+            requireNotNull(state.pages).displayedPage.validateGeometry(requireNotNull(state.pages).key)
+            compose.onNodeWithTag("reader_page_indicator").captureToImage()
+        }
+    }
+
+    private fun awaitUiReader(mode: ReadingMode) {
+        compose.waitUntil(OPEN_TIMEOUT_MS) {
+            val state = uiReader.state.value as? ReaderUiState.Reading
+            state?.effectiveMode == mode && (mode == ReadingMode.VERTICAL || state.pages != null)
+        }
+        compose.waitForIdle()
+    }
+
+    private fun timedClick(node: SemanticsNodeInteraction, presented: () -> Unit): Double {
+        node.performTouchInput { down(center) }
+        val start = SystemClock.elapsedRealtimeNanos()
+        node.performTouchInput { up() }
+        presented()
+        return (SystemClock.elapsedRealtimeNanos() - start) / NANOS_PER_MS
+    }
+
+    private fun record(samples: JSONObject, key: String, milliseconds: Double) {
+        val values = samples.optJSONArray(key) ?: JSONArray().also { samples.put(key, it) }
+        values.put(milliseconds)
+    }
 
     @Test
     fun measureOpeningAndScrolling() = runBlocking {
@@ -201,5 +386,6 @@ class ReaderPerformanceTest {
         const val EMPTY_PARAGRAPH_BYTES = 7
         const val SWIPE_START = 0.8f
         const val SWIPE_END = 0.2f
+        const val V2_RUNS = 5
     }
 }

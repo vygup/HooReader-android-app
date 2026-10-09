@@ -1,9 +1,13 @@
 #!/usr/bin/env bash
 set -euo pipefail
+ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+if [[ "${1:-}" != '--legacy' ]]; then
+  exec python3 "$ROOT/scripts/reader-performance-v2.py" "$@"
+fi
+shift
 ADB="${ADB:-adb}"
 SERIAL="${ANDROID_SERIAL:-emulator-5554}"
 OUTPUT="${1:-/tmp/hooreader-performance.json}"
-ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 # Run against an empty test installation. The test deletes only the books it creates.
 "$ADB" -s "$SERIAL" install -r "$ROOT/app/build/outputs/apk/debug/app-debug.apk"
 "$ADB" -s "$SERIAL" install -r "$ROOT/app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk"

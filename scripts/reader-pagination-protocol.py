@@ -117,6 +117,11 @@ profile = {
     'theme': 'LIGHT', 'memorySamplingMs': 16,
     'timing': 'ReaderViewModel creation -> Room/source spool -> exact prefix -> ReaderScreen draw -> next frame callback',
     'pipeline': 'ReaderViewModel/ReaderScreen/ReaderPaginationController/PageIndexStore',
+    'uiScenarios': [{'format': fmt, 'mode': mode, 'readingScale': 1.0, 'targetScale': 1.25,
+                     'theme': 'LIGHT', 'targetTheme': 'DARK', 'runs': 5,
+                     'actions': ['panels', 'contents', 'settings', 'theme', 'fontScale', 'mode'],
+                     'fixture': f'books/corpus/reader-appearance.{fmt}'}
+                    for fmt in ('epub', 'fb2') for mode in ('VERTICAL', 'PAGINATED')],
 }
 # Стабильная идентичность измерений не зависит от текущего заряда/динамического dumpsys.
 identity = {k: v for k, v in profile.items() if k != 'device'}

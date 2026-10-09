@@ -1,0 +1,493 @@
+{
+  "status": "NOT_VERIFIED_DEVICE",
+  "profileId": "5e9c9e1ea182ff8ee7fbcd5d37611d3d2d1c8c9132ca5247971699deb5d66691",
+  "physical": false,
+  "runsPerScenario": 5,
+  "ui": [
+    {
+      "format": "epub",
+      "mode": "VERTICAL",
+      "kind": "panels",
+      "corpusSha256": "170653f87f3f7fdf780aead883fef3d40dab764f9905ee55503914942a631265",
+      "runsMs": [
+        114.250708,
+        108.955417,
+        78.765041,
+        108.161959,
+        75.898916
+      ],
+      "minMs": 75.898916,
+      "medianMs": 108.161959,
+      "maxMs": 114.250708,
+      "accessTaps": null,
+      "limitMs": 300,
+      "timingIsUpperBound": true,
+      "status": "NOT_VERIFIED_DEVICE"
+    },
+    {
+      "format": "epub",
+      "mode": "VERTICAL",
+      "kind": "contents",
+      "corpusSha256": "170653f87f3f7fdf780aead883fef3d40dab764f9905ee55503914942a631265",
+      "runsMs": [
+        437.569167,
+        318.70575,
+        291.315376,
+        369.156709,
+        322.722375
+      ],
+      "minMs": 291.315376,
+      "medianMs": 322.722375,
+      "maxMs": 437.569167,
+      "accessTaps": 2,
+      "limitMs": null,
+      "timingIsUpperBound": true,
+      "status": "NOT_VERIFIED_DEVICE"
+    },
+    {
+      "format": "epub",
+      "mode": "VERTICAL",
+      "kind": "settings",
+      "corpusSha256": "170653f87f3f7fdf780aead883fef3d40dab764f9905ee55503914942a631265",
+      "runsMs": [
+        372.589667,
+        359.861125,
+        380.184042,
+        375.33025,
+        405.234208
+      ],
+      "minMs": 359.861125,
+      "medianMs": 375.33025,
+      "maxMs": 405.234208,
+      "accessTaps": 2,
+      "limitMs": null,
+      "timingIsUpperBound": true,
+      "status": "NOT_VERIFIED_DEVICE"
+    },
+    {
+      "format": "epub",
+      "mode": "VERTICAL",
+      "kind": "theme",
+      "corpusSha256": "170653f87f3f7fdf780aead883fef3d40dab764f9905ee55503914942a631265",
+      "runsMs": [
+        759.879125,
+        677.524417,
+        741.374126,
+        573.532209,
+        610.729833
+      ],
+      "minMs": 573.532209,
+      "medianMs": 677.524417,
+      "maxMs": 759.879125,
+      "accessTaps": null,
+      "limitMs": 1000,
+      "timingIsUpperBound": true,
+      "status": "NOT_VERIFIED_DEVICE"
+    },
+    {
+      "format": "epub",
+      "mode": "VERTICAL",
+      "kind": "fontScale",
+      "corpusSha256": "170653f87f3f7fdf780aead883fef3d40dab764f9905ee55503914942a631265",
+      "runsMs": [
+        689.562625,
+        536.095875,
+        656.375833,
+        535.811917,
+        607.685208
+      ],
+      "minMs": 535.811917,
+      "medianMs": 607.685208,
+      "maxMs": 689.562625,
+      "accessTaps": null,
+      "limitMs": 1000,
+      "timingIsUpperBound": true,
+      "status": "NOT_VERIFIED_DEVICE"
+    },
+    {
+      "format": "epub",
+      "mode": "VERTICAL",
+      "kind": "mode",
+      "corpusSha256": "170653f87f3f7fdf780aead883fef3d40dab764f9905ee55503914942a631265",
+      "runsMs": [
+        1433.422626,
+        934.074209,
+        991.239959,
+        970.827084,
+        968.476334
+      ],
+      "minMs": 934.074209,
+      "medianMs": 970.827084,
+      "maxMs": 1433.422626,
+      "accessTaps": null,
+      "limitMs": 1000,
+      "timingIsUpperBound": true,
+      "status": "NOT_VERIFIED_DEVICE"
+    },
+    {
+      "format": "epub",
+      "mode": "PAGINATED",
+      "kind": "panels",
+      "corpusSha256": "170653f87f3f7fdf780aead883fef3d40dab764f9905ee55503914942a631265",
+      "runsMs": [
+        89.049958,
+        82.290042,
+        74.537875,
+        91.375625,
+        76.6885
+      ],
+      "minMs": 74.537875,
+      "medianMs": 82.290042,
+      "maxMs": 91.375625,
+      "accessTaps": null,
+      "limitMs": 300,
+      "timingIsUpperBound": true,
+      "status": "NOT_VERIFIED_DEVICE"
+    },
+    {
+      "format": "epub",
+      "mode": "PAGINATED",
+      "kind": "contents",
+      "corpusSha256": "170653f87f3f7fdf780aead883fef3d40dab764f9905ee55503914942a631265",
+      "runsMs": [
+        369.829042,
+        353.110292,
+        273.632542,
+        322.076208,
+        340.846958
+      ],
+      "minMs": 273.632542,
+      "medianMs": 340.846958,
+      "maxMs": 369.829042,
+      "accessTaps": 2,
+      "limitMs": null,
+      "timingIsUpperBound": true,
+      "status": "NOT_VERIFIED_DEVICE"
+    },
+    {
+      "format": "epub",
+      "mode": "PAGINATED",
+      "kind": "settings",
+      "corpusSha256": "170653f87f3f7fdf780aead883fef3d40dab764f9905ee55503914942a631265",
+      "runsMs": [
+        404.170626,
+        388.645125,
+        373.537125,
+        356.427875,
+        357.505792
+      ],
+      "minMs": 356.427875,
+      "medianMs": 373.537125,
+      "maxMs": 404.170626,
+      "accessTaps": 2,
+      "limitMs": null,
+      "timingIsUpperBound": true,
+      "status": "NOT_VERIFIED_DEVICE"
+    },
+    {
+      "format": "epub",
+      "mode": "PAGINATED",
+      "kind": "theme",
+      "corpusSha256": "170653f87f3f7fdf780aead883fef3d40dab764f9905ee55503914942a631265",
+      "runsMs": [
+        676.553542,
+        698.371667,
+        598.966667,
+        576.175834,
+        740.197376
+      ],
+      "minMs": 576.175834,
+      "medianMs": 676.553542,
+      "maxMs": 740.197376,
+      "accessTaps": null,
+      "limitMs": 1000,
+      "timingIsUpperBound": true,
+      "status": "NOT_VERIFIED_DEVICE"
+    },
+    {
+      "format": "epub",
+      "mode": "PAGINATED",
+      "kind": "fontScale",
+      "corpusSha256": "170653f87f3f7fdf780aead883fef3d40dab764f9905ee55503914942a631265",
+      "runsMs": [
+        1135.719417,
+        1004.251209,
+        1055.985334,
+        1107.299418,
+        1036.120458
+      ],
+      "minMs": 1004.251209,
+      "medianMs": 1055.985334,
+      "maxMs": 1135.719417,
+      "accessTaps": null,
+      "limitMs": 1000,
+      "timingIsUpperBound": true,
+      "status": "NOT_VERIFIED_DEVICE"
+    },
+    {
+      "format": "epub",
+      "mode": "PAGINATED",
+      "kind": "mode",
+      "corpusSha256": "170653f87f3f7fdf780aead883fef3d40dab764f9905ee55503914942a631265",
+      "runsMs": [
+        705.443126,
+        556.043333,
+        556.887125,
+        523.928834,
+        638.154375
+      ],
+      "minMs": 523.928834,
+      "medianMs": 556.887125,
+      "maxMs": 705.443126,
+      "accessTaps": null,
+      "limitMs": 1000,
+      "timingIsUpperBound": true,
+      "status": "NOT_VERIFIED_DEVICE"
+    },
+    {
+      "format": "fb2",
+      "mode": "VERTICAL",
+      "kind": "panels",
+      "corpusSha256": "78645337853fdf1a72ca80da36c84708be99eee6b6c9087b013d1e45e361058b",
+      "runsMs": [
+        82.02025,
+        85.127083,
+        78.374042,
+        115.681625,
+        116.50475
+      ],
+      "minMs": 78.374042,
+      "medianMs": 85.127083,
+      "maxMs": 116.50475,
+      "accessTaps": null,
+      "limitMs": 300,
+      "timingIsUpperBound": true,
+      "status": "NOT_VERIFIED_DEVICE"
+    },
+    {
+      "format": "fb2",
+      "mode": "VERTICAL",
+      "kind": "contents",
+      "corpusSha256": "78645337853fdf1a72ca80da36c84708be99eee6b6c9087b013d1e45e361058b",
+      "runsMs": [
+        321.93425,
+        257.050375,
+        299.594876,
+        341.669584,
+        303.165042
+      ],
+      "minMs": 257.050375,
+      "medianMs": 303.165042,
+      "maxMs": 341.669584,
+      "accessTaps": 2,
+      "limitMs": null,
+      "timingIsUpperBound": true,
+      "status": "NOT_VERIFIED_DEVICE"
+    },
+    {
+      "format": "fb2",
+      "mode": "VERTICAL",
+      "kind": "settings",
+      "corpusSha256": "78645337853fdf1a72ca80da36c84708be99eee6b6c9087b013d1e45e361058b",
+      "runsMs": [
+        347.910333,
+        388.376583,
+        353.641084,
+        371.628709,
+        421.249792
+      ],
+      "minMs": 347.910333,
+      "medianMs": 371.628709,
+      "maxMs": 421.249792,
+      "accessTaps": 2,
+      "limitMs": null,
+      "timingIsUpperBound": true,
+      "status": "NOT_VERIFIED_DEVICE"
+    },
+    {
+      "format": "fb2",
+      "mode": "VERTICAL",
+      "kind": "theme",
+      "corpusSha256": "78645337853fdf1a72ca80da36c84708be99eee6b6c9087b013d1e45e361058b",
+      "runsMs": [
+        679.485167,
+        708.379292,
+        580.304459,
+        639.818959,
+        617.805084
+      ],
+      "minMs": 580.304459,
+      "medianMs": 639.818959,
+      "maxMs": 708.379292,
+      "accessTaps": null,
+      "limitMs": 1000,
+      "timingIsUpperBound": true,
+      "status": "NOT_VERIFIED_DEVICE"
+    },
+    {
+      "format": "fb2",
+      "mode": "VERTICAL",
+      "kind": "fontScale",
+      "corpusSha256": "78645337853fdf1a72ca80da36c84708be99eee6b6c9087b013d1e45e361058b",
+      "runsMs": [
+        686.914417,
+        547.775042,
+        660.528334,
+        548.749292,
+        593.464125
+      ],
+      "minMs": 547.775042,
+      "medianMs": 593.464125,
+      "maxMs": 686.914417,
+      "accessTaps": null,
+      "limitMs": 1000,
+      "timingIsUpperBound": true,
+      "status": "NOT_VERIFIED_DEVICE"
+    },
+    {
+      "format": "fb2",
+      "mode": "VERTICAL",
+      "kind": "mode",
+      "corpusSha256": "78645337853fdf1a72ca80da36c84708be99eee6b6c9087b013d1e45e361058b",
+      "runsMs": [
+        1193.646,
+        1005.691042,
+        1100.671292,
+        938.161958,
+        1027.382125
+      ],
+      "minMs": 938.161958,
+      "medianMs": 1027.382125,
+      "maxMs": 1193.646,
+      "accessTaps": null,
+      "limitMs": 1000,
+      "timingIsUpperBound": true,
+      "status": "NOT_VERIFIED_DEVICE"
+    },
+    {
+      "format": "fb2",
+      "mode": "PAGINATED",
+      "kind": "panels",
+      "corpusSha256": "78645337853fdf1a72ca80da36c84708be99eee6b6c9087b013d1e45e361058b",
+      "runsMs": [
+        81.973375,
+        81.338083,
+        88.181,
+        82.80075,
+        81.944166
+      ],
+      "minMs": 81.338083,
+      "medianMs": 81.973375,
+      "maxMs": 88.181,
+      "accessTaps": null,
+      "limitMs": 300,
+      "timingIsUpperBound": true,
+      "status": "NOT_VERIFIED_DEVICE"
+    },
+    {
+      "format": "fb2",
+      "mode": "PAGINATED",
+      "kind": "contents",
+      "corpusSha256": "78645337853fdf1a72ca80da36c84708be99eee6b6c9087b013d1e45e361058b",
+      "runsMs": [
+        303.397542,
+        256.676209,
+        387.711125,
+        338.163125,
+        287.425375
+      ],
+      "minMs": 256.676209,
+      "medianMs": 303.397542,
+      "maxMs": 387.711125,
+      "accessTaps": 2,
+      "limitMs": null,
+      "timingIsUpperBound": true,
+      "status": "NOT_VERIFIED_DEVICE"
+    },
+    {
+      "format": "fb2",
+      "mode": "PAGINATED",
+      "kind": "settings",
+      "corpusSha256": "78645337853fdf1a72ca80da36c84708be99eee6b6c9087b013d1e45e361058b",
+      "runsMs": [
+        316.568333,
+        396.980542,
+        318.725125,
+        339.060292,
+        360.450709
+      ],
+      "minMs": 316.568333,
+      "medianMs": 339.060292,
+      "maxMs": 396.980542,
+      "accessTaps": 2,
+      "limitMs": null,
+      "timingIsUpperBound": true,
+      "status": "NOT_VERIFIED_DEVICE"
+    },
+    {
+      "format": "fb2",
+      "mode": "PAGINATED",
+      "kind": "theme",
+      "corpusSha256": "78645337853fdf1a72ca80da36c84708be99eee6b6c9087b013d1e45e361058b",
+      "runsMs": [
+        626.833709,
+        691.069875,
+        495.632959,
+        807.361667,
+        652.013001
+      ],
+      "minMs": 495.632959,
+      "medianMs": 652.013001,
+      "maxMs": 807.361667,
+      "accessTaps": null,
+      "limitMs": 1000,
+      "timingIsUpperBound": true,
+      "status": "NOT_VERIFIED_DEVICE"
+    },
+    {
+      "format": "fb2",
+      "mode": "PAGINATED",
+      "kind": "fontScale",
+      "corpusSha256": "78645337853fdf1a72ca80da36c84708be99eee6b6c9087b013d1e45e361058b",
+      "runsMs": [
+        1117.275709,
+        1112.065125,
+        1041.586709,
+        1093.316834,
+        1021.343958
+      ],
+      "minMs": 1021.343958,
+      "medianMs": 1093.316834,
+      "maxMs": 1117.275709,
+      "accessTaps": null,
+      "limitMs": 1000,
+      "timingIsUpperBound": true,
+      "status": "NOT_VERIFIED_DEVICE"
+    },
+    {
+      "format": "fb2",
+      "mode": "PAGINATED",
+      "kind": "mode",
+      "corpusSha256": "78645337853fdf1a72ca80da36c84708be99eee6b6c9087b013d1e45e361058b",
+      "runsMs": [
+        667.669792,
+        554.135834,
+        593.088208,
+        556.908001,
+        661.994876
+      ],
+      "minMs": 554.135834,
+      "medianMs": 593.088208,
+      "maxMs": 667.669792,
+      "accessTaps": null,
+      "limitMs": 1000,
+      "timingIsUpperBound": true,
+      "status": "NOT_VERIFIED_DEVICE"
+    }
+  ],
+  "pagination": null,
+  "releaseAccepted": false,
+  "reason": "Диагностическая серия",
+  "priorDiagnostics": "pagination-production-optimized.json",
+  "fullSeriesCovered": false
+}

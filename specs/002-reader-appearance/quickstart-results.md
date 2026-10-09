@@ -273,3 +273,12 @@ Compose harness не входит в результат. Обычные skipped 
 
 PASS: 26 corpus files, 86 chapter opens; signed v1 to v2 upgrade preserved both books, chapter, DARK and 150%.
 [Report](import-corpus-results.md), [raw upgrade](evidence/upgrade/summary.json).
+
+## T061 — измерения RC
+
+Измерительный путь расширен на panels, contents/settings, theme/fontScale/mode;
+эмуляторная UI-диагностика прошла 24 серии по пять повторов.
+[Полный отчёт](performance-results.md#t061--второй-rc-2026-10-09).
+Физическое устройство недоступно: NOT_VERIFIED_DEVICE, полная новая серия 20 MB
+не выполнена, SC-004 не принят. T061 отмечает подготовку инструмента и явный
+отчёт об отсутствии стенда согласно условию задачи, а не приёмку производительности.
