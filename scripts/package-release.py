@@ -59,7 +59,9 @@ manifest = {
     'sourceCommit': provenance['sourceCommit'], 'buildFinishedAt': provenance['buildFinishedAt'],
     'certificateSha256': provenance['certificateSha256'],
     'releaseAccepted': acceptance['releaseAccepted'], 'remainingGates': acceptance['blockedBy'],
-    'packageStatus': 'ACCEPTED_RELEASE' if acceptance['releaseAccepted'] else 'RC_PENDING_ACCEPTANCE',
+    'releaseExceptions': acceptance.get('releaseExceptions', []),
+    'packageStatus': ('ACCEPTED_RELEASE_WITH_EXCEPTION' if acceptance.get('releaseExceptions') else
+                      'ACCEPTED_RELEASE') if acceptance['releaseAccepted'] else 'RC_PENDING_ACCEPTANCE',
     'usabilityStatus': acceptance['SC']['SC-007']['status'],
     'smokeVerifiedApkSha256': hashes[apk_name], 'upgradeVerifiedApkSha256': hashes[apk_name],
     'smokeEvidenceDate': smoke['smokeAt'],
