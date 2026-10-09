@@ -2,6 +2,7 @@ package com.hooreader.settings
 
 import android.content.Context
 import android.graphics.Bitmap
+import android.os.Build
 import android.view.KeyEvent
 import androidx.compose.ui.graphics.asAndroidBitmap
 import androidx.compose.ui.test.assertIsDisplayed
@@ -108,8 +109,15 @@ class AppSettingsTest {
     private fun capture(tag: String) {
         val context = ApplicationProvider.getApplicationContext<Context>()
         val directory = File(context.filesDir, "exit-evidence").also { it.mkdirs() }
+        compose.onNodeWithTag(tag).assertIsDisplayed()
+        // Compose cannot capture dialog windows before API 28; system capture includes them.
+        val bitmap = if (Build.VERSION.SDK_INT < Build.VERSION_CODES.P) {
+            requireNotNull(InstrumentationRegistry.getInstrumentation().uiAutomation.takeScreenshot())
+        } else {
+            compose.onNodeWithTag(tag).captureToImage().asAndroidBitmap()
+        }
         File(directory, "$tag-system${context.resources.configuration.fontScale}.png").outputStream().use {
-            compose.onNodeWithTag(tag).captureToImage().asAndroidBitmap().compress(Bitmap.CompressFormat.PNG, 100, it)
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, it)
         }
     }
 

@@ -2,6 +2,7 @@ package com.hooreader.navigation
 
 import android.content.Context
 import android.os.SystemClock
+import android.view.InputDevice
 import android.view.KeyEvent
 import android.view.MotionEvent
 import androidx.compose.material3.Button
@@ -27,6 +28,7 @@ import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertTrue
 import org.junit.Rule
 import org.junit.Test
 import java.io.IOException
@@ -169,8 +171,12 @@ class HooReaderNavHostTest {
         val start = SystemClock.uptimeMillis()
         for (action in listOf(MotionEvent.ACTION_DOWN, MotionEvent.ACTION_UP)) {
             val event = MotionEvent.obtain(start, SystemClock.uptimeMillis(), action, 2f, 200f, 0)
+            event.source = InputDevice.SOURCE_TOUCHSCREEN
             try {
-                automation.injectInputEvent(event, true)
+                assertTrue(
+                    "Outside-dialog touchscreen event must be delivered",
+                    automation.injectInputEvent(event, true)
+                )
             } finally {
                 event.recycle()
             }

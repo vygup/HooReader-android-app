@@ -6,15 +6,25 @@
   "kotlin": "2.1.21",
   "compileSdk": 36,
   "minSdk": 26,
-  "testedDevice": {
-    "avd": "Pixel_10",
-    "api": 37,
-    "abi": "arm64-v8a",
-    "physical": false,
-    "systemImage": "google play 16 KB Android 17"
-  },
   "installedSystemImages": [
-    "android-37.2"
+    "android-37.2",
+    "android-26"
   ],
-  "api26": "NOT_VERIFIED_API26"
+  "api26": "PASS",
+  "testedDevices": [
+    {
+      "avd": "Pixel_10",
+      "api": 37,
+      "abi": "arm64-v8a",
+      "physical": false,
+      "systemImage": "google play 16 KB Android 17"
+    },
+    {
+      "avd": "HooReader_API26",
+      "api": 26,
+      "abi": "arm64-v8a",
+      "physical": false,
+      "systemImage": "Google APIs Android 8.0.0"
+    }
+  ]
 }

@@ -1,6 +1,6 @@
 # Проверка второго RC — T063
 
-Дата: 2026-10-09. **Частично выполнено; NOT_VERIFIED_API26.**
+Дата: 2026-10-09. **T063 выполнена: API 26 и API 37 — PASS.**
 
 `./gradlew :app:check :app:assembleDebug :app:assembleDebugAndroidTest` — PASS:
 Detekt, Android Lint, 115 unit tests в каждом из debug/release (230 выполнений),
@@ -19,9 +19,13 @@ panel timing (1). Font-scale и process-death отдельно выполнен�
 новый UI timing — диагностически в T061. Старые standalone performance paths
 в общем прогоне не запускались, их skipped не означает принятие метрик.
 
-API 26: образ не установлен, физическое устройство отсутствует; прогон не выполнен.
-API 37 удовлетворяет части «API 34+», но не заменяет API 26. T063 оставлена
-неотмеченной до отдельного прогона на минимальной поддерживаемой версии.
+API 26: установлен официальный Google APIs ARM64 image и создан отдельный AVD
+HooReader_API26, Android 8.0.0, 1080×1920, density 420. Полный `check`, обе debug
+сборки и `connectedDebugAndroidTest` прошли: XML — 65 tests, 48 passed, 17 opt-in
+skipped, 0 failures/errors. [Лог](evidence/validation/connected-api26.txt),
+[XML](evidence/validation/connected-api26.xml), [стенд](evidence/validation/api26-device.json),
+[установка SDK](evidence/validation/api26-sdk-install.txt).
+API 37 удовлетворяет части «API 34+»; API 26 проверен отдельно.
 Первоначальный timeout экспериментального process-death harness сохранён как
 `process-death-initial-harness-timeout.txt`; исправленный opt-in T059 прошёл отдельно.
 
@@ -41,3 +45,22 @@ API 37 удовлетворяет части «API 34+», но не заменя
 [XML](evidence/validation/paged-100-api37.xml). Production-код и подписанный RC
 после сборки не менялись. Основной XML из 65 тестов сохранён отдельно;
 четыре повторных теста не прибавляются к нему как новые уникальные сценарии.
+
+## Исправления совместимости тестов API 26
+
+Первый полный прогон выявил два ограничения тестового инструмента, а не поведения
+читалки: внешний MotionEvent создавался с SOURCE_UNKNOWN, а Compose captureToImage
+не поддерживает dialog windows на API ниже 28. В HooReaderNavHostTest источник
+изменён на SOURCE_TOUCHSCREEN, доставка каждого события проверяется. В AppSettingsTest
+на API 26–27 используется UiAutomation.takeScreenshot; проверки видимости и поведения
+диалога сохраняются. На API 28+ остаётся прежний Compose capture.
+
+Первый прогон (2 failures) и промежуточный после исправления касания (1 failure)
+сохранены в [attempts](evidence/validation/attempts/). Финальный полный API 26 прогон
+прошёл без ошибок. После обоих изменений повторены два затронутых класса на API 37:
+4 tests passed, 0 skipped/failures/errors. [Лог](evidence/validation/exit-regression-api37.txt),
+[XML](evidence/validation/exit-regression-api37.xml). Production-код и подписанные
+APK/AAB не менялись; пересборка RC по этим изменениям не требуется.
+
+T063 отмечена выполненной. T062 и аппаратный SC-004 остаются отдельными незавершёнными
+условиями приёмки; пропущенные opt-in tests не объявляются выполненными на API 26.

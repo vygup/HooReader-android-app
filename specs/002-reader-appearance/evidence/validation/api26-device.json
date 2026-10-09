@@ -1,0 +1,14 @@
+{
+  "ro.product.model": "Android SDK built for arm64",
+  "ro.product.cpu.abi": "arm64-v8a",
+  "ro.build.version.sdk": "26",
+  "ro.build.version.release": "8.0.0",
+  "ro.build.fingerprint": "google/sdk_gphone_arm64/generic_arm64:8.0.0/OSR1.180418.028.A3/10734686:userdebug/dev-keys",
+  "ro.kernel.qemu": "1",
+  "avd": "HooReader_API26",
+  "physical": false,
+  "size": "Physical size: 1080x1920",
+  "density": "Physical density: 420",
+  "systemFont": "null",
+  "emulatorVersion": "INFO         | Android emulator version 37.1.11.0 (build_id 15917651) (CL:N/A)"
+}
