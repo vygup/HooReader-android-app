@@ -8,13 +8,13 @@
 [Сборка подписанного APK/AAB и выпуск](docs/releasing.md).
 Для release-сборки: `python3 scripts/build-release.py`.
 
-Текущий локальный RC — **2.0.0**, versionCode 2; команды сборки создают именно его.
+Текущий выпуск — **2.0.0**, versionCode 2; команды сборки создают именно его.
 [Изменения RC](docs/releases/2.0.0.md) ·
 [Комплект APK/AAB и его проверка](docs/releases/2.0.0-validation.md) ·
 [Итоги проверок](specs/002-reader-appearance/validation-results.md) ·
 [Матрица требований](specs/002-reader-appearance/evidence/validation-summary.json).
-RC пока не принят: открыта аппаратная производительность SC-004. T062/SC-007 пройдена
-по подтверждению пользователя. Instrumentation на API 26 и API 37 пройден.
+Выпуск принят 2026-10-10 с разрешённым пользователем исключением по SC-004;
+метрика производительности не подтверждена. T062/SC-007 и instrumentation на API 26/37 пройдены.
 
 ## Возможности
 
