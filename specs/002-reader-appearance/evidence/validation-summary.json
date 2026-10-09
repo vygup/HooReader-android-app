@@ -1,0 +1,1436 @@
+{
+  "feature": "002-reader-appearance",
+  "phase": 8,
+  "date": "2026-10-09",
+  "versionName": "2.0.0",
+  "versionCode": 2,
+  "releaseAccepted": true,
+  "phaseComplete": true,
+  "blockedBy": [],
+  "taskStatus": {
+    "completed": [
+      "T058",
+      "T059",
+      "T060",
+      "T061",
+      "T062",
+      "T063",
+      "T064",
+      "T065"
+    ],
+    "pending": [],
+    "T061": "instrumentation and unavailable-device report complete; metric not accepted"
+  },
+  "compatibility": {
+    "minApi": 26,
+    "api26": {
+      "api": 26,
+      "status": "PASS",
+      "physical": false,
+      "evidence": "validation/connected-api26.xml"
+    },
+    "api34plus": {
+      "api": 37,
+      "status": "PASS",
+      "physical": false
+    }
+  },
+  "validation": {
+    "unit": {
+      "debug": 115,
+      "release": 115,
+      "failures": 0
+    },
+    "connected": {
+      "tests": 65,
+      "passed": 48,
+      "skipped": 17,
+      "failures": 0,
+      "errors": 0,
+      "evidence": "validation/connected-api37.xml"
+    },
+    "fontScale": "font-scale/summary.json",
+    "processDeath": "process-death-v2.txt",
+    "corpus": "import-corpus-v2.json",
+    "signedUpgrade": "upgrade/summary.json",
+    "signedRelease": "release/summary.json",
+    "pagedRepeat": {
+      "tests": 4,
+      "passed": 4,
+      "skipped": 0,
+      "failures": 0,
+      "evidence": "validation/paged-100-api37.xml",
+      "newUniqueTestCount": 0
+    },
+    "environment": "validation/environment.json",
+    "connectedByApi": {
+      "26": {
+        "tests": 65,
+        "passed": 48,
+        "skipped": 17,
+        "failures": 0,
+        "errors": 0,
+        "evidence": "validation/connected-api26.xml"
+      },
+      "37": {
+        "tests": 65,
+        "passed": 48,
+        "skipped": 17,
+        "failures": 0,
+        "errors": 0,
+        "evidence": "validation/connected-api37.xml"
+      }
+    },
+    "exitRegressionAfterApi26Fixes": {
+      "api": 37,
+      "tests": 4,
+      "passed": 4,
+      "skipped": 0,
+      "failures": 0,
+      "evidence": "validation/exit-regression-api37.xml"
+    },
+    "releasePackage": {
+      "status": "ACCEPTED_RELEASE_WITH_EXCEPTION",
+      "sourceCommit": "4797ae975cadc27147630029a4c2bd9b4ee8b73b",
+      "manifest": "release/RELEASE_MANIFEST.json",
+      "buildProvenance": "release/build-provenance.json",
+      "archiveChecksum": "release/HooReader-2.0.0-release.zip.sha256",
+      "archiveSha256": "4564e0a56927751dac71757f737dea597e659ed71c380b2fbe0c14b8b0b2f684",
+      "payloadFiles": 6,
+      "archiveIntegrity": "PASS",
+      "releaseAccepted": true
+    }
+  },
+  "SC": {
+    "SC-001": {
+      "status": "PASS_API37",
+      "evidence": [
+        "validation/connected-api37.xml",
+        "validation/paged-100-api37.xml",
+        "validation/connected-api26.xml"
+      ],
+      "tests": [
+        "ReaderScreenTest.hundredScrollCancelDiagonalReturnAndBoundaryGesturesNeverOpenControls",
+        "ReaderScreenTest.twentyTapsAndSubSlopJitterToggleOnceWithoutChangingViewportOrAnchor",
+        "PagedReaderTest.epubOneSwipeOnePageCancelBoundariesContentsAndReopen",
+        "PagedReaderTest.fb2OneSwipeOnePageCancelBoundariesContentsAndReopen"
+      ],
+      "gesturesPerMode": 100,
+      "tapsPerMode": 20
+    },
+    "SC-002": {
+      "status": "PASS_API37",
+      "evidence": [
+        "validation/connected-api37.xml",
+        "font-scale/summary.json",
+        "validation/connected-api26.xml"
+      ],
+      "tests": [
+        "ReadingIndicatorsTest: 8 format/mode/theme scenarios"
+      ]
+    },
+    "SC-003": {
+      "status": "PASS_CHECKED_SCENARIOS",
+      "evidence": [
+        "validation/connected-api37.xml",
+        "validation/unit/testDebugUnitTest/TEST-com.hooreader.ui.reader.ReaderViewModelTest.xml",
+        "font-scale/summary.json",
+        "process-death-v2.txt",
+        "upgrade/summary.json"
+      ],
+      "tests": [
+        "PagedReaderTest: mode/scale/rotation anchor",
+        "ReaderViewModelTest: failed write + rapid system font + retry",
+        "ReadingPositionRestoreTest: database reopen without original",
+        "ReaderFontScaleAcceptanceTest: native font scale + both orientations",
+        "ProcessDeathAcceptanceTest: long paragraph offset + absent derived cache"
+      ]
+    },
+    "SC-004": {
+      "status": "NOT_VERIFIED_RELEASE_EXCEPTION_APPROVED",
+      "evidence": [
+        "performance-v2.json",
+        "performance-v2-diagnostic.json",
+        "performance-v2-diagnostic-series/performance-profile.json",
+        "performance-v2-diagnostic-series/ui-instrumentation.txt",
+        "performance-profile.json",
+        "pagination-production-optimized.json"
+      ],
+      "releaseAccepted": true,
+      "currentRcFull20MbSeriesRun": false,
+      "currentRcUiDiagnostic": {
+        "profileId": "5e9c9e1ea182ff8ee7fbcd5d37611d3d2d1c8c9132ca5247971699deb5d66691",
+        "physical": false,
+        "timingIsUpperBound": true,
+        "runsPerScenario": 5,
+        "series": [
+          {
+            "format": "epub",
+            "mode": "VERTICAL",
+            "kind": "panels",
+            "corpusSha256": "170653f87f3f7fdf780aead883fef3d40dab764f9905ee55503914942a631265",
+            "runsMs": [
+              114.250708,
+              108.955417,
+              78.765041,
+              108.161959,
+              75.898916
+            ],
+            "minMs": 75.898916,
+            "medianMs": 108.161959,
+            "maxMs": 114.250708,
+            "accessTaps": null,
+            "limitMs": 300,
+            "timingIsUpperBound": true,
+            "status": "NOT_VERIFIED_DEVICE"
+          },
+          {
+            "format": "epub",
+            "mode": "VERTICAL",
+            "kind": "contents",
+            "corpusSha256": "170653f87f3f7fdf780aead883fef3d40dab764f9905ee55503914942a631265",
+            "runsMs": [
+              437.569167,
+              318.70575,
+              291.315376,
+              369.156709,
+              322.722375
+            ],
+            "minMs": 291.315376,
+            "medianMs": 322.722375,
+            "maxMs": 437.569167,
+            "accessTaps": 2,
+            "limitMs": null,
+            "timingIsUpperBound": true,
+            "status": "NOT_VERIFIED_DEVICE"
+          },
+          {
+            "format": "epub",
+            "mode": "VERTICAL",
+            "kind": "settings",
+            "corpusSha256": "170653f87f3f7fdf780aead883fef3d40dab764f9905ee55503914942a631265",
+            "runsMs": [
+              372.589667,
+              359.861125,
+              380.184042,
+              375.33025,
+              405.234208
+            ],
+            "minMs": 359.861125,
+            "medianMs": 375.33025,
+            "maxMs": 405.234208,
+            "accessTaps": 2,
+            "limitMs": null,
+            "timingIsUpperBound": true,
+            "status": "NOT_VERIFIED_DEVICE"
+          },
+          {
+            "format": "epub",
+            "mode": "VERTICAL",
+            "kind": "theme",
+            "corpusSha256": "170653f87f3f7fdf780aead883fef3d40dab764f9905ee55503914942a631265",
+            "runsMs": [
+              759.879125,
+              677.524417,
+              741.374126,
+              573.532209,
+              610.729833
+            ],
+            "minMs": 573.532209,
+            "medianMs": 677.524417,
+            "maxMs": 759.879125,
+            "accessTaps": null,
+            "limitMs": 1000,
+            "timingIsUpperBound": true,
+            "status": "NOT_VERIFIED_DEVICE"
+          },
+          {
+            "format": "epub",
+            "mode": "VERTICAL",
+            "kind": "fontScale",
+            "corpusSha256": "170653f87f3f7fdf780aead883fef3d40dab764f9905ee55503914942a631265",
+            "runsMs": [
+              689.562625,
+              536.095875,
+              656.375833,
+              535.811917,
+              607.685208
+            ],
+            "minMs": 535.811917,
+            "medianMs": 607.685208,
+            "maxMs": 689.562625,
+            "accessTaps": null,
+            "limitMs": 1000,
+            "timingIsUpperBound": true,
+            "status": "NOT_VERIFIED_DEVICE"
+          },
+          {
+            "format": "epub",
+            "mode": "VERTICAL",
+            "kind": "mode",
+            "corpusSha256": "170653f87f3f7fdf780aead883fef3d40dab764f9905ee55503914942a631265",
+            "runsMs": [
+              1433.422626,
+              934.074209,
+              991.239959,
+              970.827084,
+              968.476334
+            ],
+            "minMs": 934.074209,
+            "medianMs": 970.827084,
+            "maxMs": 1433.422626,
+            "accessTaps": null,
+            "limitMs": 1000,
+            "timingIsUpperBound": true,
+            "status": "NOT_VERIFIED_DEVICE"
+          },
+          {
+            "format": "epub",
+            "mode": "PAGINATED",
+            "kind": "panels",
+            "corpusSha256": "170653f87f3f7fdf780aead883fef3d40dab764f9905ee55503914942a631265",
+            "runsMs": [
+              89.049958,
+              82.290042,
+              74.537875,
+              91.375625,
+              76.6885
+            ],
+            "minMs": 74.537875,
+            "medianMs": 82.290042,
+            "maxMs": 91.375625,
+            "accessTaps": null,
+            "limitMs": 300,
+            "timingIsUpperBound": true,
+            "status": "NOT_VERIFIED_DEVICE"
+          },
+          {
+            "format": "epub",
+            "mode": "PAGINATED",
+            "kind": "contents",
+            "corpusSha256": "170653f87f3f7fdf780aead883fef3d40dab764f9905ee55503914942a631265",
+            "runsMs": [
+              369.829042,
+              353.110292,
+              273.632542,
+              322.076208,
+              340.846958
+            ],
+            "minMs": 273.632542,
+            "medianMs": 340.846958,
+            "maxMs": 369.829042,
+            "accessTaps": 2,
+            "limitMs": null,
+            "timingIsUpperBound": true,
+            "status": "NOT_VERIFIED_DEVICE"
+          },
+          {
+            "format": "epub",
+            "mode": "PAGINATED",
+            "kind": "settings",
+            "corpusSha256": "170653f87f3f7fdf780aead883fef3d40dab764f9905ee55503914942a631265",
+            "runsMs": [
+              404.170626,
+              388.645125,
+              373.537125,
+              356.427875,
+              357.505792
+            ],
+            "minMs": 356.427875,
+            "medianMs": 373.537125,
+            "maxMs": 404.170626,
+            "accessTaps": 2,
+            "limitMs": null,
+            "timingIsUpperBound": true,
+            "status": "NOT_VERIFIED_DEVICE"
+          },
+          {
+            "format": "epub",
+            "mode": "PAGINATED",
+            "kind": "theme",
+            "corpusSha256": "170653f87f3f7fdf780aead883fef3d40dab764f9905ee55503914942a631265",
+            "runsMs": [
+              676.553542,
+              698.371667,
+              598.966667,
+              576.175834,
+              740.197376
+            ],
+            "minMs": 576.175834,
+            "medianMs": 676.553542,
+            "maxMs": 740.197376,
+            "accessTaps": null,
+            "limitMs": 1000,
+            "timingIsUpperBound": true,
+            "status": "NOT_VERIFIED_DEVICE"
+          },
+          {
+            "format": "epub",
+            "mode": "PAGINATED",
+            "kind": "fontScale",
+            "corpusSha256": "170653f87f3f7fdf780aead883fef3d40dab764f9905ee55503914942a631265",
+            "runsMs": [
+              1135.719417,
+              1004.251209,
+              1055.985334,
+              1107.299418,
+              1036.120458
+            ],
+            "minMs": 1004.251209,
+            "medianMs": 1055.985334,
+            "maxMs": 1135.719417,
+            "accessTaps": null,
+            "limitMs": 1000,
+            "timingIsUpperBound": true,
+            "status": "NOT_VERIFIED_DEVICE"
+          },
+          {
+            "format": "epub",
+            "mode": "PAGINATED",
+            "kind": "mode",
+            "corpusSha256": "170653f87f3f7fdf780aead883fef3d40dab764f9905ee55503914942a631265",
+            "runsMs": [
+              705.443126,
+              556.043333,
+              556.887125,
+              523.928834,
+              638.154375
+            ],
+            "minMs": 523.928834,
+            "medianMs": 556.887125,
+            "maxMs": 705.443126,
+            "accessTaps": null,
+            "limitMs": 1000,
+            "timingIsUpperBound": true,
+            "status": "NOT_VERIFIED_DEVICE"
+          },
+          {
+            "format": "fb2",
+            "mode": "VERTICAL",
+            "kind": "panels",
+            "corpusSha256": "78645337853fdf1a72ca80da36c84708be99eee6b6c9087b013d1e45e361058b",
+            "runsMs": [
+              82.02025,
+              85.127083,
+              78.374042,
+              115.681625,
+              116.50475
+            ],
+            "minMs": 78.374042,
+            "medianMs": 85.127083,
+            "maxMs": 116.50475,
+            "accessTaps": null,
+            "limitMs": 300,
+            "timingIsUpperBound": true,
+            "status": "NOT_VERIFIED_DEVICE"
+          },
+          {
+            "format": "fb2",
+            "mode": "VERTICAL",
+            "kind": "contents",
+            "corpusSha256": "78645337853fdf1a72ca80da36c84708be99eee6b6c9087b013d1e45e361058b",
+            "runsMs": [
+              321.93425,
+              257.050375,
+              299.594876,
+              341.669584,
+              303.165042
+            ],
+            "minMs": 257.050375,
+            "medianMs": 303.165042,
+            "maxMs": 341.669584,
+            "accessTaps": 2,
+            "limitMs": null,
+            "timingIsUpperBound": true,
+            "status": "NOT_VERIFIED_DEVICE"
+          },
+          {
+            "format": "fb2",
+            "mode": "VERTICAL",
+            "kind": "settings",
+            "corpusSha256": "78645337853fdf1a72ca80da36c84708be99eee6b6c9087b013d1e45e361058b",
+            "runsMs": [
+              347.910333,
+              388.376583,
+              353.641084,
+              371.628709,
+              421.249792
+            ],
+            "minMs": 347.910333,
+            "medianMs": 371.628709,
+            "maxMs": 421.249792,
+            "accessTaps": 2,
+            "limitMs": null,
+            "timingIsUpperBound": true,
+            "status": "NOT_VERIFIED_DEVICE"
+          },
+          {
+            "format": "fb2",
+            "mode": "VERTICAL",
+            "kind": "theme",
+            "corpusSha256": "78645337853fdf1a72ca80da36c84708be99eee6b6c9087b013d1e45e361058b",
+            "runsMs": [
+              679.485167,
+              708.379292,
+              580.304459,
+              639.818959,
+              617.805084
+            ],
+            "minMs": 580.304459,
+            "medianMs": 639.818959,
+            "maxMs": 708.379292,
+            "accessTaps": null,
+            "limitMs": 1000,
+            "timingIsUpperBound": true,
+            "status": "NOT_VERIFIED_DEVICE"
+          },
+          {
+            "format": "fb2",
+            "mode": "VERTICAL",
+            "kind": "fontScale",
+            "corpusSha256": "78645337853fdf1a72ca80da36c84708be99eee6b6c9087b013d1e45e361058b",
+            "runsMs": [
+              686.914417,
+              547.775042,
+              660.528334,
+              548.749292,
+              593.464125
+            ],
+            "minMs": 547.775042,
+            "medianMs": 593.464125,
+            "maxMs": 686.914417,
+            "accessTaps": null,
+            "limitMs": 1000,
+            "timingIsUpperBound": true,
+            "status": "NOT_VERIFIED_DEVICE"
+          },
+          {
+            "format": "fb2",
+            "mode": "VERTICAL",
+            "kind": "mode",
+            "corpusSha256": "78645337853fdf1a72ca80da36c84708be99eee6b6c9087b013d1e45e361058b",
+            "runsMs": [
+              1193.646,
+              1005.691042,
+              1100.671292,
+              938.161958,
+              1027.382125
+            ],
+            "minMs": 938.161958,
+            "medianMs": 1027.382125,
+            "maxMs": 1193.646,
+            "accessTaps": null,
+            "limitMs": 1000,
+            "timingIsUpperBound": true,
+            "status": "NOT_VERIFIED_DEVICE"
+          },
+          {
+            "format": "fb2",
+            "mode": "PAGINATED",
+            "kind": "panels",
+            "corpusSha256": "78645337853fdf1a72ca80da36c84708be99eee6b6c9087b013d1e45e361058b",
+            "runsMs": [
+              81.973375,
+              81.338083,
+              88.181,
+              82.80075,
+              81.944166
+            ],
+            "minMs": 81.338083,
+            "medianMs": 81.973375,
+            "maxMs": 88.181,
+            "accessTaps": null,
+            "limitMs": 300,
+            "timingIsUpperBound": true,
+            "status": "NOT_VERIFIED_DEVICE"
+          },
+          {
+            "format": "fb2",
+            "mode": "PAGINATED",
+            "kind": "contents",
+            "corpusSha256": "78645337853fdf1a72ca80da36c84708be99eee6b6c9087b013d1e45e361058b",
+            "runsMs": [
+              303.397542,
+              256.676209,
+              387.711125,
+              338.163125,
+              287.425375
+            ],
+            "minMs": 256.676209,
+            "medianMs": 303.397542,
+            "maxMs": 387.711125,
+            "accessTaps": 2,
+            "limitMs": null,
+            "timingIsUpperBound": true,
+            "status": "NOT_VERIFIED_DEVICE"
+          },
+          {
+            "format": "fb2",
+            "mode": "PAGINATED",
+            "kind": "settings",
+            "corpusSha256": "78645337853fdf1a72ca80da36c84708be99eee6b6c9087b013d1e45e361058b",
+            "runsMs": [
+              316.568333,
+              396.980542,
+              318.725125,
+              339.060292,
+              360.450709
+            ],
+            "minMs": 316.568333,
+            "medianMs": 339.060292,
+            "maxMs": 396.980542,
+            "accessTaps": 2,
+            "limitMs": null,
+            "timingIsUpperBound": true,
+            "status": "NOT_VERIFIED_DEVICE"
+          },
+          {
+            "format": "fb2",
+            "mode": "PAGINATED",
+            "kind": "theme",
+            "corpusSha256": "78645337853fdf1a72ca80da36c84708be99eee6b6c9087b013d1e45e361058b",
+            "runsMs": [
+              626.833709,
+              691.069875,
+              495.632959,
+              807.361667,
+              652.013001
+            ],
+            "minMs": 495.632959,
+            "medianMs": 652.013001,
+            "maxMs": 807.361667,
+            "accessTaps": null,
+            "limitMs": 1000,
+            "timingIsUpperBound": true,
+            "status": "NOT_VERIFIED_DEVICE"
+          },
+          {
+            "format": "fb2",
+            "mode": "PAGINATED",
+            "kind": "fontScale",
+            "corpusSha256": "78645337853fdf1a72ca80da36c84708be99eee6b6c9087b013d1e45e361058b",
+            "runsMs": [
+              1117.275709,
+              1112.065125,
+              1041.586709,
+              1093.316834,
+              1021.343958
+            ],
+            "minMs": 1021.343958,
+            "medianMs": 1093.316834,
+            "maxMs": 1117.275709,
+            "accessTaps": null,
+            "limitMs": 1000,
+            "timingIsUpperBound": true,
+            "status": "NOT_VERIFIED_DEVICE"
+          },
+          {
+            "format": "fb2",
+            "mode": "PAGINATED",
+            "kind": "mode",
+            "corpusSha256": "78645337853fdf1a72ca80da36c84708be99eee6b6c9087b013d1e45e361058b",
+            "runsMs": [
+              667.669792,
+              554.135834,
+              593.088208,
+              556.908001,
+              661.994876
+            ],
+            "minMs": 554.135834,
+            "medianMs": 593.088208,
+            "maxMs": 667.669792,
+            "accessTaps": null,
+            "limitMs": 1000,
+            "timingIsUpperBound": true,
+            "status": "NOT_VERIFIED_DEVICE"
+          }
+        ]
+      },
+      "prior20MbDiagnostics": {
+        "profileId": "18757762298d7e3ca967ce968c8d559aa07d8553cea73549b32bb284962373e2",
+        "currentRcAcceptanceEvidence": false,
+        "thresholdPassed": false,
+        "series": [
+          {
+            "case": "epub-beginning-baseline-cold",
+            "runsMs": [
+              1803.583875,
+              1757.224335,
+              1727.639001,
+              1774.836501,
+              1768.496917
+            ],
+            "maxMs": 1803.583875
+          },
+          {
+            "case": "epub-beginning-baseline-warm",
+            "runsMs": [
+              1771.299542,
+              1801.595043,
+              1736.989959,
+              1710.432959,
+              1688.902043
+            ],
+            "maxMs": 1801.595043
+          },
+          {
+            "case": "epub-beginning-baseline-cold_source",
+            "runsMs": [
+              3168.725834,
+              3141.425085,
+              2973.36971,
+              2991.84896,
+              2990.569418
+            ],
+            "maxMs": 3168.725834
+          },
+          {
+            "case": "epub-beginning-scale-cold",
+            "runsMs": [
+              1816.806917,
+              1731.700917,
+              1721.528667,
+              1720.577292,
+              1716.011626
+            ],
+            "maxMs": 1816.806917
+          },
+          {
+            "case": "epub-beginning-scale-warm",
+            "runsMs": [
+              1733.642959,
+              1683.914501,
+              1717.514834,
+              1686.802418,
+              1683.459376
+            ],
+            "maxMs": 1733.642959
+          },
+          {
+            "case": "epub-beginning-orientation-cold",
+            "runsMs": [
+              1782.128125,
+              1676.11696,
+              1676.821875,
+              1671.699251,
+              1676.523792
+            ],
+            "maxMs": 1782.128125
+          },
+          {
+            "case": "epub-beginning-orientation-warm",
+            "runsMs": [
+              1676.050668,
+              1659.639792,
+              1660.422251,
+              1654.144251,
+              1679.790168
+            ],
+            "maxMs": 1679.790168
+          },
+          {
+            "case": "epub-beginning-system_font-cold",
+            "runsMs": [
+              1891.870167,
+              1795.039418,
+              1806.152501,
+              1780.402209,
+              1838.066543
+            ],
+            "maxMs": 1891.870167
+          },
+          {
+            "case": "epub-beginning-system_font-warm",
+            "runsMs": [
+              1809.407501,
+              1793.856876,
+              1814.710293,
+              1814.385417,
+              1797.622126
+            ],
+            "maxMs": 1814.710293
+          },
+          {
+            "case": "epub-late-baseline-cold",
+            "runsMs": [
+              5285.599586,
+              4781.779085,
+              4600.522793,
+              4584.329461,
+              4533.164127
+            ],
+            "maxMs": 5285.599586
+          },
+          {
+            "case": "epub-late-baseline-warm",
+            "runsMs": [
+              1465.987709,
+              1468.730584,
+              1484.671501,
+              1452.128792,
+              1436.299376
+            ],
+            "maxMs": 1484.671501
+          },
+          {
+            "case": "epub-late-baseline-cold_source",
+            "runsMs": [
+              6512.264212,
+              5949.674711,
+              5834.290794,
+              5748.804002,
+              5750.375253
+            ],
+            "maxMs": 6512.264212
+          },
+          {
+            "case": "epub-late-scale-cold",
+            "runsMs": [
+              6722.055169,
+              6149.118628,
+              6120.64742,
+              6575.243378,
+              6233.395545
+            ],
+            "maxMs": 6722.055169
+          },
+          {
+            "case": "epub-late-scale-warm",
+            "runsMs": [
+              1451.893251,
+              1450.09925,
+              1467.930876,
+              1418.629,
+              1402.253125
+            ],
+            "maxMs": 1467.930876
+          },
+          {
+            "case": "epub-late-orientation-cold",
+            "runsMs": [
+              5201.868378,
+              4635.047252,
+              4488.149377,
+              4433.229294,
+              4416.867085
+            ],
+            "maxMs": 5201.868378
+          },
+          {
+            "case": "epub-late-orientation-warm",
+            "runsMs": [
+              1384.368084,
+              1454.619043,
+              1434.548042,
+              1401.804709,
+              1418.978251
+            ],
+            "maxMs": 1454.619043
+          },
+          {
+            "case": "epub-late-system_font-cold",
+            "runsMs": [
+              6451.843545,
+              5832.202836,
+              5733.757919,
+              5700.326127,
+              5633.634336
+            ],
+            "maxMs": 6451.843545
+          },
+          {
+            "case": "epub-late-system_font-warm",
+            "runsMs": [
+              1451.340042,
+              1434.601917,
+              1402.849418,
+              1402.445001,
+              1518.718751
+            ],
+            "maxMs": 1518.718751
+          },
+          {
+            "case": "fb2-beginning-baseline-cold",
+            "runsMs": [
+              1839.853875,
+              1650.392001,
+              1635.293459,
+              1635.932417,
+              1617.628001
+            ],
+            "maxMs": 1839.853875
+          },
+          {
+            "case": "fb2-beginning-baseline-warm",
+            "runsMs": [
+              1468.192418,
+              1584.743209,
+              1487.485959,
+              1468.254542,
+              1419.544668
+            ],
+            "maxMs": 1584.743209
+          },
+          {
+            "case": "fb2-beginning-baseline-cold_source",
+            "runsMs": [
+              3199.829793,
+              3110.640168,
+              2966.115627,
+              2970.929085,
+              2850.660543
+            ],
+            "maxMs": 3199.829793
+          },
+          {
+            "case": "fb2-beginning-scale-cold",
+            "runsMs": [
+              1785.054959,
+              1711.250542,
+              1701.544084,
+              1816.962584,
+              1721.561334
+            ],
+            "maxMs": 1816.962584
+          },
+          {
+            "case": "fb2-beginning-scale-warm",
+            "runsMs": [
+              1500.698917,
+              1655.918709,
+              1501.925293,
+              1600.582792,
+              1435.834959
+            ],
+            "maxMs": 1655.918709
+          },
+          {
+            "case": "fb2-beginning-orientation-cold",
+            "runsMs": [
+              1849.684334,
+              1750.581043,
+              1667.224584,
+              1669.185751,
+              1651.723793
+            ],
+            "maxMs": 1849.684334
+          },
+          {
+            "case": "fb2-beginning-orientation-warm",
+            "runsMs": [
+              1436.439001,
+              1418.390459,
+              1419.1505,
+              1417.775584,
+              1405.944584
+            ],
+            "maxMs": 1436.439001
+          },
+          {
+            "case": "fb2-beginning-system_font-cold",
+            "runsMs": [
+              1834.829209,
+              1704.433626,
+              1683.343709,
+              1667.890792,
+              1667.534626
+            ],
+            "maxMs": 1834.829209
+          },
+          {
+            "case": "fb2-beginning-system_font-warm",
+            "runsMs": [
+              1404.565334,
+              1451.209251,
+              1420.786292,
+              1419.820626,
+              1401.963043
+            ],
+            "maxMs": 1451.209251
+          },
+          {
+            "case": "fb2-late-baseline-cold",
+            "runsMs": [
+              5556.857836,
+              5386.055961,
+              5754.588962,
+              5243.605919,
+              5211.357336
+            ],
+            "maxMs": 5754.588962
+          },
+          {
+            "case": "fb2-late-baseline-warm",
+            "runsMs": [
+              1747.227834,
+              1706.730668,
+              1690.92321,
+              1934.039126,
+              1732.024376
+            ],
+            "maxMs": 1934.039126
+          },
+          {
+            "case": "fb2-late-baseline-cold_source",
+            "runsMs": [
+              6904.30842,
+              6288.120003,
+              6441.036878,
+              6032.362919,
+              6032.878378
+            ],
+            "maxMs": 6904.30842
+          },
+          {
+            "case": "fb2-late-scale-cold",
+            "runsMs": [
+              7013.628087,
+              6396.14167,
+              6264.452753,
+              26251.105804,
+              49828.365648
+            ],
+            "maxMs": 49828.365648
+          },
+          {
+            "case": "fb2-late-scale-warm",
+            "runsMs": [
+              13946.07409,
+              10201.881297,
+              12262.339214,
+              12912.057631,
+              10786.743421
+            ],
+            "maxMs": 13946.07409
+          },
+          {
+            "case": "fb2-late-orientation-cold",
+            "runsMs": [
+              39642.601394,
+              37805.668184,
+              37271.866767,
+              35678.36585,
+              37244.461392
+            ],
+            "maxMs": 39642.601394
+          },
+          {
+            "case": "fb2-late-orientation-warm",
+            "runsMs": [
+              1647.283334,
+              1633.668418,
+              1617.710959,
+              1618.144251,
+              1619.104001
+            ],
+            "maxMs": 1647.283334
+          },
+          {
+            "case": "fb2-late-system_font-cold",
+            "runsMs": [
+              6602.47667,
+              31257.573223,
+              55169.9964,
+              46156.171605,
+              48228.215314
+            ],
+            "maxMs": 55169.9964
+          },
+          {
+            "case": "fb2-late-system_font-warm",
+            "runsMs": [
+              1929.535834,
+              1898.163292,
+              1833.049793,
+              1821.337876,
+              1875.485334
+            ],
+            "maxMs": 1929.535834
+          }
+        ],
+        "rawMemoryPassesFrontierAndCancellation": "pagination-production-optimized.json"
+      },
+      "configuredProfileId": "18757762298d7e3ca967ce968c8d559aa07d8553cea73549b32bb284962373e2",
+      "physicalProfilePinned": false,
+      "metricPassed": false,
+      "releaseException": "release/acceptance-exception.json"
+    },
+    "SC-005": {
+      "status": "PASS_CHECKED_SCENARIOS",
+      "evidence": [
+        "validation/connected-api37.xml",
+        "process-death-v2.txt",
+        "upgrade/summary.json",
+        "import-corpus-v2.json",
+        "release/release-smoke.txt"
+      ]
+    },
+    "SC-006": {
+      "status": "PASS_CHECKED_SCENARIOS",
+      "evidence": [
+        "validation/connected-api37.xml",
+        "validation/unit/testDebugUnitTest/TEST-com.hooreader.ui.reader.ReaderViewModelTest.xml",
+        "process-death-v2.txt",
+        "exit/phase7-validation.json",
+        "validation/connected-api26.xml",
+        "validation/exit-regression-api37.xml"
+      ]
+    },
+    "SC-007": {
+      "status": "PASS_USER_REPORTED",
+      "participants": null,
+      "requiredParticipants": 5,
+      "evidence": [
+        "../usability-results.md",
+        "../usability-form.md",
+        "usability/user-confirmation.json"
+      ],
+      "requiredSuccessfulParticipants": 4,
+      "actualSuccessfulParticipants": null,
+      "confirmationSource": "user message: T062 passed",
+      "participantDetailsProvided": false
+    },
+    "SC-008": {
+      "status": "PASS_API37",
+      "combinations": 96,
+      "instrumentationMethods": 48,
+      "screenshots": 576,
+      "talkBackInScope": false,
+      "evidence": [
+        "font-scale/summary.json",
+        "font-scale/README.md",
+        "validation/connected-api37.xml"
+      ]
+    }
+  },
+  "FR": {
+    "FR-001": {
+      "requirement": "При успешном открытии книги приложение MUST начинать чтение со скрытыми панелями",
+      "status": "PASS_CHECKED_SCENARIOS",
+      "evidence": [
+        "validation/connected-api37.xml"
+      ],
+      "tests": [
+        "ReaderScreenTest",
+        "ReadingIndicatorsTest"
+      ]
+    },
+    "FR-002": {
+      "requirement": "Первое одиночное касание области книги при скрытых панелях MUST показывать их,",
+      "status": "PASS_CHECKED_SCENARIOS",
+      "evidence": [
+        "validation/connected-api37.xml",
+        "validation/paged-100-api37.xml"
+      ],
+      "tests": [
+        "ReaderScreenTest.twentyTapsAndSubSlopJitterToggleOnceWithoutChangingViewportOrAnchor",
+        "PagedReaderTest"
+      ]
+    },
+    "FR-003": {
+      "requirement": "Скрытые панели MUST исключать кнопки выхода, настроек, содержания, переходов между",
+      "status": "PASS_CHECKED_SCENARIOS",
+      "evidence": [
+        "validation/connected-api37.xml",
+        "font-scale/summary.json",
+        "validation/paged-100-api37.xml"
+      ],
+      "tests": [
+        "ReaderScreenTest",
+        "PagedReaderTest",
+        "ReaderFontScaleAcceptanceTest"
+      ]
+    },
+    "FR-004": {
+      "requirement": "Прокрутка, завершённый или отменённый свайп и отпускание пальца после них MUST NOT",
+      "status": "PASS_CHECKED_SCENARIOS",
+      "evidence": [
+        "validation/connected-api37.xml",
+        "validation/paged-100-api37.xml"
+      ],
+      "tests": [
+        "ReaderScreenTest.hundredScrollCancelDiagonalReturnAndBoundaryGesturesNeverOpenControls",
+        "PagedReaderTest"
+      ]
+    },
+    "FR-005": {
+      "requirement": "Касания элементов управления и открытых меню MUST выполнять только выбранное",
+      "status": "PASS_CHECKED_SCENARIOS",
+      "evidence": [
+        "validation/connected-api37.xml"
+      ],
+      "tests": [
+        "BookGestureHandlerTest",
+        "ReaderScreenTest.realDestinationMenusConsumeTouchesAndBackReturnsHiddenChrome"
+      ]
+    },
+    "FR-006": {
+      "requirement": "Настройки чтения MUST предоставлять рядом с масштабом выбор между вертикальной",
+      "status": "PASS_CHECKED_SCENARIOS",
+      "evidence": [
+        "validation/connected-api37.xml"
+      ],
+      "tests": [
+        "ReadingModeChooserTest",
+        "ReaderSettingsTest"
+      ]
+    },
+    "FR-007": {
+      "requirement": "В постраничном режиме завершённый свайп влево MUST показывать одну следующую",
+      "status": "PASS_CHECKED_SCENARIOS",
+      "evidence": [
+        "validation/connected-api37.xml",
+        "validation/paged-100-api37.xml"
+      ],
+      "tests": [
+        "PagedReaderTest",
+        "PagedReaderContentTest"
+      ]
+    },
+    "FR-008": {
+      "requirement": "Вертикальный режим MUST сохранять чтение прокруткой и позволять достичь соседних",
+      "status": "PASS_CHECKED_SCENARIOS",
+      "evidence": [
+        "validation/connected-api37.xml"
+      ],
+      "tests": [
+        "ReaderNavigationTest",
+        "ReaderScreenTest"
+      ]
+    },
+    "FR-009": {
+      "requirement": "Оба режима MUST предоставлять весь поддерживаемый текст, форматирование и",
+      "status": "PASS_CHECKED_SCENARIOS",
+      "evidence": [
+        "validation/connected-api37.xml",
+        "import-corpus-v2.json"
+      ],
+      "tests": [
+        "TextPaginationLayoutTest",
+        "ContentBlockRendererTest",
+        "ImportCorpusTest"
+      ]
+    },
+    "FR-010": {
+      "requirement": "Смена режима, масштаба чтения, системного размера шрифта или ориентации MUST",
+      "status": "PASS_CHECKED_SCENARIOS",
+      "evidence": [
+        "validation/connected-api37.xml",
+        "validation/unit/testDebugUnitTest/TEST-com.hooreader.ui.reader.ReaderViewModelTest.xml",
+        "font-scale/summary.json",
+        "validation/paged-100-api37.xml"
+      ],
+      "tests": [
+        "PagedReaderTest",
+        "ReaderViewModelTest",
+        "ReaderFontScaleAcceptanceTest"
+      ]
+    },
+    "FR-011": {
+      "requirement": "Выбранные режим, тема и масштаб MUST применяться ко всем открываемым книгам,",
+      "status": "PASS_CHECKED_SCENARIOS",
+      "evidence": [
+        "validation/connected-api37.xml",
+        "process-death-v2.txt",
+        "upgrade/summary.json"
+      ],
+      "tests": [
+        "ReadingModeChooserTest",
+        "ReaderSettingsTest",
+        "ProcessDeathAcceptanceTest",
+        "ReleaseUpgradeTest"
+      ]
+    },
+    "FR-012": {
+      "requirement": "При скрытых панелях постраничного режима сверху MUST отображаться текущая глава",
+      "status": "PASS_CHECKED_SCENARIOS",
+      "evidence": [
+        "validation/connected-api37.xml"
+      ],
+      "tests": [
+        "ReadingIndicatorsTest",
+        "PagedReaderTest"
+      ]
+    },
+    "FR-013": {
+      "requirement": "При скрытых панелях вертикального режима сверху MUST отображаться текущая глава",
+      "status": "PASS_CHECKED_SCENARIOS",
+      "evidence": [
+        "validation/connected-api37.xml"
+      ],
+      "tests": [
+        "ReadingIndicatorsTest"
+      ]
+    },
+    "FR-014": {
+      "requirement": "Указатели главы и положения MUST обновляться при навигации и восстановлении;",
+      "status": "PASS_CHECKED_SCENARIOS",
+      "evidence": [
+        "validation/connected-api37.xml",
+        "validation/unit/testDebugUnitTest/TEST-com.hooreader.ui.reader.ReaderViewModelTest.xml"
+      ],
+      "tests": [
+        "ReadingIndicatorsTest",
+        "ReaderViewModelTest"
+      ]
+    },
+    "FR-015": {
+      "requirement": "Минимальные указатели MUST иметь меньший размер и меньший контраст относительно",
+      "status": "PASS_CHECKED_SCENARIOS_USER_REPORTED_PERCEPTION",
+      "evidence": [
+        "validation/connected-api37.xml",
+        "font-scale/summary.json",
+        "../usability-results.md",
+        "usability/user-confirmation.json"
+      ],
+      "tests": [
+        "ReadingIndicatorsTest",
+        "ReaderFontScaleAcceptanceTest"
+      ],
+      "perceptualAcceptance": "SC-007 PASS_USER_REPORTED"
+    },
+    "FR-016": {
+      "requirement": "Содержание MUST открывать начало выбранной главы в текущем режиме, обновлять",
+      "status": "PASS_CHECKED_SCENARIOS",
+      "evidence": [
+        "validation/connected-api37.xml"
+      ],
+      "tests": [
+        "ReaderNavigationTest",
+        "PagedReaderTest"
+      ]
+    },
+    "FR-017": {
+      "requirement": "Любой выбранный параметр чтения MUST применяться и сохраняться автоматически,",
+      "status": "PASS_CHECKED_SCENARIOS",
+      "evidence": [
+        "validation/connected-api37.xml",
+        "process-death-v2.txt"
+      ],
+      "tests": [
+        "ReaderSettingsTest",
+        "ReadingModeChooserTest"
+      ]
+    },
+    "FR-018": {
+      "requirement": "Настройки чтения MUST закрываться касанием снаружи, жестом закрытия или действием",
+      "status": "PASS_CHECKED_SCENARIOS",
+      "evidence": [
+        "validation/connected-api37.xml",
+        "validation/unit/testDebugUnitTest/TEST-com.hooreader.ui.reader.ReaderViewModelTest.xml",
+        "font-scale/summary.json"
+      ],
+      "tests": [
+        "ReaderScreenTest",
+        "ReaderSettingsSheetTest",
+        "ReaderFontScaleAcceptanceTest"
+      ]
+    },
+    "FR-019": {
+      "requirement": "Приложение MUST предоставлять доступный из библиотеки раздел настроек приложения",
+      "status": "PASS_CHECKED_SCENARIOS",
+      "evidence": [
+        "validation/connected-api37.xml",
+        "process-death-v2.txt",
+        "upgrade/summary.json",
+        "validation/connected-api26.xml",
+        "validation/exit-regression-api37.xml"
+      ],
+      "tests": [
+        "AppSettingsTest",
+        "ProcessDeathAcceptanceTest",
+        "ReleaseUpgradeTest"
+      ]
+    },
+    "FR-020": {
+      "requirement": "При включённом подтверждении экранная кнопка выхода из книги и системное действие",
+      "status": "PASS_CHECKED_SCENARIOS",
+      "evidence": [
+        "validation/connected-api37.xml",
+        "font-scale/summary.json",
+        "validation/connected-api26.xml",
+        "validation/exit-regression-api37.xml"
+      ],
+      "tests": [
+        "HooReaderNavHostTest",
+        "AppSettingsTest",
+        "ReaderFontScaleAcceptanceTest"
+      ]
+    },
+    "FR-021": {
+      "requirement": "Отмена запроса кнопкой продолжения, действием «Назад» или касанием вне запроса",
+      "status": "PASS_CHECKED_SCENARIOS",
+      "evidence": [
+        "validation/connected-api37.xml",
+        "validation/unit/testDebugUnitTest/TEST-com.hooreader.ui.reader.ReaderViewModelTest.xml",
+        "validation/connected-api26.xml",
+        "validation/exit-regression-api37.xml"
+      ],
+      "tests": [
+        "HooReaderNavHostTest.realReaderPrioritizesMenusCancelsDialogAndRetriesFailedExit",
+        "ReaderViewModelTest"
+      ]
+    },
+    "FR-022": {
+      "requirement": "Действие «Назад» при открытом содержании или настройках чтения MUST сначала",
+      "status": "PASS_CHECKED_SCENARIOS",
+      "evidence": [
+        "validation/connected-api37.xml",
+        "process-death-v2.txt",
+        "import-corpus-v2.json",
+        "upgrade/summary.json",
+        "release/release-smoke.txt",
+        "validation/connected-api26.xml",
+        "validation/exit-regression-api37.xml"
+      ],
+      "tests": [
+        "HooReaderNavHostTest",
+        "ReaderScreenTest",
+        "ImportCorpusTest",
+        "ProcessDeathAcceptanceTest",
+        "ReleaseUpgradeTest"
+      ]
+    },
+    "FR-023": {
+      "requirement": "При системном размере шрифта от 100% до 200% оба режима чтения, панели,",
+      "status": "PASS_CHECKED_SCENARIOS",
+      "evidence": [
+        "font-scale/summary.json",
+        "font-scale/README.md"
+      ],
+      "tests": [
+        "ReaderFontScaleAcceptanceTest"
+      ]
+    }
+  },
+  "evidencePathsRelativeTo": "specs/002-reader-appearance/evidence",
+  "limitations": [
+    "Synthetic corpus; no claim of support for all external books",
+    "API 26 and API 37 emulator results do not replace physical SC-004 acceptance",
+    "Prior pagination and current UI profiles are separate; no combined acceptance series",
+    "Checklist files remained reviewer-owned and unchanged"
+  ],
+  "extensionHooks": {
+    "checked": true,
+    "configurationExists": false,
+    "afterImplement": []
+  },
+  "tasksComplete": true,
+  "acceptanceStatus": "ACCEPTED_WITH_EXCEPTION",
+  "releaseExceptions": [
+    {
+      "criterion": "SC-004",
+      "versionName": "2.0.0",
+      "versionCode": 2,
+      "decisionDate": "2026-10-10",
+      "decision": "APPROVED_RELEASE_EXCEPTION",
+      "authorizationQuote": "Релизим без этой проверки",
+      "scope": "Только выпуск 2.0.0; исключение истекает перед следующим выпуском.",
+      "metricPassed": false,
+      "physicalTestReportedByUser": true,
+      "physicalProtocolEvidenceProvided": false,
+      "knownLimitation": "Полный протокол и порог ≤1000 ms не подтверждены; прежние 20 MB замеры превышали порог.",
+      "followUp": "Перед следующим выпуском провести полный протокол SC-004 и устранить подтверждённые превышения."
+    }
+  ]
+}

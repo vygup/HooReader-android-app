@@ -1,0 +1,77 @@
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.ReadingIndicatorsTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=
+com.hooreader.reader.ReadingIndicatorsTest:
+INSTRUMENTATION_STATUS: test=epubPaginatedLight
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.ReadingIndicatorsTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stack=java.lang.AssertionError: Page number must be below the content
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at com.hooreader.reader.ReadingIndicatorsTest.assertIndicators(ReadingIndicatorsTest.kt:171)
+	at com.hooreader.reader.ReadingIndicatorsTest.access$assertIndicators(ReadingIndicatorsTest.kt:52)
+	at com.hooreader.reader.ReadingIndicatorsTest$indicators$1.invokeSuspend(ReadingIndicatorsTest.kt:104)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:94)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:70)
+	at kotlinx.coroutines.BuildersKt.runBlocking(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2369:1)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:48)
+	at kotlinx.coroutines.BuildersKt.runBlocking$default(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2370:1)
+	at com.hooreader.reader.ReadingIndicatorsTest.indicators(ReadingIndicatorsTest.kt:81)
+	at com.hooreader.reader.ReadingIndicatorsTest.epubPaginatedLight(ReadingIndicatorsTest.kt:70)
+
+INSTRUMENTATION_STATUS: stream=
+Error in epubPaginatedLight(com.hooreader.reader.ReadingIndicatorsTest):
+java.lang.AssertionError: Page number must be below the content
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at com.hooreader.reader.ReadingIndicatorsTest.assertIndicators(ReadingIndicatorsTest.kt:171)
+	at com.hooreader.reader.ReadingIndicatorsTest.access$assertIndicators(ReadingIndicatorsTest.kt:52)
+	at com.hooreader.reader.ReadingIndicatorsTest$indicators$1.invokeSuspend(ReadingIndicatorsTest.kt:104)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:94)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:70)
+	at kotlinx.coroutines.BuildersKt.runBlocking(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2369:1)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:48)
+	at kotlinx.coroutines.BuildersKt.runBlocking$default(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2370:1)
+	at com.hooreader.reader.ReadingIndicatorsTest.indicators(ReadingIndicatorsTest.kt:81)
+	at com.hooreader.reader.ReadingIndicatorsTest.epubPaginatedLight(ReadingIndicatorsTest.kt:70)
+
+INSTRUMENTATION_STATUS: test=epubPaginatedLight
+INSTRUMENTATION_STATUS_CODE: -2
+INSTRUMENTATION_RESULT: stream=
+
+Time: 1.407
+There was 1 failure:
+1) epubPaginatedLight(com.hooreader.reader.ReadingIndicatorsTest)
+java.lang.AssertionError: Page number must be below the content
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at com.hooreader.reader.ReadingIndicatorsTest.assertIndicators(ReadingIndicatorsTest.kt:171)
+	at com.hooreader.reader.ReadingIndicatorsTest.access$assertIndicators(ReadingIndicatorsTest.kt:52)
+	at com.hooreader.reader.ReadingIndicatorsTest$indicators$1.invokeSuspend(ReadingIndicatorsTest.kt:104)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:94)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:70)
+	at kotlinx.coroutines.BuildersKt.runBlocking(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2369:1)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:48)
+	at kotlinx.coroutines.BuildersKt.runBlocking$default(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2370:1)
+	at com.hooreader.reader.ReadingIndicatorsTest.indicators(ReadingIndicatorsTest.kt:81)
+	at com.hooreader.reader.ReadingIndicatorsTest.epubPaginatedLight(ReadingIndicatorsTest.kt:70)
+
+FAILURES!!!
+Tests run: 1,  Failures: 1
+
+
+INSTRUMENTATION_CODE: -1

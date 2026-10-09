@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.hooreader.data.import.StructuredContentParserTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-10-07T15:00:05.773Z" hostname="MBVY.local" time="0.053">
+  <properties/>
+  <testcase name="XHTML preserves headings nested styles lists and inline images" classname="com.hooreader.data.import.StructuredContentParserTest" time="0.014"/>
+  <testcase name="FB2 sections styles lists images and unknown tags retain readable content" classname="com.hooreader.data.import.StructuredContentParserTest" time="0.017"/>
+  <testcase name="damaged XHTML retains earlier text and emits a fallback" classname="com.hooreader.data.import.StructuredContentParserTest" time="0.013"/>
+  <testcase name="active XHTML and remote or escaping images are never opened" classname="com.hooreader.data.import.StructuredContentParserTest" time="0.008"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

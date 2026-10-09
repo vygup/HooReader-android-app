@@ -14,6 +14,7 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
@@ -28,6 +29,7 @@ fun LibraryScreen(
     onOpenBook: (String) -> Unit,
     onDelete: (String) -> Unit,
     messages: @Composable () -> Unit = {},
+    onAppSettings: () -> Unit = {},
 ) {
     val enabled = state.status != LibraryStatus.IMPORTING && state.deletingBookId == null
     Surface(modifier = Modifier.fillMaxSize()) {
@@ -36,6 +38,9 @@ fun LibraryScreen(
             verticalArrangement = Arrangement.spacedBy(12.dp),
         ) {
             Text(stringResource(R.string.library_title), style = MaterialTheme.typography.headlineMedium)
+            TextButton(onClick = onAppSettings, modifier = Modifier.testTag("library_open_settings")) {
+                Text(stringResource(R.string.app_settings_title))
+            }
             Button(onClick = onImport, enabled = enabled) { Text(stringResource(R.string.import_book)) }
             Text(stringResource(R.string.import_formats), style = MaterialTheme.typography.bodyMedium)
             messages()

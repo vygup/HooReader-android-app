@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.hooreader.ui.library.LibraryViewModelTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-10-07T14:59:49.857Z" hostname="MBVY.local" time="0.086">
+  <properties/>
+  <testcase name="duplicate result keeps visible book and can be dismissed" classname="com.hooreader.ui.library.LibraryViewModelTest" time="0.027"/>
+  <testcase name="empty library imports once and recovers from failed import" classname="com.hooreader.ui.library.LibraryViewModelTest" time="0.016"/>
+  <testcase name="confirmed deletion updates library to empty" classname="com.hooreader.ui.library.LibraryViewModelTest" time="0.02"/>
+  <testcase name="source IO error keeps library available and allows another import" classname="com.hooreader.ui.library.LibraryViewModelTest" time="0.023"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

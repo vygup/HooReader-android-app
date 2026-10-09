@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.hooreader.data.local.PageIndexStoreTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-10-07T15:00:06.057Z" hostname="MBVY.local" time="0.153">
+  <properties/>
+  <testcase name="partial prefix resumes exactly and frontier cannot claim eof" classname="com.hooreader.data.local.PageIndexStoreTest" time="0.072"/>
+  <testcase name="layout eviction retains two most recently used keys" classname="com.hooreader.data.local.PageIndexStoreTest" time="0.044"/>
+  <testcase name="cancel preserves validated prefix and corrupt chapter rebuilds without changing source" classname="com.hooreader.data.local.PageIndexStoreTest" time="0.037"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

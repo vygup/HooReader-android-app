@@ -5,7 +5,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -17,10 +17,7 @@ import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.SpanStyle
-import androidx.compose.ui.text.buildAnnotatedString
-import androidx.compose.ui.text.font.FontStyle
-import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.TextLayoutResult
 import androidx.compose.ui.unit.dp
 import com.hooreader.R
 import com.hooreader.domain.model.BlockKind
@@ -31,42 +28,37 @@ import kotlinx.coroutines.withContext
 import java.io.InputStream
 
 @Composable
-fun ContentBlockRenderer(block: ContentBlock, openMedia: suspend (String) -> InputStream?, fontScale: Float = 1f) {
+fun ContentBlockRenderer(
+    block: ContentBlock,
+    openMedia: suspend (String) -> InputStream?,
+    fontScale: Float = 1f,
+    onTextLayout: (TextLayoutResult) -> Unit = {},
+) {
+    val typography = readerTypography(fontScale)
     val modifier = Modifier.fillMaxWidth().testTag("block_${block.chapterIndex}_${block.blockIndex}")
     when (block.kind) {
         BlockKind.IMAGE -> EmbeddedImage(block, openMedia, modifier)
         BlockKind.LIST -> Row(modifier = modifier) {
-            Text("•", modifier = Modifier.padding(end = 8.dp))
-            StyledBlockText(block, fontScale, Modifier.weight(1f))
+            Text("•", modifier = Modifier.width(typography.listIndent), style = typography.style(block.kind))
+            StyledBlockText(block, typography, Modifier.weight(1f), onTextLayout)
         }
-        else -> StyledBlockText(block, fontScale, modifier)
+        else -> StyledBlockText(block, typography, modifier, onTextLayout)
     }
 }
 
 @Composable
-private fun StyledBlockText(block: ContentBlock, fontScale: Float, modifier: Modifier) {
-    val style = if (block.kind == BlockKind.HEADING) {
-        MaterialTheme.typography.headlineSmall
-    } else {
-        MaterialTheme.typography.bodyLarge
-    }
-    val text = buildAnnotatedString {
-        append(block.text.ifBlank { stringResource(R.string.reader_block_fallback) })
-        block.styles.forEach { range ->
-            addStyle(
-                SpanStyle(
-                    fontWeight = if (range.bold) FontWeight.Bold else null,
-                    fontStyle = if (range.italic) FontStyle.Italic else null,
-                ),
-                range.start,
-                range.endExclusive,
-            )
-        }
-    }
+private fun StyledBlockText(
+    block: ContentBlock,
+    typography: ReaderTypography,
+    modifier: Modifier,
+    onTextLayout: (TextLayoutResult) -> Unit,
+) {
+    val text = BlockTextFactory.create(block, stringResource(R.string.reader_block_fallback))
     Text(
         text = text,
         modifier = modifier,
-        style = style.copy(fontSize = style.fontSize * fontScale, lineHeight = style.lineHeight * fontScale),
+        style = typography.style(block.kind),
+        onTextLayout = onTextLayout,
         color = if (block.kind == BlockKind.FALLBACK) {
             MaterialTheme.colorScheme.onSurfaceVariant
         } else {

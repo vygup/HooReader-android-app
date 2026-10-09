@@ -6,6 +6,9 @@ import com.hooreader.domain.model.ContentBlock
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.count
+import kotlinx.coroutines.flow.emitAll
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.withContext
 import org.readium.r2.shared.publication.Publication
 import org.readium.r2.shared.publication.services.isRestricted
@@ -20,6 +23,7 @@ import java.io.File
 import java.io.FilterInputStream
 import java.io.InputStream
 import java.net.URI
+import java.util.concurrent.atomic.AtomicInteger
 import java.util.zip.ZipFile
 
 class EpubBookParser : BookParser {
@@ -58,17 +62,33 @@ private class EpubDocument(
     private val publication: Publication,
     override val chapters: List<Chapter>,
 ) : ParsedBook {
+    private val passes = AtomicInteger(1)
+    private val mediaPasses = AtomicInteger()
+    override val sourcePassCount: Int get() = passes.get()
+    override val mediaSourcePassCount: Int get() = mediaPasses.get()
     override val metadata = BookMetadata(
         publication.metadata.title,
         publication.metadata.authors.joinToString(", ") { it.name },
         publication.resources.firstOrNull { "cover" in it.rels }?.href?.toString(),
     )
 
-    override fun blocks(chapterIndex: Int, startBlockIndex: Int): Flow<ContentBlock> =
-        epubTextBlocks(file, chapters[chapterIndex].sourceRef, chapterIndex, startBlockIndex)
+    override fun blocks(chapterIndex: Int, startBlockIndex: Int): Flow<ContentBlock> = flow {
+        passes.incrementAndGet()
+        emitAll(
+            epubTextBlocks(file, chapters[chapterIndex].sourceRef, chapterIndex, startBlockIndex)
+        )
+    }.flowOn(Dispatchers.IO)
+
+    override fun orderedBlocks(): Flow<ContentBlock> = flow {
+        passes.incrementAndGet()
+        chapters.forEach { chapter ->
+            emitAll(epubTextBlocks(file, chapter.sourceRef, chapter.index))
+        }
+    }.flowOn(Dispatchers.IO)
 
     override suspend fun openMedia(reference: String): InputStream? = withContext(Dispatchers.IO) {
         val entry = localEntry(reference) ?: return@withContext null
+        mediaPasses.incrementAndGet()
         val archive = ZipFile(file)
         val resource = archive.getEntry(entry)
         if (resource == null || resource.isDirectory) {

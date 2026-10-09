@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuite name="com.hooreader.reader.ReadingIndicatorsTest" tests="8" failures="0" errors="0" skipped="0" time="35.205" timestamp="2026-10-03T10:10:43" hostname="localhost">
+  <properties>
+    <property name="device" value="Pixel_10(AVD) - 17" />
+    <property name="flavor" value="" />
+    <property name="project" value=":app" />
+  </properties>
+  <testcase name="fb2PaginatedDark" classname="com.hooreader.reader.ReadingIndicatorsTest" time="4.305" />
+  <testcase name="epubVerticalDark" classname="com.hooreader.reader.ReadingIndicatorsTest" time="4.283" />
+  <testcase name="fb2VerticalDark" classname="com.hooreader.reader.ReadingIndicatorsTest" time="4.338" />
+  <testcase name="fb2PaginatedLight" classname="com.hooreader.reader.ReadingIndicatorsTest" time="3.91" />
+  <testcase name="epubVerticalLight" classname="com.hooreader.reader.ReadingIndicatorsTest" time="5.349" />
+  <testcase name="epubPaginatedLight" classname="com.hooreader.reader.ReadingIndicatorsTest" time="4.677" />
+  <testcase name="fb2VerticalLight" classname="com.hooreader.reader.ReadingIndicatorsTest" time="3.984" />
+  <testcase name="epubPaginatedDark" classname="com.hooreader.reader.ReadingIndicatorsTest" time="3.939" />
+</testsuite>

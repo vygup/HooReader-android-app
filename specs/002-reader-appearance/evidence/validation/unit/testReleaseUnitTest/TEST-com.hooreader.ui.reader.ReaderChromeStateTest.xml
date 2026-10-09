@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.hooreader.ui.reader.ReaderChromeStateTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-10-07T15:00:07.068Z" hostname="MBVY.local" time="0.005">
+  <properties/>
+  <testcase name="menus are exclusive and dismiss always returns hidden chrome" classname="com.hooreader.ui.reader.ReaderChromeStateTest" time="0.004"/>
+  <testcase name="book starts hidden and twenty taps toggle exactly twenty times" classname="com.hooreader.ui.reader.ReaderChromeStateTest" time="0.0"/>
+  <testcase name="drag suppresses tap through release and cancellation without opening controls" classname="com.hooreader.ui.reader.ReaderChromeStateTest" time="0.0"/>
+  <testcase name="reopen resets transient menus and gesture suppression" classname="com.hooreader.ui.reader.ReaderChromeStateTest" time="0.001"/>
+  <testcase name="opening or error cannot turn a book tap into visible controls" classname="com.hooreader.ui.reader.ReaderChromeStateTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

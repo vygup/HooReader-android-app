@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="T042 Android regression from raw instrumentation" tests="51" failures="0" errors="0" skipped="6">
+  <testcase classname="com.hooreader.acceptance.ImportCorpusTest" name="everyManifestFileIsImportedAndEveryValidChapterOpens" />
+  <testcase classname="com.hooreader.acceptance.PaginationProbeTest" name="cancelObsoleteLayout">
+    <skipped message="Opt-in instrumentation status -4; see raw log" />
+  </testcase>
+  <testcase classname="com.hooreader.acceptance.PaginationProbeTest" name="measureFiveRuns">
+    <skipped message="Opt-in instrumentation status -4; see raw log" />
+  </testcase>
+  <testcase classname="com.hooreader.acceptance.ReaderPerformanceTest" name="measureOpeningAndScrolling">
+    <skipped message="Opt-in instrumentation status -4; see raw log" />
+  </testcase>
+  <testcase classname="com.hooreader.library.ImportBookFlowTest" name="emptyFileErrorCanBeDismissedAndAnotherBookImported" />
+  <testcase classname="com.hooreader.library.ImportBookFlowTest" name="filePickerImportsBookAndRecreationRestoresChapter" />
+  <testcase classname="com.hooreader.library.ImportBookFlowTest" name="libraryKeepsDuplicateProgressAndDeletionRequiresConfirmation" />
+  <testcase classname="com.hooreader.library.ImportBookFlowTest" name="rejectedFilesKeepLibraryUnchangedAndEncodedFb2StillOpens" />
+  <testcase classname="com.hooreader.library.LibraryScreenTest" name="cardShowsMetadataProgressPlaceholderAndOpensBook" />
+  <testcase classname="com.hooreader.library.LibraryScreenTest" name="emptyLibraryOffersImport" />
+  <testcase classname="com.hooreader.library.LibraryScreenTest" name="lazyLibraryCanReachAndOpenHundredthBook" />
+  <testcase classname="com.hooreader.library.LibraryScreenTest" name="readLabelStartsAt98Percent" />
+  <testcase classname="com.hooreader.library.LibraryScreenTest" name="unreadableCoverUsesPlaceholder" />
+  <testcase classname="com.hooreader.navigation.HooReaderNavHostTest" name="bookSelectionPassesIdAndReturnsToLibrary" />
+  <testcase classname="com.hooreader.navigation.HooReaderNavHostTest" name="startupShowsLibrary" />
+  <testcase classname="com.hooreader.reader.BookGestureHandlerTest" name="consumedChildClickAndCancelNeverBecomeBookTap" />
+  <testcase classname="com.hooreader.reader.ContentBlockRendererTest" name="corruptAndUnreadableImagesDoNotBlockFollowingParagraph" />
+  <testcase classname="com.hooreader.reader.ContentBlockRendererTest" name="embeddedRasterImageDecodesAndHasAccessibleDescription" />
+  <testcase classname="com.hooreader.reader.ContentBlockRendererTest" name="rendererAppliesOverlappingBoldItalicSpansAndListMarker" />
+  <testcase classname="com.hooreader.reader.PagedReaderContentTest" name="fastFlingCancelFrontierAndEofUseStableAbsoluteIndices" />
+  <testcase classname="com.hooreader.reader.PagedReaderTest" name="epubModeScaleAndRotationPreserveInnerParagraphAnchor" />
+  <testcase classname="com.hooreader.reader.PagedReaderTest" name="epubOneSwipeOnePageCancelBoundariesContentsAndReopen" />
+  <testcase classname="com.hooreader.reader.PagedReaderTest" name="fb2ModeScaleAndRotationPreserveInnerParagraphAnchor" />
+  <testcase classname="com.hooreader.reader.PagedReaderTest" name="fb2OneSwipeOnePageCancelBoundariesContentsAndReopen" />
+  <testcase classname="com.hooreader.reader.ProcessDeathAcceptanceTest" name="seed">
+    <skipped message="Opt-in instrumentation status -4; see raw log" />
+  </testcase>
+  <testcase classname="com.hooreader.reader.ProcessDeathAcceptanceTest" name="verify">
+    <skipped message="Opt-in instrumentation status -4; see raw log" />
+  </testcase>
+  <testcase classname="com.hooreader.reader.ReaderNavigationTest" name="epubTableOfContentsOpensSelectedChapterAtStart" />
+  <testcase classname="com.hooreader.reader.ReaderNavigationTest" name="fb2TableOfContentsOpensSelectedChapterAtStart" />
+  <testcase classname="com.hooreader.reader.ReaderNavigationTest" name="fontScaleRotationAndRecreationKeepLogicalBlock" />
+  <testcase classname="com.hooreader.reader.ReaderPositionLayoutTest" name="visibleLineAndRestorationUseOriginalUtf16Coordinates" />
+  <testcase classname="com.hooreader.reader.ReaderScreenTest" name="hundredScrollCancelDiagonalReturnAndBoundaryGesturesNeverOpenControls" />
+  <testcase classname="com.hooreader.reader.ReaderScreenTest" name="importedBookRendersAndChapterNavigationKeepsPosition" />
+  <testcase classname="com.hooreader.reader.ReaderScreenTest" name="measurePanelPresentationFiveTimes">
+    <skipped message="Opt-in instrumentation status -4; see raw log" />
+  </testcase>
+  <testcase classname="com.hooreader.reader.ReaderScreenTest" name="realDestinationMenusConsumeTouchesAndBackReturnsHiddenChrome" />
+  <testcase classname="com.hooreader.reader.ReaderScreenTest" name="twentyTapsAndSubSlopJitterToggleOnceWithoutChangingViewportOrAnchor" />
+  <testcase classname="com.hooreader.reader.ReadingIndicatorsTest" name="epubPaginatedDark" />
+  <testcase classname="com.hooreader.reader.ReadingIndicatorsTest" name="epubPaginatedLight" />
+  <testcase classname="com.hooreader.reader.ReadingIndicatorsTest" name="epubVerticalDark" />
+  <testcase classname="com.hooreader.reader.ReadingIndicatorsTest" name="epubVerticalLight" />
+  <testcase classname="com.hooreader.reader.ReadingIndicatorsTest" name="fb2PaginatedDark" />
+  <testcase classname="com.hooreader.reader.ReadingIndicatorsTest" name="fb2PaginatedLight" />
+  <testcase classname="com.hooreader.reader.ReadingIndicatorsTest" name="fb2VerticalDark" />
+  <testcase classname="com.hooreader.reader.ReadingIndicatorsTest" name="fb2VerticalLight" />
+  <testcase classname="com.hooreader.reader.ReadingPositionRestoreTest" name="epubInnerLongParagraphSurvivesDatabaseReopenWithoutOriginal" />
+  <testcase classname="com.hooreader.reader.ReadingPositionRestoreTest" name="epubPositionSurvivesRecreatedReaderAndDatabaseWithoutOriginal" />
+  <testcase classname="com.hooreader.reader.ReadingPositionRestoreTest" name="fb2InnerLongParagraphSurvivesDatabaseReopenWithoutOriginal" />
+  <testcase classname="com.hooreader.reader.ReadingPositionRestoreTest" name="fb2PositionSurvivesRecreatedReaderAndDatabaseWithoutOriginal" />
+  <testcase classname="com.hooreader.reader.TextPaginationLayoutTest" name="epubMeasuredPagesDrawAndRetainEveryUnicodeCharacter" />
+  <testcase classname="com.hooreader.reader.TextPaginationLayoutTest" name="fb2MeasuredPagesDrawAndRetainEveryUnicodeCharacter" />
+  <testcase classname="com.hooreader.settings.ReaderSettingsTest" name="settingsSurviveRecreationAndBookReopeningWithoutMovingLogicalBlock" />
+  <testcase classname="com.hooreader.settings.ReadingModeChooserTest" name="selectedModeAutomaticallyPersistsInSharedPreferences" />
+</testsuite>

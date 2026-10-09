@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.hooreader.data.import.OrderedBookBlocksTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-10-07T15:00:05.517Z" hostname="MBVY.local" time="0.25">
+  <properties/>
+  <testcase name="FB2 ordered collection makes one source pass for all chapters" classname="com.hooreader.data.import.OrderedBookBlocksTest" time="0.043"/>
+  <testcase name="ordered stream preserves every source coordinate style and empty chapter" classname="com.hooreader.data.import.OrderedBookBlocksTest" time="0.146"/>
+  <testcase name="early collector cancellation closes resources and stream can restart" classname="com.hooreader.data.import.OrderedBookBlocksTest" time="0.061"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

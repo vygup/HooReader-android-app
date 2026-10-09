@@ -1,0 +1,437 @@
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.ReaderFontScaleAcceptanceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=8
+INSTRUMENTATION_STATUS: stream=
+com.hooreader.reader.ReaderFontScaleAcceptanceTest:
+INSTRUMENTATION_STATUS: test=fb2PaginatedDark
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.ReaderFontScaleAcceptanceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=8
+INSTRUMENTATION_STATUS: stack=androidx.compose.ui.test.ComposeTimeoutException: Condition still not satisfied after 30000 ms
+	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$AndroidComposeUiTestImpl.waitUntil(ComposeUiTest.android.kt:755)
+	at androidx.compose.ui.test.junit4.AndroidComposeTestRule.waitUntil(AndroidComposeTestRule.android.kt:362)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.menus(ReaderFontScaleAcceptanceTest.kt:224)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.access$menus(ReaderFontScaleAcceptanceTest.kt:46)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest$matrix$1.invokeSuspend(ReaderFontScaleAcceptanceTest.kt:107)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.UndispatchedCoroutine.afterResume(CoroutineContext.kt:266)
+	at kotlinx.coroutines.AbstractCoroutine.resumeWith(AbstractCoroutine.kt:101)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:46)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:94)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:70)
+	at kotlinx.coroutines.BuildersKt.runBlocking(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2369:1)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:48)
+	at kotlinx.coroutines.BuildersKt.runBlocking$default(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2370:1)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.matrix(ReaderFontScaleAcceptanceTest.kt:79)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.fb2PaginatedDark(ReaderFontScaleAcceptanceTest.kt:77)
+
+INSTRUMENTATION_STATUS: stream=
+Error in fb2PaginatedDark(com.hooreader.reader.ReaderFontScaleAcceptanceTest):
+androidx.compose.ui.test.ComposeTimeoutException: Condition still not satisfied after 30000 ms
+	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$AndroidComposeUiTestImpl.waitUntil(ComposeUiTest.android.kt:755)
+	at androidx.compose.ui.test.junit4.AndroidComposeTestRule.waitUntil(AndroidComposeTestRule.android.kt:362)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.menus(ReaderFontScaleAcceptanceTest.kt:224)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.access$menus(ReaderFontScaleAcceptanceTest.kt:46)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest$matrix$1.invokeSuspend(ReaderFontScaleAcceptanceTest.kt:107)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.UndispatchedCoroutine.afterResume(CoroutineContext.kt:266)
+	at kotlinx.coroutines.AbstractCoroutine.resumeWith(AbstractCoroutine.kt:101)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:46)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:94)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:70)
+	at kotlinx.coroutines.BuildersKt.runBlocking(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2369:1)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:48)
+	at kotlinx.coroutines.BuildersKt.runBlocking$default(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2370:1)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.matrix(ReaderFontScaleAcceptanceTest.kt:79)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.fb2PaginatedDark(ReaderFontScaleAcceptanceTest.kt:77)
+
+INSTRUMENTATION_STATUS: test=fb2PaginatedDark
+INSTRUMENTATION_STATUS_CODE: -2
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.ReaderFontScaleAcceptanceTest
+INSTRUMENTATION_STATUS: current=2
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=8
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=epubVerticalDark
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.ReaderFontScaleAcceptanceTest
+INSTRUMENTATION_STATUS: current=2
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=8
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=epubVerticalDark
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.ReaderFontScaleAcceptanceTest
+INSTRUMENTATION_STATUS: current=3
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=8
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=fb2VerticalDark
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.ReaderFontScaleAcceptanceTest
+INSTRUMENTATION_STATUS: current=3
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=8
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=fb2VerticalDark
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.ReaderFontScaleAcceptanceTest
+INSTRUMENTATION_STATUS: current=4
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=8
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=fb2PaginatedLight
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.ReaderFontScaleAcceptanceTest
+INSTRUMENTATION_STATUS: current=4
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=8
+INSTRUMENTATION_STATUS: stack=androidx.compose.ui.test.ComposeTimeoutException: Condition still not satisfied after 30000 ms
+	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$AndroidComposeUiTestImpl.waitUntil(ComposeUiTest.android.kt:755)
+	at androidx.compose.ui.test.junit4.AndroidComposeTestRule.waitUntil(AndroidComposeTestRule.android.kt:362)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.menus(ReaderFontScaleAcceptanceTest.kt:224)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.access$menus(ReaderFontScaleAcceptanceTest.kt:46)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest$matrix$1.invokeSuspend(ReaderFontScaleAcceptanceTest.kt:107)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.UndispatchedCoroutine.afterResume(CoroutineContext.kt:266)
+	at kotlinx.coroutines.AbstractCoroutine.resumeWith(AbstractCoroutine.kt:101)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:46)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:94)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:70)
+	at kotlinx.coroutines.BuildersKt.runBlocking(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2369:1)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:48)
+	at kotlinx.coroutines.BuildersKt.runBlocking$default(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2370:1)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.matrix(ReaderFontScaleAcceptanceTest.kt:79)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.fb2PaginatedLight(ReaderFontScaleAcceptanceTest.kt:74)
+
+INSTRUMENTATION_STATUS: stream=
+Error in fb2PaginatedLight(com.hooreader.reader.ReaderFontScaleAcceptanceTest):
+androidx.compose.ui.test.ComposeTimeoutException: Condition still not satisfied after 30000 ms
+	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$AndroidComposeUiTestImpl.waitUntil(ComposeUiTest.android.kt:755)
+	at androidx.compose.ui.test.junit4.AndroidComposeTestRule.waitUntil(AndroidComposeTestRule.android.kt:362)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.menus(ReaderFontScaleAcceptanceTest.kt:224)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.access$menus(ReaderFontScaleAcceptanceTest.kt:46)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest$matrix$1.invokeSuspend(ReaderFontScaleAcceptanceTest.kt:107)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.UndispatchedCoroutine.afterResume(CoroutineContext.kt:266)
+	at kotlinx.coroutines.AbstractCoroutine.resumeWith(AbstractCoroutine.kt:101)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:46)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:94)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:70)
+	at kotlinx.coroutines.BuildersKt.runBlocking(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2369:1)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:48)
+	at kotlinx.coroutines.BuildersKt.runBlocking$default(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2370:1)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.matrix(ReaderFontScaleAcceptanceTest.kt:79)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.fb2PaginatedLight(ReaderFontScaleAcceptanceTest.kt:74)
+
+INSTRUMENTATION_STATUS: test=fb2PaginatedLight
+INSTRUMENTATION_STATUS_CODE: -2
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.ReaderFontScaleAcceptanceTest
+INSTRUMENTATION_STATUS: current=5
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=8
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=epubVerticalLight
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.ReaderFontScaleAcceptanceTest
+INSTRUMENTATION_STATUS: current=5
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=8
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=epubVerticalLight
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.ReaderFontScaleAcceptanceTest
+INSTRUMENTATION_STATUS: current=6
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=8
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=epubPaginatedLight
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.ReaderFontScaleAcceptanceTest
+INSTRUMENTATION_STATUS: current=6
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=8
+INSTRUMENTATION_STATUS: stack=androidx.compose.ui.test.ComposeTimeoutException: Condition still not satisfied after 30000 ms
+	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$AndroidComposeUiTestImpl.waitUntil(ComposeUiTest.android.kt:755)
+	at androidx.compose.ui.test.junit4.AndroidComposeTestRule.waitUntil(AndroidComposeTestRule.android.kt:362)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.menus(ReaderFontScaleAcceptanceTest.kt:224)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.access$menus(ReaderFontScaleAcceptanceTest.kt:46)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest$matrix$1.invokeSuspend(ReaderFontScaleAcceptanceTest.kt:107)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.UndispatchedCoroutine.afterResume(CoroutineContext.kt:266)
+	at kotlinx.coroutines.AbstractCoroutine.resumeWith(AbstractCoroutine.kt:101)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:46)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:94)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:70)
+	at kotlinx.coroutines.BuildersKt.runBlocking(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2369:1)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:48)
+	at kotlinx.coroutines.BuildersKt.runBlocking$default(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2370:1)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.matrix(ReaderFontScaleAcceptanceTest.kt:79)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.epubPaginatedLight(ReaderFontScaleAcceptanceTest.kt:62)
+
+INSTRUMENTATION_STATUS: stream=
+Error in epubPaginatedLight(com.hooreader.reader.ReaderFontScaleAcceptanceTest):
+androidx.compose.ui.test.ComposeTimeoutException: Condition still not satisfied after 30000 ms
+	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$AndroidComposeUiTestImpl.waitUntil(ComposeUiTest.android.kt:755)
+	at androidx.compose.ui.test.junit4.AndroidComposeTestRule.waitUntil(AndroidComposeTestRule.android.kt:362)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.menus(ReaderFontScaleAcceptanceTest.kt:224)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.access$menus(ReaderFontScaleAcceptanceTest.kt:46)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest$matrix$1.invokeSuspend(ReaderFontScaleAcceptanceTest.kt:107)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.UndispatchedCoroutine.afterResume(CoroutineContext.kt:266)
+	at kotlinx.coroutines.AbstractCoroutine.resumeWith(AbstractCoroutine.kt:101)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:46)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:94)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:70)
+	at kotlinx.coroutines.BuildersKt.runBlocking(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2369:1)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:48)
+	at kotlinx.coroutines.BuildersKt.runBlocking$default(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2370:1)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.matrix(ReaderFontScaleAcceptanceTest.kt:79)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.epubPaginatedLight(ReaderFontScaleAcceptanceTest.kt:62)
+
+INSTRUMENTATION_STATUS: test=epubPaginatedLight
+INSTRUMENTATION_STATUS_CODE: -2
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.ReaderFontScaleAcceptanceTest
+INSTRUMENTATION_STATUS: current=7
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=8
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=fb2VerticalLight
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.ReaderFontScaleAcceptanceTest
+INSTRUMENTATION_STATUS: current=7
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=8
+INSTRUMENTATION_STATUS: stack=java.lang.AssertionError: expected:<1> but was:<0>
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.failNotEquals(Assert.java:835)
+	at org.junit.Assert.assertEquals(Assert.java:120)
+	at org.junit.Assert.assertEquals(Assert.java:146)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.assertAnchor(ReaderFontScaleAcceptanceTest.kt:174)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.changeSystemFont(ReaderFontScaleAcceptanceTest.kt:152)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.access$changeSystemFont(ReaderFontScaleAcceptanceTest.kt:46)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest$matrix$1.invokeSuspend(ReaderFontScaleAcceptanceTest.kt:105)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.UndispatchedCoroutine.afterResume(CoroutineContext.kt:266)
+	at kotlinx.coroutines.AbstractCoroutine.resumeWith(AbstractCoroutine.kt:101)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:46)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:94)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:70)
+	at kotlinx.coroutines.BuildersKt.runBlocking(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2369:1)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:48)
+	at kotlinx.coroutines.BuildersKt.runBlocking$default(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2370:1)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.matrix(ReaderFontScaleAcceptanceTest.kt:79)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.fb2VerticalLight(ReaderFontScaleAcceptanceTest.kt:68)
+
+INSTRUMENTATION_STATUS: stream=
+Error in fb2VerticalLight(com.hooreader.reader.ReaderFontScaleAcceptanceTest):
+java.lang.AssertionError: expected:<1> but was:<0>
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.failNotEquals(Assert.java:835)
+	at org.junit.Assert.assertEquals(Assert.java:120)
+	at org.junit.Assert.assertEquals(Assert.java:146)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.assertAnchor(ReaderFontScaleAcceptanceTest.kt:174)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.changeSystemFont(ReaderFontScaleAcceptanceTest.kt:152)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.access$changeSystemFont(ReaderFontScaleAcceptanceTest.kt:46)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest$matrix$1.invokeSuspend(ReaderFontScaleAcceptanceTest.kt:105)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.UndispatchedCoroutine.afterResume(CoroutineContext.kt:266)
+	at kotlinx.coroutines.AbstractCoroutine.resumeWith(AbstractCoroutine.kt:101)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:46)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:94)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:70)
+	at kotlinx.coroutines.BuildersKt.runBlocking(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2369:1)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:48)
+	at kotlinx.coroutines.BuildersKt.runBlocking$default(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2370:1)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.matrix(ReaderFontScaleAcceptanceTest.kt:79)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.fb2VerticalLight(ReaderFontScaleAcceptanceTest.kt:68)
+
+INSTRUMENTATION_STATUS: test=fb2VerticalLight
+INSTRUMENTATION_STATUS_CODE: -2
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.ReaderFontScaleAcceptanceTest
+INSTRUMENTATION_STATUS: current=8
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=8
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=epubPaginatedDark
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.ReaderFontScaleAcceptanceTest
+INSTRUMENTATION_STATUS: current=8
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=8
+INSTRUMENTATION_STATUS: stack=androidx.compose.ui.test.ComposeTimeoutException: Condition still not satisfied after 30000 ms
+	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$AndroidComposeUiTestImpl.waitUntil(ComposeUiTest.android.kt:755)
+	at androidx.compose.ui.test.junit4.AndroidComposeTestRule.waitUntil(AndroidComposeTestRule.android.kt:362)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.menus(ReaderFontScaleAcceptanceTest.kt:224)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.access$menus(ReaderFontScaleAcceptanceTest.kt:46)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest$matrix$1.invokeSuspend(ReaderFontScaleAcceptanceTest.kt:107)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.UndispatchedCoroutine.afterResume(CoroutineContext.kt:266)
+	at kotlinx.coroutines.AbstractCoroutine.resumeWith(AbstractCoroutine.kt:101)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:46)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:94)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:70)
+	at kotlinx.coroutines.BuildersKt.runBlocking(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2369:1)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:48)
+	at kotlinx.coroutines.BuildersKt.runBlocking$default(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2370:1)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.matrix(ReaderFontScaleAcceptanceTest.kt:79)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.epubPaginatedDark(ReaderFontScaleAcceptanceTest.kt:65)
+
+INSTRUMENTATION_STATUS: stream=
+Error in epubPaginatedDark(com.hooreader.reader.ReaderFontScaleAcceptanceTest):
+androidx.compose.ui.test.ComposeTimeoutException: Condition still not satisfied after 30000 ms
+	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$AndroidComposeUiTestImpl.waitUntil(ComposeUiTest.android.kt:755)
+	at androidx.compose.ui.test.junit4.AndroidComposeTestRule.waitUntil(AndroidComposeTestRule.android.kt:362)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.menus(ReaderFontScaleAcceptanceTest.kt:224)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.access$menus(ReaderFontScaleAcceptanceTest.kt:46)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest$matrix$1.invokeSuspend(ReaderFontScaleAcceptanceTest.kt:107)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.UndispatchedCoroutine.afterResume(CoroutineContext.kt:266)
+	at kotlinx.coroutines.AbstractCoroutine.resumeWith(AbstractCoroutine.kt:101)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:46)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:94)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:70)
+	at kotlinx.coroutines.BuildersKt.runBlocking(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2369:1)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:48)
+	at kotlinx.coroutines.BuildersKt.runBlocking$default(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2370:1)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.matrix(ReaderFontScaleAcceptanceTest.kt:79)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.epubPaginatedDark(ReaderFontScaleAcceptanceTest.kt:65)
+
+INSTRUMENTATION_STATUS: test=epubPaginatedDark
+INSTRUMENTATION_STATUS_CODE: -2
+INSTRUMENTATION_RESULT: stream=
+
+Time: 321.793
+There were 5 failures:
+1) fb2PaginatedDark(com.hooreader.reader.ReaderFontScaleAcceptanceTest)
+androidx.compose.ui.test.ComposeTimeoutException: Condition still not satisfied after 30000 ms
+	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$AndroidComposeUiTestImpl.waitUntil(ComposeUiTest.android.kt:755)
+	at androidx.compose.ui.test.junit4.AndroidComposeTestRule.waitUntil(AndroidComposeTestRule.android.kt:362)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.menus(ReaderFontScaleAcceptanceTest.kt:224)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.access$menus(ReaderFontScaleAcceptanceTest.kt:46)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest$matrix$1.invokeSuspend(ReaderFontScaleAcceptanceTest.kt:107)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.UndispatchedCoroutine.afterResume(CoroutineContext.kt:266)
+	at kotlinx.coroutines.AbstractCoroutine.resumeWith(AbstractCoroutine.kt:101)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:46)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:94)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:70)
+	at kotlinx.coroutines.BuildersKt.runBlocking(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2369:1)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:48)
+	at kotlinx.coroutines.BuildersKt.runBlocking$default(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2370:1)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.matrix(ReaderFontScaleAcceptanceTest.kt:79)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.fb2PaginatedDark(ReaderFontScaleAcceptanceTest.kt:77)
+2) fb2PaginatedLight(com.hooreader.reader.ReaderFontScaleAcceptanceTest)
+androidx.compose.ui.test.ComposeTimeoutException: Condition still not satisfied after 30000 ms
+	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$AndroidComposeUiTestImpl.waitUntil(ComposeUiTest.android.kt:755)
+	at androidx.compose.ui.test.junit4.AndroidComposeTestRule.waitUntil(AndroidComposeTestRule.android.kt:362)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.menus(ReaderFontScaleAcceptanceTest.kt:224)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.access$menus(ReaderFontScaleAcceptanceTest.kt:46)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest$matrix$1.invokeSuspend(ReaderFontScaleAcceptanceTest.kt:107)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.UndispatchedCoroutine.afterResume(CoroutineContext.kt:266)
+	at kotlinx.coroutines.AbstractCoroutine.resumeWith(AbstractCoroutine.kt:101)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:46)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:94)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:70)
+	at kotlinx.coroutines.BuildersKt.runBlocking(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2369:1)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:48)
+	at kotlinx.coroutines.BuildersKt.runBlocking$default(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2370:1)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.matrix(ReaderFontScaleAcceptanceTest.kt:79)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.fb2PaginatedLight(ReaderFontScaleAcceptanceTest.kt:74)
+3) epubPaginatedLight(com.hooreader.reader.ReaderFontScaleAcceptanceTest)
+androidx.compose.ui.test.ComposeTimeoutException: Condition still not satisfied after 30000 ms
+	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$AndroidComposeUiTestImpl.waitUntil(ComposeUiTest.android.kt:755)
+	at androidx.compose.ui.test.junit4.AndroidComposeTestRule.waitUntil(AndroidComposeTestRule.android.kt:362)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.menus(ReaderFontScaleAcceptanceTest.kt:224)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.access$menus(ReaderFontScaleAcceptanceTest.kt:46)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest$matrix$1.invokeSuspend(ReaderFontScaleAcceptanceTest.kt:107)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.UndispatchedCoroutine.afterResume(CoroutineContext.kt:266)
+	at kotlinx.coroutines.AbstractCoroutine.resumeWith(AbstractCoroutine.kt:101)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:46)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:94)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:70)
+	at kotlinx.coroutines.BuildersKt.runBlocking(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2369:1)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:48)
+	at kotlinx.coroutines.BuildersKt.runBlocking$default(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2370:1)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.matrix(ReaderFontScaleAcceptanceTest.kt:79)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.epubPaginatedLight(ReaderFontScaleAcceptanceTest.kt:62)
+4) fb2VerticalLight(com.hooreader.reader.ReaderFontScaleAcceptanceTest)
+java.lang.AssertionError: expected:<1> but was:<0>
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.failNotEquals(Assert.java:835)
+	at org.junit.Assert.assertEquals(Assert.java:120)
+	at org.junit.Assert.assertEquals(Assert.java:146)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.assertAnchor(ReaderFontScaleAcceptanceTest.kt:174)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.changeSystemFont(ReaderFontScaleAcceptanceTest.kt:152)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.access$changeSystemFont(ReaderFontScaleAcceptanceTest.kt:46)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest$matrix$1.invokeSuspend(ReaderFontScaleAcceptanceTest.kt:105)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.UndispatchedCoroutine.afterResume(CoroutineContext.kt:266)
+	at kotlinx.coroutines.AbstractCoroutine.resumeWith(AbstractCoroutine.kt:101)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:46)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:94)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:70)
+	at kotlinx.coroutines.BuildersKt.runBlocking(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2369:1)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:48)
+	at kotlinx.coroutines.BuildersKt.runBlocking$default(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2370:1)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.matrix(ReaderFontScaleAcceptanceTest.kt:79)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.fb2VerticalLight(ReaderFontScaleAcceptanceTest.kt:68)
+5) epubPaginatedDark(com.hooreader.reader.ReaderFontScaleAcceptanceTest)
+androidx.compose.ui.test.ComposeTimeoutException: Condition still not satisfied after 30000 ms
+	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$AndroidComposeUiTestImpl.waitUntil(ComposeUiTest.android.kt:755)
+	at androidx.compose.ui.test.junit4.AndroidComposeTestRule.waitUntil(AndroidComposeTestRule.android.kt:362)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.menus(ReaderFontScaleAcceptanceTest.kt:224)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.access$menus(ReaderFontScaleAcceptanceTest.kt:46)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest$matrix$1.invokeSuspend(ReaderFontScaleAcceptanceTest.kt:107)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.UndispatchedCoroutine.afterResume(CoroutineContext.kt:266)
+	at kotlinx.coroutines.AbstractCoroutine.resumeWith(AbstractCoroutine.kt:101)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:46)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:94)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:70)
+	at kotlinx.coroutines.BuildersKt.runBlocking(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2369:1)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:48)
+	at kotlinx.coroutines.BuildersKt.runBlocking$default(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2370:1)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.matrix(ReaderFontScaleAcceptanceTest.kt:79)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.epubPaginatedDark(ReaderFontScaleAcceptanceTest.kt:65)
+
+FAILURES!!!
+Tests run: 8,  Failures: 5
+
+
+INSTRUMENTATION_CODE: -1

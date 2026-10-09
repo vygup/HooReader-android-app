@@ -7,8 +7,10 @@
     <string name="reader_unavailable">Книга недоступна</string>
     <string name="back_to_library">В библиотеку</string>
     <string name="reader_open_error">Не удалось открыть книгу. Попробуйте ещё раз или вернитесь в библиотеку.</string>
+    <string name="reader_preparing_pages">Подготовка страниц…</string>
     <string name="retry">Повторить</string>
     <string name="reader_chapter_progress">Глава %1$d из %2$d · ≈ %3$d%%</string>
+    <string name="reader_book_percent">%1$d%%</string>
     <string name="previous_chapter">Предыдущая глава</string>
     <string name="next_chapter">Следующая глава</string>
     <string name="reader_block_fallback">Содержимое этого фрагмента недоступно</string>
@@ -41,11 +43,21 @@
     <string name="chapter_number">Глава %1$d</string>
     <string name="reader_image_unavailable">Изображение недоступно</string>
     <string name="reader_settings">Настройки чтения</string>
+    <string name="reading_mode_vertical">Вертикальная прокрутка</string>
+    <string name="reading_mode_paginated">Постранично</string>
     <string name="theme_light">Светлая</string>
     <string name="theme_dark">Тёмная</string>
     <string name="font_scale_percent">Размер текста: %1$d%%</string>
     <string name="font_scale_decrease">Уменьшить текст</string>
     <string name="font_scale_increase">Увеличить текст</string>
-    <string name="settings_done">Готово</string>
     <string name="settings_save_error">Не удалось сохранить настройки. Попробуйте ещё раз.</string>
+    <string name="reader_page_number">%1$d</string>
+    <string name="app_settings_title">Настройки приложения</string>
+    <string name="confirm_reader_exit">Подтверждать выход из книги</string>
+    <string name="reader_back">В библиотеку</string>
+    <string name="reader_exit_title">Выйти из книги?</string>
+    <string name="reader_continue_reading">Продолжить чтение</string>
+    <string name="reader_confirm_exit">Выйти</string>
+    <string name="reader_exit_save_error">Не удалось сохранить позицию. Повторите выход из книги.</string>
+    <string name="reader_exit_retry">Повторить выход</string>
 </resources>

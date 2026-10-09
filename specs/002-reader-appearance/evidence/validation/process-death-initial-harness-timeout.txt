@@ -1,0 +1,76 @@
+Performing Streamed Install
+Success
+Performing Streamed Install
+Success
+CASE: VERTICAL confirm_reader_exit=true
+
+com.hooreader.reader.ProcessDeathAcceptanceTest:.
+
+Time: 2.236
+
+OK (1 test)
+
+com.hooreader.reader.ProcessDeathAcceptanceTest:.
+
+Time: 1.348
+
+OK (1 test)
+
+com.hooreader.reader.ProcessDeathAcceptanceTest:.
+
+Time: 1.935
+
+OK (1 test)
+PASS: VERTICAL confirm_reader_exit=true EPUB + FB2, cache absent, new PID
+CASE: VERTICAL confirm_reader_exit=false
+
+com.hooreader.reader.ProcessDeathAcceptanceTest:.
+
+Time: 2.4
+
+OK (1 test)
+
+com.hooreader.reader.ProcessDeathAcceptanceTest:.
+
+Time: 1.793
+
+OK (1 test)
+
+com.hooreader.reader.ProcessDeathAcceptanceTest:.
+
+Time: 1.955
+
+OK (1 test)
+PASS: VERTICAL confirm_reader_exit=false EPUB + FB2, cache absent, new PID
+CASE: PAGINATED confirm_reader_exit=true
+
+com.hooreader.reader.ProcessDeathAcceptanceTest:
+Error in seed(com.hooreader.reader.ProcessDeathAcceptanceTest):
+kotlinx.coroutines.TimeoutCancellationException: Timed out waiting for 120000 ms
+	at kotlinx.coroutines.TimeoutKt.TimeoutCancellationException(Timeout.kt:189)
+	at kotlinx.coroutines.TimeoutCoroutine.run(Timeout.kt:157)
+	at kotlinx.coroutines.EventLoopImplBase$DelayedRunnableTask.run(EventLoop.common.kt:505)
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+	at kotlinx.coroutines.DefaultExecutor.run(DefaultExecutor.kt:105)
+	at java.lang.Thread.run(Thread.java:1571)
+
+
+Time: 121.496
+There was 1 failure:
+1) seed(com.hooreader.reader.ProcessDeathAcceptanceTest)
+kotlinx.coroutines.TimeoutCancellationException: Timed out waiting for 120000 ms
+	at kotlinx.coroutines.TimeoutKt.TimeoutCancellationException(Timeout.kt:189)
+	at kotlinx.coroutines.TimeoutCoroutine.run(Timeout.kt:157)
+	at kotlinx.coroutines.EventLoopImplBase$DelayedRunnableTask.run(EventLoop.common.kt:505)
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+	at kotlinx.coroutines.DefaultExecutor.run(DefaultExecutor.kt:105)
+	at java.lang.Thread.run(Thread.java:1571)
+
+FAILURES!!!
+Tests run: 1,  Failures: 1
+
+com.hooreader.reader.ProcessDeathAcceptanceTest:.
+
+Time: 1.389
+
+OK (1 test)

@@ -1,12 +1,16 @@
 #!/usr/bin/env python3
 """Воспроизводимые синтетические книги; оригинальные тексты HooReader, без чужого контента."""
 import base64
+import argparse
 import hashlib
 import json
 from pathlib import Path
 from zipfile import ZIP_STORED, ZipFile, ZipInfo
 
 ROOT = Path(__file__).resolve().parents[1]
+arguments = argparse.ArgumentParser(description=__doc__)
+arguments.add_argument('--large-output', type=Path, help='Каталог вне assets для EPUB/FB2 ≥20 MB')
+args = arguments.parse_args()
 BOOKS = ROOT / 'app/src/androidTest/assets/books'
 CORPUS = BOOKS / 'corpus'
 PNG = base64.b64decode('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGMwi24AAAHcARKsQ0g7AAAAAElFTkSuQmCC')
@@ -35,7 +39,7 @@ def fb2(name, encoding='utf-8', metadata=True, body=None, media=PNG):
     register(f'corpus/{name}', 'READY', f'FB2 {encoding}; metadata={metadata}; structured/media')
 
 
-def epub(name, version='3.0', body=None, media=PNG, obfuscated=False):
+def epub(name, version='3.0', body=None, media=PNG, obfuscated=False, extra_chapters=None):
     content = body or f'<h1>Глава</h1><p>{TEXT}</p><p><b>Bold <i>italic</i></b></p><ol><li>First</li><li>Second</li></ol><img src="pic.png" alt="Corpus image"/>'
     nav_item = '<item id="nav" href="nav.xhtml" media-type="application/xhtml+xml" properties="nav"/>' if version == '3.0' else '<item id="ncx" href="toc.ncx" media-type="application/x-dtbncx+xml"/>'
     spine = '<spine>' if version == '3.0' else '<spine toc="ncx">'
@@ -46,6 +50,12 @@ def epub(name, version='3.0', body=None, media=PNG, obfuscated=False):
     if obfuscated:
         entries['META-INF/encryption.xml'] = '<encryption xmlns="urn:oasis:names:tc:opendocument:xmlns:container"><EncryptedData xmlns="http://www.w3.org/2001/04/xmlenc#"><EncryptionMethod Algorithm="http://www.idpf.org/2008/embedding"/><CipherData><CipherReference URI="OPS/font.otf"/></CipherData></EncryptedData></encryption>'
         entries['OPS/font.otf'] = b'Corpus font placeholder; never rendered'
+    if extra_chapters:
+        items = ''.join(f'<item id="extra{i}" href="extra{i}.xhtml" media-type="application/xhtml+xml"/>' for i in range(len(extra_chapters)))
+        refs = ''.join(f'<itemref idref="extra{i}"/>' for i in range(len(extra_chapters)))
+        entries['OPS/package.opf'] = opf.replace('</manifest>', items + '</manifest>').replace('</spine>', refs + '</spine>')
+        for i, chapter in enumerate(extra_chapters):
+            entries[f'OPS/extra{i}.xhtml'] = f'<html xmlns="http://www.w3.org/1999/xhtml"><head><title></title></head><body>{chapter}</body></html>'
     with ZipFile(CORPUS / name, 'w') as archive:
         for path, data in entries.items():
             info = ZipInfo(path, (1980, 1, 1, 0, 0, 0))
@@ -67,9 +77,32 @@ epub('epub3.epub')
 epub('broken-image.epub', media=b'not an image')
 epub('active-external.epub', body=f'<h1>Глава</h1><script>throw new Error("Never execute")</script><iframe src="https://example.invalid"/><p>{TEXT}</p><img src="https://example.invalid/pic.png"/>')
 epub('font-obfuscation.epub', obfuscated=True)
+UNICODE = 'Кириллица café e\u0301 😀 𝄞 漢字 — текст. '
+LONG_PARAGRAPH = UNICODE * 4096
+appearance = f'<p>{LONG_PARAGRAPH}</p><p><strong>Жирный <emphasis>курсив 😀</emphasis></strong></p><li>Первый</li><li>Второй</li><image l:href="#pic"/>'
+fb2('reader-appearance.fb2', body=f'<section><title><p>Начало</p></title>{appearance}</section><section></section><section><p>Без названия 😀</p></section><section><title><p>Конец</p></title><p>{UNICODE}</p></section>')
+epub('reader-appearance.epub', body=f'<h1>Начало</h1><p>{LONG_PARAGRAPH}</p><p><b>Жирный <i>курсив 😀</i></b></p><ol><li>Первый</li><li>Второй</li></ol><img src="pic.png"/>', extra_chapters=['', f'<p>Без названия 😀</p>', f'<h1>Конец</h1><p>{UNICODE}</p>'])
 for name, expected in (('empty.epub', 'EMPTY'), ('empty.fb2', 'EMPTY'), ('corrupt.epub', 'CORRUPT'), ('corrupt.fb2', 'CORRUPT'), ('drm-marker.epub', 'DRM'), ('unsupported.pdf', 'UNSUPPORTED_FORMAT')):
     register(name, expected, 'Negative control; excluded from valid-file denominator')
 (CORPUS / 'xxe.fb2').write_text('<!DOCTYPE FictionBook [<!ENTITY leak SYSTEM "file:///data/data/com.hooreader/files/private">]><FictionBook><body><section><p>&leak;</p></section></body></FictionBook>')
 register('corpus/xxe.fb2', 'CORRUPT', 'Negative control: external XML entity')
 (CORPUS / 'manifest.json').write_text(json.dumps(rows, ensure_ascii=False, indent=2) + '\n')
 print(f'Corpus: {sum(r["expected"] == "READY" for r in rows)} valid + {sum(r["expected"] != "READY" for r in rows)} negative')
+if args.large_output:
+    # Отдельный каталог: нагрузочные книги не входят в APK и библиотеку пользователя.
+    BOOKS = args.large_output.resolve()
+    if BOOKS == ROOT or ROOT / 'app/src' in BOOKS.parents:
+        arguments.error('--large-output должен находиться вне app/src')
+    CORPUS = BOOKS / 'corpus'
+    CORPUS.mkdir(parents=True, exist_ok=True)
+    rows = []
+    paragraph = f'<p>{UNICODE * 32}</p>'
+    chapter = paragraph * 512
+    sections = 16
+    while len((chapter * sections).encode('utf-8')) < 20_000_000:
+        sections += 1
+    fb2('reader-20mb.fb2', body='<section></section>' + ''.join(f'<section><title><p>Глава {i}</p></title>{chapter}</section>' for i in range(sections)) + f'<section><p>{LONG_PARAGRAPH}</p><image l:href="#pic"/></section>')
+    epub('reader-20mb.epub', body=f'<p>{LONG_PARAGRAPH}</p><img src="pic.png"/>', extra_chapters=[''] + [f'<h1>Глава {i}</h1>{chapter}' for i in range(sections)])
+    assert all(r['bytes'] >= 20_000_000 for r in rows)
+    (CORPUS / 'manifest.json').write_text(json.dumps(rows, ensure_ascii=False, indent=2) + '\n')
+    print(f'Нагрузочный корпус: {CORPUS}')

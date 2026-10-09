@@ -6,6 +6,8 @@ import com.hooreader.domain.model.ContentBlock
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.emitAll
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.take
 import kotlinx.coroutines.flow.toList
@@ -31,6 +33,15 @@ interface ParsedBook : Closeable {
     // Cold stream: parse only the requested chapter, skip earlier blocks without retaining them,
     // and stop parsing on collector cancellation. Block indices stay stable across requests.
     fun blocks(chapterIndex: Int, startBlockIndex: Int = 0): Flow<ContentBlock>
+
+    // One ordered source traversal. Overrides avoid repeated source scans (especially FB2).
+    fun orderedBlocks(): Flow<ContentBlock> = flow {
+        chapters.forEach { emitAll(blocks(it.index)) }
+    }
+
+    // Source traversal diagnostics; -1 means the parser does not instrument this metric.
+    val sourcePassCount: Int get() = -1
+    val mediaSourcePassCount: Int get() = -1
 
     // Local embedded resources only; the caller closes the returned stream.
     suspend fun openMedia(reference: String): InputStream?

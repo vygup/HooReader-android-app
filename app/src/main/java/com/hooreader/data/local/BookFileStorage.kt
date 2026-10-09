@@ -50,6 +50,16 @@ class BookFileStorage(
         return file
     }
 
+    fun derivedDirectory(bookId: String, category: String, key: String): File {
+        require(category == "content" || category == "pages")
+        require(key.matches(Regex("[a-zA-Z0-9._-]+")) && key != "." && key != "..")
+        val base = File(directory(bookId), "derived/$category").canonicalFile
+        requireOwnedPath(bookId, base.path)
+        val target = File(base, key).canonicalFile
+        require(target.parentFile == base)
+        return requireOwnedPath(bookId, target.path)
+    }
+
     suspend fun deleteBook(bookId: String) = withContext(ioDispatcher) {
         val directory = directory(bookId)
         if (directory.exists() && !directory.deleteRecursively()) {

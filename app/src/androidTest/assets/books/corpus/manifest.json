@@ -119,6 +119,20 @@
     "sha256": "3df69c39b116df698cdcf6f20c992675b20753f0e0c4cdb3a2272dd142e3fe3b"
   },
   {
+    "file": "corpus/reader-appearance.fb2",
+    "expected": "READY",
+    "features": "FB2 utf-8; metadata=True; structured/media",
+    "bytes": 254800,
+    "sha256": "78645337853fdf1a72ca80da36c84708be99eee6b6c9087b013d1e45e361058b"
+  },
+  {
+    "file": "corpus/reader-appearance.epub",
+    "expected": "READY",
+    "features": "EPUB 3.0; structured/media; font obfuscation=False",
+    "bytes": 257947,
+    "sha256": "170653f87f3f7fdf780aead883fef3d40dab764f9905ee55503914942a631265"
+  },
+  {
     "file": "empty.epub",
     "expected": "EMPTY",
     "features": "Negative control; excluded from valid-file denominator",

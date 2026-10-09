@@ -1,6 +1,7 @@
 package com.hooreader.ui.reader
 
 import com.hooreader.domain.model.ReadingPosition
+import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.SupervisorJob
@@ -16,6 +17,40 @@ import java.io.IOException
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class ReadingPositionSaverTest {
+    @Test
+    fun `repeated lifecycle stops keep latest revision after an interrupted write fails`() = runTest {
+        val entered = CompletableDeferred<Unit>()
+        val release = CompletableDeferred<Unit>()
+        val positions = mutableListOf<ReadingPosition>()
+        val saver = ReadingPositionSaver(
+            save = {
+                if (it.blockIndex == 1) {
+                    entered.complete(Unit)
+                    release.await()
+                    throw IOException("Stop write failed")
+                }
+                positions += it
+            },
+            scope = CoroutineScope(SupervisorJob() + StandardTestDispatcher(testScheduler)),
+        )
+        saver.update(ReadingPosition("book", blockIndex = 1))
+        saver.flushAsync()
+        runCurrent()
+        assertTrue(entered.isCompleted)
+        val latest = ReadingPosition("book", blockIndex = 2, characterOffset = 7)
+        saver.update(latest)
+        saver.flushAsync()
+        saver.flushAsync()
+        release.complete(Unit)
+        runCurrent()
+        assertEquals(listOf(latest), positions)
+        assertFalse(saver.saveFailed.value)
+        assertEquals(null, saver.pendingRevision)
+        saver.close()
+        runCurrent()
+        assertEquals(listOf(latest), positions)
+    }
+
     @Test
     fun `scroll changes are debounced and only the latest paragraph is stored`() = runTest {
         val positions = mutableListOf<ReadingPosition>()
@@ -78,6 +113,108 @@ class ReadingPositionSaverTest {
         assertTrue(saver.flush())
         assertFalse(saver.saveFailed.value)
         assertEquals(listOf(position), positions)
+        saver.close()
+        runCurrent()
+    }
+
+    @Test
+    fun `new update never cancels an active write and flush follows its latest revision`() = runTest {
+        val entered = CompletableDeferred<Unit>()
+        val release = CompletableDeferred<Unit>()
+        val positions = mutableListOf<ReadingPosition>()
+        val saver = ReadingPositionSaver(
+            save = {
+                if (it.blockIndex == 1) {
+                    entered.complete(Unit)
+                    release.await()
+                }
+                positions += it
+            },
+            scope = CoroutineScope(SupervisorJob() + StandardTestDispatcher(testScheduler)),
+        )
+        val first = ReadingPosition("book", blockIndex = 1)
+        val next = first.copy(blockIndex = 2)
+        saver.update(first)
+        advanceTimeBy(ReadingPositionSaver.DEBOUNCE_MS)
+        runCurrent()
+        assertTrue(entered.isCompleted)
+        saver.update(next)
+        assertEquals(2L, saver.pendingRevision)
+        release.complete(Unit)
+        runCurrent()
+        assertEquals(listOf(first, next), positions)
+        assertEquals(null, saver.pendingRevision)
+        assertTrue(saver.flush())
+        saver.close()
+        runCurrent()
+    }
+
+    @Test
+    fun `old success cannot hide newer failure and retry writes the latest navigation`() = runTest {
+        val release = CompletableDeferred<Unit>()
+        var fail = true
+        val positions = mutableListOf<ReadingPosition>()
+        val saver = ReadingPositionSaver(
+            save = {
+                val writeFails = fail
+                if (it.blockIndex == 1) release.await()
+                if (writeFails) throw IOException("Write unavailable")
+                positions += it
+            },
+            scope = CoroutineScope(SupervisorJob() + StandardTestDispatcher(testScheduler)),
+        )
+        saver.update(ReadingPosition("book"))
+        assertFalse(saver.flush())
+        fail = false
+        saver.update(ReadingPosition("book", blockIndex = 1))
+        saver.flushAsync()
+        runCurrent()
+        saver.update(ReadingPosition("book", blockIndex = 2))
+        release.complete(Unit)
+        // Let only the older success finish; the latest attempted write will then fail.
+        fail = true
+        runCurrent()
+        assertTrue(saver.saveFailed.value)
+        assertEquals(1, positions.single().blockIndex)
+        assertEquals(3L, saver.pendingRevision)
+        val last = ReadingPosition("book", blockIndex = 3)
+        saver.update(last)
+        fail = false
+        assertTrue(saver.flush())
+        assertEquals(last, positions.last())
+        assertFalse(saver.saveFailed.value)
+        assertEquals(null, saver.pendingRevision)
+        saver.close()
+        runCurrent()
+    }
+
+    @Test
+    fun `late failed flush retains subsequent navigation until latest revision succeeds`() = runTest {
+        val release = CompletableDeferred<Unit>()
+        val attempts = mutableListOf<Int>()
+        val saver = ReadingPositionSaver(
+            save = {
+                attempts += it.blockIndex
+                if (it.blockIndex == 1) {
+                    release.await()
+                    throw IOException("Older flush failed")
+                }
+            },
+            scope = CoroutineScope(SupervisorJob() + StandardTestDispatcher(testScheduler)),
+        )
+        saver.update(ReadingPosition("book", blockIndex = 1))
+        saver.flushAsync()
+        runCurrent()
+        saver.update(ReadingPosition("book", blockIndex = 2))
+        release.complete(Unit)
+        runCurrent()
+        assertTrue(saver.saveFailed.value)
+        assertEquals(2L, saver.pendingRevision)
+        saver.update(ReadingPosition("book", blockIndex = 3))
+        assertTrue(saver.flush())
+        assertEquals(listOf(1, 3), attempts)
+        assertEquals(null, saver.pendingRevision)
+        assertFalse(saver.saveFailed.value)
         saver.close()
         runCurrent()
     }

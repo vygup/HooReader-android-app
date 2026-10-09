@@ -13,7 +13,10 @@ import com.hooreader.data.import.EpubBookParser
 import com.hooreader.data.import.Fb2BookParser
 import com.hooreader.data.local.BookFileStorage
 import com.hooreader.data.local.HooReaderDatabase
+import com.hooreader.data.local.PageIndexStore
 import com.hooreader.data.repository.BookRepository
+import com.hooreader.domain.model.ReaderPreferences
+import com.hooreader.domain.model.ReadingMode
 import com.hooreader.testing.ReaderTestActivity
 import com.hooreader.ui.reader.ReaderScreen
 import com.hooreader.ui.reader.ReaderUiState
@@ -89,7 +92,10 @@ class ImportCorpusTest {
         when (result) {
             is BookImportResult.Added -> {
                 try {
-                    val chapters = openChapters(result.book.id, repository)
+                    val chapters = JSONObject()
+                    for (mode in ReadingMode.entries) {
+                        chapters.put(mode.name, openChapters(result.book.id, repository, mode))
+                    }
                     row.put("actual", "READY").put("openedChapters", chapters).put("passed", expected == "READY")
                 } finally {
                     repository.deleteBook(result.book.id)
@@ -104,24 +110,37 @@ class ImportCorpusTest {
         return row
     }
 
-    private suspend fun openChapters(bookId: String, repository: BookRepository): Int {
+    private suspend fun openChapters(bookId: String, repository: BookRepository, mode: ReadingMode): Int {
         val store = ViewModelStore()
         lateinit var reader: ReaderViewModel
         compose.runOnUiThread {
-            reader = ReaderViewModel(bookId, repository, parsers)
+            reader = ReaderViewModel(
+                bookId, repository, parsers, PageIndexStore(repository.files),
+                ReaderPreferences(readingMode = mode)
+            )
             store.put("corpus", reader)
             ReaderTestActivity.content = { HooReaderTheme { ReaderScreen(reader) {} } }
         }
         try {
+            compose.waitUntil(OPEN_TIMEOUT_MS) { reader.state.value is ReaderUiState.Reading }
+            compose.runOnUiThread { reader.selectChapter(0) }
             val chapters = repository.getChapters(bookId)
             for (chapter in chapters) {
                 compose.waitUntil(OPEN_TIMEOUT_MS) {
                     (reader.state.value as? ReaderUiState.Reading)?.position?.chapterIndex == chapter.index
                 }
                 compose.waitForIdle()
-                assertTrue(compose.onAllNodesWithTag("reader_list").fetchSemanticsNodes().isNotEmpty())
+                val tag = if (mode == ReadingMode.VERTICAL) "reader_list" else "reader_pager"
+                assertTrue(compose.onAllNodesWithTag(tag).fetchSemanticsNodes().isNotEmpty())
                 val state = reader.state.value as ReaderUiState.Reading
-                assertTrue(state.blocks.any { it.text.isNotBlank() })
+                assertEquals(mode, state.effectiveMode)
+                if (mode == ReadingMode.VERTICAL) {
+                    assertTrue(state.blocks.any { it.text.isNotBlank() })
+                } else {
+                    val page = requireNotNull(state.pages)
+                    page.displayedPage.validateGeometry(page.key)
+                    assertTrue(page.displayedPage.globalPageNumber > 0)
+                }
                 assertTrue(reader.flushPosition())
                 if (chapter.index < chapters.lastIndex) {
                     compose.runOnUiThread { reader.selectChapter(chapter.index + 1) }
@@ -138,7 +157,7 @@ class ImportCorpusTest {
     }
 
     private companion object {
-        const val CORPUS_FILES = 24
+        const val CORPUS_FILES = 26
         const val OPEN_TIMEOUT_MS = 15_000L
     }
 }

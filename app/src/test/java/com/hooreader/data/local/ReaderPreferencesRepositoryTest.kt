@@ -4,8 +4,11 @@ import androidx.datastore.preferences.core.PreferenceDataStoreFactory
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.floatPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
+import com.hooreader.domain.model.AppPreferences
+import com.hooreader.domain.model.ReaderPreferenceField
 import com.hooreader.domain.model.ReaderPreferences
 import com.hooreader.domain.model.ReaderTheme
+import com.hooreader.domain.model.ReadingMode
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -29,6 +32,8 @@ class ReaderPreferencesRepositoryTest {
         val firstStore = PreferenceDataStoreFactory.create(scope = CoroutineScope(firstJob + Dispatchers.IO)) { file }
         val repository = ReaderPreferencesRepository(firstStore)
         assertEquals(ReaderPreferences(), repository.preferences.first())
+        assertEquals(AppPreferences(true), repository.appPreferences.first())
+        repository.setConfirmReaderExit(false)
         repository.setTheme(ReaderTheme.DARK)
         repository.setFontScale(1.5f)
         firstJob.cancelAndJoin()
@@ -41,6 +46,7 @@ class ReaderPreferencesRepositoryTest {
                 ReaderPreferences(ReaderTheme.DARK, 1.5f),
                 ReaderPreferencesRepository(reopened).preferences.first(),
             )
+            assertEquals(AppPreferences(false), ReaderPreferencesRepository(reopened).appPreferences.first())
         } finally {
             secondJob.cancelAndJoin()
         }
@@ -105,6 +111,65 @@ class ReaderPreferencesRepositoryTest {
             assertEquals(ReaderPreferences(), ReaderPreferencesRepository(store).preferences.first())
         } finally {
             job.cancelAndJoin()
+        }
+    }
+
+    @Test
+    fun `old file and unknown mode fall back without losing theme or scale`() = runBlocking {
+        val file = folder.newFolder().resolve("reader.preferences_pb")
+        val job = SupervisorJob()
+        try {
+            val store = PreferenceDataStoreFactory.create(scope = CoroutineScope(job + Dispatchers.IO)) { file }
+            store.edit {
+                it[stringPreferencesKey("theme")] = "DARK"
+                it[floatPreferencesKey("font_scale")] = 1.75f
+            }
+            val repository = ReaderPreferencesRepository(store)
+            val original = ReaderPreferences(ReaderTheme.DARK, 1.75f, ReadingMode.VERTICAL)
+            assertEquals(AppPreferences(true), repository.appPreferences.first())
+            repository.setConfirmReaderExit(false)
+            repository.writePending(
+                original.copy(readingMode = ReadingMode.PAGINATED),
+                setOf(ReaderPreferenceField.READING_MODE)
+            )
+            assertEquals(AppPreferences(false), repository.appPreferences.first())
+            repository.setReadingMode(ReadingMode.VERTICAL)
+            assertEquals(original, repository.preferences.first())
+            for (unknown in listOf("future-mode", "paginated", "")) {
+                store.edit { it[stringPreferencesKey("reading_mode")] = unknown }
+                assertEquals(original, repository.preferences.first())
+            }
+        } finally {
+            job.cancelAndJoin()
+        }
+    }
+
+    @Test
+    fun `mode survives reopening and writes preserve all other fields`() = runBlocking {
+        val file = folder.newFolder().resolve("reader.preferences_pb")
+        val firstJob = SupervisorJob()
+        try {
+            val store = PreferenceDataStoreFactory.create(scope = CoroutineScope(firstJob + Dispatchers.IO)) { file }
+            val repository = ReaderPreferencesRepository(store)
+            repository.setReadingMode(ReadingMode.PAGINATED)
+            repository.setTheme(ReaderTheme.DARK)
+            repository.setFontScale(2f)
+            assertEquals(ReaderPreferences(ReaderTheme.DARK, 2f, ReadingMode.PAGINATED), repository.preferences.first())
+            repository.setReadingMode(ReadingMode.VERTICAL)
+            assertEquals(ReaderPreferences(ReaderTheme.DARK, 2f, ReadingMode.VERTICAL), repository.preferences.first())
+            repository.setReadingMode(ReadingMode.PAGINATED)
+        } finally {
+            firstJob.cancelAndJoin()
+        }
+        val secondJob = SupervisorJob()
+        try {
+            val store = PreferenceDataStoreFactory.create(scope = CoroutineScope(secondJob + Dispatchers.IO)) { file }
+            assertEquals(
+                ReaderPreferences(ReaderTheme.DARK, 2f, ReadingMode.PAGINATED),
+                ReaderPreferencesRepository(store).preferences.first()
+            )
+        } finally {
+            secondJob.cancelAndJoin()
         }
     }
 }

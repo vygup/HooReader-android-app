@@ -16,18 +16,21 @@ import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Slider
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
+import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.dp
 import com.hooreader.R
 import com.hooreader.domain.model.ReaderPreferences
 import com.hooreader.domain.model.ReaderTheme
+import com.hooreader.domain.model.ReadingMode
 import kotlin.math.roundToInt
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -37,23 +40,46 @@ fun ReaderSettingsSheet(
     onThemeChange: (ReaderTheme) -> Unit,
     onFontScaleChange: (Float) -> Unit,
     onDismiss: () -> Unit,
+    onReadingModeChange: (ReadingMode) -> Unit = {},
     saveFailed: Boolean = false,
     onRetry: () -> Unit = {},
 ) {
-    ModalBottomSheet(onDismissRequest = onDismiss) {
+    ModalBottomSheet(
+        onDismissRequest = onDismiss,
+        sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true),
+        modifier = Modifier.testTag("reader_settings_sheet"),
+    ) {
         Column(
-            modifier = Modifier.fillMaxWidth().verticalScroll(rememberScrollState()).padding(24.dp),
+            modifier = Modifier.fillMaxWidth().testTag("reader_settings_content")
+                .verticalScroll(rememberScrollState()).padding(24.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp),
         ) {
             Text(stringResource(R.string.reader_settings), style = MaterialTheme.typography.titleLarge)
             ThemeChooser(preferences.theme, onThemeChange)
             FontScaleChooser(preferences.fontScale, onFontScaleChange)
+            ReadingModeChooser(preferences.readingMode, onReadingModeChange)
             if (saveFailed) {
                 Text(stringResource(R.string.settings_save_error), color = MaterialTheme.colorScheme.error)
                 TextButton(onClick = onRetry) { Text(stringResource(R.string.retry)) }
             }
-            TextButton(onClick = onDismiss, modifier = Modifier.fillMaxWidth()) {
-                Text(stringResource(R.string.settings_done))
+        }
+    }
+}
+
+@Composable
+private fun ReadingModeChooser(mode: ReadingMode, onChange: (ReadingMode) -> Unit) {
+    Column(Modifier.selectableGroup()) {
+        ReadingMode.entries.forEach { option ->
+            val vertical = option == ReadingMode.VERTICAL
+            Row(
+                Modifier.fillMaxWidth()
+                    .testTag(if (vertical) "reading_mode_vertical" else "reading_mode_paginated")
+                    .selectable(selected = mode == option, role = Role.RadioButton, onClick = { onChange(option) })
+                    .padding(vertical = 12.dp),
+                horizontalArrangement = Arrangement.spacedBy(12.dp),
+            ) {
+                RadioButton(selected = mode == option, onClick = null)
+                Text(stringResource(if (vertical) R.string.reading_mode_vertical else R.string.reading_mode_paginated))
             }
         }
     }

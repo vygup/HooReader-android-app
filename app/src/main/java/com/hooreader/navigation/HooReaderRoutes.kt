@@ -4,6 +4,7 @@ import android.net.Uri
 
 object HooReaderRoutes {
     const val LIBRARY = "library"
+    const val APP_SETTINGS = "app_settings"
     const val BOOK_ID = "bookId"
     const val READER = "reader/{bookId}"
 

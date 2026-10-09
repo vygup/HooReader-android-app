@@ -20,8 +20,8 @@ def run(*args):
     return subprocess.run([adb, '-s', serial, *args], capture_output=True, text=True, check=True).stdout
 
 
-output = root / 'app/build/release/1.0.0'
-apk = output / 'HooReader-1.0.0.apk'
+output = root / 'app/build/release/2.0.0'
+apk = output / 'HooReader-2.0.0.apk'
 run('wait-for-device')
 if run('shell', 'getprop', 'sys.boot_completed').strip() != '1':
     raise SystemExit('Дождитесь завершения загрузки read-only emulator.')
@@ -37,7 +37,8 @@ for name, target in [('structured.epub', 'hooreader-release-epub.epub'),
 run('shell', 'input', 'keyevent', 'KEYCODE_WAKEUP')
 run('shell', 'wm', 'dismiss-keyguard')
 result = run('shell', 'am', 'instrument', '-w', '-e', 'class',
-             'com.hooreader.releasesmoke.ReleaseSmokeTest', '-e', 'releaseSmoke', 'true',
+             'com.hooreader.releasesmoke.ReleaseSmokeTest#signedReleaseImportsBothFormatsAndRestoresOfflineSettingsAndChapter',
+             '-e', 'releaseSmoke', 'true',
              '-e', 'disposableReleaseEmulator', 'true',
              'com.hooreader.releasesmoke.test/androidx.test.runner.AndroidJUnitRunner')
 (output / 'release-smoke.txt').write_text(result)

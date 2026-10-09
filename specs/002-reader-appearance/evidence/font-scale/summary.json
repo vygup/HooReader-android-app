@@ -1,0 +1,60 @@
+{
+  "status": "PASS",
+  "api": 37,
+  "physical": false,
+  "combinations": 96,
+  "instrumentationMethods": 48,
+  "screenshots": 576,
+  "series": [
+    {
+      "systemFont": "1.0",
+      "readingScale": "0.75",
+      "tests": 8,
+      "combinations": 16,
+      "status": "PASS",
+      "log": "system1.0-reading0.75.txt"
+    },
+    {
+      "systemFont": "1.0",
+      "readingScale": "2.0",
+      "tests": 8,
+      "combinations": 16,
+      "status": "PASS",
+      "log": "system1.0-reading2.0.txt"
+    },
+    {
+      "systemFont": "1.5",
+      "readingScale": "0.75",
+      "tests": 8,
+      "combinations": 16,
+      "status": "PASS",
+      "log": "system1.5-reading0.75.txt"
+    },
+    {
+      "systemFont": "1.5",
+      "readingScale": "2.0",
+      "tests": 8,
+      "combinations": 16,
+      "status": "PASS",
+      "log": "system1.5-reading2.0.txt"
+    },
+    {
+      "systemFont": "2.0",
+      "readingScale": "0.75",
+      "tests": 8,
+      "combinations": 16,
+      "status": "PASS",
+      "log": "system2.0-reading0.75.txt"
+    },
+    {
+      "systemFont": "2.0",
+      "readingScale": "2.0",
+      "tests": 8,
+      "combinations": 16,
+      "status": "PASS",
+      "log": "system2.0-reading2.0.txt"
+    }
+  ],
+  "talkBack": "OUT_OF_SCOPE",
+  "fontScaleRestored": 1.0
+}

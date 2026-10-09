@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.hooreader.data.import.BookImportValidatorTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2026-10-07T15:00:01.941Z" hostname="MBVY.local" time="3.47">
+  <properties/>
+  <testcase name="broken archives and XML leave no partial import" classname="com.hooreader.data.import.BookImportValidatorTest" time="3.078"/>
+  <testcase name="unclosed root and declared entities are rejected" classname="com.hooreader.data.import.BookImportValidatorTest" time="0.042"/>
+  <testcase name="provider read errors are recoverable" classname="com.hooreader.data.import.BookImportValidatorTest" time="0.026"/>
+  <testcase name="cancellation propagates and rolls back staged files" classname="com.hooreader.data.import.BookImportValidatorTest" time="0.031"/>
+  <testcase name="empty files are rejected before parsing" classname="com.hooreader.data.import.BookImportValidatorTest" time="0.033"/>
+  <testcase name="copy failure cleans up partially written data" classname="com.hooreader.data.import.BookImportValidatorTest" time="0.022"/>
+  <testcase name="valid files become readable and exact duplicates keep their identity" classname="com.hooreader.data.import.BookImportValidatorTest" time="0.185"/>
+  <testcase name="unsupported content cannot be disguised with a supported extension" classname="com.hooreader.data.import.BookImportValidatorTest" time="0.027"/>
+  <testcase name="encrypted EPUB is rejected with a DRM reason" classname="com.hooreader.data.import.BookImportValidatorTest" time="0.024"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

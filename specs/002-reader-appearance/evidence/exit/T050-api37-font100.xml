@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuite name="com.hooreader.navigation.HooReaderNavHostTest" tests="4" failures="0" errors="0" skipped="0" time="8.264" timestamp="2026-10-07T11:30:42" hostname="localhost">
+  <properties>
+    <property name="device" value="Pixel_10(AVD) - 17" />
+    <property name="flavor" value="" />
+    <property name="project" value=":app" />
+  </properties>
+  <testcase name="startupShowsLibrary" classname="com.hooreader.navigation.HooReaderNavHostTest" time="1.142" />
+  <testcase name="realReaderPrioritizesMenusCancelsDialogAndRetriesFailedExit" classname="com.hooreader.navigation.HooReaderNavHostTest" time="2.617" />
+  <testcase name="bookSelectionPassesIdAndReturnsToLibrary" classname="com.hooreader.navigation.HooReaderNavHostTest" time="0.982" />
+  <testcase name="protectionSwitchSurvivesRecreationAndControlsRealReaderBack" classname="com.hooreader.settings.AppSettingsTest" time="3.165" />
+</testsuite>

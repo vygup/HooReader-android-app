@@ -1,0 +1,25 @@
+Signer #1:
+
+Certificate #1:
+Owner: CN=HooReader release
+Issuer: CN=HooReader release
+Serial number: e4977c4cc15947ec
+Valid from: Thu Oct 01 22:51:49 MSK 2026 until: Mon Feb 16 22:51:49 MSK 2054
+Certificate fingerprints:
+	 SHA1: BA:F9:AC:8F:19:27:F6:AC:92:64:31:60:52:35:D2:0B:FE:43:9E:1E
+	 SHA256: C0:07:02:84:E6:B6:08:C5:4A:4D:AA:F1:68:7A:42:87:FE:6C:C0:AD:E5:66:9B:86:39:B6:8F:DA:4A:D7:71:CA
+Signature algorithm name: SHA256withRSA
+Subject Public Key Algorithm: 3072-bit RSA key
+Version: 3
+
+Extensions: 
+
+#1: ObjectId: 2.5.29.14 Criticality=false
+SubjectKeyIdentifier [
+KeyIdentifier [
+0000: EF DC 9A 3B B9 62 32 53   4F 87 0F 3D 80 E1 DC ED  ...;.b2SO..=....
+0010: 6C 30 B4 B3                                        l0..
+]
+]
+
+

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.hooreader.data.repository.BookRepositoryTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2026-10-07T15:00:06.352Z" hostname="MBVY.local" time="0.248">
+  <properties/>
+  <testcase name="position requires an existing book" classname="com.hooreader.data.repository.BookRepositoryTest" time="0.023"/>
+  <testcase name="delete cascades chapters and position and removes only owned files" classname="com.hooreader.data.repository.BookRepositoryTest" time="0.031"/>
+  <testcase name="importing book is hidden until completion and incomplete import cannot be exposed" classname="com.hooreader.data.repository.BookRepositoryTest" time="0.028"/>
+  <testcase name="invalid chapter ownership leaves no partial metadata" classname="com.hooreader.data.repository.BookRepositoryTest" time="0.019"/>
+  <testcase name="only one latest position exists and delayed saves cannot rewind it" classname="com.hooreader.data.repository.BookRepositoryTest" time="0.033"/>
+  <testcase name="book chapters and position survive database reopening" classname="com.hooreader.data.repository.BookRepositoryTest" time="0.031"/>
+  <testcase name="SQLite rejects invalid coordinates on insert and update" classname="com.hooreader.data.repository.BookRepositoryTest" time="0.027"/>
+  <testcase name="SQLite enforces hash uniqueness even when bypassing repository" classname="com.hooreader.data.repository.BookRepositoryTest" time="0.016"/>
+  <testcase name="duplicate hash keeps original book chapters and position" classname="com.hooreader.data.repository.BookRepositoryTest" time="0.022"/>
+  <testcase name="transaction rolls back partial metadata on foreign key failure" classname="com.hooreader.data.repository.BookRepositoryTest" time="0.017"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,5 +1,52 @@
 # Сборка HooReader
 
+## Второй RC: фактические проверки
+
+Локальный RC 2.0.0 (versionCode 2) собирается `python3 scripts/build-release.py`.
+APK/AAB и SHA256SUMS находятся в `app/build/release/2.0.0/`; используется существующая
+release-подпись. [Выпуск и временный стенд](releasing.md), [notes](releases/2.0.0.md).
+Проверенный комплект для передачи создаётся `python3 scripts/package-release.py`:
+`app/build/release/2.0.0/HooReader-2.0.0-release.zip` и файл `.zip.sha256`.
+[Происхождение сборки и проверка комплекта](releases/2.0.0-validation.md).
+Подписанное обновление проверяется отдельно `python3 scripts/verify-reader-upgrade.py`:
+требуются локальные APK 1.0.0/2.0.0, собранный внешний release-smoke runner и один
+`-read-only` emulator. Между установкой v1 и обновлением v2 библиотека не очищается.
+
+На 2026-10-09 прошли unit/static/debug builds и по 48 UI tests на API 26 и API 37;
+на каждом стенде 17 специальных opt-in tests в общем прогоне skipped. После
+исправлений тестового ввода и screenshot повторены четыре затронутых теста
+на API 37 — без ошибок. Отдельно пройдены:
+
+- `scripts/verify-reader-font-scale.sh`: 96 сочетаний, 576 screenshots.
+- `scripts/verify-reader-process-death.sh`: четыре сочетания режима/защиты выхода,
+  длинный UTF-16 anchor и пересоздание отсутствующего производного кэша.
+- `scripts/verify-import-corpus.sh /tmp/corpus.json`: 26 файлов, оба режима офлайн.
+- `python3 scripts/verify-release.py`: внешний UI smoke подписанного release APK.
+
+`scripts/measure-reader-performance.sh /tmp/performance.json` требует физического
+стенда; без него сохраняет NOT_VERIFIED_DEVICE. Для проверки harness доступно
+`--allow-emulator --ui-only /tmp/performance-diagnostic.json`: пять повторов каждого
+UI-сценария, отдельный profileId. Полная серия 20 MB текущего RC не проведена;
+прежний непройденный порог ≤1 секунды остаётся release blocker. T062/SC-007 пройдена
+по подтверждению пользователя; индивидуальные наблюдения запрошены для отчёта.
+
+Для API 26 установлен официальный Google APIs ARM64 image и создан отдельный
+AVD `HooReader_API26` в стандартном каталоге `~/.android/avd/`. Воспроизведение:
+
+```sh
+"$ANDROID_HOME/emulator/emulator" -avd HooReader_API26 -no-snapshot -no-window -no-audio
+# После загрузки, при одном подключённом тестовом стенде:
+ANDROID_SERIAL=emulator-5554 ./gradlew :app:check :app:assembleDebug :app:assembleDebugAndroidTest :app:connectedDebugAndroidTest
+```
+
+На API 26–27 screenshot диалога сохраняется через UiAutomation, поскольку Compose
+captureToImage не поддерживает эти окна до API 28. Все проверки диалога выполняются;
+скриншот не заменяет их. [Итоги T063](../specs/002-reader-appearance/validation-results.md).
+
+[Все результаты и ограничения](../specs/002-reader-appearance/quickstart-results.md) ·
+[Машиночитаемая матрица](../specs/002-reader-appearance/evidence/validation-summary.json).
+Старые разделы ниже сохраняют предыдущие этапы и не заменяют текущую приёмку.
+
 ## Окружение
 
 - JDK 17–21 (для проверки проекта используется JDK 21).

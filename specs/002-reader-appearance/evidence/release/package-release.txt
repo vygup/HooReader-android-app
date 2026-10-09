@@ -1,0 +1,2 @@
+ACCEPTED_RELEASE_WITH_EXCEPTION: /Users/vygup/project/HooReader/app/build/release/2.0.0/HooReader-2.0.0-release.zip
+SHA-256: 4564e0a56927751dac71757f737dea597e659ed71c380b2fbe0c14b8b0b2f684

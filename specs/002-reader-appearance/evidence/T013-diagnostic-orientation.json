@@ -1,0 +1,153 @@
+{
+  "profileId": "6ab26914712991393cd980e9b9d27a2ce40258d509615ce81d743555aafd21a8",
+  "status": "NOT_VERIFIED_DEVICE",
+  "expectedScenarios": 1,
+  "profileScenarioCount": 36,
+  "fullProfileCovered": false,
+  "completedScenarios": 1,
+  "series": [
+    {
+      "profileId": "6ab26914712991393cd980e9b9d27a2ce40258d509615ce81d743555aafd21a8",
+      "case": "fb2-late-orientation-warm",
+      "cache": "warm",
+      "runs": [
+        {
+          "run": 1,
+          "openingMs": 1320.539001,
+          "sourceSpoolPresentAtStart": true,
+          "pageIndexPresentAtStart": true,
+          "firstReadableFrameMs": 1566.823918,
+          "exactNumberByMs": 1342.244209,
+          "readyFrameMs": 1566.823918,
+          "pageNumber": 7522,
+          "layoutHash": "66a67de67b339da233d860607e88ee17e6430ecffd067a7424f5a544f16f4fad",
+          "sourcePasses": 1,
+          "residentFragments": 1,
+          "mediaSourcePasses": 0,
+          "totalSourceOperations": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 209467,
+            "sampledPeakHeapBytes": 11029040,
+            "sampledPeakNativeBytes": 37082608,
+            "residentPssKb": 205579,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        },
+        {
+          "run": 2,
+          "openingMs": 1326.458167,
+          "sourceSpoolPresentAtStart": true,
+          "pageIndexPresentAtStart": true,
+          "firstReadableFrameMs": 1582.935001,
+          "exactNumberByMs": 1349.784167,
+          "readyFrameMs": 1582.935001,
+          "pageNumber": 7522,
+          "layoutHash": "66a67de67b339da233d860607e88ee17e6430ecffd067a7424f5a544f16f4fad",
+          "sourcePasses": 1,
+          "residentFragments": 1,
+          "mediaSourcePasses": 0,
+          "totalSourceOperations": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 204699,
+            "sampledPeakHeapBytes": 10963504,
+            "sampledPeakNativeBytes": 33855968,
+            "residentPssKb": 203931,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        },
+        {
+          "run": 3,
+          "openingMs": 1322.181126,
+          "sourceSpoolPresentAtStart": true,
+          "pageIndexPresentAtStart": true,
+          "firstReadableFrameMs": 1566.929084,
+          "exactNumberByMs": 1343.237126,
+          "readyFrameMs": 1566.929084,
+          "pageNumber": 7522,
+          "layoutHash": "66a67de67b339da233d860607e88ee17e6430ecffd067a7424f5a544f16f4fad",
+          "sourcePasses": 1,
+          "residentFragments": 1,
+          "mediaSourcePasses": 0,
+          "totalSourceOperations": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 207147,
+            "sampledPeakHeapBytes": 11586096,
+            "sampledPeakNativeBytes": 34827232,
+            "residentPssKb": 205035,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        },
+        {
+          "run": 4,
+          "openingMs": 1325.816834,
+          "sourceSpoolPresentAtStart": true,
+          "pageIndexPresentAtStart": true,
+          "firstReadableFrameMs": 1582.873917,
+          "exactNumberByMs": 1349.048875,
+          "readyFrameMs": 1582.873917,
+          "pageNumber": 7522,
+          "layoutHash": "66a67de67b339da233d860607e88ee17e6430ecffd067a7424f5a544f16f4fad",
+          "sourcePasses": 1,
+          "residentFragments": 1,
+          "mediaSourcePasses": 0,
+          "totalSourceOperations": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 204987,
+            "sampledPeakHeapBytes": 11061808,
+            "sampledPeakNativeBytes": 34223248,
+            "residentPssKb": 201659,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        },
+        {
+          "run": 5,
+          "openingMs": 1317.450334,
+          "sourceSpoolPresentAtStart": true,
+          "pageIndexPresentAtStart": true,
+          "firstReadableFrameMs": 1550.620292,
+          "exactNumberByMs": 1338.15425,
+          "readyFrameMs": 1550.620292,
+          "pageNumber": 7522,
+          "layoutHash": "66a67de67b339da233d860607e88ee17e6430ecffd067a7424f5a544f16f4fad",
+          "sourcePasses": 1,
+          "residentFragments": 1,
+          "mediaSourcePasses": 0,
+          "totalSourceOperations": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 208379,
+            "sampledPeakHeapBytes": 11831856,
+            "sampledPeakNativeBytes": 36187744,
+            "residentPssKb": 205003,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        }
+      ],
+      "minMs": 1550.620292,
+      "medianMs": 1566.929084,
+      "maxMs": 1582.935001,
+      "status": "NOT_VERIFIED_DEVICE"
+    }
+  ],
+  "cancellation": {
+    "profileId": "6ab26914712991393cd980e9b9d27a2ce40258d509615ce81d743555aafd21a8",
+    "obsoletePublished": false,
+    "stagingFilesRemain": false,
+    "cancellationMs": 3.93175,
+    "newLayoutHash": "a8a07046517ecc58cbd86a7ff0dee525e89384c587e94a8cf3fe3c598ea193f7"
+  }
+}

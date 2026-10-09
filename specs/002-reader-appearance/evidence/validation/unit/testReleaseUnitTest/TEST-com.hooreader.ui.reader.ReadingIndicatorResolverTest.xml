@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.hooreader.ui.reader.ReadingIndicatorResolverTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2026-10-07T15:00:10.233Z" hostname="MBVY.local" time="0.002">
+  <properties/>
+  <testcase name="no sections means no chapter field" classname="com.hooreader.ui.reader.ReadingIndicatorResolverTest" time="0.001"/>
+  <testcase name="single paragraph distinguishes beginning middle and viewport end" classname="com.hooreader.ui.reader.ReadingIndicatorResolverTest" time="0.0"/>
+  <testcase name="progress spans all chapters and does not finish at start of last paragraph" classname="com.hooreader.ui.reader.ReadingIndicatorResolverTest" time="0.0"/>
+  <testcase name="paginated uses displayed fragment and exact global number rather than restore anchor" classname="com.hooreader.ui.reader.ReadingIndicatorResolverTest" time="0.0"/>
+  <testcase name="empty chapters and image endpoints stay finite and bounded" classname="com.hooreader.ui.reader.ReadingIndicatorResolverTest" time="0.0"/>
+  <testcase name="vertical uses first visible chapter and floors whole book percentage" classname="com.hooreader.ui.reader.ReadingIndicatorResolverTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

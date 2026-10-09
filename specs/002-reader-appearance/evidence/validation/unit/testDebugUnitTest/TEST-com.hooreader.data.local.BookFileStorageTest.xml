@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.hooreader.data.local.BookFileStorageTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-10-07T14:59:48.739Z" hostname="MBVY.local" time="0.064">
+  <properties/>
+  <testcase name="external and traversal paths are rejected" classname="com.hooreader.data.local.BookFileStorageTest" time="0.017"/>
+  <testcase name="copy survives original deletion and local delete preserves original" classname="com.hooreader.data.local.BookFileStorageTest" time="0.031"/>
+  <testcase name="failed copy removes staging file and closes input" classname="com.hooreader.data.local.BookFileStorageTest" time="0.016"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

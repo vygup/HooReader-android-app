@@ -13,14 +13,14 @@ internal fun SaveReadingPositionOnLifecycle(viewModel: ReaderViewModel) {
     DisposableEffect(screen, viewModel) {
         val process = ProcessLifecycleOwner.get().lifecycle
         val observer = LifecycleEventObserver { _, event ->
-            if (event == Lifecycle.Event.ON_STOP) viewModel.saveNow()
+            if (event == Lifecycle.Event.ON_STOP) viewModel.onStopped()
         }
         screen.addObserver(observer)
         process.addObserver(observer)
         onDispose {
             screen.removeObserver(observer)
             process.removeObserver(observer)
-            viewModel.saveNow()
+            viewModel.onStopped()
         }
     }
 }

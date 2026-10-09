@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.hooreader.ui.settings.ReaderSettingsViewModelTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-10-07T14:59:56.420Z" hostname="MBVY.local" time="0.04">
+  <properties/>
+  <testcase name="failed save preserves persisted settings and retries the requested change" classname="com.hooreader.ui.settings.ReaderSettingsViewModelTest" time="0.012"/>
+  <testcase name="bounds scale ignores nonfinite input and restores preferences in new model" classname="com.hooreader.ui.settings.ReaderSettingsViewModelTest" time="0.007"/>
+  <testcase name="app and reader writes share pending queue and retry preserves latest selection" classname="com.hooreader.ui.settings.ReaderSettingsViewModelTest" time="0.014"/>
+  <testcase name="retry writes latest rapid intentions across all fields" classname="com.hooreader.ui.settings.ReaderSettingsViewModelTest" time="0.007"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.hooreader.data.local.ReaderPreferencesRepositoryTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2026-10-07T14:59:49.038Z" hostname="MBVY.local" time="0.111">
+  <properties/>
+  <testcase name="theme changes preserve scale and scale changes preserve theme" classname="com.hooreader.data.local.ReaderPreferencesRepositoryTest" time="0.052"/>
+  <testcase name="invalid writes are rejected without changing saved preferences" classname="com.hooreader.data.local.ReaderPreferencesRepositoryTest" time="0.018"/>
+  <testcase name="mode survives reopening and writes preserve all other fields" classname="com.hooreader.data.local.ReaderPreferencesRepositoryTest" time="0.011"/>
+  <testcase name="theme and scale survive store reopening" classname="com.hooreader.data.local.ReaderPreferencesRepositoryTest" time="0.007"/>
+  <testcase name="old file and unknown mode fall back without losing theme or scale" classname="com.hooreader.data.local.ReaderPreferencesRepositoryTest" time="0.017"/>
+  <testcase name="invalid stored values fall back safely" classname="com.hooreader.data.local.ReaderPreferencesRepositoryTest" time="0.004"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

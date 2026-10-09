@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.hooreader.ui.reader.ReaderViewModelTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2026-10-07T15:00:09.383Z" hostname="MBVY.local" time="0.849">
+  <properties/>
+  <testcase name="exit waits for latest write ignores rapid requests and emits navigation only once" classname="com.hooreader.ui.reader.ReaderViewModelTest" time="0.125"/>
+  <testcase name="cancel and lifecycle stop preserve inner anchor without exit navigation" classname="com.hooreader.ui.reader.ReaderViewModelTest" time="0.028"/>
+  <testcase name="new book starts at the beginning and changing chapter saves its start" classname="com.hooreader.ui.reader.ReaderViewModelTest" time="0.023"/>
+  <testcase name="empty chapter shows a fallback and next chapter remains reachable" classname="com.hooreader.ui.reader.ReaderViewModelTest" time="0.018"/>
+  <testcase name="actual reader keeps inner anchor through write failure system font and latest retry" classname="com.hooreader.ui.reader.ReaderViewModelTest" time="0.604"/>
+  <testcase name="visible indicators preserve restore anchor and reject disposed viewport callbacks" classname="com.hooreader.ui.reader.ReaderViewModelTest" time="0.027"/>
+  <testcase name="restores the logical block in a bounded window and clamps character offset" classname="com.hooreader.ui.reader.ReaderViewModelTest" time="0.023"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

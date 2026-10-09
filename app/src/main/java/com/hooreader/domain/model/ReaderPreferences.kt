@@ -5,6 +5,7 @@ enum class ReaderTheme { LIGHT, DARK }
 data class ReaderPreferences(
     val theme: ReaderTheme = ReaderTheme.LIGHT,
     val fontScale: Float = 1f,
+    val readingMode: ReadingMode = ReadingMode.VERTICAL,
 ) {
     init {
         require(fontScale.isFinite() && fontScale in MIN_FONT_SCALE..MAX_FONT_SCALE)

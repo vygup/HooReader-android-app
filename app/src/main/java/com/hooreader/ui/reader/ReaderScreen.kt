@@ -1,16 +1,11 @@
 package com.hooreader.ui.reader
 
 import androidx.activity.compose.BackHandler
-import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawingPadding
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
@@ -20,153 +15,161 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.key
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.rememberUpdatedState
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
-import androidx.compose.runtime.snapshotFlow
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalConfiguration
-import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.repeatOnLifecycle
 import com.hooreader.R
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.distinctUntilChanged
-import kotlinx.coroutines.launch
+import com.hooreader.domain.model.ReadingMode
 
 @Composable
 fun ReaderScreen(
     viewModel: ReaderViewModel,
     fontScale: Float = 1f,
     onSettings: (() -> Unit)? = null,
+    confirmReaderExit: Boolean = true,
     onBack: () -> Unit,
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
+    val chrome by viewModel.chromeState.collectAsStateWithLifecycle()
     SaveReadingPositionOnLifecycle(viewModel)
     val saveFailed by viewModel.saveFailed.collectAsStateWithLifecycle()
-    val scope = rememberCoroutineScope()
-    val leave: () -> Unit = {
-        scope.launch(Dispatchers.Main.immediate) {
-            if (viewModel.flushPosition()) onBack()
+    ObserveReaderExit(viewModel, onBack)
+    val leave: () -> Unit = { viewModel.onExitEvent(ReaderExitEvent.REQUESTED, confirmReaderExit) }
+    LaunchedEffect(fontScale) {
+        val preferences = viewModel.pagination.effectivePreferences
+        if (preferences.fontScale != fontScale) {
+            viewModel.pagination.applyPreferences(
+                preferences.copy(fontScale = fontScale),
+                GeometryChangeOrigin.SYSTEM_CONFIGURATION,
+            )
         }
     }
-    BackHandler(onBack = leave)
+    BackHandler(enabled = chrome.overlay == ReaderOverlay.NONE, onBack = leave)
+    val reading = currentReading(state)
     Surface(modifier = Modifier.fillMaxSize().testTag("reader_screen")) {
-        Column(modifier = Modifier.fillMaxSize().safeDrawingPadding().padding(horizontal = 16.dp)) {
-            Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
-                TextButton(onClick = leave) { Text(stringResource(R.string.back_to_library)) }
-                if (onSettings != null) {
-                    TextButton(onClick = onSettings) { Text(stringResource(R.string.reader_settings)) }
+        Box(Modifier.fillMaxSize().safeDrawingPadding().padding(horizontal = 16.dp)) {
+            ReadingIndicators(reading, Modifier.fillMaxSize()) { topStrip, bottomStrip ->
+                Box(
+                    Modifier.fillMaxSize().testTag("reader_viewport").bookGestureHandler(
+                        enabled = state is ReaderUiState.Reading && reading?.effectiveMode == ReadingMode.VERTICAL,
+                        onBookTap = { viewModel.onChromeEvent(ReaderChromeEvent.BOOK_TAP) },
+                        onNavigationDragStarted = {
+                            viewModel.onChromeEvent(ReaderChromeEvent.NAVIGATION_DRAG_STARTED)
+                        },
+                        onGestureFinished = { viewModel.onChromeEvent(ReaderChromeEvent.GESTURE_FINISHED) },
+                    )
+                ) {
+                    ReaderViewport(state, viewModel, topStrip, bottomStrip)
                 }
             }
-            if (saveFailed) {
-                Text(stringResource(R.string.position_save_error), color = MaterialTheme.colorScheme.error)
-                TextButton(onClick = viewModel::saveNow) { Text(stringResource(R.string.retry)) }
+            if (chrome.controlsVisible || state !is ReaderUiState.Reading) {
+                ReaderControls(
+                    reading = reading,
+                    onExit = leave,
+                    onSettings = onSettings,
+                    onContents = { viewModel.onChromeEvent(ReaderChromeEvent.OPEN_CONTENTS) },
+                    onChapter = viewModel::selectChapter,
+                )
             }
-            when (val current = state) {
-                ReaderUiState.Opening -> CircularProgressIndicator(modifier = Modifier.padding(24.dp))
-                ReaderUiState.RecoverableError -> {
-                    Text(stringResource(R.string.reader_open_error))
-                    Button(onClick = viewModel::open) { Text(stringResource(R.string.retry)) }
-                }
-                is ReaderUiState.Reading -> ReaderContent(current, viewModel, fontScale, Modifier.weight(1f))
-            }
+            ReaderSaveStatus(viewModel, chrome, saveFailed, Modifier.align(Alignment.Center))
         }
+    }
+    ReaderModals(viewModel, chrome, reading)
+}
+
+@Composable
+private fun ReaderSaveStatus(
+    viewModel: ReaderViewModel,
+    chrome: ReaderChromeState,
+    saveFailed: Boolean,
+    modifier: Modifier,
+) {
+    if (chrome.exitState == ExitState.FAILED) {
+        PositionSaveError({ viewModel.onExitEvent(ReaderExitEvent.CONFIRMED) }, modifier, exiting = true)
+    } else if (saveFailed) {
+        PositionSaveError(viewModel::saveNow, modifier)
     }
 }
 
 @Composable
-private fun ReaderContent(
-    state: ReaderUiState.Reading,
-    viewModel: ReaderViewModel,
-    fontScale: Float,
-    modifier: Modifier,
-) {
-    val configuration = LocalConfiguration.current
-    val density = LocalDensity.current
-    var showContents by rememberSaveable { mutableStateOf(false) }
-    if (showContents) {
+private fun ReaderModals(viewModel: ReaderViewModel, chrome: ReaderChromeState, reading: ReaderUiState.Reading?) {
+    if (chrome.overlay == ReaderOverlay.CONTENTS && reading != null) {
         TableOfContentsSheet(
-            chapters = state.chapters,
-            onSelect = { index ->
-                showContents = false
-                viewModel.selectChapter(index)
-            },
-            onDismiss = { showContents = false },
+            chapters = reading.chapters,
+            onSelect = viewModel::selectChapter,
+            onDismiss = { viewModel.onChromeEvent(ReaderChromeEvent.DISMISS_OVERLAY) },
         )
     }
-    Column(modifier = modifier, verticalArrangement = Arrangement.spacedBy(8.dp)) {
-        Text(
-            state.book.title,
-            style = MaterialTheme.typography.titleMedium,
-            maxLines = 2,
-            overflow = TextOverflow.Ellipsis,
+    if (chrome.overlay == ReaderOverlay.EXIT_CONFIRMATION) {
+        ReaderExitDialog(
+            onContinue = { viewModel.onExitEvent(ReaderExitEvent.CANCELLED) },
+            onExit = { viewModel.onExitEvent(ReaderExitEvent.CONFIRMED) },
         )
-        Text(
-            stringResource(
-                R.string.reader_chapter_progress,
-                state.position.chapterIndex + 1,
-                state.chapters.size,
-                state.position.progressPercent.toInt(),
-            ),
-            style = MaterialTheme.typography.labelMedium,
-        )
-        if (state.chapters.size > 1 || state.chapters.any { !it.title.isNullOrBlank() }) {
-            TextButton(onClick = { showContents = true }) { Text(stringResource(R.string.table_of_contents)) }
-        }
-        key(
-            state.position.chapterIndex,
-            state.blocks.first().blockIndex,
-            fontScale,
-            density.fontScale,
-            configuration.screenWidthDp,
-            configuration.screenHeightDp,
-        ) {
-            ChapterText(state, viewModel, fontScale, Modifier.weight(1f))
-        }
-        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
+    }
+}
+
+@Composable
+internal fun PreparingPagesMessage(modifier: Modifier = Modifier) {
+    Text(stringResource(R.string.reader_preparing_pages), modifier.testTag("reader_preparing_pages"))
+}
+
+@Composable
+private fun PositionSaveError(onRetry: () -> Unit, modifier: Modifier, exiting: Boolean = false) {
+    Surface(modifier) {
+        Column(Modifier.padding(16.dp)) {
+            Text(
+                stringResource(if (exiting) R.string.reader_exit_save_error else R.string.position_save_error),
+                color = MaterialTheme.colorScheme.error,
+            )
             TextButton(
-                onClick = { viewModel.selectChapter(state.position.chapterIndex - 1) },
-                enabled = state.position.chapterIndex > 0,
-            ) { Text(stringResource(R.string.previous_chapter)) }
-            TextButton(
-                onClick = { viewModel.selectChapter(state.position.chapterIndex + 1) },
-                enabled = state.position.chapterIndex < state.chapters.lastIndex,
-            ) { Text(stringResource(R.string.next_chapter)) }
+                onClick = onRetry,
+                modifier = Modifier.testTag(if (exiting) "reader_exit_retry" else "position_retry")
+            ) {
+                Text(stringResource(if (exiting) R.string.reader_exit_retry else R.string.retry))
+            }
         }
     }
 }
 
 @Composable
-private fun ChapterText(
-    state: ReaderUiState.Reading,
-    viewModel: ReaderViewModel,
-    fontScale: Float,
-    modifier: Modifier,
-) {
-    val start = state.blocks.first().blockIndex
-    val list = rememberLazyListState(initialFirstVisibleItemIndex = state.position.blockIndex - start)
-    val position by rememberUpdatedState(state.position)
-    LaunchedEffect(list) {
-        snapshotFlow { list.firstVisibleItemIndex }.distinctUntilChanged().collect { visible ->
-            val index = start + visible
-            if (index != position.blockIndex) viewModel.onVisibleBlock(position.chapterIndex, index)
+private fun ReaderViewport(state: ReaderUiState, viewModel: ReaderViewModel, topStrip: Int, bottomStrip: Int) {
+    Box(Modifier.fillMaxSize()) {
+        when (state) {
+            ReaderUiState.Opening -> CircularProgressIndicator(Modifier.align(Alignment.Center))
+            ReaderUiState.RecoverableError -> Column(Modifier.align(Alignment.Center)) {
+                Text(stringResource(R.string.reader_open_error))
+                Button(onClick = viewModel::open) { Text(stringResource(R.string.retry)) }
+            }
+            is ReaderUiState.PreparingPages -> PagedReaderViewport(
+                state.reading,
+                viewModel,
+                topStrip,
+                bottomStrip,
+                state.preparationFailed
+            )
+            is ReaderUiState.Reading -> if (state.effectiveMode == ReadingMode.PAGINATED) {
+                PagedReaderViewport(state, viewModel, topStrip, bottomStrip)
+            } else {
+                VerticalReaderContent(state, viewModel)
+            }
         }
     }
-    LazyColumn(
-        modifier = modifier.testTag("reader_list"),
-        state = list,
-        verticalArrangement = Arrangement.spacedBy(16.dp),
-    ) {
-        items(
-            state.blocks,
-            key = { it.blockIndex }
-        ) { block -> ContentBlockRenderer(block, viewModel.openMedia, fontScale) }
+}
+
+@Composable
+private fun ObserveReaderExit(viewModel: ReaderViewModel, onBack: () -> Unit) {
+    val currentOnBack by rememberUpdatedState(onBack)
+    val lifecycle = LocalLifecycleOwner.current.lifecycle
+    LaunchedEffect(viewModel, lifecycle) {
+        lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+            viewModel.navigateToLibrary.collect { currentOnBack() }
+        }
     }
 }

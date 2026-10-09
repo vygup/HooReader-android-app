@@ -1,5 +1,42 @@
 # Выпуск HooReader
 
+## Текущий выпуск 2.0.0
+
+Текущие `build-release.py` и `verify-release.py` работают с **2.0.0**, versionCode 2,
+и сохраняют файлы в `app/build/release/2.0.0/`. Подпись и environment variables
+остались от первого выпуска. [Notes RC](releases/2.0.0.md). Проверка обновления:
+`python3 scripts/verify-reader-upgrade.py` на одном временном `-read-only` emulator,
+с локальными подписанными APK обеих версий; между v1 и v2 данные не очищаются.
+
+Для RC выполнены сборка APK/AAB, проверка сертификатов и внешний release smoke.
+SHA-256 проверяется командой `shasum -a 256 -c SHA256SUMS.txt` из каталога 2.0.0.
+2026-10-10 пользователь разрешил выпуск 2.0.0 с исключением по SC-004.
+Метрика не подтверждена; исключение истекает перед следующим выпуском.
+T062/SC-007 пройдена по подтверждению пользователя.
+Совместимость проверена общим UI-набором на API 26 и API 37; T063 закрыта.
+Для принятого выпуска создаётся локальный tag `v2.0.0`. Публикация на GitHub
+требует рабочего доступа; SSH origin отклонил авторизацию 2026-10-10.
+
+После сборки и проверок точного APK комплект готовится командой:
+
+```sh
+python3 scripts/package-release.py
+```
+
+Скрипт требует чистого зафиксированного состояния при сборке и совпадения SHA-256
+APK с успешными smoke и upgrade. Архив `app/build/release/2.0.0/HooReader-2.0.0-release.zip`
+содержит только APK, AAB, `SHA256SUMS.txt`, `RELEASE_NOTES.md`, `INSTALLATION.md`
+и `RELEASE_MANIFEST.json`. Ключи подписи и тестовые данные в него не входят.
+Рядом создаётся `HooReader-2.0.0-release.zip.sha256`; его можно проверить командой
+`shasum -a 256 -c HooReader-2.0.0-release.zip.sha256` из каталога комплекта.
+Manifest сохраняет исходный коммит, публичный сертификат, hashes файлов и состояние
+приёмки и разрешённое исключение SC-004. Статус комплекта —
+`ACCEPTED_RELEASE_WITH_EXCEPTION`.
+[Отчёт подготовки 2.0.0](releases/2.0.0-validation.md).
+
+Разделы о версии 1.0.0 ниже сохраняют историю первого выпуска; текущие команды
+сборки и smoke используют каталог 2.0.0 вместо исторического 1.0.0.
+
 ## Первый выпуск
 
 Версия 1.0.0 (versionCode 1) — первый offline MVP. Release notes:
@@ -63,12 +100,12 @@ ADB="$ANDROID_HOME/platform-tools/adb" ANDROID_SERIAL=emulator-5554 python3 scri
 Проверяются package/version/non-debuggable, EPUB и Windows-1251 FB2, локальное чтение,
 переход главы, тёмная тема и размер текста, завершение процесса/авиарежим, повторное открытие,
 удаление записи при сохранении выбранного исходного файла. Предыдущий авиарежим возвращается.
-Результат сохраняется в `app/build/release/1.0.0/release-smoke.txt`.
+Результат сохраняется в `app/build/release/2.0.0/release-smoke.txt`.
 
 ## Контроль артефактов
 
 ```sh
-cd app/build/release/1.0.0
+cd app/build/release/2.0.0
 shasum -a 256 -c SHA256SUMS.txt
 ```
 

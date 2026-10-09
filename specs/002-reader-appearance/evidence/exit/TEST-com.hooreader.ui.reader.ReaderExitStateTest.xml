@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.hooreader.ui.reader.ReaderExitStateTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-10-07T11:45:52.101Z" hostname="MBVY.local" time="0.0">
+  <properties/>
+  <testcase name="gesture cancellation during confirmation releases tap suppression before continuing" classname="com.hooreader.ui.reader.ReaderExitStateTest" time="0.0"/>
+  <testcase name="failed flush keeps reader available and retries without another dialog" classname="com.hooreader.ui.reader.ReaderExitStateTest" time="0.0"/>
+  <testcase name="confirmation and unprotected exit save once then navigate once" classname="com.hooreader.ui.reader.ReaderExitStateTest" time="0.0"/>
+  <testcase name="cancel restores both hidden and visible chrome without a save effect" classname="com.hooreader.ui.reader.ReaderExitStateTest" time="0.0"/>
+  <testcase name="menus dismiss before exit and suppress navigation" classname="com.hooreader.ui.reader.ReaderExitStateTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuite name="com.hooreader.reader.PagedReaderTest" tests="14" failures="0" errors="0" skipped="1" time="46.213" timestamp="2026-10-02T21:34:46" hostname="localhost">
+  <properties>
+    <property name="device" value="Pixel_10(AVD) - 17" />
+    <property name="flavor" value="" />
+    <property name="project" value=":app" />
+  </properties>
+  <testcase name="fb2OneSwipeOnePageCancelBoundariesContentsAndReopen" classname="com.hooreader.reader.PagedReaderTest" time="5.847" />
+  <testcase name="epubModeScaleAndRotationPreserveInnerParagraphAnchor" classname="com.hooreader.reader.PagedReaderTest" time="4.837" />
+  <testcase name="fb2ModeScaleAndRotationPreserveInnerParagraphAnchor" classname="com.hooreader.reader.PagedReaderTest" time="4.862" />
+  <testcase name="epubOneSwipeOnePageCancelBoundariesContentsAndReopen" classname="com.hooreader.reader.PagedReaderTest" time="5.161" />
+  <testcase name="fontScaleRotationAndRecreationKeepLogicalBlock" classname="com.hooreader.reader.ReaderNavigationTest" time="1.149" />
+  <testcase name="epubTableOfContentsOpensSelectedChapterAtStart" classname="com.hooreader.reader.ReaderNavigationTest" time="1.336" />
+  <testcase name="fb2TableOfContentsOpensSelectedChapterAtStart" classname="com.hooreader.reader.ReaderNavigationTest" time="1.058" />
+  <testcase name="hundredScrollCancelDiagonalReturnAndBoundaryGesturesNeverOpenControls" classname="com.hooreader.reader.ReaderScreenTest" time="12.733" />
+  <testcase name="realDestinationMenusConsumeTouchesAndBackReturnsHiddenChrome" classname="com.hooreader.reader.ReaderScreenTest" time="2.836" />
+  <testcase name="measurePanelPresentationFiveTimes" classname="com.hooreader.reader.ReaderScreenTest" time="0.705">
+    <skipped />
+  </testcase>
+  <testcase name="twentyTapsAndSubSlopJitterToggleOnceWithoutChangingViewportOrAnchor" classname="com.hooreader.reader.ReaderScreenTest" time="3.17" />
+  <testcase name="importedBookRendersAndChapterNavigationKeepsPosition" classname="com.hooreader.reader.ReaderScreenTest" time="1.964" />
+  <testcase name="epubPositionSurvivesRecreatedReaderAndDatabaseWithoutOriginal" classname="com.hooreader.reader.ReadingPositionRestoreTest" time="0.05" />
+  <testcase name="fb2PositionSurvivesRecreatedReaderAndDatabaseWithoutOriginal" classname="com.hooreader.reader.ReadingPositionRestoreTest" time="0.029" />
+</testsuite>

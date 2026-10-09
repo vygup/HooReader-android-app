@@ -1,0 +1,7 @@
+2026-10-07T14:25:29Z
+sdk_gphone16k_arm64
+google/sdk_gphone16k_arm64/emu64a16k:17/CP41.260828.004.A7/16296984:user/dev-keys
+37
+Physical size: 1080x2424
+Physical density: 420
+original_font_scale=1.0

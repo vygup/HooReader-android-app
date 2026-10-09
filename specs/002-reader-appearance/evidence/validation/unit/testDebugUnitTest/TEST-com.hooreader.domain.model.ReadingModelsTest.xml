@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.hooreader.domain.model.ReadingModelsTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-10-07T14:59:49.851Z" hostname="MBVY.local" time="0.001">
+  <properties/>
+  <testcase name="styles must refer to existing text" classname="com.hooreader.domain.model.ReadingModelsTest" time="0.0"/>
+  <testcase name="position rejects negative coordinates and invalid progress" classname="com.hooreader.domain.model.ReadingModelsTest" time="0.001"/>
+  <testcase name="preferences reject invalid font scale" classname="com.hooreader.domain.model.ReadingModelsTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

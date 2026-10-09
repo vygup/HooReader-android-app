@@ -30,14 +30,14 @@ class ReleaseSmokeTest {
         assumeTrue(InstrumentationRegistry.getArguments().getString("releaseSmoke") == "true")
         assumeTrue(InstrumentationRegistry.getArguments().getString("disposableReleaseEmulator") == "true")
         val info = instrumentation.context.packageManager.getPackageInfo(APP, 0)
-        assertEquals("1.0.0", info.versionName)
+        assertEquals("2.0.0", info.versionName)
         @Suppress("DEPRECATION") // versionCode is required on supported API 26/27.
         val code = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             info.longVersionCode
         } else {
             info.versionCode.toLong()
         }
-        assertEquals(1L, code)
+        assertEquals(2L, code)
         assertFalse(requireNotNull(info.applicationInfo).flags and ApplicationInfo.FLAG_DEBUGGABLE != 0)
         assertEquals("Success", device.executeShellCommand("pm clear $APP").trim())
         val previousAirplane = device.executeShellCommand("settings get global airplane_mode_on").trim()
@@ -55,35 +55,31 @@ class ReleaseSmokeTest {
     }
 
     private fun verifyBook(fileName: String, title: String) {
-        click("Импортировать книгу")
-        assertTrue(device.wait(Until.hasObject(By.pkg(PICKER)), TIMEOUT))
-        if (!device.hasObject(By.text(fileName))) {
-            click(By.desc(Pattern.compile("Show roots|Показать корни")))
-            click(By.text(Pattern.compile("Downloads|Загрузки")))
-        }
-        click(fileName)
-        node(title)
+        importFile(fileName)
+        controls()
         click("Следующая глава")
         node("Абзац для восстановления позиции.")
+        controls()
         click("Настройки чтения")
         click("Тёмная")
         click("Увеличить текст")
-        click("Готово")
+        device.pressBack()
         node("Абзац для восстановления позиции.")
-        click("В библиотеку")
+        exitReader()
         node("Импортировать книгу")
         device.executeShellCommand("cmd connectivity airplane-mode enable")
         device.executeShellCommand("am force-stop $APP")
         launch()
         click(title)
         node("Абзац для восстановления позиции.")
+        controls()
         click("Настройки чтения")
         val dark = node("Тёмная")
         val choice = dark.parent
         assertTrue(dark.isChecked || dark.isSelected || choice?.isChecked == true || choice?.isSelected == true)
         node("Размер текста: ${if (fileName.endsWith("epub")) "125" else "150"}%")
-        click("Готово")
-        click("В библиотеку")
+        device.pressBack()
+        exitReader()
         assertTrue(device.wait(Until.hasObject(By.desc("Удалить книгу «$title»")), TIMEOUT))
         click(By.desc("Удалить книгу «$title»"))
         click("Удалить из библиотеки")
@@ -91,6 +87,31 @@ class ReleaseSmokeTest {
         // Source picker file still exists after the app-local book was deleted.
         val sourcePath = "/sdcard/Download/$fileName"
         assertEquals(sourcePath, device.executeShellCommand("ls $sourcePath").trim())
+    }
+
+    private fun importFile(fileName: String) {
+        click("Импортировать книгу")
+        assertTrue(device.wait(Until.hasObject(By.pkg(PICKER)), TIMEOUT))
+        if (!device.hasObject(By.text(fileName))) {
+            click(By.desc(Pattern.compile("Show roots|Показать корни")))
+            click(By.text(Pattern.compile("Downloads|Загрузки")))
+        }
+        click(fileName)
+        node("Первая глава")
+    }
+
+    private fun controls() {
+        if (!device.hasObject(By.text("В библиотеку"))) {
+            device.click(device.displayWidth / 2, device.displayHeight / 2)
+        }
+        node("Настройки чтения")
+    }
+
+    private fun exitReader() {
+        controls()
+        click("В библиотеку")
+        click("Выйти")
+        node("Импортировать книгу")
     }
 
     private fun launch() {

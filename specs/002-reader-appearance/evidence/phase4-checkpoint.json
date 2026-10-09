@@ -1,0 +1,55 @@
+{
+  "phase": 4,
+  "scope": "T001–T036",
+  "status": "FUNCTIONAL_CHECKPOINT_VERIFIED",
+  "releaseAccepted": false,
+  "validatedSourceCommit": "1917245b2979248970ae8d646beaf6f66c71e0be",
+  "unit": {
+    "debug": {
+      "tests": 98,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "release": {
+      "tests": 98,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "android": {
+    "device": "Pixel_10 AVD",
+    "api": 37,
+    "tests": 43,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 6,
+    "passed": 37
+  },
+  "checkBuildLintDetekt": "PASS",
+  "fullValidationLog": "T036-validation.txt",
+  "finalCheckLog": "phase4-final-check.txt",
+  "productionPagination": {
+    "baseline": {
+      "profileId": "9fc51ea7449454104db1d5095f0ea3edc41bb2620e2d22147c37568f9bef9bc9",
+      "scenarios": 36,
+      "runs": 180,
+      "maxMs": 7818.370796
+    },
+    "optimized": {
+      "profileId": "18757762298d7e3ca967ce968c8d559aa07d8553cea73549b32bb284962373e2",
+      "scenarios": 36,
+      "runs": 180,
+      "maxMs": 55169.9964
+    }
+  },
+  "SC004": "FAILED_BUDGET_NOT_VERIFIED_DEVICE",
+  "unavailableResources": [
+    "physical Android device",
+    "API 26 device/AVD"
+  ],
+  "firstUnfinishedTask": "T037",
+  "remainingTaskRange": "T037–T065",
+  "nextConcreteStep": "Add ReadingIndicatorResolverTest.kt per T037; do not mark reviewer checklists."
+}

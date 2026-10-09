@@ -1,0 +1,35 @@
+{
+  "status": "PASS",
+  "fromVersion": "1.0.0",
+  "toVersion": "2.0.0",
+  "dataClearedBetweenVersions": false,
+  "airplaneMode": true,
+  "formats": [
+    "EPUB",
+    "FB2"
+  ],
+  "modes": [
+    "VERTICAL",
+    "PAGINATED"
+  ],
+  "theme": "DARK",
+  "fontScale": 1.5,
+  "defaultMode": "VERTICAL",
+  "defaultConfirmReaderExit": true,
+  "roomSchemaVersion": 1,
+  "roomSchemaUnchanged": true,
+  "roomSchemaSha256": "d6028f051b0fa233c896ec8cecf8d7553d5b1938fca0981751483a89d4768b2a",
+  "position": "Room позиция v1 восстанавливает вторую главу; точный UTF-16 offset проверяется T059",
+  "positionProof": "Both chapters exceed viewport; second chapter visible and first chapter absent after update",
+  "fixturesSha256": {
+    "windows-1251.fb2": "933a0a5a412ea98d9f07833a41076fb2a4776fce5b5ff74e2dc4188715c95fa5",
+    "structured.epub": "bd51433739b813143e385b9dfb538f2ecb495a22079ff63fa35ac30b2308e999"
+  },
+  "apkSha256": {
+    "HooReader-1.0.0.apk": "b57907f817f9577c5533fa353641716829c4943bde9a6608e765f052c4aa6846",
+    "HooReader-2.0.0.apk": "67f99b662e702bba0ef2e1920f30664aec990af14cc9c0231425e5b674ea09b2"
+  },
+  "releaseAccepted": false,
+  "verifiedAt": "2026-10-09T14:40:20.202603+00:00",
+  "buildSourceCommit": "4797ae975cadc27147630029a4c2bd9b4ee8b73b"
+}

@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuite name="com.hooreader.settings.ReaderSettingsTest" tests="1" failures="0" errors="0" skipped="0" time="4.156" timestamp="2026-10-03T20:12:06" hostname="localhost">
+  <properties>
+    <property name="device" value="Pixel_10(AVD) - 17" />
+    <property name="flavor" value="" />
+    <property name="project" value=":app" />
+  </properties>
+  <testcase name="settingsSurviveRecreationAndBookReopeningWithoutMovingLogicalBlock" classname="com.hooreader.settings.ReaderSettingsTest" time="3.715" />
+</testsuite>

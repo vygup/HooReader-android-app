@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.hooreader.data.local.ContentBlockCodecTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-10-07T15:00:06.046Z" hostname="MBVY.local" time="0.003">
+  <properties/>
+  <testcase name="long Unicode strings and source styles survive binary round trip" classname="com.hooreader.data.local.ContentBlockCodecTest" time="0.003"/>
+  <testcase name="truncated and trailing data are rejected" classname="com.hooreader.data.local.ContentBlockCodecTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

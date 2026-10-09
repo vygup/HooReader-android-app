@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.hooreader.ui.reader.pagination.TextPaginatorTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-10-07T15:00:10.340Z" hostname="MBVY.local" time="1.493">
+  <properties/>
+  <testcase name="unreadable media is fixed fallback and hundreds of blocks use bounded windows" classname="com.hooreader.ui.reader.pagination.TextPaginatorTest" time="0.108"/>
+  <testcase name="fb2 lines preserve unicode styles long paragraph media and empty chapter" classname="com.hooreader.ui.reader.pagination.TextPaginatorTest" time="0.662"/>
+  <testcase name="epub lines preserve unicode styles long paragraph media and empty chapter" classname="com.hooreader.ui.reader.pagination.TextPaginatorTest" time="0.631"/>
+  <testcase name="empty chapter is one page while later chapters prove frontier is not eof" classname="com.hooreader.ui.reader.pagination.TextPaginatorTest" time="0.027"/>
+  <testcase name="bitmap failure after packing preserves original page and image bounds" classname="com.hooreader.ui.reader.pagination.TextPaginatorTest" time="0.065"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

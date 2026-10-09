@@ -1,0 +1,659 @@
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.ReaderFontScaleAcceptanceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=8
+INSTRUMENTATION_STATUS: stream=
+com.hooreader.reader.ReaderFontScaleAcceptanceTest:
+INSTRUMENTATION_STATUS: test=fb2PaginatedDark
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.ReaderFontScaleAcceptanceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=8
+INSTRUMENTATION_STATUS: stack=java.lang.AssertionError: Too wide: 1
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.assertVisibleTextFits(ReaderFontScaleAcceptanceTest.kt:270)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.capture(ReaderFontScaleAcceptanceTest.kt:277)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.readingActions(ReaderFontScaleAcceptanceTest.kt:188)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.access$readingActions(ReaderFontScaleAcceptanceTest.kt:46)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest$matrix$1.invokeSuspend(ReaderFontScaleAcceptanceTest.kt:106)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.UndispatchedCoroutine.afterResume(CoroutineContext.kt:266)
+	at kotlinx.coroutines.AbstractCoroutine.resumeWith(AbstractCoroutine.kt:101)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:46)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:94)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:70)
+	at kotlinx.coroutines.BuildersKt.runBlocking(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2369:1)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:48)
+	at kotlinx.coroutines.BuildersKt.runBlocking$default(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2370:1)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.matrix(ReaderFontScaleAcceptanceTest.kt:79)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.fb2PaginatedDark(ReaderFontScaleAcceptanceTest.kt:77)
+
+INSTRUMENTATION_STATUS: stream=
+Error in fb2PaginatedDark(com.hooreader.reader.ReaderFontScaleAcceptanceTest):
+java.lang.AssertionError: Too wide: 1
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.assertVisibleTextFits(ReaderFontScaleAcceptanceTest.kt:270)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.capture(ReaderFontScaleAcceptanceTest.kt:277)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.readingActions(ReaderFontScaleAcceptanceTest.kt:188)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.access$readingActions(ReaderFontScaleAcceptanceTest.kt:46)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest$matrix$1.invokeSuspend(ReaderFontScaleAcceptanceTest.kt:106)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.UndispatchedCoroutine.afterResume(CoroutineContext.kt:266)
+	at kotlinx.coroutines.AbstractCoroutine.resumeWith(AbstractCoroutine.kt:101)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:46)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:94)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:70)
+	at kotlinx.coroutines.BuildersKt.runBlocking(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2369:1)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:48)
+	at kotlinx.coroutines.BuildersKt.runBlocking$default(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2370:1)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.matrix(ReaderFontScaleAcceptanceTest.kt:79)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.fb2PaginatedDark(ReaderFontScaleAcceptanceTest.kt:77)
+
+INSTRUMENTATION_STATUS: test=fb2PaginatedDark
+INSTRUMENTATION_STATUS_CODE: -2
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.ReaderFontScaleAcceptanceTest
+INSTRUMENTATION_STATUS: current=2
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=8
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=epubVerticalDark
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.ReaderFontScaleAcceptanceTest
+INSTRUMENTATION_STATUS: current=2
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=8
+INSTRUMENTATION_STATUS: stack=java.lang.AssertionError: Too wide: 0%
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.assertVisibleTextFits(ReaderFontScaleAcceptanceTest.kt:270)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.capture(ReaderFontScaleAcceptanceTest.kt:277)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.readingActions(ReaderFontScaleAcceptanceTest.kt:188)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.access$readingActions(ReaderFontScaleAcceptanceTest.kt:46)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest$matrix$1.invokeSuspend(ReaderFontScaleAcceptanceTest.kt:106)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.UndispatchedCoroutine.afterResume(CoroutineContext.kt:266)
+	at kotlinx.coroutines.AbstractCoroutine.resumeWith(AbstractCoroutine.kt:101)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:46)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:94)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:70)
+	at kotlinx.coroutines.BuildersKt.runBlocking(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2369:1)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:48)
+	at kotlinx.coroutines.BuildersKt.runBlocking$default(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2370:1)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.matrix(ReaderFontScaleAcceptanceTest.kt:79)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.epubVerticalDark(ReaderFontScaleAcceptanceTest.kt:59)
+
+INSTRUMENTATION_STATUS: stream=
+Error in epubVerticalDark(com.hooreader.reader.ReaderFontScaleAcceptanceTest):
+java.lang.AssertionError: Too wide: 0%
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.assertVisibleTextFits(ReaderFontScaleAcceptanceTest.kt:270)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.capture(ReaderFontScaleAcceptanceTest.kt:277)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.readingActions(ReaderFontScaleAcceptanceTest.kt:188)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.access$readingActions(ReaderFontScaleAcceptanceTest.kt:46)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest$matrix$1.invokeSuspend(ReaderFontScaleAcceptanceTest.kt:106)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.UndispatchedCoroutine.afterResume(CoroutineContext.kt:266)
+	at kotlinx.coroutines.AbstractCoroutine.resumeWith(AbstractCoroutine.kt:101)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:46)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:94)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:70)
+	at kotlinx.coroutines.BuildersKt.runBlocking(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2369:1)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:48)
+	at kotlinx.coroutines.BuildersKt.runBlocking$default(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2370:1)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.matrix(ReaderFontScaleAcceptanceTest.kt:79)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.epubVerticalDark(ReaderFontScaleAcceptanceTest.kt:59)
+
+INSTRUMENTATION_STATUS: test=epubVerticalDark
+INSTRUMENTATION_STATUS_CODE: -2
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.ReaderFontScaleAcceptanceTest
+INSTRUMENTATION_STATUS: current=3
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=8
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=fb2VerticalDark
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.ReaderFontScaleAcceptanceTest
+INSTRUMENTATION_STATUS: current=3
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=8
+INSTRUMENTATION_STATUS: stack=java.lang.AssertionError: Too wide: 0%
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.assertVisibleTextFits(ReaderFontScaleAcceptanceTest.kt:270)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.capture(ReaderFontScaleAcceptanceTest.kt:277)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.readingActions(ReaderFontScaleAcceptanceTest.kt:188)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.access$readingActions(ReaderFontScaleAcceptanceTest.kt:46)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest$matrix$1.invokeSuspend(ReaderFontScaleAcceptanceTest.kt:106)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.UndispatchedCoroutine.afterResume(CoroutineContext.kt:266)
+	at kotlinx.coroutines.AbstractCoroutine.resumeWith(AbstractCoroutine.kt:101)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:46)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:94)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:70)
+	at kotlinx.coroutines.BuildersKt.runBlocking(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2369:1)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:48)
+	at kotlinx.coroutines.BuildersKt.runBlocking$default(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2370:1)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.matrix(ReaderFontScaleAcceptanceTest.kt:79)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.fb2VerticalDark(ReaderFontScaleAcceptanceTest.kt:71)
+
+INSTRUMENTATION_STATUS: stream=
+Error in fb2VerticalDark(com.hooreader.reader.ReaderFontScaleAcceptanceTest):
+java.lang.AssertionError: Too wide: 0%
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.assertVisibleTextFits(ReaderFontScaleAcceptanceTest.kt:270)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.capture(ReaderFontScaleAcceptanceTest.kt:277)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.readingActions(ReaderFontScaleAcceptanceTest.kt:188)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.access$readingActions(ReaderFontScaleAcceptanceTest.kt:46)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest$matrix$1.invokeSuspend(ReaderFontScaleAcceptanceTest.kt:106)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.UndispatchedCoroutine.afterResume(CoroutineContext.kt:266)
+	at kotlinx.coroutines.AbstractCoroutine.resumeWith(AbstractCoroutine.kt:101)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:46)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:94)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:70)
+	at kotlinx.coroutines.BuildersKt.runBlocking(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2369:1)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:48)
+	at kotlinx.coroutines.BuildersKt.runBlocking$default(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2370:1)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.matrix(ReaderFontScaleAcceptanceTest.kt:79)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.fb2VerticalDark(ReaderFontScaleAcceptanceTest.kt:71)
+
+INSTRUMENTATION_STATUS: test=fb2VerticalDark
+INSTRUMENTATION_STATUS_CODE: -2
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.ReaderFontScaleAcceptanceTest
+INSTRUMENTATION_STATUS: current=4
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=8
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=fb2PaginatedLight
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.ReaderFontScaleAcceptanceTest
+INSTRUMENTATION_STATUS: current=4
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=8
+INSTRUMENTATION_STATUS: stack=java.lang.AssertionError: Too wide: 1
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.assertVisibleTextFits(ReaderFontScaleAcceptanceTest.kt:270)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.capture(ReaderFontScaleAcceptanceTest.kt:277)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.readingActions(ReaderFontScaleAcceptanceTest.kt:188)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.access$readingActions(ReaderFontScaleAcceptanceTest.kt:46)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest$matrix$1.invokeSuspend(ReaderFontScaleAcceptanceTest.kt:106)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.UndispatchedCoroutine.afterResume(CoroutineContext.kt:266)
+	at kotlinx.coroutines.AbstractCoroutine.resumeWith(AbstractCoroutine.kt:101)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:46)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:94)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:70)
+	at kotlinx.coroutines.BuildersKt.runBlocking(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2369:1)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:48)
+	at kotlinx.coroutines.BuildersKt.runBlocking$default(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2370:1)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.matrix(ReaderFontScaleAcceptanceTest.kt:79)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.fb2PaginatedLight(ReaderFontScaleAcceptanceTest.kt:74)
+
+INSTRUMENTATION_STATUS: stream=
+Error in fb2PaginatedLight(com.hooreader.reader.ReaderFontScaleAcceptanceTest):
+java.lang.AssertionError: Too wide: 1
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.assertVisibleTextFits(ReaderFontScaleAcceptanceTest.kt:270)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.capture(ReaderFontScaleAcceptanceTest.kt:277)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.readingActions(ReaderFontScaleAcceptanceTest.kt:188)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.access$readingActions(ReaderFontScaleAcceptanceTest.kt:46)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest$matrix$1.invokeSuspend(ReaderFontScaleAcceptanceTest.kt:106)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.UndispatchedCoroutine.afterResume(CoroutineContext.kt:266)
+	at kotlinx.coroutines.AbstractCoroutine.resumeWith(AbstractCoroutine.kt:101)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:46)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:94)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:70)
+	at kotlinx.coroutines.BuildersKt.runBlocking(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2369:1)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:48)
+	at kotlinx.coroutines.BuildersKt.runBlocking$default(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2370:1)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.matrix(ReaderFontScaleAcceptanceTest.kt:79)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.fb2PaginatedLight(ReaderFontScaleAcceptanceTest.kt:74)
+
+INSTRUMENTATION_STATUS: test=fb2PaginatedLight
+INSTRUMENTATION_STATUS_CODE: -2
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.ReaderFontScaleAcceptanceTest
+INSTRUMENTATION_STATUS: current=5
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=8
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=epubVerticalLight
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.ReaderFontScaleAcceptanceTest
+INSTRUMENTATION_STATUS: current=5
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=8
+INSTRUMENTATION_STATUS: stack=java.lang.AssertionError: Too wide: 0%
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.assertVisibleTextFits(ReaderFontScaleAcceptanceTest.kt:270)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.capture(ReaderFontScaleAcceptanceTest.kt:277)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.readingActions(ReaderFontScaleAcceptanceTest.kt:188)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.access$readingActions(ReaderFontScaleAcceptanceTest.kt:46)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest$matrix$1.invokeSuspend(ReaderFontScaleAcceptanceTest.kt:106)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.UndispatchedCoroutine.afterResume(CoroutineContext.kt:266)
+	at kotlinx.coroutines.AbstractCoroutine.resumeWith(AbstractCoroutine.kt:101)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:46)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:94)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:70)
+	at kotlinx.coroutines.BuildersKt.runBlocking(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2369:1)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:48)
+	at kotlinx.coroutines.BuildersKt.runBlocking$default(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2370:1)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.matrix(ReaderFontScaleAcceptanceTest.kt:79)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.epubVerticalLight(ReaderFontScaleAcceptanceTest.kt:56)
+
+INSTRUMENTATION_STATUS: stream=
+Error in epubVerticalLight(com.hooreader.reader.ReaderFontScaleAcceptanceTest):
+java.lang.AssertionError: Too wide: 0%
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.assertVisibleTextFits(ReaderFontScaleAcceptanceTest.kt:270)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.capture(ReaderFontScaleAcceptanceTest.kt:277)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.readingActions(ReaderFontScaleAcceptanceTest.kt:188)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.access$readingActions(ReaderFontScaleAcceptanceTest.kt:46)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest$matrix$1.invokeSuspend(ReaderFontScaleAcceptanceTest.kt:106)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.UndispatchedCoroutine.afterResume(CoroutineContext.kt:266)
+	at kotlinx.coroutines.AbstractCoroutine.resumeWith(AbstractCoroutine.kt:101)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:46)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:94)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:70)
+	at kotlinx.coroutines.BuildersKt.runBlocking(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2369:1)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:48)
+	at kotlinx.coroutines.BuildersKt.runBlocking$default(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2370:1)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.matrix(ReaderFontScaleAcceptanceTest.kt:79)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.epubVerticalLight(ReaderFontScaleAcceptanceTest.kt:56)
+
+INSTRUMENTATION_STATUS: test=epubVerticalLight
+INSTRUMENTATION_STATUS_CODE: -2
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.ReaderFontScaleAcceptanceTest
+INSTRUMENTATION_STATUS: current=6
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=8
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=epubPaginatedLight
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.ReaderFontScaleAcceptanceTest
+INSTRUMENTATION_STATUS: current=6
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=8
+INSTRUMENTATION_STATUS: stack=java.lang.AssertionError: Too wide: 1
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.assertVisibleTextFits(ReaderFontScaleAcceptanceTest.kt:270)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.capture(ReaderFontScaleAcceptanceTest.kt:277)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.readingActions(ReaderFontScaleAcceptanceTest.kt:188)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.access$readingActions(ReaderFontScaleAcceptanceTest.kt:46)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest$matrix$1.invokeSuspend(ReaderFontScaleAcceptanceTest.kt:106)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.UndispatchedCoroutine.afterResume(CoroutineContext.kt:266)
+	at kotlinx.coroutines.AbstractCoroutine.resumeWith(AbstractCoroutine.kt:101)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:46)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:94)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:70)
+	at kotlinx.coroutines.BuildersKt.runBlocking(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2369:1)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:48)
+	at kotlinx.coroutines.BuildersKt.runBlocking$default(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2370:1)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.matrix(ReaderFontScaleAcceptanceTest.kt:79)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.epubPaginatedLight(ReaderFontScaleAcceptanceTest.kt:62)
+
+INSTRUMENTATION_STATUS: stream=
+Error in epubPaginatedLight(com.hooreader.reader.ReaderFontScaleAcceptanceTest):
+java.lang.AssertionError: Too wide: 1
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.assertVisibleTextFits(ReaderFontScaleAcceptanceTest.kt:270)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.capture(ReaderFontScaleAcceptanceTest.kt:277)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.readingActions(ReaderFontScaleAcceptanceTest.kt:188)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.access$readingActions(ReaderFontScaleAcceptanceTest.kt:46)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest$matrix$1.invokeSuspend(ReaderFontScaleAcceptanceTest.kt:106)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.UndispatchedCoroutine.afterResume(CoroutineContext.kt:266)
+	at kotlinx.coroutines.AbstractCoroutine.resumeWith(AbstractCoroutine.kt:101)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:46)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:94)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:70)
+	at kotlinx.coroutines.BuildersKt.runBlocking(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2369:1)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:48)
+	at kotlinx.coroutines.BuildersKt.runBlocking$default(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2370:1)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.matrix(ReaderFontScaleAcceptanceTest.kt:79)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.epubPaginatedLight(ReaderFontScaleAcceptanceTest.kt:62)
+
+INSTRUMENTATION_STATUS: test=epubPaginatedLight
+INSTRUMENTATION_STATUS_CODE: -2
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.ReaderFontScaleAcceptanceTest
+INSTRUMENTATION_STATUS: current=7
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=8
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=fb2VerticalLight
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.ReaderFontScaleAcceptanceTest
+INSTRUMENTATION_STATUS: current=7
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=8
+INSTRUMENTATION_STATUS: stack=java.lang.AssertionError: Too wide: 0%
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.assertVisibleTextFits(ReaderFontScaleAcceptanceTest.kt:270)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.capture(ReaderFontScaleAcceptanceTest.kt:277)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.readingActions(ReaderFontScaleAcceptanceTest.kt:188)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.access$readingActions(ReaderFontScaleAcceptanceTest.kt:46)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest$matrix$1.invokeSuspend(ReaderFontScaleAcceptanceTest.kt:106)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.UndispatchedCoroutine.afterResume(CoroutineContext.kt:266)
+	at kotlinx.coroutines.AbstractCoroutine.resumeWith(AbstractCoroutine.kt:101)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:46)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:94)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:70)
+	at kotlinx.coroutines.BuildersKt.runBlocking(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2369:1)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:48)
+	at kotlinx.coroutines.BuildersKt.runBlocking$default(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2370:1)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.matrix(ReaderFontScaleAcceptanceTest.kt:79)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.fb2VerticalLight(ReaderFontScaleAcceptanceTest.kt:68)
+
+INSTRUMENTATION_STATUS: stream=
+Error in fb2VerticalLight(com.hooreader.reader.ReaderFontScaleAcceptanceTest):
+java.lang.AssertionError: Too wide: 0%
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.assertVisibleTextFits(ReaderFontScaleAcceptanceTest.kt:270)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.capture(ReaderFontScaleAcceptanceTest.kt:277)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.readingActions(ReaderFontScaleAcceptanceTest.kt:188)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.access$readingActions(ReaderFontScaleAcceptanceTest.kt:46)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest$matrix$1.invokeSuspend(ReaderFontScaleAcceptanceTest.kt:106)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.UndispatchedCoroutine.afterResume(CoroutineContext.kt:266)
+	at kotlinx.coroutines.AbstractCoroutine.resumeWith(AbstractCoroutine.kt:101)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:46)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:94)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:70)
+	at kotlinx.coroutines.BuildersKt.runBlocking(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2369:1)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:48)
+	at kotlinx.coroutines.BuildersKt.runBlocking$default(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2370:1)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.matrix(ReaderFontScaleAcceptanceTest.kt:79)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.fb2VerticalLight(ReaderFontScaleAcceptanceTest.kt:68)
+
+INSTRUMENTATION_STATUS: test=fb2VerticalLight
+INSTRUMENTATION_STATUS_CODE: -2
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.ReaderFontScaleAcceptanceTest
+INSTRUMENTATION_STATUS: current=8
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=8
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=epubPaginatedDark
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.hooreader.reader.ReaderFontScaleAcceptanceTest
+INSTRUMENTATION_STATUS: current=8
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=8
+INSTRUMENTATION_STATUS: stack=java.lang.AssertionError: Too wide: 1
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.assertVisibleTextFits(ReaderFontScaleAcceptanceTest.kt:270)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.capture(ReaderFontScaleAcceptanceTest.kt:277)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.readingActions(ReaderFontScaleAcceptanceTest.kt:188)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.access$readingActions(ReaderFontScaleAcceptanceTest.kt:46)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest$matrix$1.invokeSuspend(ReaderFontScaleAcceptanceTest.kt:106)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.UndispatchedCoroutine.afterResume(CoroutineContext.kt:266)
+	at kotlinx.coroutines.AbstractCoroutine.resumeWith(AbstractCoroutine.kt:101)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:46)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:94)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:70)
+	at kotlinx.coroutines.BuildersKt.runBlocking(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2369:1)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:48)
+	at kotlinx.coroutines.BuildersKt.runBlocking$default(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2370:1)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.matrix(ReaderFontScaleAcceptanceTest.kt:79)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.epubPaginatedDark(ReaderFontScaleAcceptanceTest.kt:65)
+
+INSTRUMENTATION_STATUS: stream=
+Error in epubPaginatedDark(com.hooreader.reader.ReaderFontScaleAcceptanceTest):
+java.lang.AssertionError: Too wide: 1
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.assertVisibleTextFits(ReaderFontScaleAcceptanceTest.kt:270)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.capture(ReaderFontScaleAcceptanceTest.kt:277)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.readingActions(ReaderFontScaleAcceptanceTest.kt:188)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.access$readingActions(ReaderFontScaleAcceptanceTest.kt:46)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest$matrix$1.invokeSuspend(ReaderFontScaleAcceptanceTest.kt:106)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.UndispatchedCoroutine.afterResume(CoroutineContext.kt:266)
+	at kotlinx.coroutines.AbstractCoroutine.resumeWith(AbstractCoroutine.kt:101)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:46)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:94)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:70)
+	at kotlinx.coroutines.BuildersKt.runBlocking(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2369:1)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:48)
+	at kotlinx.coroutines.BuildersKt.runBlocking$default(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2370:1)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.matrix(ReaderFontScaleAcceptanceTest.kt:79)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.epubPaginatedDark(ReaderFontScaleAcceptanceTest.kt:65)
+
+INSTRUMENTATION_STATUS: test=epubPaginatedDark
+INSTRUMENTATION_STATUS_CODE: -2
+INSTRUMENTATION_RESULT: stream=
+
+Time: 48.725
+There were 8 failures:
+1) fb2PaginatedDark(com.hooreader.reader.ReaderFontScaleAcceptanceTest)
+java.lang.AssertionError: Too wide: 1
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.assertVisibleTextFits(ReaderFontScaleAcceptanceTest.kt:270)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.capture(ReaderFontScaleAcceptanceTest.kt:277)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.readingActions(ReaderFontScaleAcceptanceTest.kt:188)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.access$readingActions(ReaderFontScaleAcceptanceTest.kt:46)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest$matrix$1.invokeSuspend(ReaderFontScaleAcceptanceTest.kt:106)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.UndispatchedCoroutine.afterResume(CoroutineContext.kt:266)
+	at kotlinx.coroutines.AbstractCoroutine.resumeWith(AbstractCoroutine.kt:101)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:46)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:94)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:70)
+	at kotlinx.coroutines.BuildersKt.runBlocking(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2369:1)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:48)
+	at kotlinx.coroutines.BuildersKt.runBlocking$default(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2370:1)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.matrix(ReaderFontScaleAcceptanceTest.kt:79)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.fb2PaginatedDark(ReaderFontScaleAcceptanceTest.kt:77)
+2) epubVerticalDark(com.hooreader.reader.ReaderFontScaleAcceptanceTest)
+java.lang.AssertionError: Too wide: 0%
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.assertVisibleTextFits(ReaderFontScaleAcceptanceTest.kt:270)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.capture(ReaderFontScaleAcceptanceTest.kt:277)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.readingActions(ReaderFontScaleAcceptanceTest.kt:188)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.access$readingActions(ReaderFontScaleAcceptanceTest.kt:46)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest$matrix$1.invokeSuspend(ReaderFontScaleAcceptanceTest.kt:106)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.UndispatchedCoroutine.afterResume(CoroutineContext.kt:266)
+	at kotlinx.coroutines.AbstractCoroutine.resumeWith(AbstractCoroutine.kt:101)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:46)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:94)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:70)
+	at kotlinx.coroutines.BuildersKt.runBlocking(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2369:1)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:48)
+	at kotlinx.coroutines.BuildersKt.runBlocking$default(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2370:1)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.matrix(ReaderFontScaleAcceptanceTest.kt:79)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.epubVerticalDark(ReaderFontScaleAcceptanceTest.kt:59)
+3) fb2VerticalDark(com.hooreader.reader.ReaderFontScaleAcceptanceTest)
+java.lang.AssertionError: Too wide: 0%
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.assertVisibleTextFits(ReaderFontScaleAcceptanceTest.kt:270)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.capture(ReaderFontScaleAcceptanceTest.kt:277)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.readingActions(ReaderFontScaleAcceptanceTest.kt:188)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.access$readingActions(ReaderFontScaleAcceptanceTest.kt:46)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest$matrix$1.invokeSuspend(ReaderFontScaleAcceptanceTest.kt:106)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.UndispatchedCoroutine.afterResume(CoroutineContext.kt:266)
+	at kotlinx.coroutines.AbstractCoroutine.resumeWith(AbstractCoroutine.kt:101)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:46)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:94)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:70)
+	at kotlinx.coroutines.BuildersKt.runBlocking(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2369:1)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:48)
+	at kotlinx.coroutines.BuildersKt.runBlocking$default(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2370:1)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.matrix(ReaderFontScaleAcceptanceTest.kt:79)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.fb2VerticalDark(ReaderFontScaleAcceptanceTest.kt:71)
+4) fb2PaginatedLight(com.hooreader.reader.ReaderFontScaleAcceptanceTest)
+java.lang.AssertionError: Too wide: 1
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.assertVisibleTextFits(ReaderFontScaleAcceptanceTest.kt:270)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.capture(ReaderFontScaleAcceptanceTest.kt:277)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.readingActions(ReaderFontScaleAcceptanceTest.kt:188)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.access$readingActions(ReaderFontScaleAcceptanceTest.kt:46)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest$matrix$1.invokeSuspend(ReaderFontScaleAcceptanceTest.kt:106)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.UndispatchedCoroutine.afterResume(CoroutineContext.kt:266)
+	at kotlinx.coroutines.AbstractCoroutine.resumeWith(AbstractCoroutine.kt:101)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:46)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:94)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:70)
+	at kotlinx.coroutines.BuildersKt.runBlocking(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2369:1)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:48)
+	at kotlinx.coroutines.BuildersKt.runBlocking$default(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2370:1)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.matrix(ReaderFontScaleAcceptanceTest.kt:79)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.fb2PaginatedLight(ReaderFontScaleAcceptanceTest.kt:74)
+5) epubVerticalLight(com.hooreader.reader.ReaderFontScaleAcceptanceTest)
+java.lang.AssertionError: Too wide: 0%
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.assertVisibleTextFits(ReaderFontScaleAcceptanceTest.kt:270)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.capture(ReaderFontScaleAcceptanceTest.kt:277)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.readingActions(ReaderFontScaleAcceptanceTest.kt:188)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.access$readingActions(ReaderFontScaleAcceptanceTest.kt:46)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest$matrix$1.invokeSuspend(ReaderFontScaleAcceptanceTest.kt:106)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.UndispatchedCoroutine.afterResume(CoroutineContext.kt:266)
+	at kotlinx.coroutines.AbstractCoroutine.resumeWith(AbstractCoroutine.kt:101)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:46)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:94)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:70)
+	at kotlinx.coroutines.BuildersKt.runBlocking(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2369:1)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:48)
+	at kotlinx.coroutines.BuildersKt.runBlocking$default(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2370:1)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.matrix(ReaderFontScaleAcceptanceTest.kt:79)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.epubVerticalLight(ReaderFontScaleAcceptanceTest.kt:56)
+6) epubPaginatedLight(com.hooreader.reader.ReaderFontScaleAcceptanceTest)
+java.lang.AssertionError: Too wide: 1
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.assertVisibleTextFits(ReaderFontScaleAcceptanceTest.kt:270)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.capture(ReaderFontScaleAcceptanceTest.kt:277)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.readingActions(ReaderFontScaleAcceptanceTest.kt:188)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.access$readingActions(ReaderFontScaleAcceptanceTest.kt:46)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest$matrix$1.invokeSuspend(ReaderFontScaleAcceptanceTest.kt:106)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.UndispatchedCoroutine.afterResume(CoroutineContext.kt:266)
+	at kotlinx.coroutines.AbstractCoroutine.resumeWith(AbstractCoroutine.kt:101)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:46)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:94)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:70)
+	at kotlinx.coroutines.BuildersKt.runBlocking(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2369:1)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:48)
+	at kotlinx.coroutines.BuildersKt.runBlocking$default(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2370:1)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.matrix(ReaderFontScaleAcceptanceTest.kt:79)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.epubPaginatedLight(ReaderFontScaleAcceptanceTest.kt:62)
+7) fb2VerticalLight(com.hooreader.reader.ReaderFontScaleAcceptanceTest)
+java.lang.AssertionError: Too wide: 0%
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.assertVisibleTextFits(ReaderFontScaleAcceptanceTest.kt:270)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.capture(ReaderFontScaleAcceptanceTest.kt:277)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.readingActions(ReaderFontScaleAcceptanceTest.kt:188)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.access$readingActions(ReaderFontScaleAcceptanceTest.kt:46)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest$matrix$1.invokeSuspend(ReaderFontScaleAcceptanceTest.kt:106)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.UndispatchedCoroutine.afterResume(CoroutineContext.kt:266)
+	at kotlinx.coroutines.AbstractCoroutine.resumeWith(AbstractCoroutine.kt:101)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:46)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:94)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:70)
+	at kotlinx.coroutines.BuildersKt.runBlocking(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2369:1)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:48)
+	at kotlinx.coroutines.BuildersKt.runBlocking$default(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2370:1)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.matrix(ReaderFontScaleAcceptanceTest.kt:79)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.fb2VerticalLight(ReaderFontScaleAcceptanceTest.kt:68)
+8) epubPaginatedDark(com.hooreader.reader.ReaderFontScaleAcceptanceTest)
+java.lang.AssertionError: Too wide: 1
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.assertVisibleTextFits(ReaderFontScaleAcceptanceTest.kt:270)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.capture(ReaderFontScaleAcceptanceTest.kt:277)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.readingActions(ReaderFontScaleAcceptanceTest.kt:188)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.access$readingActions(ReaderFontScaleAcceptanceTest.kt:46)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest$matrix$1.invokeSuspend(ReaderFontScaleAcceptanceTest.kt:106)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.UndispatchedCoroutine.afterResume(CoroutineContext.kt:266)
+	at kotlinx.coroutines.AbstractCoroutine.resumeWith(AbstractCoroutine.kt:101)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:46)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:94)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:70)
+	at kotlinx.coroutines.BuildersKt.runBlocking(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2369:1)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:48)
+	at kotlinx.coroutines.BuildersKt.runBlocking$default(dex-id-687cd73a3a120ce79628844da88d99b36d25d6ee-2370:1)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.matrix(ReaderFontScaleAcceptanceTest.kt:79)
+	at com.hooreader.reader.ReaderFontScaleAcceptanceTest.epubPaginatedDark(ReaderFontScaleAcceptanceTest.kt:65)
+
+FAILURES!!!
+Tests run: 8,  Failures: 8
+
+
+INSTRUMENTATION_CODE: -1

@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuite name="com.hooreader.reader.PagedReaderTest" tests="4" failures="0" errors="0" skipped="0" time="105.533" timestamp="2026-10-09T07:58:38" hostname="localhost">
+  <properties>
+    <property name="device" value="Pixel_10(AVD) - 17" />
+    <property name="flavor" value="" />
+    <property name="project" value=":app" />
+  </properties>
+  <testcase name="fb2OneSwipeOnePageCancelBoundariesContentsAndReopen" classname="com.hooreader.reader.PagedReaderTest" time="45.722" />
+  <testcase name="epubModeScaleAndRotationPreserveInnerParagraphAnchor" classname="com.hooreader.reader.PagedReaderTest" time="7.45" />
+  <testcase name="fb2ModeScaleAndRotationPreserveInnerParagraphAnchor" classname="com.hooreader.reader.PagedReaderTest" time="7.36" />
+  <testcase name="epubOneSwipeOnePageCancelBoundariesContentsAndReopen" classname="com.hooreader.reader.PagedReaderTest" time="44.036" />
+</testsuite>

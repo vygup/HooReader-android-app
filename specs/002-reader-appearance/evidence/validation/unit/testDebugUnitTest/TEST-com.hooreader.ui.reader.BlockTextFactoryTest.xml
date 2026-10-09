@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.hooreader.ui.reader.BlockTextFactoryTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-10-07T14:59:49.945Z" hostname="MBVY.local" time="0.041">
+  <properties/>
+  <testcase name="list decoration does not shift source Unicode styles" classname="com.hooreader.ui.reader.BlockTextFactoryTest" time="0.031"/>
+  <testcase name="body heading and fallback use the same reading scale and sp line height" classname="com.hooreader.ui.reader.BlockTextFactoryTest" time="0.01"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

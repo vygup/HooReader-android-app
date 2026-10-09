@@ -1,6 +1,12 @@
 package com.hooreader.ui.reader
 
 import android.content.Context
+import androidx.compose.ui.text.TextMeasurer
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.createFontFamilyResolver
+import androidx.compose.ui.unit.Density
+import androidx.compose.ui.unit.LayoutDirection
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.ViewModelStore
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
@@ -16,12 +22,21 @@ import com.hooreader.domain.model.BookFormat
 import com.hooreader.domain.model.BookState
 import com.hooreader.domain.model.Chapter
 import com.hooreader.domain.model.ContentBlock
+import com.hooreader.domain.model.ReaderPreferences
+import com.hooreader.domain.model.ReadingMode
 import com.hooreader.domain.model.ReadingPosition
+import com.hooreader.ui.reader.pagination.LayoutContentIdentity
+import com.hooreader.ui.reader.pagination.LayoutKey
+import com.hooreader.ui.reader.pagination.LayoutTypography
+import com.hooreader.ui.reader.pagination.LayoutViewport
+import com.hooreader.ui.reader.pagination.TextPaginator
+import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.filterIsInstance
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.resetMain
@@ -29,18 +44,23 @@ import kotlinx.coroutines.test.setMain
 import kotlinx.coroutines.withTimeout
 import org.junit.After
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
+import org.robolectric.annotation.GraphicsMode
 import java.io.File
+import java.io.IOException
 import java.util.UUID
+import java.util.concurrent.atomic.AtomicBoolean
 
 @OptIn(ExperimentalCoroutinesApi::class)
 @RunWith(RobolectricTestRunner::class)
 @Config(sdk = [28])
+@GraphicsMode(GraphicsMode.Mode.NATIVE)
 class ReaderViewModelTest {
     private val context = ApplicationProvider.getApplicationContext<Context>()
     private val files = BookFileStorage(context)
@@ -48,6 +68,7 @@ class ReaderViewModelTest {
     private val id = UUID.randomUUID().toString()
     private lateinit var database: HooReaderDatabase
     private lateinit var repository: BookRepository
+    private var longParagraph = ""
     private var chapters = listOf(Chapter(id, 0, "Long chapter", "one", 1000), Chapter(id, 1, "End", "two", 10))
     private val parser = object : BookParser {
         override val format = BookFormat.FB2
@@ -56,7 +77,12 @@ class ReaderViewModelTest {
             override val chapters = this@ReaderViewModelTest.chapters
             override fun blocks(chapterIndex: Int, startBlockIndex: Int) = flow {
                 for (index in startBlockIndex until chapters[chapterIndex].blockCount) {
-                    emit(ContentBlock(chapterIndex, index, BlockKind.PARAGRAPH, "Paragraph $index"))
+                    val text = if (chapterIndex == 0 && index == 500 && longParagraph.isNotEmpty()) {
+                        longParagraph
+                    } else {
+                        "Paragraph $index"
+                    }
+                    emit(ContentBlock(chapterIndex, index, BlockKind.PARAGRAPH, text))
                 }
             }
             override suspend fun openMedia(reference: String) = null
@@ -84,6 +110,73 @@ class ReaderViewModelTest {
         database.close()
         files.deleteBook(id)
         Dispatchers.resetMain()
+    }
+
+    @Test
+    fun `cancel and lifecycle stop preserve inner anchor without exit navigation`() = runBlocking {
+        val saved = ReadingPosition(id, 0, 500, 4, 50.0)
+        repository.savePosition(saved)
+        val reader = reader()
+        val reading = awaitReading(reader)
+        val navigations = mutableListOf<Unit>()
+        val collector = launch(UnconfinedTestDispatcher()) { reader.navigateToLibrary.collect { navigations += it } }
+        try {
+            reader.onChromeEvent(ReaderChromeEvent.BOOK_TAP)
+            val chrome = reader.chromeState.value
+            reader.onExitEvent(ReaderExitEvent.REQUESTED)
+            reader.onExitEvent(ReaderExitEvent.CANCELLED)
+            assertEquals(chrome, reader.chromeState.value)
+            assertEquals(reading.logicalPosition, (reader.state.value as ReaderUiState.Reading).logicalPosition)
+            reader.onStopped()
+            assertTrue(reader.flushPosition())
+            assertEquals(chrome, reader.chromeState.value)
+            assertEquals(reading.position, repository.getPosition(id))
+            assertTrue(navigations.isEmpty())
+        } finally {
+            collector.cancel()
+        }
+    }
+
+    @Test
+    fun `exit waits for latest write ignores rapid requests and emits navigation only once`() = runBlocking {
+        val entered = CompletableDeferred<Unit>()
+        val release = CompletableDeferred<Unit>()
+        val saver = ReadingPositionSaver({ position ->
+            entered.complete(Unit)
+            release.await()
+            repository.savePosition(position)
+        })
+        val reader = reader(saver)
+        awaitReading(reader)
+        val navigated = CompletableDeferred<Unit>()
+        var navigationCount = 0
+        val collector = launch(UnconfinedTestDispatcher()) {
+            reader.navigateToLibrary.collect {
+                navigationCount++
+                navigated.complete(Unit)
+            }
+        }
+        try {
+            reader.onExitEvent(ReaderExitEvent.REQUESTED, false)
+            withTimeout(5_000) { entered.await() }
+            repeat(10) {
+                reader.onExitEvent(ReaderExitEvent.REQUESTED)
+                reader.onExitEvent(ReaderExitEvent.CONFIRMED)
+            }
+            assertEquals(ExitState.SAVING, reader.chromeState.value.exitState)
+            assertEquals(0, navigationCount)
+            reader.onVisibleBlock(0, 5, 3)
+            release.complete(Unit)
+            withTimeout(5_000) { navigated.await() }
+            assertEquals(5, repository.getPosition(id)?.blockIndex)
+            assertEquals(3, repository.getPosition(id)?.characterOffset)
+            repeat(10) { reader.onExitEvent(ReaderExitEvent.REQUESTED, false) }
+            assertTrue(reader.chromeState.value.exitCompleted)
+            assertEquals(1, navigationCount)
+        } finally {
+            release.complete(Unit)
+            collector.cancel()
+        }
     }
 
     @Test
@@ -125,15 +218,111 @@ class ReaderViewModelTest {
         chapters = chapters.map { if (it.index == 0) it.copy(blockCount = 0) else it }
         val reader = reader()
         val state = awaitReading(reader)
-        assertEquals(BlockKind.FALLBACK, state.blocks.single().kind)
+        assertEquals(BlockKind.FALLBACK, state.blocks.single { it.chapterIndex == 0 }.kind)
+        assertEquals("Paragraph 0", state.blocks.first { it.chapterIndex == 1 }.text)
+        assertTrue(state.blocks.size <= 128)
         reader.selectChapter(1)
         val next = withTimeout(5000) {
             reader.state.filterIsInstance<ReaderUiState.Reading>().first { it.position.chapterIndex == 1 }
         }
-        assertEquals("Paragraph 0", next.blocks.first().text)
+        assertEquals("Paragraph 0", next.blocks.first { it.chapterIndex == 1 }.text)
+        assertEquals(1, next.position.chapterIndex)
+        reader.onVisibleBlock(0, 0)
+        assertEquals(0, (reader.state.value as ReaderUiState.Reading).position.chapterIndex)
+        reader.onVisibleBlock(1, 0)
+        reader.flushPosition()
+        assertEquals(1, repository.getPosition(id)?.chapterIndex)
     }
 
-    private fun reader() = ReaderViewModel(id, repository, listOf(parser)).also { store.put("reader", it) }
+    @Test
+    fun `visible indicators preserve restore anchor and reject disposed viewport callbacks`() = runBlocking {
+        repository.savePosition(ReadingPosition(id, 1, 0, 4))
+        val reader = reader()
+        val restored = awaitReading(reader)
+        // A short final chapter can be clamped downwards, leaving an earlier fragment at the top.
+        reader.onVisibleIndicator(0, 99.9, restored.layoutGeneration)
+        val visible = reader.state.value as ReaderUiState.Reading
+        assertEquals("Long chapter", visible.indicator.chapter?.title)
+        assertEquals(99, visible.indicator.percent)
+        assertEquals(restored.logicalPosition, visible.logicalPosition)
+        reader.onVisibleIndicator(1, 12.0, restored.layoutGeneration - 1)
+        assertEquals(visible, reader.state.value)
+        assertTrue(reader.flushPosition())
+        assertEquals(restored.position, repository.getPosition(id))
+    }
+
+    @Test
+    fun `actual reader keeps inner anchor through write failure system font and latest retry`() = runBlocking {
+        longParagraph = "Кириллица 😀 𝄞 é. ".repeat(8000)
+        val offset = ReaderPositionResolver.safeOffset(longParagraph, 15_000)
+        repository.savePosition(ReadingPosition(id, 0, 500, offset))
+        val failing = AtomicBoolean(true)
+        val saver = ReadingPositionSaver(
+            save = {
+                if (failing.get()) throw IOException("Database unavailable")
+                repository.savePosition(it)
+            },
+        )
+        val reader = reader(saver, ReaderPreferences(readingMode = ReadingMode.PAGINATED))
+        withTimeout(10_000) { reader.state.filterIsInstance<ReaderUiState.PreparingPages>().first() }
+        reader.pagination.configure(environment(1f))
+        val first = awaitReading(reader)
+        assertEquals(offset, first.position.characterOffset)
+        assertTrue(first.blocks.isEmpty())
+        val requested = ReaderPreferences(fontScale = 2f, readingMode = ReadingMode.VERTICAL)
+        assertFalse(reader.pagination.applyPreferences(requested, GeometryChangeOrigin.USER_PREFERENCE))
+        assertEquals(first.layoutGeneration, (reader.state.value as ReaderUiState.Reading).layoutGeneration)
+        reader.pagination.configure(environment(1.5f))
+        reader.pagination.configure(environment(2f))
+        val changed = withTimeout(10_000) {
+            reader.state.filterIsInstance<ReaderUiState.Reading>().first {
+                it.pages?.key?.viewport?.systemFontScale == 2f
+            }
+        }
+        assertEquals(first.logicalPosition, changed.logicalPosition)
+        assertTrue(reader.saveFailed.value)
+        val nextNumber = requireNotNull(changed.pages).displayedPage.globalPageNumber + 1
+        val next = requireNotNull(reader.pagination.loadPage(nextNumber, changed.layoutGeneration))
+        reader.pagination.settle(next.slice, changed.layoutGeneration)
+        val navigated = withTimeout(10_000) {
+            reader.state.filterIsInstance<ReaderUiState.Reading>().first {
+                it.logicalPosition == next.slice.startAnchor
+            }
+        }
+        failing.set(false)
+        reader.saveNow()
+        val retried = withTimeout(10_000) {
+            reader.state.filterIsInstance<ReaderUiState.Reading>().first { it.effectiveMode == ReadingMode.VERTICAL }
+        }
+        assertTrue(reader.flushPosition())
+        assertEquals(navigated.logicalPosition, retried.logicalPosition)
+        assertTrue(retried.blocks.size in 1..128)
+        assertTrue(retried.blocks.any { it.blockIndex == retried.position.blockIndex })
+        assertEquals(retried.position, repository.getPosition(id))
+        assertFalse(reader.saveFailed.value)
+    }
+
+    private fun environment(systemScale: Float): PageMeasurementEnvironment {
+        val density = Density(1f, systemScale)
+        val style = TextStyle(fontSize = 16.sp, lineHeight = 24.sp)
+        val typography = ReaderTypography(style, style, 1f)
+        val key = LayoutKey(
+            LayoutContentIdentity("a".repeat(64)),
+            LayoutViewport(240, 240, 1f, systemScale, listOf(16f * systemScale, 24f * systemScale)),
+            LayoutTypography(1f, "Default", "SDK28", "16/24", "16/24", "Simple", "ru", "Ltr", 24f, 16f),
+        )
+        val measurer = TextMeasurer(createFontFamilyResolver(context), density, LayoutDirection.Ltr, 0)
+        return PageMeasurementEnvironment(
+            key,
+            TextPaginator(measurer, typography, density, LayoutDirection.Ltr, "Нет текста"),
+        )
+    }
+
+    private fun reader(
+        saver: ReadingPositionSaver = ReadingPositionSaver(repository::savePosition),
+        preferences: ReaderPreferences = ReaderPreferences(),
+    ) = ReaderViewModel(id, repository, listOf(parser), initialPreferences = preferences, positionSaver = saver)
+        .also { store.put("reader", it) }
 
     private suspend fun awaitReading(reader: ReaderViewModel) = withTimeout(5000) {
         reader.state.filterIsInstance<ReaderUiState.Reading>().first()

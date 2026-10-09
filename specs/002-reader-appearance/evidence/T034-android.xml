@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuite name="com.hooreader.reader.PagedReaderTest" tests="10" failures="0" errors="0" skipped="0" time="22.205" timestamp="2026-10-02T21:46:47" hostname="localhost">
+  <properties>
+    <property name="device" value="Pixel_10(AVD) - 17" />
+    <property name="flavor" value="" />
+    <property name="project" value=":app" />
+  </properties>
+  <testcase name="fb2OneSwipeOnePageCancelBoundariesContentsAndReopen" classname="com.hooreader.reader.PagedReaderTest" time="5.437" />
+  <testcase name="epubModeScaleAndRotationPreserveInnerParagraphAnchor" classname="com.hooreader.reader.PagedReaderTest" time="5.143" />
+  <testcase name="fb2ModeScaleAndRotationPreserveInnerParagraphAnchor" classname="com.hooreader.reader.PagedReaderTest" time="3.896" />
+  <testcase name="epubOneSwipeOnePageCancelBoundariesContentsAndReopen" classname="com.hooreader.reader.PagedReaderTest" time="5.133" />
+  <testcase name="epubPositionSurvivesRecreatedReaderAndDatabaseWithoutOriginal" classname="com.hooreader.reader.ReadingPositionRestoreTest" time="0.055" />
+  <testcase name="fb2InnerLongParagraphSurvivesDatabaseReopenWithoutOriginal" classname="com.hooreader.reader.ReadingPositionRestoreTest" time="0.137" />
+  <testcase name="epubInnerLongParagraphSurvivesDatabaseReopenWithoutOriginal" classname="com.hooreader.reader.ReadingPositionRestoreTest" time="0.139" />
+  <testcase name="fb2PositionSurvivesRecreatedReaderAndDatabaseWithoutOriginal" classname="com.hooreader.reader.ReadingPositionRestoreTest" time="0.058" />
+  <testcase name="epubMeasuredPagesDrawAndRetainEveryUnicodeCharacter" classname="com.hooreader.reader.TextPaginationLayoutTest" time="0.903" />
+  <testcase name="fb2MeasuredPagesDrawAndRetainEveryUnicodeCharacter" classname="com.hooreader.reader.TextPaginationLayoutTest" time="0.939" />
+</testsuite>

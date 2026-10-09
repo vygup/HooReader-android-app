@@ -1,0 +1,4194 @@
+{
+  "profileId": "e07e40c11db287480975fc67ce9fc01e8f8b297d19ec9ede5e6f92a586ef02b4",
+  "status": "INVALID_MIXED_SOURCE_STATE",
+  "expectedScenarios": 36,
+  "profileScenarioCount": 36,
+  "fullProfileCovered": true,
+  "completedScenarios": 36,
+  "series": [
+    {
+      "profileId": "e07e40c11db287480975fc67ce9fc01e8f8b297d19ec9ede5e6f92a586ef02b4",
+      "case": "epub-beginning-baseline-cold",
+      "cache": "cold",
+      "runs": [
+        {
+          "run": 1,
+          "openingMs": 2695.019626,
+          "firstReadableFrameMs": 3038.072959,
+          "exactNumberByMs": 2803.855334,
+          "readyFrameMs": 3038.072959,
+          "pageNumber": 1,
+          "layoutHash": "3faf629ad9043b31419a43dab8100967ae54e0c049cd596dbc9c4a7da3d72bd4",
+          "sourcePasses": 2,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 271262,
+            "sampledPeakHeapBytes": 148693616,
+            "sampledPeakNativeBytes": 37262032,
+            "residentPssKb": 203802,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        },
+        {
+          "run": 2,
+          "openingMs": 1337.764042,
+          "firstReadableFrameMs": 1636.96025,
+          "exactNumberByMs": 1393.933959,
+          "readyFrameMs": 1636.96025,
+          "pageNumber": 1,
+          "layoutHash": "3faf629ad9043b31419a43dab8100967ae54e0c049cd596dbc9c4a7da3d72bd4",
+          "sourcePasses": 1,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 208989,
+            "sampledPeakHeapBytes": 11211104,
+            "sampledPeakNativeBytes": 34692704,
+            "residentPssKb": 205277,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        },
+        {
+          "run": 3,
+          "openingMs": 1327.309292,
+          "firstReadableFrameMs": 1619.216334,
+          "exactNumberByMs": 1380.520084,
+          "readyFrameMs": 1619.216334,
+          "pageNumber": 1,
+          "layoutHash": "3faf629ad9043b31419a43dab8100967ae54e0c049cd596dbc9c4a7da3d72bd4",
+          "sourcePasses": 1,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 208413,
+            "sampledPeakHeapBytes": 11407712,
+            "sampledPeakNativeBytes": 34505056,
+            "residentPssKb": 204973,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        },
+        {
+          "run": 4,
+          "openingMs": 1310.296584,
+          "firstReadableFrameMs": 1603.000584,
+          "exactNumberByMs": 1361.292834,
+          "readyFrameMs": 1603.000584,
+          "pageNumber": 1,
+          "layoutHash": "3faf629ad9043b31419a43dab8100967ae54e0c049cd596dbc9c4a7da3d72bd4",
+          "sourcePasses": 1,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 208557,
+            "sampledPeakHeapBytes": 12603744,
+            "sampledPeakNativeBytes": 36150672,
+            "residentPssKb": 205117,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        },
+        {
+          "run": 5,
+          "openingMs": 1317.971375,
+          "firstReadableFrameMs": 1602.885584,
+          "exactNumberByMs": 1369.120792,
+          "readyFrameMs": 1602.885584,
+          "pageNumber": 1,
+          "layoutHash": "3faf629ad9043b31419a43dab8100967ae54e0c049cd596dbc9c4a7da3d72bd4",
+          "sourcePasses": 1,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 203373,
+            "sampledPeakHeapBytes": 11442320,
+            "sampledPeakNativeBytes": 34523008,
+            "residentPssKb": 202989,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        }
+      ],
+      "minMs": 1602.885584,
+      "medianMs": 1619.216334,
+      "maxMs": 3038.072959,
+      "status": "NOT_VERIFIED_DEVICE"
+    },
+    {
+      "profileId": "e07e40c11db287480975fc67ce9fc01e8f8b297d19ec9ede5e6f92a586ef02b4",
+      "case": "epub-beginning-baseline-warm",
+      "cache": "warm",
+      "runs": [
+        {
+          "run": 1,
+          "openingMs": 1346.544959,
+          "firstReadableFrameMs": 1619.793251,
+          "exactNumberByMs": 1354.898542,
+          "readyFrameMs": 1619.793251,
+          "pageNumber": 1,
+          "layoutHash": "3faf629ad9043b31419a43dab8100967ae54e0c049cd596dbc9c4a7da3d72bd4",
+          "sourcePasses": 1,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 202128,
+            "sampledPeakHeapBytes": 11587936,
+            "sampledPeakNativeBytes": 37625408,
+            "residentPssKb": 201344,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        },
+        {
+          "run": 2,
+          "openingMs": 1338.4135,
+          "firstReadableFrameMs": 1619.78725,
+          "exactNumberByMs": 1345.39725,
+          "readyFrameMs": 1619.78725,
+          "pageNumber": 1,
+          "layoutHash": "3faf629ad9043b31419a43dab8100967ae54e0c049cd596dbc9c4a7da3d72bd4",
+          "sourcePasses": 1,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 206448,
+            "sampledPeakHeapBytes": 13113488,
+            "sampledPeakNativeBytes": 37190480,
+            "residentPssKb": 203312,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        },
+        {
+          "run": 3,
+          "openingMs": 1334.886,
+          "firstReadableFrameMs": 1604.087917,
+          "exactNumberByMs": 1342.043834,
+          "readyFrameMs": 1604.087917,
+          "pageNumber": 1,
+          "layoutHash": "3faf629ad9043b31419a43dab8100967ae54e0c049cd596dbc9c4a7da3d72bd4",
+          "sourcePasses": 1,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 208576,
+            "sampledPeakHeapBytes": 10311824,
+            "sampledPeakNativeBytes": 37751616,
+            "residentPssKb": 207872,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        },
+        {
+          "run": 4,
+          "openingMs": 1324.382126,
+          "firstReadableFrameMs": 1601.066251,
+          "exactNumberByMs": 1331.935959,
+          "readyFrameMs": 1601.066251,
+          "pageNumber": 1,
+          "layoutHash": "3faf629ad9043b31419a43dab8100967ae54e0c049cd596dbc9c4a7da3d72bd4",
+          "sourcePasses": 1,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 211776,
+            "sampledPeakHeapBytes": 12261520,
+            "sampledPeakNativeBytes": 37609936,
+            "residentPssKb": 208432,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        },
+        {
+          "run": 5,
+          "openingMs": 1350.169292,
+          "firstReadableFrameMs": 1617.950667,
+          "exactNumberByMs": 1357.208667,
+          "readyFrameMs": 1617.950667,
+          "pageNumber": 1,
+          "layoutHash": "3faf629ad9043b31419a43dab8100967ae54e0c049cd596dbc9c4a7da3d72bd4",
+          "sourcePasses": 1,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 208816,
+            "sampledPeakHeapBytes": 11309408,
+            "sampledPeakNativeBytes": 37769632,
+            "residentPssKb": 207968,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        }
+      ],
+      "minMs": 1601.066251,
+      "medianMs": 1617.950667,
+      "maxMs": 1619.793251,
+      "status": "NOT_VERIFIED_DEVICE"
+    },
+    {
+      "profileId": "e07e40c11db287480975fc67ce9fc01e8f8b297d19ec9ede5e6f92a586ef02b4",
+      "case": "epub-beginning-baseline-cold_source",
+      "cache": "cold_source",
+      "runs": [
+        {
+          "run": 1,
+          "openingMs": 2797.780001,
+          "firstReadableFrameMs": 3151.321251,
+          "exactNumberByMs": 2908.674251,
+          "readyFrameMs": 3151.321251,
+          "pageNumber": 1,
+          "layoutHash": "3faf629ad9043b31419a43dab8100967ae54e0c049cd596dbc9c4a7da3d72bd4",
+          "sourcePasses": 2,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 276786,
+            "sampledPeakHeapBytes": 151544432,
+            "sampledPeakNativeBytes": 34466624,
+            "residentPssKb": 203435,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        },
+        {
+          "run": 2,
+          "openingMs": 2635.777584,
+          "firstReadableFrameMs": 2933.325251,
+          "exactNumberByMs": 2689.637084,
+          "readyFrameMs": 2933.325251,
+          "pageNumber": 1,
+          "layoutHash": "3faf629ad9043b31419a43dab8100967ae54e0c049cd596dbc9c4a7da3d72bd4",
+          "sourcePasses": 2,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 204366,
+            "sampledPeakHeapBytes": 13111648,
+            "sampledPeakNativeBytes": 33794336,
+            "residentPssKb": 200622,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        },
+        {
+          "run": 3,
+          "openingMs": 2656.791543,
+          "firstReadableFrameMs": 2950.248418,
+          "exactNumberByMs": 2709.315543,
+          "readyFrameMs": 2950.248418,
+          "pageNumber": 1,
+          "layoutHash": "3faf629ad9043b31419a43dab8100967ae54e0c049cd596dbc9c4a7da3d72bd4",
+          "sourcePasses": 2,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 203230,
+            "sampledPeakHeapBytes": 13799776,
+            "sampledPeakNativeBytes": 36653824,
+            "residentPssKb": 200702,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        },
+        {
+          "run": 4,
+          "openingMs": 2649.680084,
+          "firstReadableFrameMs": 2935.862043,
+          "exactNumberByMs": 2702.089668,
+          "readyFrameMs": 2935.862043,
+          "pageNumber": 1,
+          "layoutHash": "3faf629ad9043b31419a43dab8100967ae54e0c049cd596dbc9c4a7da3d72bd4",
+          "sourcePasses": 2,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 207454,
+            "sampledPeakHeapBytes": 11293024,
+            "sampledPeakNativeBytes": 34324944,
+            "residentPssKb": 204110,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        },
+        {
+          "run": 5,
+          "openingMs": 2637.103626,
+          "firstReadableFrameMs": 2919.425626,
+          "exactNumberByMs": 2688.200459,
+          "readyFrameMs": 2919.425626,
+          "pageNumber": 1,
+          "layoutHash": "3faf629ad9043b31419a43dab8100967ae54e0c049cd596dbc9c4a7da3d72bd4",
+          "sourcePasses": 2,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 203550,
+            "sampledPeakHeapBytes": 11506016,
+            "sampledPeakNativeBytes": 35918560,
+            "residentPssKb": 200494,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        }
+      ],
+      "minMs": 2919.425626,
+      "medianMs": 2935.862043,
+      "maxMs": 3151.321251,
+      "status": "NOT_VERIFIED_DEVICE"
+    },
+    {
+      "profileId": "e07e40c11db287480975fc67ce9fc01e8f8b297d19ec9ede5e6f92a586ef02b4",
+      "case": "epub-beginning-scale-cold",
+      "cache": "cold",
+      "runs": [
+        {
+          "run": 1,
+          "openingMs": 2798.229501,
+          "firstReadableFrameMs": 3219.970127,
+          "exactNumberByMs": 2946.839585,
+          "readyFrameMs": 3219.970127,
+          "pageNumber": 1,
+          "layoutHash": "9f6e4354178e45c9a8e8846073f64834994494b68ec860dfa24c2a207dfed078",
+          "sourcePasses": 2,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 271754,
+            "sampledPeakHeapBytes": 149643888,
+            "sampledPeakNativeBytes": 36854160,
+            "residentPssKb": 202725,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        },
+        {
+          "run": 2,
+          "openingMs": 1358.325917,
+          "firstReadableFrameMs": 1741.231542,
+          "exactNumberByMs": 1446.051834,
+          "readyFrameMs": 1741.231542,
+          "pageNumber": 1,
+          "layoutHash": "9f6e4354178e45c9a8e8846073f64834994494b68ec860dfa24c2a207dfed078",
+          "sourcePasses": 1,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 209448,
+            "sampledPeakHeapBytes": 12783968,
+            "sampledPeakNativeBytes": 39067024,
+            "residentPssKb": 205928,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        },
+        {
+          "run": 3,
+          "openingMs": 1341.074542,
+          "firstReadableFrameMs": 1706.059959,
+          "exactNumberByMs": 1424.061959,
+          "readyFrameMs": 1706.059959,
+          "pageNumber": 1,
+          "layoutHash": "9f6e4354178e45c9a8e8846073f64834994494b68ec860dfa24c2a207dfed078",
+          "sourcePasses": 1,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 206616,
+            "sampledPeakHeapBytes": 15159648,
+            "sampledPeakNativeBytes": 37326912,
+            "residentPssKb": 205912,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        },
+        {
+          "run": 4,
+          "openingMs": 1342.765251,
+          "firstReadableFrameMs": 1707.690084,
+          "exactNumberByMs": 1420.967751,
+          "readyFrameMs": 1707.690084,
+          "pageNumber": 1,
+          "layoutHash": "9f6e4354178e45c9a8e8846073f64834994494b68ec860dfa24c2a207dfed078",
+          "sourcePasses": 1,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 210520,
+            "sampledPeakHeapBytes": 13242720,
+            "sampledPeakNativeBytes": 38050288,
+            "residentPssKb": 206088,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        },
+        {
+          "run": 5,
+          "openingMs": 1337.656418,
+          "firstReadableFrameMs": 1706.164335,
+          "exactNumberByMs": 1418.184584,
+          "readyFrameMs": 1706.164335,
+          "pageNumber": 1,
+          "layoutHash": "9f6e4354178e45c9a8e8846073f64834994494b68ec860dfa24c2a207dfed078",
+          "sourcePasses": 1,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 208264,
+            "sampledPeakHeapBytes": 14815584,
+            "sampledPeakNativeBytes": 39186704,
+            "residentPssKb": 205624,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        }
+      ],
+      "minMs": 1706.059959,
+      "medianMs": 1707.690084,
+      "maxMs": 3219.970127,
+      "status": "NOT_VERIFIED_DEVICE"
+    },
+    {
+      "profileId": "e07e40c11db287480975fc67ce9fc01e8f8b297d19ec9ede5e6f92a586ef02b4",
+      "case": "epub-beginning-scale-warm",
+      "cache": "warm",
+      "runs": [
+        {
+          "run": 1,
+          "openingMs": 1356.1935,
+          "firstReadableFrameMs": 1690.11325,
+          "exactNumberByMs": 1363.974459,
+          "readyFrameMs": 1690.11325,
+          "pageNumber": 1,
+          "layoutHash": "9f6e4354178e45c9a8e8846073f64834994494b68ec860dfa24c2a207dfed078",
+          "sourcePasses": 1,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 204172,
+            "sampledPeakHeapBytes": 12751200,
+            "sampledPeakNativeBytes": 35635376,
+            "residentPssKb": 202956,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        },
+        {
+          "run": 2,
+          "openingMs": 1383.444251,
+          "firstReadableFrameMs": 1723.72396,
+          "exactNumberByMs": 1392.673751,
+          "readyFrameMs": 1723.72396,
+          "pageNumber": 1,
+          "layoutHash": "9f6e4354178e45c9a8e8846073f64834994494b68ec860dfa24c2a207dfed078",
+          "sourcePasses": 1,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 210188,
+            "sampledPeakHeapBytes": 10604896,
+            "sampledPeakNativeBytes": 39109408,
+            "residentPssKb": 205980,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        },
+        {
+          "run": 3,
+          "openingMs": 1354.426292,
+          "firstReadableFrameMs": 1704.590875,
+          "exactNumberByMs": 1362.284792,
+          "readyFrameMs": 1704.590875,
+          "pageNumber": 1,
+          "layoutHash": "9f6e4354178e45c9a8e8846073f64834994494b68ec860dfa24c2a207dfed078",
+          "sourcePasses": 1,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 210844,
+            "sampledPeakHeapBytes": 13521248,
+            "sampledPeakNativeBytes": 36282464,
+            "residentPssKb": 206972,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        },
+        {
+          "run": 4,
+          "openingMs": 1340.118001,
+          "firstReadableFrameMs": 1690.218126,
+          "exactNumberByMs": 1347.952876,
+          "readyFrameMs": 1690.218126,
+          "pageNumber": 1,
+          "layoutHash": "9f6e4354178e45c9a8e8846073f64834994494b68ec860dfa24c2a207dfed078",
+          "sourcePasses": 1,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 211132,
+            "sampledPeakHeapBytes": 13736080,
+            "sampledPeakNativeBytes": 35569872,
+            "residentPssKb": 207100,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        },
+        {
+          "run": 5,
+          "openingMs": 1325.980709,
+          "firstReadableFrameMs": 1671.385167,
+          "exactNumberByMs": 1336.201292,
+          "readyFrameMs": 1671.385167,
+          "pageNumber": 1,
+          "layoutHash": "9f6e4354178e45c9a8e8846073f64834994494b68ec860dfa24c2a207dfed078",
+          "sourcePasses": 1,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 206428,
+            "sampledPeakHeapBytes": 13603168,
+            "sampledPeakNativeBytes": 35526832,
+            "residentPssKb": 202892,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        }
+      ],
+      "minMs": 1671.385167,
+      "medianMs": 1690.218126,
+      "maxMs": 1723.72396,
+      "status": "NOT_VERIFIED_DEVICE"
+    },
+    {
+      "profileId": "e07e40c11db287480975fc67ce9fc01e8f8b297d19ec9ede5e6f92a586ef02b4",
+      "case": "epub-beginning-orientation-cold",
+      "cache": "cold",
+      "runs": [
+        {
+          "run": 1,
+          "openingMs": 2741.60821,
+          "firstReadableFrameMs": 3076.89071,
+          "exactNumberByMs": 2851.168293,
+          "readyFrameMs": 3076.89071,
+          "pageNumber": 1,
+          "layoutHash": "62e4d303a424e2f690ffab8e2001bbe3fc5d83775b75d3ea2cf35963ecefbace",
+          "sourcePasses": 2,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 269414,
+            "sampledPeakHeapBytes": 150004336,
+            "sampledPeakNativeBytes": 33587232,
+            "residentPssKb": 204513,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        },
+        {
+          "run": 2,
+          "openingMs": 1310.716959,
+          "firstReadableFrameMs": 1564.298709,
+          "exactNumberByMs": 1362.595375,
+          "readyFrameMs": 1564.298709,
+          "pageNumber": 1,
+          "layoutHash": "62e4d303a424e2f690ffab8e2001bbe3fc5d83775b75d3ea2cf35963ecefbace",
+          "sourcePasses": 1,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 203140,
+            "sampledPeakHeapBytes": 12603744,
+            "sampledPeakNativeBytes": 35101840,
+            "residentPssKb": 201588,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        },
+        {
+          "run": 3,
+          "openingMs": 1330.453751,
+          "firstReadableFrameMs": 1600.162626,
+          "exactNumberByMs": 1380.255459,
+          "readyFrameMs": 1600.162626,
+          "pageNumber": 1,
+          "layoutHash": "62e4d303a424e2f690ffab8e2001bbe3fc5d83775b75d3ea2cf35963ecefbace",
+          "sourcePasses": 1,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 207619,
+            "sampledPeakHeapBytes": 11309408,
+            "sampledPeakNativeBytes": 34753552,
+            "residentPssKb": 200692,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        },
+        {
+          "run": 4,
+          "openingMs": 1299.428917,
+          "firstReadableFrameMs": 1567.166834,
+          "exactNumberByMs": 1351.636292,
+          "readyFrameMs": 1567.166834,
+          "pageNumber": 1,
+          "layoutHash": "62e4d303a424e2f690ffab8e2001bbe3fc5d83775b75d3ea2cf35963ecefbace",
+          "sourcePasses": 1,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 213492,
+            "sampledPeakHeapBytes": 12194144,
+            "sampledPeakNativeBytes": 37247680,
+            "residentPssKb": 209556,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        },
+        {
+          "run": 5,
+          "openingMs": 1280.180126,
+          "firstReadableFrameMs": 1550.561459,
+          "exactNumberByMs": 1331.572334,
+          "readyFrameMs": 1550.561459,
+          "pageNumber": 1,
+          "layoutHash": "62e4d303a424e2f690ffab8e2001bbe3fc5d83775b75d3ea2cf35963ecefbace",
+          "sourcePasses": 1,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 203412,
+            "sampledPeakHeapBytes": 14456976,
+            "sampledPeakNativeBytes": 32853952,
+            "residentPssKb": 200228,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        }
+      ],
+      "minMs": 1550.561459,
+      "medianMs": 1567.166834,
+      "maxMs": 3076.89071,
+      "status": "NOT_VERIFIED_DEVICE"
+    },
+    {
+      "profileId": "e07e40c11db287480975fc67ce9fc01e8f8b297d19ec9ede5e6f92a586ef02b4",
+      "case": "epub-beginning-orientation-warm",
+      "cache": "warm",
+      "runs": [
+        {
+          "run": 1,
+          "openingMs": 1334.408334,
+          "firstReadableFrameMs": 1582.636792,
+          "exactNumberByMs": 1341.636751,
+          "readyFrameMs": 1582.636792,
+          "pageNumber": 1,
+          "layoutHash": "62e4d303a424e2f690ffab8e2001bbe3fc5d83775b75d3ea2cf35963ecefbace",
+          "sourcePasses": 1,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 203152,
+            "sampledPeakHeapBytes": 11325792,
+            "sampledPeakNativeBytes": 34906848,
+            "residentPssKb": 202368,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        },
+        {
+          "run": 2,
+          "openingMs": 1340.391501,
+          "firstReadableFrameMs": 1600.605209,
+          "exactNumberByMs": 1347.695584,
+          "readyFrameMs": 1600.605209,
+          "pageNumber": 1,
+          "layoutHash": "62e4d303a424e2f690ffab8e2001bbe3fc5d83775b75d3ea2cf35963ecefbace",
+          "sourcePasses": 1,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 208496,
+            "sampledPeakHeapBytes": 10719584,
+            "sampledPeakNativeBytes": 36424656,
+            "residentPssKb": 207008,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        },
+        {
+          "run": 3,
+          "openingMs": 1308.126334,
+          "firstReadableFrameMs": 1568.469709,
+          "exactNumberByMs": 1315.777417,
+          "readyFrameMs": 1568.469709,
+          "pageNumber": 1,
+          "layoutHash": "62e4d303a424e2f690ffab8e2001bbe3fc5d83775b75d3ea2cf35963ecefbace",
+          "sourcePasses": 1,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 208016,
+            "sampledPeakHeapBytes": 11063648,
+            "sampledPeakNativeBytes": 37264240,
+            "residentPssKb": 206608,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        },
+        {
+          "run": 4,
+          "openingMs": 1320.887167,
+          "firstReadableFrameMs": 1567.441792,
+          "exactNumberByMs": 1328.299001,
+          "readyFrameMs": 1567.441792,
+          "pageNumber": 1,
+          "layoutHash": "62e4d303a424e2f690ffab8e2001bbe3fc5d83775b75d3ea2cf35963ecefbace",
+          "sourcePasses": 1,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 205200,
+            "sampledPeakHeapBytes": 10670432,
+            "sampledPeakNativeBytes": 34341312,
+            "residentPssKb": 203616,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        },
+        {
+          "run": 5,
+          "openingMs": 1341.472292,
+          "firstReadableFrameMs": 1617.828167,
+          "exactNumberByMs": 1348.992625,
+          "readyFrameMs": 1617.828167,
+          "pageNumber": 1,
+          "layoutHash": "62e4d303a424e2f690ffab8e2001bbe3fc5d83775b75d3ea2cf35963ecefbace",
+          "sourcePasses": 1,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 211104,
+            "sampledPeakHeapBytes": 11278480,
+            "sampledPeakNativeBytes": 36539392,
+            "residentPssKb": 207712,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        }
+      ],
+      "minMs": 1567.441792,
+      "medianMs": 1582.636792,
+      "maxMs": 1617.828167,
+      "status": "NOT_VERIFIED_DEVICE"
+    },
+    {
+      "profileId": "e07e40c11db287480975fc67ce9fc01e8f8b297d19ec9ede5e6f92a586ef02b4",
+      "case": "epub-beginning-system_font-cold",
+      "cache": "cold",
+      "runs": [
+        {
+          "run": 1,
+          "openingMs": 2770.608001,
+          "firstReadableFrameMs": 3150.613626,
+          "exactNumberByMs": 2906.800835,
+          "readyFrameMs": 3150.613626,
+          "pageNumber": 1,
+          "layoutHash": "449517e3c3c309f1fc2b356e4e5cc405acbcba1c8750afd93b50c1d8c8da090a",
+          "sourcePasses": 2,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 269716,
+            "sampledPeakHeapBytes": 148234864,
+            "sampledPeakNativeBytes": 36233888,
+            "residentPssKb": 202783,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        },
+        {
+          "run": 2,
+          "openingMs": 1347.839959,
+          "firstReadableFrameMs": 1653.184751,
+          "exactNumberByMs": 1426.54871,
+          "readyFrameMs": 1653.184751,
+          "pageNumber": 1,
+          "layoutHash": "449517e3c3c309f1fc2b356e4e5cc405acbcba1c8750afd93b50c1d8c8da090a",
+          "sourcePasses": 1,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 207345,
+            "sampledPeakHeapBytes": 12652896,
+            "sampledPeakNativeBytes": 34489520,
+            "residentPssKb": 204753,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        },
+        {
+          "run": 3,
+          "openingMs": 1328.947459,
+          "firstReadableFrameMs": 1655.318709,
+          "exactNumberByMs": 1406.423875,
+          "readyFrameMs": 1655.318709,
+          "pageNumber": 1,
+          "layoutHash": "449517e3c3c309f1fc2b356e4e5cc405acbcba1c8750afd93b50c1d8c8da090a",
+          "sourcePasses": 1,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 206465,
+            "sampledPeakHeapBytes": 12161376,
+            "sampledPeakNativeBytes": 34055536,
+            "residentPssKb": 204289,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        },
+        {
+          "run": 4,
+          "openingMs": 1329.803625,
+          "firstReadableFrameMs": 1653.678792,
+          "exactNumberByMs": 1402.527084,
+          "readyFrameMs": 1653.678792,
+          "pageNumber": 1,
+          "layoutHash": "449517e3c3c309f1fc2b356e4e5cc405acbcba1c8750afd93b50c1d8c8da090a",
+          "sourcePasses": 1,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 207617,
+            "sampledPeakHeapBytes": 12915040,
+            "sampledPeakNativeBytes": 35847200,
+            "residentPssKb": 204321,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        },
+        {
+          "run": 5,
+          "openingMs": 1332.640959,
+          "firstReadableFrameMs": 1638.486125,
+          "exactNumberByMs": 1406.562167,
+          "readyFrameMs": 1638.486125,
+          "pageNumber": 1,
+          "layoutHash": "449517e3c3c309f1fc2b356e4e5cc405acbcba1c8750afd93b50c1d8c8da090a",
+          "sourcePasses": 1,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 203569,
+            "sampledPeakHeapBytes": 12980576,
+            "sampledPeakNativeBytes": 33271440,
+            "residentPssKb": 202737,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        }
+      ],
+      "minMs": 1638.486125,
+      "medianMs": 1653.678792,
+      "maxMs": 3150.613626,
+      "status": "NOT_VERIFIED_DEVICE"
+    },
+    {
+      "profileId": "e07e40c11db287480975fc67ce9fc01e8f8b297d19ec9ede5e6f92a586ef02b4",
+      "case": "epub-beginning-system_font-warm",
+      "cache": "warm",
+      "runs": [
+        {
+          "run": 1,
+          "openingMs": 1327.516042,
+          "firstReadableFrameMs": 1620.598917,
+          "exactNumberByMs": 1335.972292,
+          "readyFrameMs": 1620.598917,
+          "pageNumber": 1,
+          "layoutHash": "449517e3c3c309f1fc2b356e4e5cc405acbcba1c8750afd93b50c1d8c8da090a",
+          "sourcePasses": 1,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 211302,
+            "sampledPeakHeapBytes": 12702048,
+            "sampledPeakNativeBytes": 37305920,
+            "residentPssKb": 210374,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        },
+        {
+          "run": 2,
+          "openingMs": 1307.507709,
+          "firstReadableFrameMs": 1588.556542,
+          "exactNumberByMs": 1315.615042,
+          "readyFrameMs": 1588.556542,
+          "pageNumber": 1,
+          "layoutHash": "449517e3c3c309f1fc2b356e4e5cc405acbcba1c8750afd93b50c1d8c8da090a",
+          "sourcePasses": 1,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 204838,
+            "sampledPeakHeapBytes": 13228176,
+            "sampledPeakNativeBytes": 35944576,
+            "residentPssKb": 199366,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        },
+        {
+          "run": 3,
+          "openingMs": 1320.676542,
+          "firstReadableFrameMs": 1589.100251,
+          "exactNumberByMs": 1328.755542,
+          "readyFrameMs": 1589.100251,
+          "pageNumber": 1,
+          "layoutHash": "449517e3c3c309f1fc2b356e4e5cc405acbcba1c8750afd93b50c1d8c8da090a",
+          "sourcePasses": 1,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 202070,
+            "sampledPeakHeapBytes": 12816736,
+            "sampledPeakNativeBytes": 37278880,
+            "residentPssKb": 201158,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        },
+        {
+          "run": 4,
+          "openingMs": 1295.346542,
+          "firstReadableFrameMs": 1571.992709,
+          "exactNumberByMs": 1304.809042,
+          "readyFrameMs": 1571.992709,
+          "pageNumber": 1,
+          "layoutHash": "449517e3c3c309f1fc2b356e4e5cc405acbcba1c8750afd93b50c1d8c8da090a",
+          "sourcePasses": 1,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 203494,
+            "sampledPeakHeapBytes": 11112800,
+            "sampledPeakNativeBytes": 36914208,
+            "residentPssKb": 201254,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        },
+        {
+          "run": 5,
+          "openingMs": 1311.000042,
+          "firstReadableFrameMs": 1588.738792,
+          "exactNumberByMs": 1321.337459,
+          "readyFrameMs": 1588.738792,
+          "pageNumber": 1,
+          "layoutHash": "449517e3c3c309f1fc2b356e4e5cc405acbcba1c8750afd93b50c1d8c8da090a",
+          "sourcePasses": 1,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 203190,
+            "sampledPeakHeapBytes": 11374944,
+            "sampledPeakNativeBytes": 33439088,
+            "residentPssKb": 199606,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        }
+      ],
+      "minMs": 1571.992709,
+      "medianMs": 1588.738792,
+      "maxMs": 1620.598917,
+      "status": "NOT_VERIFIED_DEVICE"
+    },
+    {
+      "profileId": "e07e40c11db287480975fc67ce9fc01e8f8b297d19ec9ede5e6f92a586ef02b4",
+      "case": "epub-late-baseline-cold",
+      "cache": "cold",
+      "runs": [
+        {
+          "run": 1,
+          "openingMs": 2722.527668,
+          "firstReadableFrameMs": 4098.424502,
+          "exactNumberByMs": 4048.608085,
+          "readyFrameMs": 4098.424502,
+          "pageNumber": 6490,
+          "layoutHash": "3faf629ad9043b31419a43dab8100967ae54e0c049cd596dbc9c4a7da3d72bd4",
+          "sourcePasses": 2,
+          "residentFragments": 3,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 271287,
+            "sampledPeakHeapBytes": 149283440,
+            "sampledPeakNativeBytes": 30420624,
+            "residentPssKb": 124358,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        },
+        {
+          "run": 2,
+          "openingMs": 1347.497084,
+          "firstReadableFrameMs": 2432.689792,
+          "exactNumberByMs": 2382.266417,
+          "readyFrameMs": 2432.689792,
+          "pageNumber": 6490,
+          "layoutHash": "3faf629ad9043b31419a43dab8100967ae54e0c049cd596dbc9c4a7da3d72bd4",
+          "sourcePasses": 1,
+          "residentFragments": 3,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 132646,
+            "sampledPeakHeapBytes": 12587360,
+            "sampledPeakNativeBytes": 19990240,
+            "residentPssKb": 127174,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        },
+        {
+          "run": 3,
+          "openingMs": 1335.141167,
+          "firstReadableFrameMs": 2382.941835,
+          "exactNumberByMs": 2330.784293,
+          "readyFrameMs": 2382.941835,
+          "pageNumber": 6490,
+          "layoutHash": "3faf629ad9043b31419a43dab8100967ae54e0c049cd596dbc9c4a7da3d72bd4",
+          "sourcePasses": 1,
+          "residentFragments": 3,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 132229,
+            "sampledPeakHeapBytes": 11571552,
+            "sampledPeakNativeBytes": 19938560,
+            "residentPssKb": 124998,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        },
+        {
+          "run": 4,
+          "openingMs": 1331.103626,
+          "firstReadableFrameMs": 2366.164709,
+          "exactNumberByMs": 2312.742876,
+          "readyFrameMs": 2366.164709,
+          "pageNumber": 6490,
+          "layoutHash": "3faf629ad9043b31419a43dab8100967ae54e0c049cd596dbc9c4a7da3d72bd4",
+          "sourcePasses": 1,
+          "residentFragments": 3,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 131334,
+            "sampledPeakHeapBytes": 10391904,
+            "sampledPeakNativeBytes": 20025040,
+            "residentPssKb": 125494,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        },
+        {
+          "run": 5,
+          "openingMs": 1335.161126,
+          "firstReadableFrameMs": 2349.516168,
+          "exactNumberByMs": 2303.472834,
+          "readyFrameMs": 2349.516168,
+          "pageNumber": 6490,
+          "layoutHash": "3faf629ad9043b31419a43dab8100967ae54e0c049cd596dbc9c4a7da3d72bd4",
+          "sourcePasses": 1,
+          "residentFragments": 3,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 132454,
+            "sampledPeakHeapBytes": 11850080,
+            "sampledPeakNativeBytes": 19964912,
+            "residentPssKb": 125414,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        }
+      ],
+      "minMs": 2349.516168,
+      "medianMs": 2382.941835,
+      "maxMs": 4098.424502,
+      "status": "NOT_VERIFIED_DEVICE"
+    },
+    {
+      "profileId": "e07e40c11db287480975fc67ce9fc01e8f8b297d19ec9ede5e6f92a586ef02b4",
+      "case": "epub-late-baseline-warm",
+      "cache": "warm",
+      "runs": [
+        {
+          "run": 1,
+          "openingMs": 1360.263626,
+          "firstReadableFrameMs": 1434.493459,
+          "exactNumberByMs": 1383.140626,
+          "readyFrameMs": 1434.493459,
+          "pageNumber": 6490,
+          "layoutHash": "3faf629ad9043b31419a43dab8100967ae54e0c049cd596dbc9c4a7da3d72bd4",
+          "sourcePasses": 1,
+          "residentFragments": 3,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 130403,
+            "sampledPeakHeapBytes": 10015072,
+            "sampledPeakNativeBytes": 19768896,
+            "residentPssKb": 126883,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        },
+        {
+          "run": 2,
+          "openingMs": 1362.43825,
+          "firstReadableFrameMs": 1434.405209,
+          "exactNumberByMs": 1387.415959,
+          "readyFrameMs": 1434.405209,
+          "pageNumber": 6490,
+          "layoutHash": "3faf629ad9043b31419a43dab8100967ae54e0c049cd596dbc9c4a7da3d72bd4",
+          "sourcePasses": 1,
+          "residentFragments": 3,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 131491,
+            "sampledPeakHeapBytes": 10047840,
+            "sampledPeakNativeBytes": 19729824,
+            "residentPssKb": 128627,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        },
+        {
+          "run": 3,
+          "openingMs": 1345.538584,
+          "firstReadableFrameMs": 1417.897918,
+          "exactNumberByMs": 1367.998501,
+          "readyFrameMs": 1417.897918,
+          "pageNumber": 6490,
+          "layoutHash": "3faf629ad9043b31419a43dab8100967ae54e0c049cd596dbc9c4a7da3d72bd4",
+          "sourcePasses": 1,
+          "residentFragments": 3,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 134403,
+            "sampledPeakHeapBytes": 12964192,
+            "sampledPeakNativeBytes": 20251856,
+            "residentPssKb": 124931,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        },
+        {
+          "run": 4,
+          "openingMs": 1348.016292,
+          "firstReadableFrameMs": 1434.638834,
+          "exactNumberByMs": 1374.638834,
+          "readyFrameMs": 1434.638834,
+          "pageNumber": 6490,
+          "layoutHash": "3faf629ad9043b31419a43dab8100967ae54e0c049cd596dbc9c4a7da3d72bd4",
+          "sourcePasses": 1,
+          "residentFragments": 3,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 133651,
+            "sampledPeakHeapBytes": 11966608,
+            "sampledPeakNativeBytes": 19817344,
+            "residentPssKb": 126099,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        },
+        {
+          "run": 5,
+          "openingMs": 1324.869,
+          "firstReadableFrameMs": 1401.284375,
+          "exactNumberByMs": 1346.288167,
+          "readyFrameMs": 1401.284375,
+          "pageNumber": 6490,
+          "layoutHash": "3faf629ad9043b31419a43dab8100967ae54e0c049cd596dbc9c4a7da3d72bd4",
+          "sourcePasses": 1,
+          "residentFragments": 3,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 130691,
+            "sampledPeakHeapBytes": 10309984,
+            "sampledPeakNativeBytes": 19788832,
+            "residentPssKb": 124547,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        }
+      ],
+      "minMs": 1401.284375,
+      "medianMs": 1434.405209,
+      "maxMs": 1434.638834,
+      "status": "NOT_VERIFIED_DEVICE"
+    },
+    {
+      "profileId": "e07e40c11db287480975fc67ce9fc01e8f8b297d19ec9ede5e6f92a586ef02b4",
+      "case": "epub-late-baseline-cold_source",
+      "cache": "cold_source",
+      "runs": [
+        {
+          "run": 1,
+          "openingMs": 2788.971751,
+          "firstReadableFrameMs": 4164.972377,
+          "exactNumberByMs": 4117.551835,
+          "readyFrameMs": 4164.972377,
+          "pageNumber": 6490,
+          "layoutHash": "3faf629ad9043b31419a43dab8100967ae54e0c049cd596dbc9c4a7da3d72bd4",
+          "sourcePasses": 2,
+          "residentFragments": 3,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 269941,
+            "sampledPeakHeapBytes": 148005488,
+            "sampledPeakNativeBytes": 30300752,
+            "residentPssKb": 126337,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        },
+        {
+          "run": 2,
+          "openingMs": 2672.000834,
+          "firstReadableFrameMs": 3747.97871,
+          "exactNumberByMs": 3701.038918,
+          "readyFrameMs": 3747.97871,
+          "pageNumber": 6490,
+          "layoutHash": "3faf629ad9043b31419a43dab8100967ae54e0c049cd596dbc9c4a7da3d72bd4",
+          "sourcePasses": 2,
+          "residentFragments": 3,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 131089,
+            "sampledPeakHeapBytes": 11358560,
+            "sampledPeakNativeBytes": 19976368,
+            "residentPssKb": 129105,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        },
+        {
+          "run": 3,
+          "openingMs": 2645.497084,
+          "firstReadableFrameMs": 3682.315751,
+          "exactNumberByMs": 3629.011001,
+          "readyFrameMs": 3682.315751,
+          "pageNumber": 6490,
+          "layoutHash": "3faf629ad9043b31419a43dab8100967ae54e0c049cd596dbc9c4a7da3d72bd4",
+          "sourcePasses": 2,
+          "residentFragments": 3,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 131841,
+            "sampledPeakHeapBytes": 12423520,
+            "sampledPeakNativeBytes": 19965888,
+            "residentPssKb": 125537,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        },
+        {
+          "run": 4,
+          "openingMs": 2623.862543,
+          "firstReadableFrameMs": 3632.888043,
+          "exactNumberByMs": 3580.745085,
+          "readyFrameMs": 3632.888043,
+          "pageNumber": 6490,
+          "layoutHash": "3faf629ad9043b31419a43dab8100967ae54e0c049cd596dbc9c4a7da3d72bd4",
+          "sourcePasses": 2,
+          "residentFragments": 3,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 132193,
+            "sampledPeakHeapBytes": 10686816,
+            "sampledPeakNativeBytes": 19968656,
+            "residentPssKb": 125553,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        },
+        {
+          "run": 5,
+          "openingMs": 2636.362668,
+          "firstReadableFrameMs": 3632.02421,
+          "exactNumberByMs": 3582.853543,
+          "readyFrameMs": 3632.02421,
+          "pageNumber": 6490,
+          "layoutHash": "3faf629ad9043b31419a43dab8100967ae54e0c049cd596dbc9c4a7da3d72bd4",
+          "sourcePasses": 2,
+          "residentFragments": 3,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 132049,
+            "sampledPeakHeapBytes": 10768736,
+            "sampledPeakNativeBytes": 19979136,
+            "residentPssKb": 129121,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        }
+      ],
+      "minMs": 3632.02421,
+      "medianMs": 3682.315751,
+      "maxMs": 4164.972377,
+      "status": "NOT_VERIFIED_DEVICE"
+    },
+    {
+      "profileId": "e07e40c11db287480975fc67ce9fc01e8f8b297d19ec9ede5e6f92a586ef02b4",
+      "case": "epub-late-scale-cold",
+      "cache": "cold",
+      "runs": [
+        {
+          "run": 1,
+          "openingMs": 2726.168293,
+          "firstReadableFrameMs": 5368.476503,
+          "exactNumberByMs": 5314.927753,
+          "readyFrameMs": 5368.476503,
+          "pageNumber": 26299,
+          "layoutHash": "9f6e4354178e45c9a8e8846073f64834994494b68ec860dfa24c2a207dfed078",
+          "sourcePasses": 2,
+          "residentFragments": 2,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 279022,
+            "sampledPeakHeapBytes": 152199792,
+            "sampledPeakNativeBytes": 30694640,
+            "residentPssKb": 126730,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        },
+        {
+          "run": 2,
+          "openingMs": 1353.179042,
+          "firstReadableFrameMs": 3449.078793,
+          "exactNumberByMs": 3400.13521,
+          "readyFrameMs": 3449.078793,
+          "pageNumber": 26299,
+          "layoutHash": "9f6e4354178e45c9a8e8846073f64834994494b68ec860dfa24c2a207dfed078",
+          "sourcePasses": 1,
+          "residentFragments": 2,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 132762,
+            "sampledPeakHeapBytes": 12996960,
+            "sampledPeakNativeBytes": 20202688,
+            "residentPssKb": 129834,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        },
+        {
+          "run": 3,
+          "openingMs": 1345.625001,
+          "firstReadableFrameMs": 3332.463626,
+          "exactNumberByMs": 3290.825501,
+          "readyFrameMs": 3332.463626,
+          "pageNumber": 26299,
+          "layoutHash": "9f6e4354178e45c9a8e8846073f64834994494b68ec860dfa24c2a207dfed078",
+          "sourcePasses": 1,
+          "residentFragments": 2,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 136154,
+            "sampledPeakHeapBytes": 12783968,
+            "sampledPeakNativeBytes": 20065936,
+            "residentPssKb": 125082,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        },
+        {
+          "run": 4,
+          "openingMs": 1339.734208,
+          "firstReadableFrameMs": 3266.428751,
+          "exactNumberByMs": 3219.656543,
+          "readyFrameMs": 3266.428751,
+          "pageNumber": 26299,
+          "layoutHash": "9f6e4354178e45c9a8e8846073f64834994494b68ec860dfa24c2a207dfed078",
+          "sourcePasses": 1,
+          "residentFragments": 2,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 132602,
+            "sampledPeakHeapBytes": 11817312,
+            "sampledPeakNativeBytes": 20225520,
+            "residentPssKb": 127722,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        },
+        {
+          "run": 5,
+          "openingMs": 1325.071209,
+          "firstReadableFrameMs": 3232.868918,
+          "exactNumberByMs": 3177.113085,
+          "readyFrameMs": 3232.868918,
+          "pageNumber": 26299,
+          "layoutHash": "9f6e4354178e45c9a8e8846073f64834994494b68ec860dfa24c2a207dfed078",
+          "sourcePasses": 1,
+          "residentFragments": 2,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 132986,
+            "sampledPeakHeapBytes": 11293024,
+            "sampledPeakNativeBytes": 20341824,
+            "residentPssKb": 127674,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        }
+      ],
+      "minMs": 3232.868918,
+      "medianMs": 3332.463626,
+      "maxMs": 5368.476503,
+      "status": "NOT_VERIFIED_DEVICE"
+    },
+    {
+      "profileId": "e07e40c11db287480975fc67ce9fc01e8f8b297d19ec9ede5e6f92a586ef02b4",
+      "case": "epub-late-scale-warm",
+      "cache": "warm",
+      "runs": [
+        {
+          "run": 1,
+          "openingMs": 1383.623126,
+          "firstReadableFrameMs": 1467.759584,
+          "exactNumberByMs": 1409.451001,
+          "readyFrameMs": 1467.759584,
+          "pageNumber": 26299,
+          "layoutHash": "9f6e4354178e45c9a8e8846073f64834994494b68ec860dfa24c2a207dfed078",
+          "sourcePasses": 1,
+          "residentFragments": 2,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 129666,
+            "sampledPeakHeapBytes": 9654624,
+            "sampledPeakNativeBytes": 19620560,
+            "residentPssKb": 124946,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        },
+        {
+          "run": 2,
+          "openingMs": 1371.961584,
+          "firstReadableFrameMs": 1451.629667,
+          "exactNumberByMs": 1395.957917,
+          "readyFrameMs": 1451.629667,
+          "pageNumber": 26299,
+          "layoutHash": "9f6e4354178e45c9a8e8846073f64834994494b68ec860dfa24c2a207dfed078",
+          "sourcePasses": 1,
+          "residentFragments": 2,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 131538,
+            "sampledPeakHeapBytes": 10031456,
+            "sampledPeakNativeBytes": 19634944,
+            "residentPssKb": 128434,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        },
+        {
+          "run": 3,
+          "openingMs": 1359.176959,
+          "firstReadableFrameMs": 1434.313251,
+          "exactNumberByMs": 1389.683292,
+          "readyFrameMs": 1434.313251,
+          "pageNumber": 26299,
+          "layoutHash": "9f6e4354178e45c9a8e8846073f64834994494b68ec860dfa24c2a207dfed078",
+          "sourcePasses": 1,
+          "residentFragments": 2,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 131426,
+            "sampledPeakHeapBytes": 10096992,
+            "sampledPeakNativeBytes": 19704064,
+            "residentPssKb": 127330,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        },
+        {
+          "run": 4,
+          "openingMs": 1359.419542,
+          "firstReadableFrameMs": 1434.7555,
+          "exactNumberByMs": 1383.502917,
+          "readyFrameMs": 1434.7555,
+          "pageNumber": 26299,
+          "layoutHash": "9f6e4354178e45c9a8e8846073f64834994494b68ec860dfa24c2a207dfed078",
+          "sourcePasses": 1,
+          "residentFragments": 2,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 131106,
+            "sampledPeakHeapBytes": 9377936,
+            "sampledPeakNativeBytes": 19647392,
+            "residentPssKb": 126482,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        },
+        {
+          "run": 5,
+          "openingMs": 1326.45075,
+          "firstReadableFrameMs": 1401.455792,
+          "exactNumberByMs": 1349.749042,
+          "readyFrameMs": 1401.455792,
+          "pageNumber": 26299,
+          "layoutHash": "9f6e4354178e45c9a8e8846073f64834994494b68ec860dfa24c2a207dfed078",
+          "sourcePasses": 1,
+          "residentFragments": 2,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 130258,
+            "sampledPeakHeapBytes": 11063648,
+            "sampledPeakNativeBytes": 19686976,
+            "residentPssKb": 128034,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        }
+      ],
+      "minMs": 1401.455792,
+      "medianMs": 1434.7555,
+      "maxMs": 1467.759584,
+      "status": "NOT_VERIFIED_DEVICE"
+    },
+    {
+      "profileId": "e07e40c11db287480975fc67ce9fc01e8f8b297d19ec9ede5e6f92a586ef02b4",
+      "case": "epub-late-orientation-cold",
+      "cache": "cold",
+      "runs": [
+        {
+          "run": 1,
+          "openingMs": 2856.377335,
+          "firstReadableFrameMs": 4280.062169,
+          "exactNumberByMs": 4227.58546,
+          "readyFrameMs": 4280.062169,
+          "pageNumber": 7234,
+          "layoutHash": "62e4d303a424e2f690ffab8e2001bbe3fc5d83775b75d3ea2cf35963ecefbace",
+          "sourcePasses": 2,
+          "residentFragments": 3,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 267571,
+            "sampledPeakHeapBytes": 148136560,
+            "sampledPeakNativeBytes": 31297152,
+            "residentPssKb": 128801,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        },
+        {
+          "run": 2,
+          "openingMs": 1372.893168,
+          "firstReadableFrameMs": 2515.30321,
+          "exactNumberByMs": 2459.981627,
+          "readyFrameMs": 2515.30321,
+          "pageNumber": 7234,
+          "layoutHash": "62e4d303a424e2f690ffab8e2001bbe3fc5d83775b75d3ea2cf35963ecefbace",
+          "sourcePasses": 1,
+          "residentFragments": 3,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 132145,
+            "sampledPeakHeapBytes": 10785120,
+            "sampledPeakNativeBytes": 19921168,
+            "residentPssKb": 125041,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        },
+        {
+          "run": 3,
+          "openingMs": 1373.1745,
+          "firstReadableFrameMs": 2466.151834,
+          "exactNumberByMs": 2419.579292,
+          "readyFrameMs": 2466.151834,
+          "pageNumber": 7234,
+          "layoutHash": "62e4d303a424e2f690ffab8e2001bbe3fc5d83775b75d3ea2cf35963ecefbace",
+          "sourcePasses": 1,
+          "residentFragments": 3,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 133617,
+            "sampledPeakHeapBytes": 10948960,
+            "sampledPeakNativeBytes": 19929392,
+            "residentPssKb": 127601,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        },
+        {
+          "run": 4,
+          "openingMs": 1364.265293,
+          "firstReadableFrameMs": 2433.797168,
+          "exactNumberByMs": 2383.132377,
+          "readyFrameMs": 2433.797168,
+          "pageNumber": 7234,
+          "layoutHash": "62e4d303a424e2f690ffab8e2001bbe3fc5d83775b75d3ea2cf35963ecefbace",
+          "sourcePasses": 1,
+          "residentFragments": 3,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 132993,
+            "sampledPeakHeapBytes": 11178336,
+            "sampledPeakNativeBytes": 20018304,
+            "residentPssKb": 129057,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        },
+        {
+          "run": 5,
+          "openingMs": 1355.932292,
+          "firstReadableFrameMs": 2398.181459,
+          "exactNumberByMs": 2351.400376,
+          "readyFrameMs": 2398.181459,
+          "pageNumber": 7234,
+          "layoutHash": "62e4d303a424e2f690ffab8e2001bbe3fc5d83775b75d3ea2cf35963ecefbace",
+          "sourcePasses": 1,
+          "residentFragments": 3,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 132433,
+            "sampledPeakHeapBytes": 11262096,
+            "sampledPeakNativeBytes": 19887568,
+            "residentPssKb": 127569,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        }
+      ],
+      "minMs": 2398.181459,
+      "medianMs": 2466.151834,
+      "maxMs": 4280.062169,
+      "status": "NOT_VERIFIED_DEVICE"
+    },
+    {
+      "profileId": "e07e40c11db287480975fc67ce9fc01e8f8b297d19ec9ede5e6f92a586ef02b4",
+      "case": "epub-late-orientation-warm",
+      "cache": "warm",
+      "runs": [
+        {
+          "run": 1,
+          "openingMs": 1340.943709,
+          "firstReadableFrameMs": 1417.365792,
+          "exactNumberByMs": 1363.313125,
+          "readyFrameMs": 1417.365792,
+          "pageNumber": 7234,
+          "layoutHash": "62e4d303a424e2f690ffab8e2001bbe3fc5d83775b75d3ea2cf35963ecefbace",
+          "sourcePasses": 1,
+          "residentFragments": 3,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 131896,
+            "sampledPeakHeapBytes": 9851232,
+            "sampledPeakNativeBytes": 19722832,
+            "residentPssKb": 124840,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        },
+        {
+          "run": 2,
+          "openingMs": 1307.483209,
+          "firstReadableFrameMs": 1384.279667,
+          "exactNumberByMs": 1329.514876,
+          "readyFrameMs": 1384.279667,
+          "pageNumber": 7234,
+          "layoutHash": "62e4d303a424e2f690ffab8e2001bbe3fc5d83775b75d3ea2cf35963ecefbace",
+          "sourcePasses": 1,
+          "residentFragments": 3,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 130664,
+            "sampledPeakHeapBytes": 9736544,
+            "sampledPeakNativeBytes": 19750768,
+            "residentPssKb": 125368,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        },
+        {
+          "run": 3,
+          "openingMs": 1317.663334,
+          "firstReadableFrameMs": 1384.551376,
+          "exactNumberByMs": 1341.554084,
+          "readyFrameMs": 1384.551376,
+          "pageNumber": 7234,
+          "layoutHash": "62e4d303a424e2f690ffab8e2001bbe3fc5d83775b75d3ea2cf35963ecefbace",
+          "sourcePasses": 1,
+          "residentFragments": 3,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 131784,
+            "sampledPeakHeapBytes": 9916768,
+            "sampledPeakNativeBytes": 19792736,
+            "residentPssKb": 126088,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        },
+        {
+          "run": 4,
+          "openingMs": 1308.610376,
+          "firstReadableFrameMs": 1384.397876,
+          "exactNumberByMs": 1329.992167,
+          "readyFrameMs": 1384.397876,
+          "pageNumber": 7234,
+          "layoutHash": "62e4d303a424e2f690ffab8e2001bbe3fc5d83775b75d3ea2cf35963ecefbace",
+          "sourcePasses": 1,
+          "residentFragments": 3,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 130872,
+            "sampledPeakHeapBytes": 10752352,
+            "sampledPeakNativeBytes": 19748096,
+            "residentPssKb": 129848,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        },
+        {
+          "run": 5,
+          "openingMs": 1305.571084,
+          "firstReadableFrameMs": 1368.003709,
+          "exactNumberByMs": 1330.264376,
+          "readyFrameMs": 1368.003709,
+          "pageNumber": 7234,
+          "layoutHash": "62e4d303a424e2f690ffab8e2001bbe3fc5d83775b75d3ea2cf35963ecefbace",
+          "sourcePasses": 1,
+          "residentFragments": 3,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 132488,
+            "sampledPeakHeapBytes": 10360976,
+            "sampledPeakNativeBytes": 19814864,
+            "residentPssKb": 125752,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        }
+      ],
+      "minMs": 1368.003709,
+      "medianMs": 1384.397876,
+      "maxMs": 1417.365792,
+      "status": "NOT_VERIFIED_DEVICE"
+    },
+    {
+      "profileId": "e07e40c11db287480975fc67ce9fc01e8f8b297d19ec9ede5e6f92a586ef02b4",
+      "case": "epub-late-system_font-cold",
+      "cache": "cold",
+      "runs": [
+        {
+          "run": 1,
+          "openingMs": 2792.530501,
+          "firstReadableFrameMs": 5130.890086,
+          "exactNumberByMs": 5078.528627,
+          "readyFrameMs": 5130.890086,
+          "pageNumber": 20613,
+          "layoutHash": "449517e3c3c309f1fc2b356e4e5cc405acbcba1c8750afd93b50c1d8c8da090a",
+          "sourcePasses": 2,
+          "residentFragments": 2,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 278833,
+            "sampledPeakHeapBytes": 152134256,
+            "sampledPeakNativeBytes": 30690288,
+            "residentPssKb": 127909,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        },
+        {
+          "run": 2,
+          "openingMs": 1351.670458,
+          "firstReadableFrameMs": 3182.786959,
+          "exactNumberByMs": 3135.552084,
+          "readyFrameMs": 3182.786959,
+          "pageNumber": 20613,
+          "layoutHash": "449517e3c3c309f1fc2b356e4e5cc405acbcba1c8750afd93b50c1d8c8da090a",
+          "sourcePasses": 1,
+          "residentFragments": 2,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 134021,
+            "sampledPeakHeapBytes": 14192992,
+            "sampledPeakNativeBytes": 20326912,
+            "residentPssKb": 129941,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        },
+        {
+          "run": 3,
+          "openingMs": 1368.578542,
+          "firstReadableFrameMs": 3100.754002,
+          "exactNumberByMs": 3052.350502,
+          "readyFrameMs": 3100.754002,
+          "pageNumber": 20613,
+          "layoutHash": "449517e3c3c309f1fc2b356e4e5cc405acbcba1c8750afd93b50c1d8c8da090a",
+          "sourcePasses": 1,
+          "residentFragments": 2,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 132901,
+            "sampledPeakHeapBytes": 10047840,
+            "sampledPeakNativeBytes": 20238192,
+            "residentPssKb": 126581,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        },
+        {
+          "run": 4,
+          "openingMs": 1338.926459,
+          "firstReadableFrameMs": 2982.771918,
+          "exactNumberByMs": 2942.262584,
+          "readyFrameMs": 2982.771918,
+          "pageNumber": 20613,
+          "layoutHash": "449517e3c3c309f1fc2b356e4e5cc405acbcba1c8750afd93b50c1d8c8da090a",
+          "sourcePasses": 1,
+          "residentFragments": 2,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 132437,
+            "sampledPeakHeapBytes": 11735392,
+            "sampledPeakNativeBytes": 20018432,
+            "residentPssKb": 127269,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        },
+        {
+          "run": 5,
+          "openingMs": 1332.023126,
+          "firstReadableFrameMs": 2914.13771,
+          "exactNumberByMs": 2868.818793,
+          "readyFrameMs": 2914.13771,
+          "pageNumber": 20613,
+          "layoutHash": "449517e3c3c309f1fc2b356e4e5cc405acbcba1c8750afd93b50c1d8c8da090a",
+          "sourcePasses": 1,
+          "residentFragments": 2,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 132293,
+            "sampledPeakHeapBytes": 11604320,
+            "sampledPeakNativeBytes": 20248912,
+            "residentPssKb": 125301,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        }
+      ],
+      "minMs": 2914.13771,
+      "medianMs": 3100.754002,
+      "maxMs": 5130.890086,
+      "status": "NOT_VERIFIED_DEVICE"
+    },
+    {
+      "profileId": "e07e40c11db287480975fc67ce9fc01e8f8b297d19ec9ede5e6f92a586ef02b4",
+      "case": "epub-late-system_font-warm",
+      "cache": "warm",
+      "runs": [
+        {
+          "run": 1,
+          "openingMs": 1342.319084,
+          "firstReadableFrameMs": 1417.546292,
+          "exactNumberByMs": 1365.638084,
+          "readyFrameMs": 1417.546292,
+          "pageNumber": 20613,
+          "layoutHash": "449517e3c3c309f1fc2b356e4e5cc405acbcba1c8750afd93b50c1d8c8da090a",
+          "sourcePasses": 1,
+          "residentFragments": 2,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 135319,
+            "sampledPeakHeapBytes": 11456864,
+            "sampledPeakNativeBytes": 20658736,
+            "residentPssKb": 129495,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        },
+        {
+          "run": 2,
+          "openingMs": 1328.422917,
+          "firstReadableFrameMs": 1401.917251,
+          "exactNumberByMs": 1352.630292,
+          "readyFrameMs": 1401.917251,
+          "pageNumber": 20613,
+          "layoutHash": "449517e3c3c309f1fc2b356e4e5cc405acbcba1c8750afd93b50c1d8c8da090a",
+          "sourcePasses": 1,
+          "residentFragments": 2,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 138023,
+            "sampledPeakHeapBytes": 10606736,
+            "sampledPeakNativeBytes": 19763312,
+            "residentPssKb": 126759,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        },
+        {
+          "run": 3,
+          "openingMs": 1285.114209,
+          "firstReadableFrameMs": 1364.964126,
+          "exactNumberByMs": 1309.054667,
+          "readyFrameMs": 1364.964126,
+          "pageNumber": 20613,
+          "layoutHash": "449517e3c3c309f1fc2b356e4e5cc405acbcba1c8750afd93b50c1d8c8da090a",
+          "sourcePasses": 1,
+          "residentFragments": 2,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 134615,
+            "sampledPeakHeapBytes": 13078880,
+            "sampledPeakNativeBytes": 20206112,
+            "residentPssKb": 127543,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        },
+        {
+          "run": 4,
+          "openingMs": 1309.687376,
+          "firstReadableFrameMs": 1382.297834,
+          "exactNumberByMs": 1332.848251,
+          "readyFrameMs": 1382.297834,
+          "pageNumber": 20613,
+          "layoutHash": "449517e3c3c309f1fc2b356e4e5cc405acbcba1c8750afd93b50c1d8c8da090a",
+          "sourcePasses": 1,
+          "residentFragments": 2,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 130871,
+            "sampledPeakHeapBytes": 10424672,
+            "sampledPeakNativeBytes": 19761024,
+            "residentPssKb": 124439,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        },
+        {
+          "run": 5,
+          "openingMs": 1312.582251,
+          "firstReadableFrameMs": 1383.264209,
+          "exactNumberByMs": 1337.638626,
+          "readyFrameMs": 1383.264209,
+          "pageNumber": 20613,
+          "layoutHash": "449517e3c3c309f1fc2b356e4e5cc405acbcba1c8750afd93b50c1d8c8da090a",
+          "sourcePasses": 1,
+          "residentFragments": 2,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 132007,
+            "sampledPeakHeapBytes": 10277216,
+            "sampledPeakNativeBytes": 19766432,
+            "residentPssKb": 129703,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        }
+      ],
+      "minMs": 1364.964126,
+      "medianMs": 1383.264209,
+      "maxMs": 1417.546292,
+      "status": "NOT_VERIFIED_DEVICE"
+    },
+    {
+      "profileId": "e07e40c11db287480975fc67ce9fc01e8f8b297d19ec9ede5e6f92a586ef02b4",
+      "case": "fb2-beginning-baseline-cold",
+      "cache": "cold",
+      "runs": [
+        {
+          "run": 1,
+          "openingMs": 2811.703251,
+          "firstReadableFrameMs": 3010.04696,
+          "exactNumberByMs": 2958.07671,
+          "readyFrameMs": 3010.04696,
+          "pageNumber": 2,
+          "layoutHash": "cc8d0c0dc6d8b506906641fb9daae579415f23965d6205abdbf6a00213b48b39",
+          "sourcePasses": 2,
+          "residentFragments": 3,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 275774,
+            "sampledPeakHeapBytes": 151345984,
+            "sampledPeakNativeBytes": 30727248,
+            "residentPssKb": 125467,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        },
+        {
+          "run": 2,
+          "openingMs": 1404.235126,
+          "firstReadableFrameMs": 1552.287585,
+          "exactNumberByMs": 1499.802626,
+          "readyFrameMs": 1552.287585,
+          "pageNumber": 2,
+          "layoutHash": "cc8d0c0dc6d8b506906641fb9daae579415f23965d6205abdbf6a00213b48b39",
+          "sourcePasses": 1,
+          "residentFragments": 3,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 128718,
+            "sampledPeakHeapBytes": 9456176,
+            "sampledPeakNativeBytes": 19636912,
+            "residentPssKb": 124654,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        },
+        {
+          "run": 3,
+          "openingMs": 1369.314125,
+          "firstReadableFrameMs": 1517.555334,
+          "exactNumberByMs": 1460.198167,
+          "readyFrameMs": 1517.555334,
+          "pageNumber": 2,
+          "layoutHash": "cc8d0c0dc6d8b506906641fb9daae579415f23965d6205abdbf6a00213b48b39",
+          "sourcePasses": 1,
+          "residentFragments": 3,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 130238,
+            "sampledPeakHeapBytes": 10947120,
+            "sampledPeakNativeBytes": 19715824,
+            "residentPssKb": 125838,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        },
+        {
+          "run": 4,
+          "openingMs": 1365.596626,
+          "firstReadableFrameMs": 1483.876334,
+          "exactNumberByMs": 1446.443959,
+          "readyFrameMs": 1483.876334,
+          "pageNumber": 2,
+          "layoutHash": "cc8d0c0dc6d8b506906641fb9daae579415f23965d6205abdbf6a00213b48b39",
+          "sourcePasses": 1,
+          "residentFragments": 3,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 132702,
+            "sampledPeakHeapBytes": 11520560,
+            "sampledPeakNativeBytes": 19716224,
+            "residentPssKb": 123470,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        },
+        {
+          "run": 5,
+          "openingMs": 1370.034293,
+          "firstReadableFrameMs": 1500.271084,
+          "exactNumberByMs": 1447.252084,
+          "readyFrameMs": 1500.271084,
+          "pageNumber": 2,
+          "layoutHash": "cc8d0c0dc6d8b506906641fb9daae579415f23965d6205abdbf6a00213b48b39",
+          "sourcePasses": 1,
+          "residentFragments": 3,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 129950,
+            "sampledPeakHeapBytes": 8800816,
+            "sampledPeakNativeBytes": 19689088,
+            "residentPssKb": 124382,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        }
+      ],
+      "minMs": 1483.876334,
+      "medianMs": 1517.555334,
+      "maxMs": 3010.04696,
+      "status": "NOT_VERIFIED_DEVICE"
+    },
+    {
+      "profileId": "e07e40c11db287480975fc67ce9fc01e8f8b297d19ec9ede5e6f92a586ef02b4",
+      "case": "fb2-beginning-baseline-warm",
+      "cache": "warm",
+      "runs": [
+        {
+          "run": 1,
+          "openingMs": 1366.856417,
+          "firstReadableFrameMs": 1434.9225,
+          "exactNumberByMs": 1376.708792,
+          "readyFrameMs": 1434.9225,
+          "pageNumber": 2,
+          "layoutHash": "cc8d0c0dc6d8b506906641fb9daae579415f23965d6205abdbf6a00213b48b39",
+          "sourcePasses": 1,
+          "residentFragments": 3,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 128975,
+            "sampledPeakHeapBytes": 10848816,
+            "sampledPeakNativeBytes": 19703920,
+            "residentPssKb": 125583,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        },
+        {
+          "run": 2,
+          "openingMs": 1384.293792,
+          "firstReadableFrameMs": 1452.644959,
+          "exactNumberByMs": 1393.430876,
+          "readyFrameMs": 1452.644959,
+          "pageNumber": 2,
+          "layoutHash": "cc8d0c0dc6d8b506906641fb9daae579415f23965d6205abdbf6a00213b48b39",
+          "sourcePasses": 1,
+          "residentFragments": 3,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 136015,
+            "sampledPeakHeapBytes": 9095728,
+            "sampledPeakNativeBytes": 19833120,
+            "residentPssKb": 126095,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        },
+        {
+          "run": 3,
+          "openingMs": 1357.35425,
+          "firstReadableFrameMs": 1418.442542,
+          "exactNumberByMs": 1365.973167,
+          "readyFrameMs": 1418.442542,
+          "pageNumber": 2,
+          "layoutHash": "cc8d0c0dc6d8b506906641fb9daae579415f23965d6205abdbf6a00213b48b39",
+          "sourcePasses": 1,
+          "residentFragments": 3,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 135855,
+            "sampledPeakHeapBytes": 9472560,
+            "sampledPeakNativeBytes": 19704336,
+            "residentPssKb": 123631,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        },
+        {
+          "run": 4,
+          "openingMs": 1372.573459,
+          "firstReadableFrameMs": 1434.154709,
+          "exactNumberByMs": 1381.161334,
+          "readyFrameMs": 1434.154709,
+          "pageNumber": 2,
+          "layoutHash": "cc8d0c0dc6d8b506906641fb9daae579415f23965d6205abdbf6a00213b48b39",
+          "sourcePasses": 1,
+          "residentFragments": 3,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 130079,
+            "sampledPeakHeapBytes": 9701936,
+            "sampledPeakNativeBytes": 19747968,
+            "residentPssKb": 127663,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        },
+        {
+          "run": 5,
+          "openingMs": 1353.114667,
+          "firstReadableFrameMs": 1417.757834,
+          "exactNumberByMs": 1363.097834,
+          "readyFrameMs": 1417.757834,
+          "pageNumber": 2,
+          "layoutHash": "cc8d0c0dc6d8b506906641fb9daae579415f23965d6205abdbf6a00213b48b39",
+          "sourcePasses": 1,
+          "residentFragments": 3,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 130975,
+            "sampledPeakHeapBytes": 10783280,
+            "sampledPeakNativeBytes": 19814720,
+            "residentPssKb": 124319,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        }
+      ],
+      "minMs": 1417.757834,
+      "medianMs": 1434.154709,
+      "maxMs": 1452.644959,
+      "status": "NOT_VERIFIED_DEVICE"
+    },
+    {
+      "profileId": "e07e40c11db287480975fc67ce9fc01e8f8b297d19ec9ede5e6f92a586ef02b4",
+      "case": "fb2-beginning-baseline-cold_source",
+      "cache": "cold_source",
+      "runs": [
+        {
+          "run": 1,
+          "openingMs": 2738.059876,
+          "firstReadableFrameMs": 2931.757543,
+          "exactNumberByMs": 2886.42621,
+          "readyFrameMs": 2931.757543,
+          "pageNumber": 2,
+          "layoutHash": "cc8d0c0dc6d8b506906641fb9daae579415f23965d6205abdbf6a00213b48b39",
+          "sourcePasses": 2,
+          "residentFragments": 3,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 272632,
+            "sampledPeakHeapBytes": 149248832,
+            "sampledPeakNativeBytes": 30511872,
+            "residentPssKb": 123377,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        },
+        {
+          "run": 2,
+          "openingMs": 2633.639918,
+          "firstReadableFrameMs": 2783.74771,
+          "exactNumberByMs": 2732.546585,
+          "readyFrameMs": 2783.74771,
+          "pageNumber": 2,
+          "layoutHash": "cc8d0c0dc6d8b506906641fb9daae579415f23965d6205abdbf6a00213b48b39",
+          "sourcePasses": 2,
+          "residentFragments": 3,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 130756,
+            "sampledPeakHeapBytes": 10570288,
+            "sampledPeakNativeBytes": 19743952,
+            "residentPssKb": 124580,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        },
+        {
+          "run": 3,
+          "openingMs": 2633.196709,
+          "firstReadableFrameMs": 2784.721209,
+          "exactNumberByMs": 2728.770084,
+          "readyFrameMs": 2784.721209,
+          "pageNumber": 2,
+          "layoutHash": "cc8d0c0dc6d8b506906641fb9daae579415f23965d6205abdbf6a00213b48b39",
+          "sourcePasses": 2,
+          "residentFragments": 3,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 130676,
+            "sampledPeakHeapBytes": 10816048,
+            "sampledPeakNativeBytes": 19721456,
+            "residentPssKb": 125908,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        },
+        {
+          "run": 4,
+          "openingMs": 2631.128126,
+          "firstReadableFrameMs": 2768.08071,
+          "exactNumberByMs": 2714.62846,
+          "readyFrameMs": 2768.08071,
+          "pageNumber": 2,
+          "layoutHash": "cc8d0c0dc6d8b506906641fb9daae579415f23965d6205abdbf6a00213b48b39",
+          "sourcePasses": 2,
+          "residentFragments": 3,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 131364,
+            "sampledPeakHeapBytes": 9865776,
+            "sampledPeakNativeBytes": 19796960,
+            "residentPssKb": 126324,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        },
+        {
+          "run": 5,
+          "openingMs": 2615.632335,
+          "firstReadableFrameMs": 2750.63896,
+          "exactNumberByMs": 2693.183501,
+          "readyFrameMs": 2750.63896,
+          "pageNumber": 2,
+          "layoutHash": "cc8d0c0dc6d8b506906641fb9daae579415f23965d6205abdbf6a00213b48b39",
+          "sourcePasses": 2,
+          "residentFragments": 3,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 130836,
+            "sampledPeakHeapBytes": 9603632,
+            "sampledPeakNativeBytes": 19769968,
+            "residentPssKb": 123908,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        }
+      ],
+      "minMs": 2750.63896,
+      "medianMs": 2783.74771,
+      "maxMs": 2931.757543,
+      "status": "NOT_VERIFIED_DEVICE"
+    },
+    {
+      "profileId": "e07e40c11db287480975fc67ce9fc01e8f8b297d19ec9ede5e6f92a586ef02b4",
+      "case": "fb2-beginning-scale-cold",
+      "cache": "cold",
+      "runs": [
+        {
+          "run": 1,
+          "openingMs": 2801.233168,
+          "firstReadableFrameMs": 3132.666127,
+          "exactNumberByMs": 3083.54121,
+          "readyFrameMs": 3132.666127,
+          "pageNumber": 2,
+          "layoutHash": "a8a07046517ecc58cbd86a7ff0dee525e89384c587e94a8cf3fe3c598ea193f7",
+          "sourcePasses": 2,
+          "residentFragments": 2,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 271679,
+            "sampledPeakHeapBytes": 148200256,
+            "sampledPeakNativeBytes": 30416784,
+            "residentPssKb": 125032,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        },
+        {
+          "run": 2,
+          "openingMs": 1380.366792,
+          "firstReadableFrameMs": 1616.372626,
+          "exactNumberByMs": 1568.745792,
+          "readyFrameMs": 1616.372626,
+          "pageNumber": 2,
+          "layoutHash": "a8a07046517ecc58cbd86a7ff0dee525e89384c587e94a8cf3fe3c598ea193f7",
+          "sourcePasses": 1,
+          "residentFragments": 2,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 130858,
+            "sampledPeakHeapBytes": 9783856,
+            "sampledPeakNativeBytes": 19524704,
+            "residentPssKb": 126569,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        },
+        {
+          "run": 3,
+          "openingMs": 1363.832709,
+          "firstReadableFrameMs": 1584.125792,
+          "exactNumberByMs": 1531.873959,
+          "readyFrameMs": 1584.125792,
+          "pageNumber": 2,
+          "layoutHash": "a8a07046517ecc58cbd86a7ff0dee525e89384c587e94a8cf3fe3c598ea193f7",
+          "sourcePasses": 1,
+          "residentFragments": 2,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 130570,
+            "sampledPeakHeapBytes": 9554480,
+            "sampledPeakNativeBytes": 19670208,
+            "residentPssKb": 125674,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        },
+        {
+          "run": 4,
+          "openingMs": 1346.125459,
+          "firstReadableFrameMs": 1549.560085,
+          "exactNumberByMs": 1496.086668,
+          "readyFrameMs": 1549.560085,
+          "pageNumber": 2,
+          "layoutHash": "a8a07046517ecc58cbd86a7ff0dee525e89384c587e94a8cf3fe3c598ea193f7",
+          "sourcePasses": 1,
+          "residentFragments": 2,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 130730,
+            "sampledPeakHeapBytes": 11110960,
+            "sampledPeakNativeBytes": 19706800,
+            "residentPssKb": 124202,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        },
+        {
+          "run": 5,
+          "openingMs": 1354.369667,
+          "firstReadableFrameMs": 1549.686417,
+          "exactNumberByMs": 1503.801501,
+          "readyFrameMs": 1549.686417,
+          "pageNumber": 2,
+          "layoutHash": "a8a07046517ecc58cbd86a7ff0dee525e89384c587e94a8cf3fe3c598ea193f7",
+          "sourcePasses": 1,
+          "residentFragments": 2,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 131098,
+            "sampledPeakHeapBytes": 9275952,
+            "sampledPeakNativeBytes": 19641936,
+            "residentPssKb": 123898,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        }
+      ],
+      "minMs": 1549.560085,
+      "medianMs": 1584.125792,
+      "maxMs": 3132.666127,
+      "status": "NOT_VERIFIED_DEVICE"
+    },
+    {
+      "profileId": "e07e40c11db287480975fc67ce9fc01e8f8b297d19ec9ede5e6f92a586ef02b4",
+      "case": "fb2-beginning-scale-warm",
+      "cache": "warm",
+      "runs": [
+        {
+          "run": 1,
+          "openingMs": 1380.579001,
+          "firstReadableFrameMs": 1448.020001,
+          "exactNumberByMs": 1391.813292,
+          "readyFrameMs": 1448.020001,
+          "pageNumber": 2,
+          "layoutHash": "a8a07046517ecc58cbd86a7ff0dee525e89384c587e94a8cf3fe3c598ea193f7",
+          "sourcePasses": 1,
+          "residentFragments": 2,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 129417,
+            "sampledPeakHeapBytes": 10947120,
+            "sampledPeakNativeBytes": 19544688,
+            "residentPssKb": 127321,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        },
+        {
+          "run": 2,
+          "openingMs": 1401.228043,
+          "firstReadableFrameMs": 1470.340751,
+          "exactNumberByMs": 1411.953459,
+          "readyFrameMs": 1470.340751,
+          "pageNumber": 2,
+          "layoutHash": "a8a07046517ecc58cbd86a7ff0dee525e89384c587e94a8cf3fe3c598ea193f7",
+          "sourcePasses": 1,
+          "residentFragments": 2,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 129336,
+            "sampledPeakHeapBytes": 9669168,
+            "sampledPeakNativeBytes": 19617328,
+            "residentPssKb": 123657,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        },
+        {
+          "run": 3,
+          "openingMs": 1397.401043,
+          "firstReadableFrameMs": 1450.729876,
+          "exactNumberByMs": 1409.910584,
+          "readyFrameMs": 1450.729876,
+          "pageNumber": 2,
+          "layoutHash": "a8a07046517ecc58cbd86a7ff0dee525e89384c587e94a8cf3fe3c598ea193f7",
+          "sourcePasses": 1,
+          "residentFragments": 2,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 131241,
+            "sampledPeakHeapBytes": 9538096,
+            "sampledPeakNativeBytes": 19705728,
+            "residentPssKb": 124953,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        },
+        {
+          "run": 4,
+          "openingMs": 1354.278001,
+          "firstReadableFrameMs": 1417.122917,
+          "exactNumberByMs": 1364.184667,
+          "readyFrameMs": 1417.122917,
+          "pageNumber": 2,
+          "layoutHash": "a8a07046517ecc58cbd86a7ff0dee525e89384c587e94a8cf3fe3c598ea193f7",
+          "sourcePasses": 1,
+          "residentFragments": 2,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 131065,
+            "sampledPeakHeapBytes": 10701360,
+            "sampledPeakNativeBytes": 19539984,
+            "residentPssKb": 128169,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        },
+        {
+          "run": 5,
+          "openingMs": 1306.152001,
+          "firstReadableFrameMs": 1367.774501,
+          "exactNumberByMs": 1317.394751,
+          "readyFrameMs": 1367.774501,
+          "pageNumber": 2,
+          "layoutHash": "a8a07046517ecc58cbd86a7ff0dee525e89384c587e94a8cf3fe3c598ea193f7",
+          "sourcePasses": 1,
+          "residentFragments": 2,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 132953,
+            "sampledPeakHeapBytes": 12470832,
+            "sampledPeakNativeBytes": 19860992,
+            "residentPssKb": 124201,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        }
+      ],
+      "minMs": 1367.774501,
+      "medianMs": 1448.020001,
+      "maxMs": 1470.340751,
+      "status": "NOT_VERIFIED_DEVICE"
+    },
+    {
+      "profileId": "e07e40c11db287480975fc67ce9fc01e8f8b297d19ec9ede5e6f92a586ef02b4",
+      "case": "fb2-beginning-orientation-cold",
+      "cache": "cold",
+      "runs": [
+        {
+          "run": 1,
+          "openingMs": 2815.131835,
+          "firstReadableFrameMs": 3020.104793,
+          "exactNumberByMs": 2964.746002,
+          "readyFrameMs": 3020.104793,
+          "pageNumber": 2,
+          "layoutHash": "66a67de67b339da233d860607e88ee17e6430ecffd067a7424f5a544f16f4fad",
+          "sourcePasses": 2,
+          "residentFragments": 3,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 278987,
+            "sampledPeakHeapBytes": 152455728,
+            "sampledPeakNativeBytes": 31316576,
+            "residentPssKb": 128293,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        },
+        {
+          "run": 2,
+          "openingMs": 1340.656209,
+          "firstReadableFrameMs": 1500.462834,
+          "exactNumberByMs": 1443.803376,
+          "readyFrameMs": 1500.462834,
+          "pageNumber": 2,
+          "layoutHash": "66a67de67b339da233d860607e88ee17e6430ecffd067a7424f5a544f16f4fad",
+          "sourcePasses": 1,
+          "residentFragments": 3,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 130277,
+            "sampledPeakHeapBytes": 9701936,
+            "sampledPeakNativeBytes": 19716912,
+            "residentPssKb": 127271,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        },
+        {
+          "run": 3,
+          "openingMs": 1344.765876,
+          "firstReadableFrameMs": 1501.685292,
+          "exactNumberByMs": 1442.104876,
+          "readyFrameMs": 1501.685292,
+          "pageNumber": 2,
+          "layoutHash": "66a67de67b339da233d860607e88ee17e6430ecffd067a7424f5a544f16f4fad",
+          "sourcePasses": 1,
+          "residentFragments": 3,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 131175,
+            "sampledPeakHeapBytes": 9800240,
+            "sampledPeakNativeBytes": 19706432,
+            "residentPssKb": 127127,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        },
+        {
+          "run": 4,
+          "openingMs": 1361.963959,
+          "firstReadableFrameMs": 1494.855084,
+          "exactNumberByMs": 1448.649167,
+          "readyFrameMs": 1494.855084,
+          "pageNumber": 2,
+          "layoutHash": "66a67de67b339da233d860607e88ee17e6430ecffd067a7424f5a544f16f4fad",
+          "sourcePasses": 1,
+          "residentFragments": 3,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 131223,
+            "sampledPeakHeapBytes": 9980464,
+            "sampledPeakNativeBytes": 19704752,
+            "residentPssKb": 125911,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        },
+        {
+          "run": 5,
+          "openingMs": 1332.679959,
+          "firstReadableFrameMs": 1467.904668,
+          "exactNumberByMs": 1417.401918,
+          "readyFrameMs": 1467.904668,
+          "pageNumber": 2,
+          "layoutHash": "66a67de67b339da233d860607e88ee17e6430ecffd067a7424f5a544f16f4fad",
+          "sourcePasses": 1,
+          "residentFragments": 3,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 131591,
+            "sampledPeakHeapBytes": 9914928,
+            "sampledPeakNativeBytes": 19763616,
+            "residentPssKb": 126071,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        }
+      ],
+      "minMs": 1467.904668,
+      "medianMs": 1500.462834,
+      "maxMs": 3020.104793,
+      "status": "NOT_VERIFIED_DEVICE"
+    },
+    {
+      "profileId": "e07e40c11db287480975fc67ce9fc01e8f8b297d19ec9ede5e6f92a586ef02b4",
+      "case": "fb2-beginning-orientation-warm",
+      "cache": "warm",
+      "runs": [
+        {
+          "run": 1,
+          "openingMs": 1337.005959,
+          "firstReadableFrameMs": 1391.399042,
+          "exactNumberByMs": 1347.398876,
+          "readyFrameMs": 1391.399042,
+          "pageNumber": 2,
+          "layoutHash": "66a67de67b339da233d860607e88ee17e6430ecffd067a7424f5a544f16f4fad",
+          "sourcePasses": 1,
+          "residentFragments": 3,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 130446,
+            "sampledPeakHeapBytes": 9800240,
+            "sampledPeakNativeBytes": 19680240,
+            "residentPssKb": 124878,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        },
+        {
+          "run": 2,
+          "openingMs": 1332.749834,
+          "firstReadableFrameMs": 1401.719834,
+          "exactNumberByMs": 1342.419334,
+          "readyFrameMs": 1401.719834,
+          "pageNumber": 2,
+          "layoutHash": "66a67de67b339da233d860607e88ee17e6430ecffd067a7424f5a544f16f4fad",
+          "sourcePasses": 1,
+          "residentFragments": 3,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 131870,
+            "sampledPeakHeapBytes": 9751088,
+            "sampledPeakNativeBytes": 19741664,
+            "residentPssKb": 125550,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        },
+        {
+          "run": 3,
+          "openingMs": 1317.478709,
+          "firstReadableFrameMs": 1385.251251,
+          "exactNumberByMs": 1327.479334,
+          "readyFrameMs": 1385.251251,
+          "pageNumber": 2,
+          "layoutHash": "66a67de67b339da233d860607e88ee17e6430ecffd067a7424f5a544f16f4fad",
+          "sourcePasses": 1,
+          "residentFragments": 3,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 130686,
+            "sampledPeakHeapBytes": 11831856,
+            "sampledPeakNativeBytes": 19739760,
+            "residentPssKb": 125486,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        },
+        {
+          "run": 4,
+          "openingMs": 1287.503084,
+          "firstReadableFrameMs": 1351.520501,
+          "exactNumberByMs": 1297.523709,
+          "readyFrameMs": 1351.520501,
+          "pageNumber": 2,
+          "layoutHash": "66a67de67b339da233d860607e88ee17e6430ecffd067a7424f5a544f16f4fad",
+          "sourcePasses": 1,
+          "residentFragments": 3,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 131086,
+            "sampledPeakHeapBytes": 11389488,
+            "sampledPeakNativeBytes": 19882768,
+            "residentPssKb": 125086,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        },
+        {
+          "run": 5,
+          "openingMs": 1301.237667,
+          "firstReadableFrameMs": 1368.037625,
+          "exactNumberByMs": 1311.252333,
+          "readyFrameMs": 1368.037625,
+          "pageNumber": 2,
+          "layoutHash": "66a67de67b339da233d860607e88ee17e6430ecffd067a7424f5a544f16f4fad",
+          "sourcePasses": 1,
+          "residentFragments": 3,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 131614,
+            "sampledPeakHeapBytes": 9456176,
+            "sampledPeakNativeBytes": 19659616,
+            "residentPssKb": 125742,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        }
+      ],
+      "minMs": 1351.520501,
+      "medianMs": 1385.251251,
+      "maxMs": 1401.719834,
+      "status": "NOT_VERIFIED_DEVICE"
+    },
+    {
+      "profileId": "e07e40c11db287480975fc67ce9fc01e8f8b297d19ec9ede5e6f92a586ef02b4",
+      "case": "fb2-beginning-system_font-cold",
+      "cache": "cold",
+      "runs": [
+        {
+          "run": 1,
+          "openingMs": 2766.141835,
+          "firstReadableFrameMs": 3063.874252,
+          "exactNumberByMs": 3008.785293,
+          "readyFrameMs": 3063.874252,
+          "pageNumber": 2,
+          "layoutHash": "e3cabda5b696e850f486f649d221382c85a584e378f2dae756edeaf25f821593",
+          "sourcePasses": 2,
+          "residentFragments": 2,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 273988,
+            "sampledPeakHeapBytes": 150526784,
+            "sampledPeakNativeBytes": 30646672,
+            "residentPssKb": 125703,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        },
+        {
+          "run": 2,
+          "openingMs": 1379.985792,
+          "firstReadableFrameMs": 1597.992626,
+          "exactNumberByMs": 1544.133084,
+          "readyFrameMs": 1597.992626,
+          "pageNumber": 2,
+          "layoutHash": "e3cabda5b696e850f486f649d221382c85a584e378f2dae756edeaf25f821593",
+          "sourcePasses": 1,
+          "residentFragments": 2,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 129401,
+            "sampledPeakHeapBytes": 10013232,
+            "sampledPeakNativeBytes": 19675216,
+            "residentPssKb": 126985,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        },
+        {
+          "run": 3,
+          "openingMs": 1351.408709,
+          "firstReadableFrameMs": 1548.931751,
+          "exactNumberByMs": 1492.313126,
+          "readyFrameMs": 1548.931751,
+          "pageNumber": 2,
+          "layoutHash": "e3cabda5b696e850f486f649d221382c85a584e378f2dae756edeaf25f821593",
+          "sourcePasses": 1,
+          "residentFragments": 2,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 131305,
+            "sampledPeakHeapBytes": 11749936,
+            "sampledPeakNativeBytes": 19646048,
+            "residentPssKb": 126089,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        },
+        {
+          "run": 4,
+          "openingMs": 1348.963917,
+          "firstReadableFrameMs": 1533.842251,
+          "exactNumberByMs": 1488.533042,
+          "readyFrameMs": 1533.842251,
+          "pageNumber": 2,
+          "layoutHash": "e3cabda5b696e850f486f649d221382c85a584e378f2dae756edeaf25f821593",
+          "sourcePasses": 1,
+          "residentFragments": 2,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 131561,
+            "sampledPeakHeapBytes": 11700784,
+            "sampledPeakNativeBytes": 19878992,
+            "residentPssKb": 123929,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        },
+        {
+          "run": 5,
+          "openingMs": 1368.129292,
+          "firstReadableFrameMs": 1550.420751,
+          "exactNumberByMs": 1497.115042,
+          "readyFrameMs": 1550.420751,
+          "pageNumber": 2,
+          "layoutHash": "e3cabda5b696e850f486f649d221382c85a584e378f2dae756edeaf25f821593",
+          "sourcePasses": 1,
+          "residentFragments": 2,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 131129,
+            "sampledPeakHeapBytes": 9243184,
+            "sampledPeakNativeBytes": 19709120,
+            "residentPssKb": 123929,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        }
+      ],
+      "minMs": 1533.842251,
+      "medianMs": 1550.420751,
+      "maxMs": 3063.874252,
+      "status": "NOT_VERIFIED_DEVICE"
+    },
+    {
+      "profileId": "e07e40c11db287480975fc67ce9fc01e8f8b297d19ec9ede5e6f92a586ef02b4",
+      "case": "fb2-beginning-system_font-warm",
+      "cache": "warm",
+      "runs": [
+        {
+          "run": 1,
+          "openingMs": 1403.040459,
+          "firstReadableFrameMs": 1467.779084,
+          "exactNumberByMs": 1413.629125,
+          "readyFrameMs": 1467.779084,
+          "pageNumber": 2,
+          "layoutHash": "e3cabda5b696e850f486f649d221382c85a584e378f2dae756edeaf25f821593",
+          "sourcePasses": 1,
+          "residentFragments": 2,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 129542,
+            "sampledPeakHeapBytes": 9079344,
+            "sampledPeakNativeBytes": 19623680,
+            "residentPssKb": 123846,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        },
+        {
+          "run": 2,
+          "openingMs": 1383.701959,
+          "firstReadableFrameMs": 1451.915543,
+          "exactNumberByMs": 1395.017501,
+          "readyFrameMs": 1451.915543,
+          "pageNumber": 2,
+          "layoutHash": "e3cabda5b696e850f486f649d221382c85a584e378f2dae756edeaf25f821593",
+          "sourcePasses": 1,
+          "residentFragments": 2,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 129414,
+            "sampledPeakHeapBytes": 9243184,
+            "sampledPeakNativeBytes": 19654304,
+            "residentPssKb": 125590,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        },
+        {
+          "run": 3,
+          "openingMs": 1384.095167,
+          "firstReadableFrameMs": 1450.885501,
+          "exactNumberByMs": 1393.239292,
+          "readyFrameMs": 1450.885501,
+          "pageNumber": 2,
+          "layoutHash": "e3cabda5b696e850f486f649d221382c85a584e378f2dae756edeaf25f821593",
+          "sourcePasses": 1,
+          "residentFragments": 2,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 130518,
+            "sampledPeakHeapBytes": 9374256,
+            "sampledPeakNativeBytes": 19625776,
+            "residentPssKb": 126582,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        },
+        {
+          "run": 4,
+          "openingMs": 1355.015167,
+          "firstReadableFrameMs": 1417.688668,
+          "exactNumberByMs": 1365.833084,
+          "readyFrameMs": 1417.688668,
+          "pageNumber": 2,
+          "layoutHash": "e3cabda5b696e850f486f649d221382c85a584e378f2dae756edeaf25f821593",
+          "sourcePasses": 1,
+          "residentFragments": 2,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 131222,
+            "sampledPeakHeapBytes": 9505328,
+            "sampledPeakNativeBytes": 19706080,
+            "residentPssKb": 123990,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        },
+        {
+          "run": 5,
+          "openingMs": 1335.117459,
+          "firstReadableFrameMs": 1400.827875,
+          "exactNumberByMs": 1345.276209,
+          "readyFrameMs": 1400.827875,
+          "pageNumber": 2,
+          "layoutHash": "e3cabda5b696e850f486f649d221382c85a584e378f2dae756edeaf25f821593",
+          "sourcePasses": 1,
+          "residentFragments": 2,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 129126,
+            "sampledPeakHeapBytes": 9243184,
+            "sampledPeakNativeBytes": 19631840,
+            "residentPssKb": 124166,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": false
+        }
+      ],
+      "minMs": 1400.827875,
+      "medianMs": 1450.885501,
+      "maxMs": 1467.779084,
+      "status": "NOT_VERIFIED_DEVICE"
+    },
+    {
+      "profileId": "e07e40c11db287480975fc67ce9fc01e8f8b297d19ec9ede5e6f92a586ef02b4",
+      "case": "fb2-late-baseline-cold",
+      "cache": "cold",
+      "runs": [
+        {
+          "run": 1,
+          "openingMs": 2778.57246,
+          "firstReadableFrameMs": 4445.276502,
+          "exactNumberByMs": 4213.698419,
+          "readyFrameMs": 4445.276502,
+          "pageNumber": 6742,
+          "layoutHash": "cc8d0c0dc6d8b506906641fb9daae579415f23965d6205abdbf6a00213b48b39",
+          "sourcePasses": 2,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 276147,
+            "sampledPeakHeapBytes": 151280448,
+            "sampledPeakNativeBytes": 33830656,
+            "residentPssKb": 199412,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        },
+        {
+          "run": 2,
+          "openingMs": 1350.027501,
+          "firstReadableFrameMs": 2617.744335,
+          "exactNumberByMs": 2370.249335,
+          "readyFrameMs": 2617.744335,
+          "pageNumber": 6742,
+          "layoutHash": "cc8d0c0dc6d8b506906641fb9daae579415f23965d6205abdbf6a00213b48b39",
+          "sourcePasses": 1,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 204852,
+            "sampledPeakHeapBytes": 10881584,
+            "sampledPeakNativeBytes": 34001536,
+            "residentPssKb": 201844,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        },
+        {
+          "run": 3,
+          "openingMs": 1354.654209,
+          "firstReadableFrameMs": 2599.974709,
+          "exactNumberByMs": 2359.620542,
+          "readyFrameMs": 2599.974709,
+          "pageNumber": 6742,
+          "layoutHash": "cc8d0c0dc6d8b506906641fb9daae579415f23965d6205abdbf6a00213b48b39",
+          "sourcePasses": 1,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 203412,
+            "sampledPeakHeapBytes": 10848816,
+            "sampledPeakNativeBytes": 37054784,
+            "residentPssKb": 203092,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        },
+        {
+          "run": 4,
+          "openingMs": 1338.677334,
+          "firstReadableFrameMs": 2538.163584,
+          "exactNumberByMs": 2278.508126,
+          "readyFrameMs": 2538.163584,
+          "pageNumber": 6742,
+          "layoutHash": "cc8d0c0dc6d8b506906641fb9daae579415f23965d6205abdbf6a00213b48b39",
+          "sourcePasses": 1,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 211540,
+            "sampledPeakHeapBytes": 13961776,
+            "sampledPeakNativeBytes": 37004512,
+            "residentPssKb": 207876,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        },
+        {
+          "run": 5,
+          "openingMs": 1341.057709,
+          "firstReadableFrameMs": 2534.001168,
+          "exactNumberByMs": 2285.080293,
+          "readyFrameMs": 2534.001168,
+          "pageNumber": 6742,
+          "layoutHash": "cc8d0c0dc6d8b506906641fb9daae579415f23965d6205abdbf6a00213b48b39",
+          "sourcePasses": 1,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 204116,
+            "sampledPeakHeapBytes": 11045424,
+            "sampledPeakNativeBytes": 35087216,
+            "residentPssKb": 203796,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        }
+      ],
+      "minMs": 2534.001168,
+      "medianMs": 2599.974709,
+      "maxMs": 4445.276502,
+      "status": "NOT_VERIFIED_DEVICE"
+    },
+    {
+      "profileId": "e07e40c11db287480975fc67ce9fc01e8f8b297d19ec9ede5e6f92a586ef02b4",
+      "case": "fb2-late-baseline-warm",
+      "cache": "warm",
+      "runs": [
+        {
+          "run": 1,
+          "openingMs": 1352.349084,
+          "firstReadableFrameMs": 1636.851667,
+          "exactNumberByMs": 1374.589417,
+          "readyFrameMs": 1636.851667,
+          "pageNumber": 6742,
+          "layoutHash": "cc8d0c0dc6d8b506906641fb9daae579415f23965d6205abdbf6a00213b48b39",
+          "sourcePasses": 1,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 208583,
+            "sampledPeakHeapBytes": 10340912,
+            "sampledPeakNativeBytes": 37281328,
+            "residentPssKb": 208279,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        },
+        {
+          "run": 2,
+          "openingMs": 1357.136084,
+          "firstReadableFrameMs": 1635.970875,
+          "exactNumberByMs": 1379.148417,
+          "readyFrameMs": 1635.970875,
+          "pageNumber": 6742,
+          "layoutHash": "cc8d0c0dc6d8b506906641fb9daae579415f23965d6205abdbf6a00213b48b39",
+          "sourcePasses": 1,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 206087,
+            "sampledPeakHeapBytes": 10816048,
+            "sampledPeakNativeBytes": 34818576,
+            "residentPssKb": 203287,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        },
+        {
+          "run": 3,
+          "openingMs": 1362.651251,
+          "firstReadableFrameMs": 1654.556917,
+          "exactNumberByMs": 1385.617792,
+          "readyFrameMs": 1654.556917,
+          "pageNumber": 6742,
+          "layoutHash": "cc8d0c0dc6d8b506906641fb9daae579415f23965d6205abdbf6a00213b48b39",
+          "sourcePasses": 1,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 201607,
+            "sampledPeakHeapBytes": 10111536,
+            "sampledPeakNativeBytes": 34127360,
+            "residentPssKb": 201206,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        },
+        {
+          "run": 4,
+          "openingMs": 1337.997501,
+          "firstReadableFrameMs": 1620.125918,
+          "exactNumberByMs": 1359.563084,
+          "readyFrameMs": 1620.125918,
+          "pageNumber": 6742,
+          "layoutHash": "cc8d0c0dc6d8b506906641fb9daae579415f23965d6205abdbf6a00213b48b39",
+          "sourcePasses": 1,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 205831,
+            "sampledPeakHeapBytes": 11520560,
+            "sampledPeakNativeBytes": 36631744,
+            "residentPssKb": 204279,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        },
+        {
+          "run": 5,
+          "openingMs": 1353.767251,
+          "firstReadableFrameMs": 1636.959418,
+          "exactNumberByMs": 1375.629084,
+          "readyFrameMs": 1636.959418,
+          "pageNumber": 6742,
+          "layoutHash": "cc8d0c0dc6d8b506906641fb9daae579415f23965d6205abdbf6a00213b48b39",
+          "sourcePasses": 1,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 204247,
+            "sampledPeakHeapBytes": 11373104,
+            "sampledPeakNativeBytes": 36833920,
+            "residentPssKb": 201175,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        }
+      ],
+      "minMs": 1620.125918,
+      "medianMs": 1636.851667,
+      "maxMs": 1654.556917,
+      "status": "NOT_VERIFIED_DEVICE"
+    },
+    {
+      "profileId": "e07e40c11db287480975fc67ce9fc01e8f8b297d19ec9ede5e6f92a586ef02b4",
+      "case": "fb2-late-baseline-cold_source",
+      "cache": "cold_source",
+      "runs": [
+        {
+          "run": 1,
+          "openingMs": 2732.359918,
+          "firstReadableFrameMs": 4393.557544,
+          "exactNumberByMs": 4155.720919,
+          "readyFrameMs": 4393.557544,
+          "pageNumber": 6742,
+          "layoutHash": "cc8d0c0dc6d8b506906641fb9daae579415f23965d6205abdbf6a00213b48b39",
+          "sourcePasses": 2,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 272009,
+            "sampledPeakHeapBytes": 148659008,
+            "sampledPeakNativeBytes": 34037344,
+            "residentPssKb": 199869,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        },
+        {
+          "run": 2,
+          "openingMs": 2571.662585,
+          "firstReadableFrameMs": 3950.69021,
+          "exactNumberByMs": 3712.184544,
+          "readyFrameMs": 3950.69021,
+          "pageNumber": 6742,
+          "layoutHash": "cc8d0c0dc6d8b506906641fb9daae579415f23965d6205abdbf6a00213b48b39",
+          "sourcePasses": 2,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 206333,
+            "sampledPeakHeapBytes": 11209264,
+            "sampledPeakNativeBytes": 37117376,
+            "residentPssKb": 200093,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        },
+        {
+          "run": 3,
+          "openingMs": 2560.952543,
+          "firstReadableFrameMs": 3917.469544,
+          "exactNumberByMs": 3673.357377,
+          "readyFrameMs": 3917.469544,
+          "pageNumber": 6742,
+          "layoutHash": "cc8d0c0dc6d8b506906641fb9daae579415f23965d6205abdbf6a00213b48b39",
+          "sourcePasses": 2,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 207389,
+            "sampledPeakHeapBytes": 10848816,
+            "sampledPeakNativeBytes": 37290384,
+            "residentPssKb": 205117,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        },
+        {
+          "run": 4,
+          "openingMs": 2567.703418,
+          "firstReadableFrameMs": 3901.795002,
+          "exactNumberByMs": 3663.784835,
+          "readyFrameMs": 3901.795002,
+          "pageNumber": 6742,
+          "layoutHash": "cc8d0c0dc6d8b506906641fb9daae579415f23965d6205abdbf6a00213b48b39",
+          "sourcePasses": 2,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 208109,
+            "sampledPeakHeapBytes": 12503600,
+            "sampledPeakNativeBytes": 34708224,
+            "residentPssKb": 206061,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        },
+        {
+          "run": 5,
+          "openingMs": 2535.291501,
+          "firstReadableFrameMs": 3834.127877,
+          "exactNumberByMs": 3591.830669,
+          "readyFrameMs": 3834.127877,
+          "pageNumber": 6742,
+          "layoutHash": "cc8d0c0dc6d8b506906641fb9daae579415f23965d6205abdbf6a00213b48b39",
+          "sourcePasses": 2,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 206061,
+            "sampledPeakHeapBytes": 11930160,
+            "sampledPeakNativeBytes": 35345664,
+            "residentPssKb": 204493,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        }
+      ],
+      "minMs": 3834.127877,
+      "medianMs": 3917.469544,
+      "maxMs": 4393.557544,
+      "status": "NOT_VERIFIED_DEVICE"
+    },
+    {
+      "profileId": "e07e40c11db287480975fc67ce9fc01e8f8b297d19ec9ede5e6f92a586ef02b4",
+      "case": "fb2-late-scale-cold",
+      "cache": "cold",
+      "runs": [
+        {
+          "run": 1,
+          "openingMs": 2750.186501,
+          "firstReadableFrameMs": 5798.305752,
+          "exactNumberByMs": 5501.97371,
+          "readyFrameMs": 5798.305752,
+          "pageNumber": 27322,
+          "layoutHash": "a8a07046517ecc58cbd86a7ff0dee525e89384c587e94a8cf3fe3c598ea193f7",
+          "sourcePasses": 2,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 271796,
+            "sampledPeakHeapBytes": 148429632,
+            "sampledPeakNativeBytes": 34496720,
+            "residentPssKb": 201626,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        },
+        {
+          "run": 2,
+          "openingMs": 1331.047876,
+          "firstReadableFrameMs": 3689.985169,
+          "exactNumberByMs": 3381.586627,
+          "readyFrameMs": 3689.985169,
+          "pageNumber": 27322,
+          "layoutHash": "a8a07046517ecc58cbd86a7ff0dee525e89384c587e94a8cf3fe3c598ea193f7",
+          "sourcePasses": 1,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 208522,
+            "sampledPeakHeapBytes": 12126768,
+            "sampledPeakNativeBytes": 35459728,
+            "residentPssKb": 205290,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        },
+        {
+          "run": 3,
+          "openingMs": 1343.250626,
+          "firstReadableFrameMs": 3605.341335,
+          "exactNumberByMs": 3296.924044,
+          "readyFrameMs": 3605.341335,
+          "pageNumber": 27322,
+          "layoutHash": "a8a07046517ecc58cbd86a7ff0dee525e89384c587e94a8cf3fe3c598ea193f7",
+          "sourcePasses": 1,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 207034,
+            "sampledPeakHeapBytes": 12831280,
+            "sampledPeakNativeBytes": 38446896,
+            "residentPssKb": 206362,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        },
+        {
+          "run": 4,
+          "openingMs": 1326.688918,
+          "firstReadableFrameMs": 3521.47121,
+          "exactNumberByMs": 3211.866335,
+          "readyFrameMs": 3521.47121,
+          "pageNumber": 27322,
+          "layoutHash": "a8a07046517ecc58cbd86a7ff0dee525e89384c587e94a8cf3fe3c598ea193f7",
+          "sourcePasses": 1,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 207274,
+            "sampledPeakHeapBytes": 11323952,
+            "sampledPeakNativeBytes": 37306496,
+            "residentPssKb": 204378,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        },
+        {
+          "run": 5,
+          "openingMs": 1337.857626,
+          "firstReadableFrameMs": 3471.664752,
+          "exactNumberByMs": 3179.744502,
+          "readyFrameMs": 3471.664752,
+          "pageNumber": 27322,
+          "layoutHash": "a8a07046517ecc58cbd86a7ff0dee525e89384c587e94a8cf3fe3c598ea193f7",
+          "sourcePasses": 1,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 205305,
+            "sampledPeakHeapBytes": 11061808,
+            "sampledPeakNativeBytes": 35911088,
+            "residentPssKb": 203946,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        }
+      ],
+      "minMs": 3471.664752,
+      "medianMs": 3605.341335,
+      "maxMs": 5798.305752,
+      "status": "NOT_VERIFIED_DEVICE"
+    },
+    {
+      "profileId": "e07e40c11db287480975fc67ce9fc01e8f8b297d19ec9ede5e6f92a586ef02b4",
+      "case": "fb2-late-scale-warm",
+      "cache": "warm",
+      "runs": [
+        {
+          "run": 1,
+          "openingMs": 1365.577084,
+          "firstReadableFrameMs": 1721.952917,
+          "exactNumberByMs": 1388.451792,
+          "readyFrameMs": 1721.952917,
+          "pageNumber": 27322,
+          "layoutHash": "a8a07046517ecc58cbd86a7ff0dee525e89384c587e94a8cf3fe3c598ea193f7",
+          "sourcePasses": 1,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 206703,
+            "sampledPeakHeapBytes": 11799088,
+            "sampledPeakNativeBytes": 35677792,
+            "residentPssKb": 202607,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        },
+        {
+          "run": 2,
+          "openingMs": 1364.248418,
+          "firstReadableFrameMs": 1725.016418,
+          "exactNumberByMs": 1389.658834,
+          "readyFrameMs": 1725.016418,
+          "pageNumber": 27322,
+          "layoutHash": "a8a07046517ecc58cbd86a7ff0dee525e89384c587e94a8cf3fe3c598ea193f7",
+          "sourcePasses": 1,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 206863,
+            "sampledPeakHeapBytes": 10750512,
+            "sampledPeakNativeBytes": 35131040,
+            "residentPssKb": 203039,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        },
+        {
+          "run": 3,
+          "openingMs": 1358.265709,
+          "firstReadableFrameMs": 1707.080126,
+          "exactNumberByMs": 1381.322292,
+          "readyFrameMs": 1707.080126,
+          "pageNumber": 27322,
+          "layoutHash": "a8a07046517ecc58cbd86a7ff0dee525e89384c587e94a8cf3fe3c598ea193f7",
+          "sourcePasses": 1,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 203871,
+            "sampledPeakHeapBytes": 11061808,
+            "sampledPeakNativeBytes": 36258592,
+            "residentPssKb": 199983,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        },
+        {
+          "run": 4,
+          "openingMs": 1370.900251,
+          "firstReadableFrameMs": 1723.883626,
+          "exactNumberByMs": 1393.811667,
+          "readyFrameMs": 1723.883626,
+          "pageNumber": 27322,
+          "layoutHash": "a8a07046517ecc58cbd86a7ff0dee525e89384c587e94a8cf3fe3c598ea193f7",
+          "sourcePasses": 1,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 207855,
+            "sampledPeakHeapBytes": 11651632,
+            "sampledPeakNativeBytes": 38948864,
+            "residentPssKb": 203471,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        },
+        {
+          "run": 5,
+          "openingMs": 1344.396459,
+          "firstReadableFrameMs": 1690.089251,
+          "exactNumberByMs": 1367.792917,
+          "readyFrameMs": 1690.089251,
+          "pageNumber": 27322,
+          "layoutHash": "a8a07046517ecc58cbd86a7ff0dee525e89384c587e94a8cf3fe3c598ea193f7",
+          "sourcePasses": 1,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 204159,
+            "sampledPeakHeapBytes": 10897968,
+            "sampledPeakNativeBytes": 34473664,
+            "residentPssKb": 200319,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        }
+      ],
+      "minMs": 1690.089251,
+      "medianMs": 1721.952917,
+      "maxMs": 1725.016418,
+      "status": "NOT_VERIFIED_DEVICE"
+    },
+    {
+      "profileId": "e07e40c11db287480975fc67ce9fc01e8f8b297d19ec9ede5e6f92a586ef02b4",
+      "case": "fb2-late-orientation-cold",
+      "cache": "cold",
+      "runs": [
+        {
+          "run": 1,
+          "openingMs": 2760.933501,
+          "firstReadableFrameMs": 4451.83196,
+          "exactNumberByMs": 4228.145585,
+          "readyFrameMs": 4451.83196,
+          "pageNumber": 7522,
+          "layoutHash": "66a67de67b339da233d860607e88ee17e6430ecffd067a7424f5a544f16f4fad",
+          "sourcePasses": 2,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 269700,
+            "sampledPeakHeapBytes": 149642048,
+            "sampledPeakNativeBytes": 36389936,
+            "residentPssKb": 199802,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        },
+        {
+          "run": 2,
+          "openingMs": 1323.105876,
+          "firstReadableFrameMs": 2614.595877,
+          "exactNumberByMs": 2399.648377,
+          "readyFrameMs": 2614.595877,
+          "pageNumber": 7522,
+          "layoutHash": "66a67de67b339da233d860607e88ee17e6430ecffd067a7424f5a544f16f4fad",
+          "sourcePasses": 1,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 200202,
+            "sampledPeakHeapBytes": 10701360,
+            "sampledPeakNativeBytes": 35320096,
+            "residentPssKb": 199658,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        },
+        {
+          "run": 3,
+          "openingMs": 1315.518459,
+          "firstReadableFrameMs": 2582.587126,
+          "exactNumberByMs": 2374.58571,
+          "readyFrameMs": 2582.587126,
+          "pageNumber": 7522,
+          "layoutHash": "66a67de67b339da233d860607e88ee17e6430ecffd067a7424f5a544f16f4fad",
+          "sourcePasses": 1,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 204666,
+            "sampledPeakHeapBytes": 10897968,
+            "sampledPeakNativeBytes": 33948112,
+            "residentPssKb": 203786,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        },
+        {
+          "run": 4,
+          "openingMs": 1306.588668,
+          "firstReadableFrameMs": 2549.854752,
+          "exactNumberByMs": 2328.961168,
+          "readyFrameMs": 2549.854752,
+          "pageNumber": 7522,
+          "layoutHash": "66a67de67b339da233d860607e88ee17e6430ecffd067a7424f5a544f16f4fad",
+          "sourcePasses": 1,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 202426,
+            "sampledPeakHeapBytes": 11422256,
+            "sampledPeakNativeBytes": 33342016,
+            "residentPssKb": 201226,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        },
+        {
+          "run": 5,
+          "openingMs": 1312.765709,
+          "firstReadableFrameMs": 2517.689584,
+          "exactNumberByMs": 2293.818542,
+          "readyFrameMs": 2517.689584,
+          "pageNumber": 7522,
+          "layoutHash": "66a67de67b339da233d860607e88ee17e6430ecffd067a7424f5a544f16f4fad",
+          "sourcePasses": 1,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 209578,
+            "sampledPeakHeapBytes": 12012080,
+            "sampledPeakNativeBytes": 36041952,
+            "residentPssKb": 206522,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        }
+      ],
+      "minMs": 2517.689584,
+      "medianMs": 2582.587126,
+      "maxMs": 4451.83196,
+      "status": "NOT_VERIFIED_DEVICE"
+    },
+    {
+      "profileId": "e07e40c11db287480975fc67ce9fc01e8f8b297d19ec9ede5e6f92a586ef02b4",
+      "case": "fb2-late-orientation-warm",
+      "cache": "warm",
+      "runs": [
+        {
+          "run": 1,
+          "openingMs": 1371.979042,
+          "firstReadableFrameMs": 1634.022334,
+          "exactNumberByMs": 1395.059251,
+          "readyFrameMs": 1634.022334,
+          "pageNumber": 7522,
+          "layoutHash": "66a67de67b339da233d860607e88ee17e6430ecffd067a7424f5a544f16f4fad",
+          "sourcePasses": 1,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 203951,
+            "sampledPeakHeapBytes": 10619440,
+            "sampledPeakNativeBytes": 34195920,
+            "residentPssKb": 202719,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        },
+        {
+          "run": 2,
+          "openingMs": 1358.8305,
+          "firstReadableFrameMs": 1631.053042,
+          "exactNumberByMs": 1384.923958,
+          "readyFrameMs": 1631.053042,
+          "pageNumber": 7522,
+          "layoutHash": "66a67de67b339da233d860607e88ee17e6430ecffd067a7424f5a544f16f4fad",
+          "sourcePasses": 1,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 206287,
+            "sampledPeakHeapBytes": 10488368,
+            "sampledPeakNativeBytes": 35173360,
+            "residentPssKb": 202943,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        },
+        {
+          "run": 3,
+          "openingMs": 1377.819293,
+          "firstReadableFrameMs": 1652.789918,
+          "exactNumberByMs": 1402.437459,
+          "readyFrameMs": 1652.789918,
+          "pageNumber": 7522,
+          "layoutHash": "66a67de67b339da233d860607e88ee17e6430ecffd067a7424f5a544f16f4fad",
+          "sourcePasses": 1,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 207487,
+            "sampledPeakHeapBytes": 10619440,
+            "sampledPeakNativeBytes": 36000576,
+            "residentPssKb": 203327,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        },
+        {
+          "run": 4,
+          "openingMs": 1359.397084,
+          "firstReadableFrameMs": 1616.160418,
+          "exactNumberByMs": 1380.535167,
+          "readyFrameMs": 1616.160418,
+          "pageNumber": 7522,
+          "layoutHash": "66a67de67b339da233d860607e88ee17e6430ecffd067a7424f5a544f16f4fad",
+          "sourcePasses": 1,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 201663,
+            "sampledPeakHeapBytes": 10258992,
+            "sampledPeakNativeBytes": 33919664,
+            "residentPssKb": 200783,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        },
+        {
+          "run": 5,
+          "openingMs": 1363.174459,
+          "firstReadableFrameMs": 1634.580584,
+          "exactNumberByMs": 1387.78125,
+          "readyFrameMs": 1634.580584,
+          "pageNumber": 7522,
+          "layoutHash": "66a67de67b339da233d860607e88ee17e6430ecffd067a7424f5a544f16f4fad",
+          "sourcePasses": 1,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 202137,
+            "sampledPeakHeapBytes": 10439216,
+            "sampledPeakNativeBytes": 36922336,
+            "residentPssKb": 200831,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        }
+      ],
+      "minMs": 1616.160418,
+      "medianMs": 1634.022334,
+      "maxMs": 1652.789918,
+      "status": "NOT_VERIFIED_DEVICE"
+    },
+    {
+      "profileId": "e07e40c11db287480975fc67ce9fc01e8f8b297d19ec9ede5e6f92a586ef02b4",
+      "case": "fb2-late-system_font-cold",
+      "cache": "cold",
+      "runs": [
+        {
+          "run": 1,
+          "openingMs": 2748.815876,
+          "firstReadableFrameMs": 5436.223461,
+          "exactNumberByMs": 5183.947836,
+          "readyFrameMs": 5436.223461,
+          "pageNumber": 21422,
+          "layoutHash": "e3cabda5b696e850f486f649d221382c85a584e378f2dae756edeaf25f821593",
+          "sourcePasses": 2,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 279177,
+            "sampledPeakHeapBytes": 151542592,
+            "sampledPeakNativeBytes": 35696336,
+            "residentPssKb": 198912,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        },
+        {
+          "run": 2,
+          "openingMs": 1324.537376,
+          "firstReadableFrameMs": 3404.738252,
+          "exactNumberByMs": 3152.355918,
+          "readyFrameMs": 3404.738252,
+          "pageNumber": 21422,
+          "layoutHash": "e3cabda5b696e850f486f649d221382c85a584e378f2dae756edeaf25f821593",
+          "sourcePasses": 1,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 203296,
+            "sampledPeakHeapBytes": 12028464,
+            "sampledPeakNativeBytes": 33302352,
+            "residentPssKb": 199360,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        },
+        {
+          "run": 3,
+          "openingMs": 1321.397209,
+          "firstReadableFrameMs": 3303.819085,
+          "exactNumberByMs": 3061.990669,
+          "readyFrameMs": 3303.819085,
+          "pageNumber": 21422,
+          "layoutHash": "e3cabda5b696e850f486f649d221382c85a584e378f2dae756edeaf25f821593",
+          "sourcePasses": 1,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 204240,
+            "sampledPeakHeapBytes": 12044848,
+            "sampledPeakNativeBytes": 33542944,
+            "residentPssKb": 200960,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        },
+        {
+          "run": 4,
+          "openingMs": 1322.772543,
+          "firstReadableFrameMs": 3171.358085,
+          "exactNumberByMs": 2939.670168,
+          "readyFrameMs": 3171.358085,
+          "pageNumber": 21422,
+          "layoutHash": "e3cabda5b696e850f486f649d221382c85a584e378f2dae756edeaf25f821593",
+          "sourcePasses": 1,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 205552,
+            "sampledPeakHeapBytes": 12208688,
+            "sampledPeakNativeBytes": 35615120,
+            "residentPssKb": 201968,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        },
+        {
+          "run": 5,
+          "openingMs": 1318.913125,
+          "firstReadableFrameMs": 3152.992043,
+          "exactNumberByMs": 2918.676626,
+          "readyFrameMs": 3152.992043,
+          "pageNumber": 21422,
+          "layoutHash": "e3cabda5b696e850f486f649d221382c85a584e378f2dae756edeaf25f821593",
+          "sourcePasses": 1,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 207120,
+            "sampledPeakHeapBytes": 11192880,
+            "sampledPeakNativeBytes": 36392640,
+            "residentPssKb": 203584,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        }
+      ],
+      "minMs": 3152.992043,
+      "medianMs": 3303.819085,
+      "maxMs": 5436.223461,
+      "status": "NOT_VERIFIED_DEVICE"
+    },
+    {
+      "profileId": "e07e40c11db287480975fc67ce9fc01e8f8b297d19ec9ede5e6f92a586ef02b4",
+      "case": "fb2-late-system_font-warm",
+      "cache": "warm",
+      "runs": [
+        {
+          "run": 1,
+          "openingMs": 1332.058334,
+          "firstReadableFrameMs": 1621.743376,
+          "exactNumberByMs": 1358.921793,
+          "readyFrameMs": 1621.743376,
+          "pageNumber": 21422,
+          "layoutHash": "e3cabda5b696e850f486f649d221382c85a584e378f2dae756edeaf25f821593",
+          "sourcePasses": 1,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 208247,
+            "sampledPeakHeapBytes": 13273648,
+            "sampledPeakNativeBytes": 35778304,
+            "residentPssKb": 205047,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        },
+        {
+          "run": 2,
+          "openingMs": 1345.904251,
+          "firstReadableFrameMs": 1638.339376,
+          "exactNumberByMs": 1369.828834,
+          "readyFrameMs": 1638.339376,
+          "pageNumber": 21422,
+          "layoutHash": "e3cabda5b696e850f486f649d221382c85a584e378f2dae756edeaf25f821593",
+          "sourcePasses": 1,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 208583,
+            "sampledPeakHeapBytes": 11405872,
+            "sampledPeakNativeBytes": 34708448,
+            "residentPssKb": 205159,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        },
+        {
+          "run": 3,
+          "openingMs": 1330.083376,
+          "firstReadableFrameMs": 1619.593084,
+          "exactNumberByMs": 1352.842459,
+          "readyFrameMs": 1619.593084,
+          "pageNumber": 21422,
+          "layoutHash": "e3cabda5b696e850f486f649d221382c85a584e378f2dae756edeaf25f821593",
+          "sourcePasses": 1,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 201159,
+            "sampledPeakHeapBytes": 11487792,
+            "sampledPeakNativeBytes": 36307168,
+            "residentPssKb": 198791,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        },
+        {
+          "run": 4,
+          "openingMs": 1327.686959,
+          "firstReadableFrameMs": 1620.530417,
+          "exactNumberByMs": 1352.963126,
+          "readyFrameMs": 1620.530417,
+          "pageNumber": 21422,
+          "layoutHash": "e3cabda5b696e850f486f649d221382c85a584e378f2dae756edeaf25f821593",
+          "sourcePasses": 1,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 202679,
+            "sampledPeakHeapBytes": 11373104,
+            "sampledPeakNativeBytes": 36265904,
+            "residentPssKb": 200663,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        },
+        {
+          "run": 5,
+          "openingMs": 1301.312375,
+          "firstReadableFrameMs": 1588.401126,
+          "exactNumberByMs": 1325.715334,
+          "readyFrameMs": 1588.401126,
+          "pageNumber": 21422,
+          "layoutHash": "e3cabda5b696e850f486f649d221382c85a584e378f2dae756edeaf25f821593",
+          "sourcePasses": 1,
+          "residentFragments": 1,
+          "layoutCacheCapacity": 8,
+          "contentWindowCapacity": 128,
+          "memory": {
+            "sampledPeakPssKb": 204039,
+            "sampledPeakHeapBytes": 12061232,
+            "sampledPeakNativeBytes": 33951888,
+            "residentPssKb": 200807,
+            "samplingIntervalMs": 16
+          },
+          "eofKnown": true
+        }
+      ],
+      "minMs": 1588.401126,
+      "medianMs": 1620.530417,
+      "maxMs": 1638.339376,
+      "status": "NOT_VERIFIED_DEVICE"
+    }
+  ],
+  "cancellation": {
+    "profileId": "e07e40c11db287480975fc67ce9fc01e8f8b297d19ec9ede5e6f92a586ef02b4",
+    "obsoletePublished": false,
+    "stagingFilesRemain": false,
+    "cancellationMs": 3.451209,
+    "newLayoutHash": "a8a07046517ecc58cbd86a7ff0dee525e89384c587e94a8cf3fe3c598ea193f7"
+  },
+  "invalidReason": "Обычный cold первый раз включал построение source spool, следующие четыре использовали готовый spool; исправлено в T012."
+}

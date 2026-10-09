@@ -19,3 +19,20 @@
 EPUB сохраняет `mimetype` первым элементом ZIP без сжатия. Corpus v1 добавляет каталог `corpus/` и manifest с размером/хешем/ожидаемым результатом.
 Генератор: `python3 scripts/generate-import-corpus.py`; прогон: `scripts/verify-import-corpus.sh`.
 Исходные fixture bytes не изменяются; новые тексты также синтетические.
+
+## Корпус второго релиза
+
+`corpus/reader-appearance.epub` и `corpus/reader-appearance.fb2` содержат длинный абзац,
+surrogate pairs (😀, 𝄞), combining mark, кириллицу/CJK, вложенные стили, списки,
+изображение, пустую и безымянную главы. Координаты относятся к исходным UTF-16 строкам.
+ZIP имеет фиксированные timestamps; manifest содержит размеры и SHA-256 для повторения.
+
+Нагрузочные EPUB и FB2 размером не менее 20 000 000 байт создаются отдельно:
+
+```sh
+python3 scripts/generate-import-corpus.py --large-output /tmp/hooreader-v2-corpus
+```
+
+Их manifest находится в `/tmp/hooreader-v2-corpus/corpus/manifest.json`. Эти файлы не
+хранятся в Git, не включаются в assets/APK и не импортируются в пользовательскую библиотеку
+автоматически. Генерация не меняет исходные fixtures первого релиза.
