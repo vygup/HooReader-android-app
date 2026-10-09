@@ -1,0 +1,19 @@
+{
+  "status": "PASS_USER_REPORTED",
+  "task": "T062",
+  "criterion": "SC-007",
+  "confirmationReceivedAt": "2026-10-09T13:32:39.924200+00:00",
+  "source": "user message in this conversation",
+  "confirmation": "Проверку T062 прошли, давай готовить релиз",
+  "criterionPassedReported": true,
+  "requiredParticipants": 5,
+  "requiredSuccessfulParticipants": 4,
+  "actualSuccessfulParticipants": null,
+  "participantObservations": null,
+  "studyDate": null,
+  "device": null,
+  "actualApkSha256": null,
+  "detailsRequested": true,
+  "releaseAccepted": false,
+  "remainingGate": "SC-004"
+}
