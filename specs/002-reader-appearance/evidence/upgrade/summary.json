@@ -1,0 +1,28 @@
+{
+  "status": "PASS",
+  "fromVersion": "1.0.0",
+  "toVersion": "2.0.0",
+  "dataClearedBetweenVersions": false,
+  "airplaneMode": true,
+  "formats": [
+    "EPUB",
+    "FB2"
+  ],
+  "modes": [
+    "VERTICAL",
+    "PAGINATED"
+  ],
+  "theme": "DARK",
+  "fontScale": 1.5,
+  "defaultMode": "VERTICAL",
+  "defaultConfirmReaderExit": true,
+  "roomSchemaVersion": 1,
+  "roomSchemaUnchanged": true,
+  "roomSchemaSha256": "d6028f051b0fa233c896ec8cecf8d7553d5b1938fca0981751483a89d4768b2a",
+  "position": "Room позиция v1 восстанавливает вторую главу; точный UTF-16 offset проверяется T059",
+  "apkSha256": {
+    "HooReader-1.0.0.apk": "b57907f817f9577c5533fa353641716829c4943bde9a6608e765f052c4aa6846",
+    "HooReader-2.0.0.apk": "3a2f7d7458da78ba479ba2c863167eb4313982cdace7d5b3ca212bb06d664899"
+  },
+  "releaseAccepted": false
+}
