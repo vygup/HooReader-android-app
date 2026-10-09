@@ -1,0 +1,17 @@
+Verifies
+Verified using v1 scheme (JAR signing): false
+Verified using v2 scheme (APK Signature Scheme v2): true
+Verified using v3 scheme (APK Signature Scheme v3): false
+Verified using v3.1 scheme (APK Signature Scheme v3.1): false
+Verified using v4 scheme (APK Signature Scheme v4): false
+Verified for SourceStamp: false
+Number of signers: 1
+Signer #1 certificate DN: CN=HooReader release
+Signer #1 certificate SHA-256 digest: c0070284e6b608c54a4daaf1687a4287fe6cc0ade5669b8639b68fda4ad771ca
+Signer #1 certificate SHA-1 digest: baf9ac8f1927f6ac926431605235d20bfe439e1e
+Signer #1 certificate MD5 digest: 2d80ced042263b614706c39f035a069d
+Signer #1 key algorithm: RSA
+Signer #1 key size (bits): 3072
+Signer #1 public key SHA-256 digest: defdc9e3029048d75280a71893d2f398c7705872e6e36c8ec21e1881674af211
+Signer #1 public key SHA-1 digest: cdb45067755b714c79aa2376ca5a47b04c73d270
+Signer #1 public key MD5 digest: d9ef01f5d01efaa4289afd64236419bd

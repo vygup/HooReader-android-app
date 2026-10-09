@@ -1,0 +1,8 @@
+
+com.hooreader.releasesmoke.ReleaseSmokeTest:.
+
+Time: 42.871
+
+OK (1 test)
+
+

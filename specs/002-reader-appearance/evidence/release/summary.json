@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "versionName": "2.0.0",
+  "versionCode": 2,
+  "releaseAccepted": false,
+  "builtAt": "2026-10-07",
+  "smokeAt": "2026-10-09",
+  "device": "Pixel_10 API 37 arm64-v8a emulator read-only",
+  "buildSourceCommit": "d37f9b7",
+  "buildWorkingTreeDirty": true,
+  "productionChangesSinceBuild": false,
+  "artifacts": {
+    "HooReader-2.0.0.apk": "3a2f7d7458da78ba479ba2c863167eb4313982cdace7d5b3ca212bb06d664899",
+    "HooReader-2.0.0.aab": "5649d3831081762c15adce36179f4b028ac5d56790eef8390892031b6a4e6216"
+  },
+  "signing": "existing release key; no secrets added",
+  "upgrade": "../upgrade/summary.json",
+  "published": false
+}

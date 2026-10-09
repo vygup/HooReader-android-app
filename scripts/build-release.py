@@ -28,8 +28,8 @@ subprocess.run([str(root / 'gradlew'), ':app:check', ':app:assembleRelease', ':a
                cwd=root, env=env, check=True)
 metadata = json.loads((root / 'app/build/outputs/apk/release/output-metadata.json').read_text())
 entry = metadata['elements'][0]
-if metadata['applicationId'] != 'com.hooreader' or entry['versionName'] != '1.0.0' or entry['versionCode'] != 1:
-    raise SystemExit('Release identity не соответствует 1.0.0 (1).')
+if metadata['applicationId'] != 'com.hooreader' or entry['versionName'] != '2.0.0' or entry['versionCode'] != 2:
+    raise SystemExit('Release identity не соответствует 2.0.0 (2).')
 sdk = env.get('ANDROID_HOME') or env.get('ANDROID_SDK_ROOT')
 if not sdk:
     for line in (root / 'local.properties').read_text().splitlines():
@@ -39,10 +39,10 @@ if not sdk:
 if not sdk:
     raise SystemExit('Укажите ANDROID_HOME для проверки подписи.')
 apksigner = Path(sdk) / 'build-tools/35.0.0/apksigner'
-output = root / 'app/build/release/1.0.0'
+output = root / 'app/build/release/2.0.0'
 output.mkdir(parents=True, exist_ok=True)
-apk = output / 'HooReader-1.0.0.apk'
-aab = output / 'HooReader-1.0.0.aab'
+apk = output / 'HooReader-2.0.0.apk'
+aab = output / 'HooReader-2.0.0.aab'
 shutil.copy2(root / 'app/build/outputs/apk/release' / entry['outputFile'], apk)
 shutil.copy2(root / 'app/build/outputs/bundle/release/app-release.aab', aab)
 verified = subprocess.run([str(apksigner), 'verify', '--verbose', '--print-certs', str(apk)],
