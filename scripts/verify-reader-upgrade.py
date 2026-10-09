@@ -4,6 +4,7 @@ import hashlib
 import json
 import os
 import subprocess
+from zipfile import ZipFile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -17,6 +18,23 @@ if len(qemu) != 1 or '-read-only' not in qemu[0]:
     raise SystemExit('Запустите ровно один emulator с -read-only; пользовательская установка не затрагивается.')
 output = ROOT / 'specs/002-reader-appearance/evidence/upgrade'
 output.mkdir(parents=True, exist_ok=True)
+fixtures = output / 'fixtures'
+fixtures.mkdir(exist_ok=True)
+# Short source fixtures fit entirely in the viewport and cannot prove chapter restoration.
+extra = ''.join(f'<p>Upgrade persistence paragraph {i}: visible chapter anchor evidence.</p>' for i in range(80))
+source = ROOT / 'app/src/androidTest/assets/books'
+with ZipFile(source / 'structured.epub') as original, ZipFile(fixtures / 'structured.epub', 'w') as expanded:
+    for entry in original.infolist():
+        payload = original.read(entry.filename)
+        if entry.filename in ('EPUB/one.xhtml', 'EPUB/two.xhtml'):
+            payload = payload.decode().replace('</body>', extra + '</body>').encode()
+        expanded.writestr(entry, payload)
+fb2 = (source / 'windows-1251.fb2').read_bytes().decode('cp1251')
+header, body = fb2.split('<body>', 1)
+body = body.replace('<image l:href="#cover"/>', extra + '<image l:href="#cover"/>')
+body = body.replace('</section></body>', extra + '</section></body>')
+fb2 = header + '<body>' + body
+(fixtures / 'windows-1251.fb2').write_bytes(fb2.encode('cp1251'))
 apks = [ROOT / f'app/build/release/{version}/HooReader-{version}.apk' for version in ('1.0.0', '2.0.0')]
 if not all(apk.is_file() for apk in apks):
     raise SystemExit('Нужны подписанные APK 1.0.0 и 2.0.0; сначала выполните scripts/build-release.py.')
@@ -56,7 +74,7 @@ try:
         adb('install', '-r', str(ROOT / apk))
     for fixture, target in [('structured.epub', 'hooreader-release-epub.epub'),
                             ('windows-1251.fb2', 'hooreader-release-fb2.fb2')]:
-        adb('push', str(ROOT / 'app/src/androidTest/assets/books' / fixture), '/sdcard/Download/' + target)
+        adb('push', str(fixtures / fixture), '/sdcard/Download/' + target)
     adb('shell', 'input', 'keyevent', 'KEYCODE_WAKEUP')
     adb('shell', 'wm', 'dismiss-keyguard')
     phase('seed')
@@ -77,6 +95,8 @@ try:
               'roomSchemaVersion': 1, 'roomSchemaUnchanged': True,
               'roomSchemaSha256': hashlib.sha256(schema).hexdigest(),
               'position': 'Room позиция v1 восстанавливает вторую главу; точный UTF-16 offset проверяется T059',
+              'positionProof': 'Both chapters exceed viewport; second chapter visible and first chapter absent after update',
+              'fixturesSha256': {f.name: hashlib.sha256(f.read_bytes()).hexdigest() for f in fixtures.iterdir()},
               'apkSha256': {apk.name: hashlib.sha256(apk.read_bytes()).hexdigest() for apk in apks},
               'releaseAccepted': False}
     (output / 'summary.json').write_text(json.dumps(result, ensure_ascii=False, indent=2) + '\n')

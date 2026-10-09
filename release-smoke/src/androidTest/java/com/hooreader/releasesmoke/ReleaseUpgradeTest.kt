@@ -9,6 +9,7 @@ import androidx.test.uiautomator.UiDevice
 import androidx.test.uiautomator.UiObject2
 import androidx.test.uiautomator.Until
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Assume.assumeTrue
 import org.junit.Test
@@ -32,6 +33,7 @@ class ReleaseUpgradeTest {
             importFile(file)
             click("Следующая глава")
             node("Абзац для восстановления позиции.")
+            assertSecondChapterVisible()
             click("Настройки чтения")
             click("Тёмная")
             click("Увеличить текст")
@@ -52,6 +54,7 @@ class ReleaseUpgradeTest {
         listOf("Тестовая книга — Café", "Тестовая книга").forEach { title ->
             click(title)
             node("Абзац для восстановления позиции.")
+            assertSecondChapterVisible()
             controls()
             click("Настройки чтения")
             node("Размер текста: 150%")
@@ -72,10 +75,16 @@ class ReleaseUpgradeTest {
             click("Вертикальная прокрутка")
             device.pressBack()
             node("Абзац для восстановления позиции.")
+            assertSecondChapterVisible()
             captureUpgrade(if (title.contains("Café")) "epub" else "fb2")
             exitReader()
         }
         captureUpgrade("verify")
+    }
+
+    private fun assertSecondChapterVisible() {
+        node("Вторая глава")
+        assertFalse("First chapter must be outside the viewport", device.hasObject(By.text("Первая глава")))
     }
 
     private fun captureUpgrade(phase: String) {
