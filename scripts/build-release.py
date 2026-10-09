@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Собирает подписанный релиз, проверяет подпись и формирует checksums."""
 import hashlib
+import datetime
 import json
 import os
 import re
@@ -24,6 +25,9 @@ if not any(env.get(name) for name in names):
                HOOREADER_KEY_ALIAS='hooreader', HOOREADER_KEY_PASSWORD=password)
 if not all(env.get(name) for name in names):
     raise SystemExit('Неполная конфигурация HOOREADER_* signing variables.')
+source_commit = subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=root, text=True).strip()
+source_dirty = bool(subprocess.check_output(['git', 'status', '--porcelain'], cwd=root, text=True).strip())
+build_started = datetime.datetime.now(datetime.timezone.utc).isoformat()
 subprocess.run([str(root / 'gradlew'), ':app:check', ':app:assembleRelease', ':app:bundleRelease'],
                cwd=root, env=env, check=True)
 metadata = json.loads((root / 'app/build/outputs/apk/release/output-metadata.json').read_text())
@@ -64,5 +68,16 @@ if not apk_digest or not bundle_digest or apk_digest[1] != bundle_digest[1].repl
 (output / 'aab-certificate.txt').write_text(bundle_certificate)
 checksums = ''.join(f'{hashlib.sha256(p.read_bytes()).hexdigest()}  {p.name}\n' for p in (apk, aab))
 (output / 'SHA256SUMS.txt').write_text(checksums)
+provenance = {
+    'versionName': entry['versionName'], 'versionCode': entry['versionCode'],
+    'sourceCommit': source_commit, 'workingTreeDirtyAtBuildStart': source_dirty,
+    'buildStartedAt': build_started, 'buildFinishedAt': datetime.datetime.now(datetime.timezone.utc).isoformat(),
+    'sourceCommitAfterBuild': subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=root, text=True).strip(),
+    'workingTreeDirtyAfterBuild': bool(subprocess.check_output(
+        ['git', 'status', '--porcelain'], cwd=root, text=True).strip()),
+    'certificateSha256': apk_digest[1],
+    'artifactsSha256': {p.name: hashlib.sha256(p.read_bytes()).hexdigest() for p in (apk, aab)},
+}
+(output / 'build-provenance.json').write_text(json.dumps(provenance, indent=2) + '\n')
 print(f'Готовые подписанные APK/AAB: {output}')
 print(checksums, end='')
