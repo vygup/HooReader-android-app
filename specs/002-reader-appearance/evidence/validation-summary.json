@@ -8,8 +8,7 @@
   "phaseComplete": false,
   "blockedBy": [
     "SC-004 physical device/full protocol/1000ms release blocker",
-    "SC-007 five participants",
-    "T063 API 26 instrumentation"
+    "SC-007 five participants"
   ],
   "taskStatus": {
     "completed": [
@@ -17,18 +16,23 @@
       "T059",
       "T060",
       "T061",
+      "T063",
       "T064",
       "T065"
     ],
     "pending": [
-      "T062",
-      "T063"
+      "T062"
     ],
     "T061": "instrumentation and unavailable-device report complete; metric not accepted"
   },
   "compatibility": {
     "minApi": 26,
-    "api26": "NOT_VERIFIED_API26",
+    "api26": {
+      "api": 26,
+      "status": "PASS",
+      "physical": false,
+      "evidence": "validation/connected-api26.xml"
+    },
     "api34plus": {
       "api": 37,
       "status": "PASS",
@@ -62,14 +66,41 @@
       "evidence": "validation/paged-100-api37.xml",
       "newUniqueTestCount": 0
     },
-    "environment": "validation/environment.json"
+    "environment": "validation/environment.json",
+    "connectedByApi": {
+      "26": {
+        "tests": 65,
+        "passed": 48,
+        "skipped": 17,
+        "failures": 0,
+        "errors": 0,
+        "evidence": "validation/connected-api26.xml"
+      },
+      "37": {
+        "tests": 65,
+        "passed": 48,
+        "skipped": 17,
+        "failures": 0,
+        "errors": 0,
+        "evidence": "validation/connected-api37.xml"
+      }
+    },
+    "exitRegressionAfterApi26Fixes": {
+      "api": 37,
+      "tests": 4,
+      "passed": 4,
+      "skipped": 0,
+      "failures": 0,
+      "evidence": "validation/exit-regression-api37.xml"
+    }
   },
   "SC": {
     "SC-001": {
       "status": "PASS_API37",
       "evidence": [
         "validation/connected-api37.xml",
-        "validation/paged-100-api37.xml"
+        "validation/paged-100-api37.xml",
+        "validation/connected-api26.xml"
       ],
       "tests": [
         "ReaderScreenTest.hundredScrollCancelDiagonalReturnAndBoundaryGesturesNeverOpenControls",
@@ -84,7 +115,8 @@
       "status": "PASS_API37",
       "evidence": [
         "validation/connected-api37.xml",
-        "font-scale/summary.json"
+        "font-scale/summary.json",
+        "validation/connected-api26.xml"
       ],
       "tests": [
         "ReadingIndicatorsTest: 8 format/mode/theme scenarios"
@@ -1030,7 +1062,9 @@
         "validation/connected-api37.xml",
         "validation/unit/testDebugUnitTest/TEST-com.hooreader.ui.reader.ReaderViewModelTest.xml",
         "process-death-v2.txt",
-        "exit/phase7-validation.json"
+        "exit/phase7-validation.json",
+        "validation/connected-api26.xml",
+        "validation/exit-regression-api37.xml"
       ]
     },
     "SC-007": {
@@ -1038,7 +1072,8 @@
       "participants": 0,
       "requiredParticipants": 5,
       "evidence": [
-        "../usability-results.md"
+        "../usability-results.md",
+        "../usability-form.md"
       ]
     },
     "SC-008": {
@@ -1282,7 +1317,9 @@
       "evidence": [
         "validation/connected-api37.xml",
         "process-death-v2.txt",
-        "upgrade/summary.json"
+        "upgrade/summary.json",
+        "validation/connected-api26.xml",
+        "validation/exit-regression-api37.xml"
       ],
       "tests": [
         "AppSettingsTest",
@@ -1295,7 +1332,9 @@
       "status": "PASS_CHECKED_SCENARIOS",
       "evidence": [
         "validation/connected-api37.xml",
-        "font-scale/summary.json"
+        "font-scale/summary.json",
+        "validation/connected-api26.xml",
+        "validation/exit-regression-api37.xml"
       ],
       "tests": [
         "HooReaderNavHostTest",
@@ -1308,7 +1347,9 @@
       "status": "PASS_CHECKED_SCENARIOS",
       "evidence": [
         "validation/connected-api37.xml",
-        "validation/unit/testDebugUnitTest/TEST-com.hooreader.ui.reader.ReaderViewModelTest.xml"
+        "validation/unit/testDebugUnitTest/TEST-com.hooreader.ui.reader.ReaderViewModelTest.xml",
+        "validation/connected-api26.xml",
+        "validation/exit-regression-api37.xml"
       ],
       "tests": [
         "HooReaderNavHostTest.realReaderPrioritizesMenusCancelsDialogAndRetriesFailedExit",
@@ -1323,7 +1364,9 @@
         "process-death-v2.txt",
         "import-corpus-v2.json",
         "upgrade/summary.json",
-        "release/release-smoke.txt"
+        "release/release-smoke.txt",
+        "validation/connected-api26.xml",
+        "validation/exit-regression-api37.xml"
       ],
       "tests": [
         "HooReaderNavHostTest",
@@ -1348,7 +1391,7 @@
   "evidencePathsRelativeTo": "specs/002-reader-appearance/evidence",
   "limitations": [
     "Synthetic corpus; no claim of support for all external books",
-    "API 37 emulator results do not replace API 26 or physical acceptance",
+    "API 26 and API 37 emulator results do not replace physical SC-004 acceptance",
     "Prior pagination and current UI profiles are separate; no combined acceptance series",
     "Checklist files remained reviewer-owned and unchanged"
   ],

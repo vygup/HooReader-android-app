@@ -9,8 +9,10 @@ release-подпись. [Выпуск и временный стенд](releasin
 требуются локальные APK 1.0.0/2.0.0, собранный внешний release-smoke runner и один
 `-read-only` emulator. Между установкой v1 и обновлением v2 библиотека не очищается.
 
-На 2026-10-09 прошли unit/static/debug builds и 48 UI tests на API 37;
-17 специальных opt-in tests в общем прогоне skipped. Отдельно пройдены:
+На 2026-10-09 прошли unit/static/debug builds и по 48 UI tests на API 26 и API 37;
+на каждом стенде 17 специальных opt-in tests в общем прогоне skipped. После
+исправлений тестового ввода и screenshot повторены четыре затронутых теста
+на API 37 — без ошибок. Отдельно пройдены:
 
 - `scripts/verify-reader-font-scale.sh`: 96 сочетаний, 576 screenshots.
 - `scripts/verify-reader-process-death.sh`: четыре сочетания режима/защиты выхода,
@@ -22,8 +24,21 @@ release-подпись. [Выпуск и временный стенд](releasin
 стенда; без него сохраняет NOT_VERIFIED_DEVICE. Для проверки harness доступно
 `--allow-emulator --ui-only /tmp/performance-diagnostic.json`: пять повторов каждого
 UI-сценария, отдельный profileId. Полная серия 20 MB текущего RC не проведена;
-прежний непройденный порог ≤1 секунды остаётся release blocker. Образы API 26
-и пять участников в этой сессии недоступны, соответствующие проверки не завершены.
+прежний непройденный порог ≤1 секунды остаётся release blocker. Результаты проверки
+с пятью реальными участниками ещё не получены; SC-007 не подтверждён.
+
+Для API 26 установлен официальный Google APIs ARM64 image и создан отдельный
+AVD `HooReader_API26` в стандартном каталоге `~/.android/avd/`. Воспроизведение:
+
+```sh
+"$ANDROID_HOME/emulator/emulator" -avd HooReader_API26 -no-snapshot -no-window -no-audio
+# После загрузки, при одном подключённом тестовом стенде:
+ANDROID_SERIAL=emulator-5554 ./gradlew :app:check :app:assembleDebug :app:assembleDebugAndroidTest :app:connectedDebugAndroidTest
+```
+
+На API 26–27 screenshot диалога сохраняется через UiAutomation, поскольку Compose
+captureToImage не поддерживает эти окна до API 28. Все проверки диалога выполняются;
+скриншот не заменяет их. [Итоги T063](../specs/002-reader-appearance/validation-results.md).
 
 [Все результаты и ограничения](../specs/002-reader-appearance/quickstart-results.md) ·
 [Машиночитаемая матрица](../specs/002-reader-appearance/evidence/validation-summary.json).
