@@ -1,5 +1,34 @@
 # Сборка HooReader
 
+## Второй RC: фактические проверки
+
+Локальный RC 2.0.0 (versionCode 2) собирается `python3 scripts/build-release.py`.
+APK/AAB и SHA256SUMS находятся в `app/build/release/2.0.0/`; используется существующая
+release-подпись. [Выпуск и временный стенд](releasing.md), [notes](releases/2.0.0.md).
+Подписанное обновление проверяется отдельно `python3 scripts/verify-reader-upgrade.py`:
+требуются локальные APK 1.0.0/2.0.0, собранный внешний release-smoke runner и один
+`-read-only` emulator. Между установкой v1 и обновлением v2 библиотека не очищается.
+
+На 2026-10-09 прошли unit/static/debug builds и 48 UI tests на API 37;
+17 специальных opt-in tests в общем прогоне skipped. Отдельно пройдены:
+
+- `scripts/verify-reader-font-scale.sh`: 96 сочетаний, 576 screenshots.
+- `scripts/verify-reader-process-death.sh`: четыре сочетания режима/защиты выхода,
+  длинный UTF-16 anchor и пересоздание отсутствующего производного кэша.
+- `scripts/verify-import-corpus.sh /tmp/corpus.json`: 26 файлов, оба режима офлайн.
+- `python3 scripts/verify-release.py`: внешний UI smoke подписанного release APK.
+
+`scripts/measure-reader-performance.sh /tmp/performance.json` требует физического
+стенда; без него сохраняет NOT_VERIFIED_DEVICE. Для проверки harness доступно
+`--allow-emulator --ui-only /tmp/performance-diagnostic.json`: пять повторов каждого
+UI-сценария, отдельный profileId. Полная серия 20 MB текущего RC не проведена;
+прежний непройденный порог ≤1 секунды остаётся release blocker. Образы API 26
+и пять участников в этой сессии недоступны, соответствующие проверки не завершены.
+
+[Все результаты и ограничения](../specs/002-reader-appearance/quickstart-results.md) ·
+[Машиночитаемая матрица](../specs/002-reader-appearance/evidence/validation-summary.json).
+Старые разделы ниже сохраняют предыдущие этапы и не заменяют текущую приёмку.
+
 ## Окружение
 
 - JDK 17–21 (для проверки проекта используется JDK 21).

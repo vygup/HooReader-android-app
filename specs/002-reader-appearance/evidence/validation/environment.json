@@ -1,0 +1,20 @@
+{
+  "date": "2026-10-09",
+  "jdk": "openjdk version \"21.0.11\" 2026-04-21\nOpenJDK Runtime Environment JBR-21.0.11+10-1163.116-nomod (build 21.0.11+10-b1163.116)\nOpenJDK 64-Bit Server VM JBR-21.0.11+10-1163.116-nomod (build 21.0.11+10-b1163.116, mixed mode, sharing)",
+  "gradle": "8.14.3",
+  "agp": "8.11.1",
+  "kotlin": "2.1.21",
+  "compileSdk": 36,
+  "minSdk": 26,
+  "testedDevice": {
+    "avd": "Pixel_10",
+    "api": 37,
+    "abi": "arm64-v8a",
+    "physical": false,
+    "systemImage": "google play 16 KB Android 17"
+  },
+  "installedSystemImages": [
+    "android-37.2"
+  ],
+  "api26": "NOT_VERIFIED_API26"
+}
